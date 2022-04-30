@@ -16,9 +16,15 @@
 		}
 
 		/// <inheritdoc />
-		public IReadOnlyCollection<string> GetPermissionsFor(ClaimsPrincipal user)
+		public IReadOnlyCollection<string> GetPermissionsFrom(ClaimsPrincipal user)
 		{
 			return user.GetPermissions();
+		}
+
+		/// <inheritdoc />
+		public IReadOnlyCollection<string> GetPermissionsFrom(IEnumerable<Claim> claims)
+		{
+			return claims.GetPermissions();
 		}
 
 		/// <inheritdoc />
@@ -26,6 +32,13 @@
 		{
 			string normalizedName = this.permissionLookupNormalizer.NormalizeName(permission);
 			return user.HasPermission(normalizedName);
+		}
+
+		/// <inheritdoc />
+		public bool HasPermission(IEnumerable<Claim> claims, string permission)
+		{
+			string normalizedName = this.permissionLookupNormalizer.NormalizeName(permission);
+			return claims.HasPermission(normalizedName);
 		}
 	}
 }

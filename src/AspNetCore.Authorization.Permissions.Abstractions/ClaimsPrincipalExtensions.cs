@@ -8,7 +8,7 @@
 	public static class ClaimsPrincipalExtensions
 	{
 		/// <summary>
-		///     Gets the permission from the given user.
+		///     Gets the permissions from the given user.
 		/// </summary>
 		/// <param name="user"></param>
 		/// <returns></returns>

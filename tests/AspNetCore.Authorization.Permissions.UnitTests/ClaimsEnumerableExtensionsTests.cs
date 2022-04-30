@@ -7,7 +7,7 @@
 	using NUnit.Framework;
 
 	[TestFixture]
-	public class ClaimsPrincipalExtensionsTests
+	public class ClaimsEnumerableExtensionsTests
 	{
 		[Test]
 		public void ShouldGetAllAvailablePermissions()
@@ -19,7 +19,7 @@
 				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			IReadOnlyCollection<string> result = principal.GetPermissions();
+			IReadOnlyCollection<string> result = principal.Claims.GetPermissions();
 			result.Should().NotBeNullOrEmpty()
 				.And.Contain("Invoices.Read")
 				.And.Contain("Invoices.Write")
@@ -34,7 +34,7 @@
 				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant")
 			}));
 
-			string result = principal.GetTenantName();
+			string result = principal.Claims.GetTenantName();
 
 			result.Should().NotBeNull().And.Be("test-tenant");
 		}
@@ -47,7 +47,7 @@
 				new Claim(ClaimTypes.NameIdentifier, "123456")
 			}));
 
-			string result = principal.GetUserId();
+			string result = principal.Claims.GetUserId();
 
 			result.Should().NotBeNull().And.Be("123456");
 		}
@@ -62,7 +62,7 @@
 				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.HasPermission("Invoices.Write".ToLowerInvariant());
+			bool result = principal.Claims.HasPermission("Invoices.Write".ToLowerInvariant());
 			result.Should().BeTrue();
 		}
 
@@ -76,7 +76,7 @@
 				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.HasPermission("invOiCeS.wriTe");
+			bool result = principal.Claims.HasPermission("invOiCeS.wriTe");
 			result.Should().BeTrue();
 		}
 
@@ -90,7 +90,7 @@
 				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.HasPermission("Invoices.Write");
+			bool result = principal.Claims.HasPermission("Invoices.Write");
 			result.Should().BeTrue();
 		}
 
@@ -105,7 +105,7 @@
 				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.HasPermission("Invoices.Write".ToUpperInvariant());
+			bool result = principal.Claims.HasPermission("Invoices.Write".ToUpperInvariant());
 			result.Should().BeTrue();
 		}
 
@@ -114,18 +114,17 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity());
 
-			string result = principal.GetUserId();
+			string result = principal.Claims.GetUserId();
 
 			result.Should().BeNull();
 		}
-
 
 		[Test]
 		public void ShouldNotTenantName()
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity());
 
-			string result = principal.GetTenantName();
+			string result = principal.Claims.GetTenantName();
 
 			result.Should().BeNull();
 		}
