@@ -11,8 +11,6 @@
 		[HasPermission("ShowPermissions")]
 		public IActionResult Get()
 		{
-			throw new InvalidOperationException("The operation is not gooood. Yaaaas Queeeen!");
-
 			var claims = this.User.Claims.Select(x => new { x.Type, x.Value });
 			return this.Ok(claims);
 		}

@@ -14,8 +14,7 @@ builder.Services.AddRazorPages();
 
 builder.Services
 	.AddAuthorization()
-	.AddPermissions()
-	.AddIdentityClaimsProvider();
+	.AddPermissions();
 
 builder.Services
 	.AddDbContext<ApplicationDbContext>(options =>
@@ -31,9 +30,8 @@ builder.Services
 		options.Password.RequiredLength = 6;
 		options.Password.RequiredUniqueChars = 0;
 	})
-	.AddDefaultTokenProviders()
 	.AddDefaultUI()
-	.AddEntityFrameworkStores<ApplicationDbContext>()
+	.AddDefaultTokenProviders()
 	.AddPermissionsEntityFrameworkStores<ApplicationDbContext>();
 
 WebApplication app = builder.Build();

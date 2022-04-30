@@ -5,11 +5,13 @@
 	using System.Threading.Tasks;
 	using AspNetCore.Authorization.Permissions.Abstractions;
 	using Fluxera.Utilities.Extensions;
+	using JetBrains.Annotations;
 
+	[PublicAPI]
 	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
 		where TUser : class, ITenantUser
-		where TPermission : class, IPermission
-		where TTenant : class, ITenant
+		where TPermission : class
+		where TTenant : class
 	{
 		private readonly PermissionManager<TPermission> permissionManager;
 		private readonly TenantManager<TTenant> tenantManager;

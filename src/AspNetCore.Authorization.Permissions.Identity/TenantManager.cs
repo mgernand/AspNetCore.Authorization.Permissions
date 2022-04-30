@@ -17,7 +17,7 @@
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
 	public class TenantManager<TTenant> : IDisposable
-		where TTenant : class, ITenant
+		where TTenant : class
 	{
 		private bool disposed;
 
@@ -448,8 +448,7 @@
 
 		private ITenantRoleStore<TTenant> GetTenantRoleStore()
 		{
-			ITenantRoleStore<TTenant> cast = this.Store as ITenantRoleStore<TTenant>;
-			if(cast == null)
+			if(this.Store is not ITenantRoleStore<TTenant> cast)
 			{
 				throw new NotSupportedException("The store was not a ITenantRoleStore");
 			}

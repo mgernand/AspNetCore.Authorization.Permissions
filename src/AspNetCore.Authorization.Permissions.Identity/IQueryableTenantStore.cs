@@ -7,7 +7,7 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	public interface IQueryableTenantStore<TTenant> : ITenantStore<TTenant>
-		where TTenant : class, ITenant
+		where TTenant : class
 	{
 		/// <summary>
 		///     Returns an <see cref="IQueryable" /> collection of tenants.

@@ -12,7 +12,7 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
-	public class TenantValidator<TTenant> : ITenantValidator<TTenant> where TTenant : class, ITenant
+	public class TenantValidator<TTenant> : ITenantValidator<TTenant> where TTenant : class
 	{
 		/// <summary>
 		///     Creates a new instance of <see cref="TenantValidator{TTenant}" />.

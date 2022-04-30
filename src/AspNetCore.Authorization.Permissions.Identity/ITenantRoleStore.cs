@@ -11,7 +11,7 @@
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
 	public interface ITenantRoleStore<TTenant> : ITenantStore<TTenant>
-		where TTenant : class, ITenant
+		where TTenant : class
 	{
 		/// <summary>
 		///     Add the specified <paramref name="tenant" /> to the named role.

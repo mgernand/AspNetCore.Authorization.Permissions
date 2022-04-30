@@ -7,22 +7,23 @@
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.DependencyInjection.Extensions;
 
+	/// <summary>
+	///     Extension methods for the <see cref="EntityFrameworkCore.IdentityBuilderExtensions" /> type.
+	/// </summary>
 	[PublicAPI]
 	public static class IdentityBuilderExtensions
 	{
-		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TPermission, TTenant, TContext>(this IdentityBuilder builder)
-			where TPermission : class
-			where TTenant : class
-			where TContext : DbContext
-		{
-			AddStores(builder.Services, builder.UserType, typeof(TPermission), typeof(TTenant), builder.RoleType, typeof(TContext));
-			return builder;
-		}
-
+		/// <summary>
+		///     Adds the EF Core store implementations for Identity and the Permissions library.
+		/// </summary>
+		/// <typeparam name="TContext"></typeparam>
+		/// <param name="builder"></param>
+		/// <returns></returns>
 		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TContext>(this IdentityBuilder builder)
 			where TContext : DbContext
 		{
-			builder.AddPermissionsEntityFrameworkStores<IdentityPermission, IdentityTenant, TContext>();
+			builder.AddEntityFrameworkStores<TContext>();
+			AddStores(builder.Services, builder.UserType, typeof(IdentityPermission), typeof(IdentityTenant), builder.RoleType, typeof(TContext));
 			return builder;
 		}
 

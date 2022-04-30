@@ -1,7 +1,6 @@
 using AspNetCore.Authorization.Permissions;
 using AspNetCore.Authorization.Permissions.Identity;
 using AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
-using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SamplePermissions;
@@ -12,12 +11,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
-builder.Services.AddProblemDetails();
 
 builder.Services
 	.AddAuthorization()
-	.AddPermissions()
-	.AddIdentityClaimsProvider();
+	.AddPermissions();
 
 builder.Services
 	.AddDbContext<ApplicationDbContext>(options =>
@@ -30,18 +27,17 @@ builder.Services
 		options.Password.RequireLowercase = false;
 		options.Password.RequireNonAlphanumeric = false;
 		options.Password.RequireUppercase = false;
-		options.Password.RequiredLength = 6;
+		options.Password.RequiredLength = 99;
 		options.Password.RequiredUniqueChars = 0;
 	})
-	.AddDefaultTokenProviders()
 	.AddDefaultUI()
-	.AddEntityFrameworkStores<ApplicationDbContext>()
+	.AddDefaultTokenProviders()
 	.AddPermissionsEntityFrameworkStores<ApplicationDbContext>();
 
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseProblemDetails();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
