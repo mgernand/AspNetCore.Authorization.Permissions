@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{24143346-BEA0-4E8E-9249-17FF05C9772F}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9BE8804F-BCC0-48CF-9AEC-ED97414B0C78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions", "src\AspNetCore.Authorization.Permissions\AspNetCore.Authorization.Permissions.csproj", "{D3FB8510-8E8E-455A-A3CD-F3C3FADE4142}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplePermissions", "samples\SamplePermissions\SamplePermissions.csproj", "{263050E7-B671-4A38-8A20-F933FB9AD987}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.UnitTests", "tests\AspNetCore.Authorization.Permissions.UnitTests\AspNetCore.Authorization.Permissions.UnitTests.csproj", "{A01CDEBF-8DB4-4792-9366-D53A91F2292D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Abstractions", "src\AspNetCore.Authorization.Permissions.Abstractions\AspNetCore.Authorization.Permissions.Abstractions.csproj", "{188E0288-2D1F-4618-A8DC-8AAF6281A713}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Identity", "src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj", "{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{38E0E64A-6A46-47C7-A169-24A6069D80E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore", "src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.csproj", "{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleTenant", "samples\SampleTenant\SampleTenant.csproj", "{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3FB8510-8E8E-455A-A3CD-F3C3FADE4142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3FB8510-8E8E-455A-A3CD-F3C3FADE4142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3FB8510-8E8E-455A-A3CD-F3C3FADE4142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3FB8510-8E8E-455A-A3CD-F3C3FADE4142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{263050E7-B671-4A38-8A20-F933FB9AD987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263050E7-B671-4A38-8A20-F933FB9AD987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263050E7-B671-4A38-8A20-F933FB9AD987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263050E7-B671-4A38-8A20-F933FB9AD987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01CDEBF-8DB4-4792-9366-D53A91F2292D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01CDEBF-8DB4-4792-9366-D53A91F2292D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01CDEBF-8DB4-4792-9366-D53A91F2292D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01CDEBF-8DB4-4792-9366-D53A91F2292D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3FB8510-8E8E-455A-A3CD-F3C3FADE4142} = {EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}
+		{263050E7-B671-4A38-8A20-F933FB9AD987} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
+		{A01CDEBF-8DB4-4792-9366-D53A91F2292D} = {9BE8804F-BCC0-48CF-9AEC-ED97414B0C78}
+		{188E0288-2D1F-4618-A8DC-8AAF6281A713} = {EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}
+		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{38E0E64A-6A46-47C7-A169-24A6069D80E4} = {EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}
+		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}
+	EndGlobalSection
+EndGlobal

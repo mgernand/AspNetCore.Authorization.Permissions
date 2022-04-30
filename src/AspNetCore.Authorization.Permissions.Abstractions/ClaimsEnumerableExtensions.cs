@@ -1,0 +1,59 @@
+﻿namespace AspNetCore.Authorization.Permissions.Abstractions
+{
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Security.Claims;
+	using Fluxera.Utilities.Extensions;
+	using JetBrains.Annotations;
+
+	[PublicAPI]
+	public static class ClaimsEnumerableExtensions
+	{
+		/// <summary>
+		///     Gets the permission from the given user claims.
+		/// </summary>
+		/// <param name="claims"></param>
+		/// <returns></returns>
+		public static IReadOnlyCollection<string> GetPermissions(this IEnumerable<Claim> claims)
+		{
+			return claims
+				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
+				.Select(x => x.Value)
+				.AsReadOnly();
+		}
+
+		/// <summary>
+		///     Checks if the user claims has the given permission.
+		/// </summary>
+		/// <param name="claims"></param>
+		/// <param name="permission"></param>
+		/// <returns></returns>
+		public static bool HasPermission(this IEnumerable<Claim> claims, string permission)
+		{
+			return claims
+				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
+				.Any(x => x.Value.Equals(permission.Normalize(), StringComparison.InvariantCultureIgnoreCase));
+		}
+
+		/// <summary>
+		///     Gets the user ID from the given user claims.
+		/// </summary>
+		/// <param name="claims"></param>
+		/// <returns></returns>
+		public static string GetUserId(this IEnumerable<Claim> claims)
+		{
+			return claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+		}
+
+		/// <summary>
+		///     Gets the tenant name from the given user claims.
+		/// </summary>
+		/// <param name="claims"></param>
+		/// <returns></returns>
+		public static string GetTenantName(this IEnumerable<Claim> claims)
+		{
+			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantNameClaimType)?.Value;
+		}
+	}
+}
