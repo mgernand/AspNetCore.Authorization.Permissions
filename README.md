@@ -39,7 +39,7 @@ It is possible to add different storages and claims providers. A library that wa
 the permissions claims just needs to implement the ```IClaimsProvider``` interface and the storage
 mechanism of course.
 
-## Usage
+## Permission Usage
 
 To configure the permissions with ASP.NET Identity and the default identity models add the following
 code to your application startup code. The example uses EF Core and SQLite to store the Identity models.
@@ -69,4 +69,27 @@ builder.Services
 // Additional service configuration omitted ...
 ```
 
+### Restrict access based on permissions
+
+There are several ways to rescript access in your application.
+
+1. Use the ```[Authorize]``` attribute to restrict access to controller actions.
+2. Use the ```HasPermission()``` extension method with a ```ClaimsPrincipal``` instance.
+3. Use the ```HasPermission()``` method of a ```IUserPermissionsService``` instance.
+
+To retrict the access to an action methods just add the ```[Authorize]``` attribute with the permission
+name as contraint.
+
+```C#
+[HttpGet]
+[HasPermission("Invoice.Payment")]
+public IActionResult Get()
+{
+	return this.Ok();
+}
+```
+
+## Tenant Usage
+
+TODO
 
