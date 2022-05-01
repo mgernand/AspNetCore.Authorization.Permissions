@@ -1,7 +1,10 @@
 ﻿namespace AspNetCore.Authorization.Permissions.UnitTests
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Security.Claims;
 	using System.Threading.Tasks;
+	using AspNetCore.Authorization.Permissions.Abstractions;
 	using FluentAssertions;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.Extensions.DependencyInjection;
@@ -10,11 +13,23 @@
 	[TestFixture]
 	public class PermissionAuthorizationPolicyTests
 	{
+		private class TestClaimsProvider : IClaimsProvider
+		{
+			/// <inheritdoc />
+			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			{
+				return Array.Empty<Claim>();
+			}
+		}
+
 		[Test]
 		public async Task ShouldGetPolicyForPermission()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
+			services.AddPermissionsAuthorization(builder =>
+			{
+				builder.AddClaimsProvider<TestClaimsProvider>();
+			});
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -33,7 +48,10 @@
 		public async Task ShouldThrowArgumentException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
+			services.AddPermissionsAuthorization(builder =>
+			{
+				builder.AddClaimsProvider<TestClaimsProvider>();
+			});
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -50,7 +68,10 @@
 		public async Task ShouldThrowArgumentNullException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
+			services.AddPermissionsAuthorization(builder =>
+			{
+				builder.AddClaimsProvider<TestClaimsProvider>();
+			});
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});

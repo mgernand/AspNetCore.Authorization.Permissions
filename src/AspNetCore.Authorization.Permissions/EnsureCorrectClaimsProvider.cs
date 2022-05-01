@@ -6,20 +6,22 @@
 	using System.Threading.Tasks;
 	using AspNetCore.Authorization.Permissions.Abstractions;
 	using Fluxera.Utilities.Extensions;
+	using JetBrains.Annotations;
 
-	internal sealed class ClaimsProviderAdapter : IClaimsProviderAdapter
+	[UsedImplicitly]
+	internal sealed class EnsureCorrectClaimsProvider : IClaimsProvider
 	{
-		private readonly IClaimsProvider claimsProvider;
+		private readonly IClaimsProvider innerClaimsProvider;
 
-		public ClaimsProviderAdapter(IClaimsProvider claimsProvider)
+		public EnsureCorrectClaimsProvider(IClaimsProvider innerClaimsProvider)
 		{
-			this.claimsProvider = claimsProvider;
+			this.innerClaimsProvider = innerClaimsProvider;
 		}
 
 		/// <inheritdoc />
 		public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 		{
-			IReadOnlyCollection<Claim> claims = await this.claimsProvider.GetPermissionClaimsForUserAsync(userId);
+			IReadOnlyCollection<Claim> claims = await this.innerClaimsProvider.GetPermissionClaimsForUserAsync(userId);
 
 			IList<Claim> permissionClaims = new List<Claim>();
 

@@ -18,16 +18,16 @@
 	public class PermissionUserClaimsPrincipalFactory<TUser> : UserClaimsPrincipalFactory<TUser>
 		where TUser : class, ITenantUser
 	{
-		private readonly IClaimsProviderAdapter claimsProviderAdapter;
+		private readonly IClaimsProvider claimsProvider;
 
 		/// <inheritdoc />
 		public PermissionUserClaimsPrincipalFactory(
 			TenantUserManager<TUser> userManager,
 			IOptions<IdentityOptions> optionsAccessor,
-			IClaimsProviderAdapter claimsProviderAdapter)
+			IClaimsProvider claimsProvider)
 			: base(userManager, optionsAccessor)
 		{
-			this.claimsProviderAdapter = claimsProviderAdapter;
+			this.claimsProvider = claimsProvider;
 		}
 
 		/// <inheritdoc />
@@ -35,7 +35,7 @@
 		{
 			ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
 			string userId = identity.Claims.GetUserId();
-			IReadOnlyCollection<Claim> claims = await this.claimsProviderAdapter.GetPermissionClaimsForUserAsync(userId);
+			IReadOnlyCollection<Claim> claims = await this.claimsProvider.GetPermissionClaimsForUserAsync(userId);
 			identity.AddClaims(claims);
 
 			return identity;

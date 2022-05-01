@@ -44,6 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="6.0.27" />
 		<PackageReference Include="Fluxera.Guards" Version="6.0.13" />
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
 	</ItemGroup>

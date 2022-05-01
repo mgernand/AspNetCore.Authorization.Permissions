@@ -89,11 +89,13 @@
 		public async Task ShouldAddClaimsToPrincipal(Type claimProviderType, int expectedCount = 3, bool hasTenant = false)
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddScoped(typeof(IClaimsProvider), claimProviderType);
+			services.AddPermissionsAuthorization(builder =>
+			{
+				builder.AddClaimsProvider(claimProviderType);
+			});
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-			IClaimsProviderAdapter service = serviceProvider.GetRequiredService<IClaimsProviderAdapter>();
+			IClaimsProvider service = serviceProvider.GetRequiredService<IClaimsProvider>();
 			IReadOnlyCollection<Claim> claims = await service.GetPermissionClaimsForUserAsync("12345678");
 
 			if(expectedCount == 3)
@@ -117,6 +119,8 @@
 			}
 
 			claims.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType).Should().HaveCount(expectedCount);
+
+			await serviceProvider.DisposeAsync();
 		}
 	}
 }

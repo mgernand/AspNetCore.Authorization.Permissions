@@ -12,7 +12,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
-builder.Services.AddPermissionsAuthorization();
+builder.Services.AddPermissionsAuthorization(options =>
+{
+	options.AddIdentityClaimsProvider();
+});
 
 builder.Services
 	.AddDbContext<ApplicationDbContext>(options =>

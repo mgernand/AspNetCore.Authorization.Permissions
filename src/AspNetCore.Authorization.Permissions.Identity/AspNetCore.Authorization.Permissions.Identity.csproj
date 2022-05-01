@@ -22,7 +22,7 @@
 		<PackageProjectUrl>https://github.com/mgernand/AspNetCore.Authorization.Permissions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/mgernand/AspNetCore.Authorization.Permissions</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>aspnetcore;authorization;permissions;identity</PackageTags>
+		<PackageTags>aspnetcore;authorization;permissions;tenant;multi-tenacy;identity</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>

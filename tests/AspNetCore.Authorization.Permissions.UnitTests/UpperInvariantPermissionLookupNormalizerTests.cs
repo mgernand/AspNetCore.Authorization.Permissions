@@ -1,6 +1,9 @@
 ﻿namespace AspNetCore.Authorization.Permissions.UnitTests
 {
+	using System;
 	using System.Collections.Generic;
+	using System.Security.Claims;
+	using System.Threading.Tasks;
 	using AspNetCore.Authorization.Permissions.Abstractions;
 	using FluentAssertions;
 	using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +12,15 @@
 	[TestFixture]
 	public class UpperInvariantPermissionLookupNormalizerTests
 	{
+		private class TestClaimsProvider : IClaimsProvider
+		{
+			/// <inheritdoc />
+			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			{
+				return Array.Empty<Claim>();
+			}
+		}
+
 		public static IEnumerable<object[]> TestCases()
 		{
 			yield return new object[] { "input", "INPUT" };
@@ -25,7 +37,10 @@
 		public void ShouldNormalizeName(string inout, string expected)
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
+			services.AddPermissionsAuthorization(builder =>
+			{
+				builder.AddClaimsProvider<TestClaimsProvider>();
+			});
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IPermissionLookupNormalizer service = serviceProvider.GetRequiredService<IPermissionLookupNormalizer>();

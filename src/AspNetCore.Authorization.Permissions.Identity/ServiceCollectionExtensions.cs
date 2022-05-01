@@ -29,7 +29,6 @@
 		{
 			IdentityBuilder builder = services
 				.AddIdentity<TUser, TRole>(setupAction)
-				.AddIdentityClaimsProvider()
 				.AddClaimsPrincipalFactory<PermissionUserClaimsPrincipalFactory<TUser>>()
 				.AddUserManager<TenantUserManager<TUser>>();
 
