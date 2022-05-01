@@ -8,7 +8,7 @@
 	public class PermissionsController : ControllerBase
 	{
 		[HttpGet]
-		[HasPermission("ShowPermissions")]
+		[HasPermission("Invoice.Payment")]
 		public IActionResult Get()
 		{
 			var claims = this.User.Claims.Select(x => new { x.Type, x.Value });

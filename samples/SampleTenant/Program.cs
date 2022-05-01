@@ -12,6 +12,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
+builder.Services.AddAuthorization();
 builder.Services.AddPermissionsAuthorization(options =>
 {
 	options.AddIdentityClaimsProvider();

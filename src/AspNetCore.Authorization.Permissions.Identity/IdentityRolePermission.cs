@@ -11,13 +11,13 @@
 	public class IdentityRolePermission<TKey> where TKey : IEquatable<TKey>
 	{
 		/// <summary>
-		///     Gets or sets the primary key of the permission that is linked to the role.
-		/// </summary>
-		public virtual TKey PermissionId { get; set; }
-
-		/// <summary>
 		///     Gets or sets the primary key of the role that is linked to the permission.
 		/// </summary>
 		public virtual TKey RoleId { get; set; }
+
+		/// <summary>
+		///     Gets or sets the primary key of the permission that is linked to the role.
+		/// </summary>
+		public virtual TKey PermissionId { get; set; }
 	}
 }

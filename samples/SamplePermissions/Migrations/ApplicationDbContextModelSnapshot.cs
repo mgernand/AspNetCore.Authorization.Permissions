@@ -50,10 +50,38 @@ namespace SamplePermissions.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "10445310-d35d-4158-850e-9c8c271efb49",
-                            ConcurrencyStamp = "27dce2a2-7f55-4f66-bbe4-5e54afda7457",
-                            Name = "ShowPermissions",
-                            NormalizedName = "SHOWPERMISSIONS"
+                            Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
+                            ConcurrencyStamp = "9420d0a3-6137-4b74-a7c3-9f59ff99557b",
+                            Name = "Invoice.Read",
+                            NormalizedName = "INVOICE.READ"
+                        },
+                        new
+                        {
+                            Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
+                            ConcurrencyStamp = "5e75eb57-351e-4aca-931e-43a2a003df89",
+                            Name = "Invoice.Write",
+                            NormalizedName = "INVOICE.WRITE"
+                        },
+                        new
+                        {
+                            Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
+                            ConcurrencyStamp = "12b89045-f5ce-4f5d-b657-f97598b7ab06",
+                            Name = "Invoice.Delete",
+                            NormalizedName = "INVOICE.DELETE"
+                        },
+                        new
+                        {
+                            Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
+                            ConcurrencyStamp = "573c1419-4100-4bee-b2e0-534e0d311007",
+                            Name = "Invoice.Send",
+                            NormalizedName = "INVOICE.SEND"
+                        },
+                        new
+                        {
+                            Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
+                            ConcurrencyStamp = "96bd66d2-f884-45a0-b4c8-d803861a9df3",
+                            Name = "Invoice.Payment",
+                            NormalizedName = "INVOICE.PAYMENT"
                         });
                 });
 
@@ -74,8 +102,38 @@ namespace SamplePermissions.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = "8cefbfb9-6ea6-4c11-bb60-b82352096e79",
-                            PermissionId = "10445310-d35d-4158-850e-9c8c271efb49"
+                            RoleId = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
+                            PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
+                        },
+                        new
+                        {
+                            RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
+                            PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
+                        },
+                        new
+                        {
+                            RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
+                            PermissionId = "e123b8c0-0646-4075-b73e-07ca9d611c8e"
+                        },
+                        new
+                        {
+                            RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
+                        },
+                        new
+                        {
+                            RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            PermissionId = "be5b92e5-c6c6-480b-b235-d4df402a73cc"
+                        },
+                        new
+                        {
+                            RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            PermissionId = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2"
+                        },
+                        new
+                        {
+                            RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            PermissionId = "ef54d62d-a36b-4ab3-b868-f170c0054fac"
                         });
                 });
 
@@ -116,6 +174,40 @@ namespace SamplePermissions.Migrations
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasDatabaseName("TenantNameIndex");
+
+                    b.ToTable("AspNetTenants", "identity");
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenant<string>", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DatabaseName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("HasSeparateDatabase")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsHierarchical")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Tenants", "identity");
                 });
@@ -204,19 +296,45 @@ namespace SamplePermissions.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "127c0027-0d04-47f2-8a08-83a31bead094",
+                            Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dbf083c1-2534-4407-8dcf-5ba6a1d8ec1d",
-                            Email = "m.gernand@fluxera.com",
+                            ConcurrencyStamp = "972991d5-eb90-4e5b-afc3-47f6d9ffab23",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "M.GERNAND@FLUXERA.COM",
-                            NormalizedUserName = "M.GERNAND@FLUXERA.COM",
+                            NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7b712817-bef4-4f4f-b774-d7805b26558e",
+                            SecurityStamp = "794473a4-05fd-40f7-bd5a-f72db95064ae",
                             TwoFactorEnabled = false,
-                            UserName = "m.gernand@fluxera.com"
+                            UserName = "boss@company"
+                        },
+                        new
+                        {
+                            Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e7235cee-4e59-4adc-8796-2d32f30a836a",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "MANAGER@COMPANY",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4e5cad20-af59-4fea-ad0e-da8898825994",
+                            TwoFactorEnabled = false,
+                            UserName = "manager@company"
+                        },
+                        new
+                        {
+                            Id = "04517a45-d6f5-4993-888b-04c924902b3a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "15ceec50-5141-437c-a4ff-1e4f27a3310b",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "EMPLOYEE@COMPANY",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "88be7bdb-91cc-4c29-99d6-c68832f10faa",
+                            TwoFactorEnabled = false,
+                            UserName = "employee@company"
                         });
                 });
 
@@ -248,10 +366,24 @@ namespace SamplePermissions.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8cefbfb9-6ea6-4c11-bb60-b82352096e79",
-                            ConcurrencyStamp = "f24f389f-d051-43ec-a811-8c1080da2e46",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
+                            Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
+                            ConcurrencyStamp = "aebe8bb2-ece7-4783-94ea-a65295f88938",
+                            Name = "Boss",
+                            NormalizedName = "BOSS"
+                        },
+                        new
+                        {
+                            Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
+                            ConcurrencyStamp = "0445ff03-d157-4d66-8e58-bc7f7e93661a",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            ConcurrencyStamp = "2fd80a57-cd93-4d04-9e8a-a4e33c4f3996",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
                         });
                 });
 
@@ -340,8 +472,18 @@ namespace SamplePermissions.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "127c0027-0d04-47f2-8a08-83a31bead094",
-                            RoleId = "8cefbfb9-6ea6-4c11-bb60-b82352096e79"
+                            UserId = "a0f112af-5e39-4b3f-bc50-015591861ec0",
+                            RoleId = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483"
+                        },
+                        new
+                        {
+                            UserId = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
+                            RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297"
+                        },
+                        new
+                        {
+                            UserId = "04517a45-d6f5-4993-888b-04c924902b3a",
+                            RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2"
                         });
                 });
 

@@ -11,11 +11,11 @@ To be able to dynamically change the access of a user we extend the role in a wa
 role is made up of several fine gained permissions. Throughout the documentation and the 
 sample applications we will use the following roles and permissions.
 
-| Role          | Invoice.Read | Invoices.Write | Invoices.Delete | Invoices.Send | Invoices.Payment |
-|---------------|--------------|----------------|-----------------|---------------|------------------|
-| Boss          | YES          | **NO**         | **NO**          | **NO**        | **NO**           |
-| Manager       | YES          | **NO**         | YES             | **NO**        | **NO**           |
-| Employee      | YES          | YES            | **NO**          | YES           | YES              |
+| Role          | Invoice.Read | Invoice.Write | Invoice.Delete | Invoice.Send | Invoice.Payment |
+|---------------|--------------|---------------|----------------|--------------|-----------------|
+| Boss          | **YES**      | NO            | NO             | NO           | NO              |
+| Manager       | **YES**      | NO            | **YES**        | NO           | NO              |
+| Employee      | **YES**      | **YES**       | NO             | **YES**      | **YES**         |
 
 In this fictional company the boss can only read invoices, the manager can read and delete invoices and
 the employees can read, write, send invocies and can trigger the selllement of the invoice.
@@ -40,5 +40,33 @@ the permissions claims just needs to implement the ```IClaimsProvider``` interfa
 mechanism of course.
 
 ## Usage
+
+To configure the permissions with ASP.NET Identity and the default identity models add the following
+code to your application startup code. The example uses EF Core and SQLite to store the Identity models.
+
+The users, roles and permissions are added to the storage using the ```ApplicationDbContext``` and EF 
+Core migrations. The code is omitted in this document, but you can look it up in the samples code.
+
+```C#
+// ... Previous service configuration omitted.
+
+builder.Services.AddAuthorization();
+builder.Services.AddPermissionsAuthorization(options =>
+{
+	options.AddIdentityClaimsProvider();
+});
+
+builder.Services
+	.AddDbContext<ApplicationDbContext>(options =>
+	{
+		options.UseSqlite("Filename=permissions.db");
+	})
+	.AddPermissionsIdentity()
+	.AddDefaultUI()
+	.AddDefaultTokenProviders()
+	.AddPermissionsEntityFrameworkStores<ApplicationDbContext>();
+
+// Additional service configuration omitted ...
+```
 
 
