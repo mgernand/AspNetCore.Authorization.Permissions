@@ -89,7 +89,7 @@
 		public async Task ShouldAddClaimsToPrincipal(Type claimProviderType, int expectedCount = 3, bool hasTenant = false)
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			services.AddScoped(typeof(IClaimsProvider), claimProviderType);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 

@@ -16,8 +16,9 @@
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection AddPermissions(this IServiceCollection services)
+		public static IServiceCollection AddPermissionsAuthorization(this IServiceCollection services)
 		{
+			services.AddAuthorization();
 			services.AddSingleton<IAuthorizationPolicyProvider, AuthorizationPolicyProvider>();
 			services.AddSingleton<IAuthorizationHandler, PermissionPolicyHandler>();
 			services.AddTransient<IUserPermissionsService, UserPermissionsService>();

@@ -25,7 +25,7 @@
 		public void ShouldNormalizeName(string inout, string expected)
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IPermissionLookupNormalizer service = serviceProvider.GetRequiredService<IPermissionLookupNormalizer>();

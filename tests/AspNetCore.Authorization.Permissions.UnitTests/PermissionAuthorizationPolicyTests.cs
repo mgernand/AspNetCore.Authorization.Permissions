@@ -14,7 +14,7 @@
 		public async Task ShouldGetPolicyForPermission()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -33,7 +33,7 @@
 		public async Task ShouldThrowArgumentException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -50,7 +50,7 @@
 		public async Task ShouldThrowArgumentNullException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});

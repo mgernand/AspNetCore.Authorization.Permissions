@@ -21,7 +21,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
@@ -44,7 +44,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -66,7 +66,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -85,7 +85,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -105,7 +105,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -125,7 +125,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -144,7 +144,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -163,7 +163,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -183,7 +183,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -203,7 +203,7 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissions();
+			services.AddPermissionsAuthorization();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
