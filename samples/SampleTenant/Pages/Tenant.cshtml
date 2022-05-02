@@ -1,0 +1,14 @@
+﻿@page
+@using AspNetCore.Authorization.Permissions.Abstractions
+@model TenantModel
+
+@{
+    ViewData["Title"] = "Tenant";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tenant</h1>
+	<p>
+		Tenant Name: @this.User.GetTenantName()
+	</p>
+</div>

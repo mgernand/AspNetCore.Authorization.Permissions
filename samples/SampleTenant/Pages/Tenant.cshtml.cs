@@ -4,11 +4,11 @@
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 
 	[Authorize]
-	public class PermissionsModel : PageModel
+	public class TenantModel : PageModel
 	{
-		private readonly ILogger<PermissionsModel> _logger;
+		private readonly ILogger<TenantModel> _logger;
 
-		public PermissionsModel(ILogger<PermissionsModel> logger)
+		public TenantModel(ILogger<TenantModel> logger)
 		{
 			this._logger = logger;
 		}

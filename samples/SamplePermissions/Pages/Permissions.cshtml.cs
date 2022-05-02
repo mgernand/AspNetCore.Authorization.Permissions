@@ -1,7 +1,5 @@
 ﻿namespace SamplePermissions.Pages
 {
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Fluxera.Utilities.Extensions;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,10 +15,6 @@
 
 		public void OnGet()
 		{
-			if(this.User.IsAuthenticated())
-			{
-				this.User.GetPermissions();
-			}
 		}
 	}
 }

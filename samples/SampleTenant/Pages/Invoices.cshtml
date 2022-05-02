@@ -33,5 +33,15 @@
 		{
 			<a class="nav-link text-dark" asp-area="" asp-page="/InvoicePayment">Invoice.Payment</a>
 		}
+		
+		@if(this.User.HasPermission("Invoice.Statistics"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceStatistics">Invoice.Statistics</a>
+		}
+		
+		@if(this.User.HasPermission("Invoice.TaxExport"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceTaxExport">Invoice.TaxExport</a>
+		}
 	</p>
 </div>

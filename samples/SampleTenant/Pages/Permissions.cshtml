@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Security.Claims
 @using AspNetCore.Authorization.Permissions.Abstractions
 @model PermissionsModel
 
@@ -13,6 +14,16 @@
 			@foreach(string permission in this.User.GetPermissions())
 			{
 				<li class="text-start">@permission</li>
+			}
+		</ul>
+	</p>
+	
+	<h1 class="display-4">Claims</h1>
+	<p>
+		<ul>
+			@foreach(Claim claim in this.User.Claims)
+			{
+				<li class="text-start">@claim.Type = @claim.Value</li>
 			}
 		</ul>
 	</p>

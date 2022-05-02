@@ -11,7 +11,7 @@
 	using NUnit.Framework;
 
 	[TestFixture]
-	public class PermissionsClaimsTransformationTests
+	public class PermissionsClaimsProviderTests
 	{
 		private class TestClaimsProvider : IClaimsProvider
 		{
