@@ -42,7 +42,7 @@ mechanism of course.
 In addition to the basic permissions of users, this library provides an optional multi-tenant feature. 
 This feature allows assign tenants to users. The tenant infosmations are then added to the user's
 claims. Storage systems can then leverage the tenant information to alter queries (Single Database with
-Discriminator Column) or to select connection strings (Tenant per Database).
+Tenant Column) or to select connection strings (Tenant per Database).
 
 A tenant may have several roles and the permissions of those roles are added to the user's permission
 claims. In that way additional permissions can be added to individual claims. The tenant sample applications
