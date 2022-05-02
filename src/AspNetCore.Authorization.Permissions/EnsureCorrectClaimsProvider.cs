@@ -35,8 +35,11 @@
 						continue;
 					}
 
-					// Only add claim type we know.
-					if(claim.Type is PermissionClaimTypes.PermissionClaimType or PermissionClaimTypes.TenantNameClaimType)
+					// Only add claim types we know.
+					if(claim.Type is
+					   PermissionClaimTypes.PermissionClaimType or
+					   PermissionClaimTypes.TenantNameClaimType or
+					   PermissionClaimTypes.TenantDisplayNameClaimType)
 					{
 						permissionClaims.Add(claim);
 					}

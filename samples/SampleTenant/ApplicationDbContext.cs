@@ -31,7 +31,8 @@
 				{
 					Id = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
 					Name = "Startup",
-					NormalizedName = "STARTUP"
+					NormalizedName = "STARTUP",
+					DisplayName = "Startup LLC."
 				});
 
 				// Tenant: Company
@@ -39,7 +40,8 @@
 				{
 					Id = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
 					Name = "Company",
-					NormalizedName = "COMPANY"
+					NormalizedName = "COMPANY",
+					DisplayName = "Company Inc."
 				});
 
 				// Tenant: Corporate
@@ -47,7 +49,8 @@
 				{
 					Id = "49a049d2-23ad-41df-8806-240aebaa2f17",
 					Name = "Corporate",
-					NormalizedName = "CORPORATE"
+					NormalizedName = "CORPORATE",
+					DisplayName = "Corporate Corp."
 				});
 			});
 

@@ -39,5 +39,19 @@
 		/// <param name="permission"></param>
 		/// <returns></returns>
 		bool HasPermission(IEnumerable<Claim> claims, string permission);
+
+		/// <summary>
+		///     Gets the tenant name from the given user.
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		string GetTenantName(ClaimsPrincipal user);
+
+		/// <summary>
+		///     Gets the tenant display name from the given user.
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		string GetTenantDisplayName(ClaimsPrincipal user);
 	}
 }

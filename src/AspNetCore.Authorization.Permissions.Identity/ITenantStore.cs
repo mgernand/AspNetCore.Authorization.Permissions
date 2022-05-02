@@ -99,6 +99,20 @@
 		Task<string> GetNormalizedTenantNameAsync(TTenant tenant, CancellationToken cancellationToken);
 
 		/// <summary>
+		///     Gets the tenant display name for the specified <paramref name="tenant" />.
+		/// </summary>
+		/// <param name="tenant">The tenant whose display name should be retrieved.</param>
+		/// <param name="cancellationToken">
+		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
+		///     should be canceled.
+		/// </param>
+		/// <returns>
+		///     The <see cref="Task" /> that represents the asynchronous operation, containing the name for the specified
+		///     <paramref name="tenant" />.
+		/// </returns>
+		Task<string> GetTenantDisplayNameAsync(TTenant tenant, CancellationToken cancellationToken);
+
+		/// <summary>
 		///     Sets the given <paramref name="tenantName" /> for the specified <paramref name="tenant" />.
 		/// </summary>
 		/// <param name="tenant">The tenant whose name should be set.</param>
@@ -121,6 +135,18 @@
 		/// </param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
 		Task SetNormalizedTenantNameAsync(TTenant tenant, string normalizedTenantName, CancellationToken cancellationToken);
+
+		/// <summary>
+		///     Sets the given <paramref name="tenantDisplayName" /> for the specified <paramref name="tenant" />.
+		/// </summary>
+		/// <param name="tenant">The tenant whose display name should be set.</param>
+		/// <param name="tenantDisplayName">The tenant display name to set.</param>
+		/// <param name="cancellationToken">
+		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
+		///     should be canceled.
+		/// </param>
+		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
+		Task SetTenantDisplayNameAsync(TTenant tenant, string tenantDisplayName, CancellationToken cancellationToken);
 
 		/// <summary>
 		///     Finds and returns a tenant, if any, who has the specified <paramref name="tenantId" />.

@@ -40,5 +40,17 @@
 			string normalizedName = this.permissionLookupNormalizer.NormalizeName(permission);
 			return claims.HasPermission(normalizedName);
 		}
+
+		/// <inheritdoc />
+		public string GetTenantName(ClaimsPrincipal user)
+		{
+			return user.GetTenantName();
+		}
+
+		/// <inheritdoc />
+		public string GetTenantDisplayName(ClaimsPrincipal user)
+		{
+			return user.GetTenantDisplayName();
+		}
 	}
 }

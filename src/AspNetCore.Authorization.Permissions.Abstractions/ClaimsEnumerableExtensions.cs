@@ -55,5 +55,15 @@
 		{
 			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantNameClaimType)?.Value;
 		}
+
+		/// <summary>
+		///     Gets the tenant display name from the given user claims.
+		/// </summary>
+		/// <param name="claims"></param>
+		/// <returns></returns>
+		public static string GetTenantDisplayName(this IEnumerable<Claim> claims)
+		{
+			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantDisplayNameClaimType)?.Value;
+		}
 	}
 }

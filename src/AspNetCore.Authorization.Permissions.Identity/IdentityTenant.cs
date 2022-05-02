@@ -34,6 +34,11 @@
 		public virtual string NormalizedName { get; set; }
 
 		/// <summary>
+		///     Gets or sets the display name of the tenant.
+		/// </summary>
+		public virtual string DisplayName { get; set; }
+
+		/// <summary>
 		///     A random value that should change whenever a tenant is persisted to the store
 		/// </summary>
 		public virtual string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();

@@ -47,5 +47,15 @@
 		{
 			return user.Claims.GetTenantName();
 		}
+
+		/// <summary>
+		///     Gets the tenant display name from the given user.
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		public static string GetTenantDisplayName(this ClaimsPrincipal user)
+		{
+			return user.Claims.GetTenantDisplayName();
+		}
 	}
 }

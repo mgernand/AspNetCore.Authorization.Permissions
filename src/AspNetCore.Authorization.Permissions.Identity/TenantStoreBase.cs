@@ -58,7 +58,14 @@
 		/// <inheritdoc />
 		public virtual Task<string> GetTenantIdAsync(TTenant tenant, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			if(tenant == null)
+			{
+				throw new ArgumentNullException(nameof(tenant));
+			}
+
+			return Task.FromResult(this.ConvertIdToString(tenant.Id));
 		}
 
 		/// <inheritdoc />
@@ -88,6 +95,19 @@
 		}
 
 		/// <inheritdoc />
+		public virtual Task<string> GetTenantDisplayNameAsync(TTenant tenant, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			if(tenant == null)
+			{
+				throw new ArgumentNullException(nameof(tenant));
+			}
+
+			return Task.FromResult(tenant.DisplayName);
+		}
+
+		/// <inheritdoc />
 		public virtual Task SetTenantNameAsync(TTenant tenant, string tenantName, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
@@ -112,6 +132,20 @@
 			}
 
 			tenant.NormalizedName = normalizedTenantName;
+			return Task.CompletedTask;
+		}
+
+		/// <inheritdoc />
+		public virtual Task SetTenantDisplayNameAsync(TTenant tenant, string tenantDisplayName, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			if(tenant == null)
+			{
+				throw new ArgumentNullException(nameof(tenant));
+			}
+
+			tenant.Name = tenantDisplayName;
 			return Task.CompletedTask;
 		}
 

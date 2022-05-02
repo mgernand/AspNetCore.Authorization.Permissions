@@ -312,6 +312,20 @@
 		}
 
 		/// <summary>
+		///     Gets the display name of the specified <paramref name="tenant" />.
+		/// </summary>
+		/// <param name="tenant">The tenant whose display name should be retrieved.</param>
+		/// <returns>
+		///     The <see cref="Task" /> that represents the asynchronous operation, containing the ID of the
+		///     specified <paramref name="tenant" />.
+		/// </returns>
+		public virtual Task<string> GetTenantDisplayNameAsync(TTenant tenant)
+		{
+			this.ThrowIfDisposed();
+			return this.Store.GetTenantDisplayNameAsync(tenant, this.CancellationToken);
+		}
+
+		/// <summary>
 		///     Sets the name of the specified <paramref name="tenant" />.
 		/// </summary>
 		/// <param name="tenant">The tenant whose name should be set.</param>

@@ -76,6 +76,7 @@
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send"),
 					new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
+					new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 				};
 			}
 		}
@@ -114,8 +115,11 @@
 
 			if(hasTenant)
 			{
-				string result = claims.GetTenantName();
-				result.Should().NotBeNullOrWhiteSpace().And.Be("test-tenant");
+				string tenantName = claims.GetTenantName();
+				tenantName.Should().NotBeNullOrWhiteSpace().And.Be("test-tenant");
+
+				string tenantDisplayName = claims.GetTenantDisplayName();
+				tenantDisplayName.Should().NotBeNullOrWhiteSpace().And.Be("Test Tenant Inc.");
 			}
 
 			claims.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType).Should().HaveCount(expectedCount);

@@ -10,20 +10,20 @@
 <div class="text-center">
     <h1 class="display-4">Permissions</h1>
 	<p>
-		<ul>
+		<ul class="text-start">
 			@foreach(string permission in this.User.GetPermissions())
 			{
-				<li class="text-start">@permission</li>
+				<li>@permission</li>
 			}
 		</ul>
 	</p>
 	
 	<h1 class="display-4">Claims</h1>
 	<p>
-		<ul>
+		<ul class="text-start">
 			@foreach(Claim claim in this.User.Claims)
 			{
-				<li class="text-start">@claim.Type = @claim.Value</li>
+				<li>@claim.Type = @claim.Value</li>
 			}
 		</ul>
 	</p>

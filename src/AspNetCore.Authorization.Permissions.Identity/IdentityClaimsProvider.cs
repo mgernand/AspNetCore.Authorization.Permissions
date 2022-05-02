@@ -51,6 +51,9 @@
 
 				string tenantName = await this.tenantManager.GetTenantNameAsync(tenant);
 				claims.Add(new Claim(PermissionClaimTypes.TenantNameClaimType, tenantName));
+
+				string tenantDisplayName = await this.tenantManager.GetTenantDisplayNameAsync(tenant);
+				claims.Add(new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, tenantDisplayName));
 			}
 
 			return claims.AsReadOnly();

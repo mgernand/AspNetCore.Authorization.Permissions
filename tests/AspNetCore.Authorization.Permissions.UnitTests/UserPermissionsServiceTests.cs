@@ -72,6 +72,31 @@
 				.And.Contain("Invoices.Send");
 		}
 
+
+		[Test]
+		public void ShouldGetTenantName()
+		{
+			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
+			{
+				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
+				new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
+			}));
+
+			IServiceCollection services = new ServiceCollection();
+			services.AddPermissionsAuthorization(builder =>
+			{
+				builder.AddClaimsProvider<TestClaimsProvider>();
+			});
+			ServiceProvider serviceProvider = services.BuildServiceProvider();
+			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+
+			string tenantName = service.GetTenantName(principal);
+			tenantName.Should().NotBeNull().And.Be("test-tenant");
+
+			string tenantDisplayName = service.GetTenantDisplayName(principal);
+			tenantDisplayName.Should().NotBeNull().And.Be("Test Tenant Inc.");
+		}
+
 		[Test]
 		public void ShouldHavePermissionFromClaims_WithLoverCaseNameFormatting()
 		{
@@ -228,7 +253,6 @@
 			bool result = service.HasPermission(principal, "Invoices.Write");
 			result.Should().BeTrue();
 		}
-
 
 		[Test]
 		public void ShouldHavePermissionFromPrincipal_WithUpperCaseNameFormatting()

@@ -9,13 +9,18 @@
 	public static class PermissionClaimTypes
 	{
 		/// <summary>
-		///     The claim name of the permissions.
+		///     The claim type for the permissions.
 		/// </summary>
 		public const string PermissionClaimType = "permission";
 
 		/// <summary>
-		///     The claim name of the tenant name.
+		///     The claim type for the tenant name.
 		/// </summary>
 		public const string TenantNameClaimType = "tenant-name";
+
+		/// <summary>
+		///     The claim type for the tenant display name.
+		/// </summary>
+		public const string TenantDisplayNameClaimType = "tenant-display-name";
 	}
 }

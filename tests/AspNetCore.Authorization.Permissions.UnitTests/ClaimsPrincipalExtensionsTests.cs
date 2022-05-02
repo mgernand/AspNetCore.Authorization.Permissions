@@ -26,17 +26,21 @@
 				.And.Contain("Invoices.Send");
 		}
 
+
 		[Test]
 		public void ShouldGetTenantName()
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant")
+				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
+				new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 			}));
 
-			string result = principal.GetTenantName();
+			string tenantName = principal.GetTenantName();
+			tenantName.Should().NotBeNull().And.Be("test-tenant");
 
-			result.Should().NotBeNull().And.Be("test-tenant");
+			string tenantDisplayName = principal.GetTenantDisplayName();
+			tenantDisplayName.Should().NotBeNull().And.Be("Test Tenant Inc.");
 		}
 
 		[Test]
