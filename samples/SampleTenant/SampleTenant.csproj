@@ -28,6 +28,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Migrations\" />
+	  <Folder Include="Model\" />
 	</ItemGroup>
 
 	<ItemGroup>

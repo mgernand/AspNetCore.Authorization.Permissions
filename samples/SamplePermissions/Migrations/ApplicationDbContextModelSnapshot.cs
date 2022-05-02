@@ -48,35 +48,35 @@ namespace SamplePermissions.Migrations
                         new
                         {
                             Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
-                            ConcurrencyStamp = "a8faa93b-c062-4ce8-9c1a-41fd886f77cd",
+                            ConcurrencyStamp = "7ae61f4f-338e-4c02-a179-d5f54f9334ab",
                             Name = "Invoice.Read",
                             NormalizedName = "INVOICE.READ"
                         },
                         new
                         {
                             Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
-                            ConcurrencyStamp = "d7949da9-9297-433c-8200-c82878310fc9",
+                            ConcurrencyStamp = "0f14ba41-c155-430f-8f72-0e259a4cd9bc",
                             Name = "Invoice.Write",
                             NormalizedName = "INVOICE.WRITE"
                         },
                         new
                         {
                             Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
-                            ConcurrencyStamp = "24a9ed2e-5341-4c93-967f-b3d9e2eaefda",
+                            ConcurrencyStamp = "8578aafc-27ce-4ad6-b639-49f7d78b3c83",
                             Name = "Invoice.Delete",
                             NormalizedName = "INVOICE.DELETE"
                         },
                         new
                         {
                             Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
-                            ConcurrencyStamp = "8939d526-d9e3-4af6-8764-0a1efc216d29",
+                            ConcurrencyStamp = "1f396cdf-8f06-43dc-bbaf-7e71747e11ed",
                             Name = "Invoice.Send",
                             NormalizedName = "INVOICE.SEND"
                         },
                         new
                         {
                             Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
-                            ConcurrencyStamp = "4898d1c6-c109-42a9-a2fb-56220705edc3",
+                            ConcurrencyStamp = "e65d4bbc-b884-4f89-9754-7df7ae4faef8",
                             Name = "Invoice.Payment",
                             NormalizedName = "INVOICE.PAYMENT"
                         });
@@ -146,6 +146,9 @@ namespace SamplePermissions.Migrations
                     b.Property<string>("DatabaseName")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("HasSeparateDatabase")
                         .HasColumnType("INTEGER");
 
@@ -178,6 +181,9 @@ namespace SamplePermissions.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DatabaseName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayName")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("HasSeparateDatabase")
@@ -283,13 +289,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3f19f9de-b27d-4877-b8dd-4047ad812982",
+                            ConcurrencyStamp = "dd90b2b4-cef7-4805-872e-6c0ab58ba602",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3a69e9a7-9d41-4452-9c4d-e3a83eb18ed1",
+                            SecurityStamp = "6d7ac364-e1f2-4f36-b771-d175250ade4c",
                             TwoFactorEnabled = false,
                             UserName = "boss@company"
                         },
@@ -297,13 +303,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "217e8e4a-2796-4864-bec9-e96c2e66968f",
+                            ConcurrencyStamp = "0b711a81-9924-40d9-8247-96a7b2670936",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "15c40774-f93d-4612-bde6-6dcc2cbdb1a0",
+                            SecurityStamp = "22ed1ebf-7c24-4c6e-94e2-6c3255feec02",
                             TwoFactorEnabled = false,
                             UserName = "manager@company"
                         },
@@ -311,13 +317,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "04517a45-d6f5-4993-888b-04c924902b3a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bf9cff55-8fee-4eef-8b7c-c2e3d851246c",
+                            ConcurrencyStamp = "f131b11e-d509-4dba-a93c-54a3f4cd2734",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a7e8688d-4fd6-42c0-9e83-91199baf2bda",
+                            SecurityStamp = "7b9a28bf-d9d2-46fb-952e-bc74e97af434",
                             TwoFactorEnabled = false,
                             UserName = "employee@company"
                         });
@@ -352,21 +358,21 @@ namespace SamplePermissions.Migrations
                         new
                         {
                             Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
-                            ConcurrencyStamp = "98f47bff-a3f5-4902-bd16-65a0352a2e39",
+                            ConcurrencyStamp = "efd0bd1f-ea91-4d57-a59d-a62151e84faa",
                             Name = "Boss",
                             NormalizedName = "BOSS"
                         },
                         new
                         {
                             Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
-                            ConcurrencyStamp = "8fd1599f-4f7f-47f9-bd40-466e7846ebb4",
+                            ConcurrencyStamp = "3f2988bb-a059-4272-ab10-34fb7ddf191d",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
-                            ConcurrencyStamp = "aab22ba1-1a7d-4c4e-b747-ad03239c10d7",
+                            ConcurrencyStamp = "0725ad1e-2712-4b76-b64d-625b2ecd2d49",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -489,6 +495,23 @@ namespace SamplePermissions.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens", "identity");
+                });
+
+            modelBuilder.Entity("SamplePermissions.Model.Invoice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Invoices", "identity");
                 });
 
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>

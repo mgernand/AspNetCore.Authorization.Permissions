@@ -1,4 +1,5 @@
 ﻿@page
+@using SamplePermissions.Model
 @model InvoiceReadModel
 @{
     ViewData["Title"] = "Invoice.Read";
@@ -7,4 +8,23 @@
 <div class="text-center">
     <h1 class="display-4">Invoice.Read</h1>
 	<p>Invoice.Read</p>
+	<table>
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>Total</td>
+			<td>Note</td>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach(Invoice invoice in this.Model.Context.Invoices)
+		{
+			<tr>
+				<td>@invoice.Id</td>
+				<td>@invoice.Total.ToString("C0")</td>
+				<td>@invoice.Note</td>
+			</tr>
+		}
+		</tbody>
+	</table>
 </div>

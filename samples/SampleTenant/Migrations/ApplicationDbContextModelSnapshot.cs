@@ -48,49 +48,49 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
-                            ConcurrencyStamp = "b242a5ae-235f-4ddc-83a7-aa6c3e88dd64",
+                            ConcurrencyStamp = "37516013-e2e7-44eb-98b3-d9929c367a55",
                             Name = "Invoice.Read",
                             NormalizedName = "INVOICE.READ"
                         },
                         new
                         {
                             Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
-                            ConcurrencyStamp = "25dad64d-5725-4b61-8313-86afb5cbeb33",
+                            ConcurrencyStamp = "01cef358-e215-4a0a-be5d-56b30821dbf5",
                             Name = "Invoice.Write",
                             NormalizedName = "INVOICE.WRITE"
                         },
                         new
                         {
                             Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
-                            ConcurrencyStamp = "385ec0fe-ecad-47d2-95e1-acf9150b6726",
+                            ConcurrencyStamp = "bdb2dd41-46ce-4550-b86a-e841132556d3",
                             Name = "Invoice.Delete",
                             NormalizedName = "INVOICE.DELETE"
                         },
                         new
                         {
                             Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
-                            ConcurrencyStamp = "b65e33f3-48eb-40b9-90da-6f952cc976ca",
+                            ConcurrencyStamp = "5bd71f26-3936-42f2-8743-c98675ecce86",
                             Name = "Invoice.Send",
                             NormalizedName = "INVOICE.SEND"
                         },
                         new
                         {
                             Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
-                            ConcurrencyStamp = "c5846084-1069-4b5a-9140-3c8e988ba728",
+                            ConcurrencyStamp = "fdee585a-3a99-40e3-8540-5d2b60c37503",
                             Name = "Invoice.Payment",
                             NormalizedName = "INVOICE.PAYMENT"
                         },
                         new
                         {
                             Id = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed",
-                            ConcurrencyStamp = "addb87d5-49fc-4317-9da9-45f4f4f12bda",
+                            ConcurrencyStamp = "ce2af0f2-28e9-47d9-afba-e7916b1b7148",
                             Name = "Invoice.Statistics",
                             NormalizedName = "INVOICE.STATISTICS"
                         },
                         new
                         {
                             Id = "f1af54df-c9e7-4570-850f-c563732c15b4",
-                            ConcurrencyStamp = "c5d0f491-287e-4c05-a3de-2e5c4162bbe7",
+                            ConcurrencyStamp = "4f8d2531-e29c-4852-b326-47ca1c61a769",
                             Name = "Invoice.TaxExport",
                             NormalizedName = "INVOICE.TAXEXPORT"
                         });
@@ -204,7 +204,7 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
-                            ConcurrencyStamp = "3abf8ab7-3af9-4b08-8329-b2de5e902d8f",
+                            ConcurrencyStamp = "8caaa6bf-ac42-4b8d-83cd-46e7c2b8bc78",
                             DisplayName = "Startup LLC.",
                             HasSeparateDatabase = false,
                             IsHierarchical = false,
@@ -214,7 +214,7 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
-                            ConcurrencyStamp = "a98fb285-c021-43f3-9bad-282bf4d4d991",
+                            ConcurrencyStamp = "6d48e326-e73b-4483-ae12-470b6fbc344b",
                             DisplayName = "Company Inc.",
                             HasSeparateDatabase = false,
                             IsHierarchical = false,
@@ -224,7 +224,7 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "49a049d2-23ad-41df-8806-240aebaa2f17",
-                            ConcurrencyStamp = "a9cc7c0a-637f-4ac5-978f-95f547d3bb07",
+                            ConcurrencyStamp = "c8c795e9-23f0-40c2-ba07-820379b127a9",
                             DisplayName = "Corporate Corp.",
                             HasSeparateDatabase = false,
                             IsHierarchical = false,
@@ -336,13 +336,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "ea346013-ec20-4a69-8a60-8684ffb58a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e1de432-a9f9-4f9a-bb5c-b81740267a12",
+                            ConcurrencyStamp = "e5af6727-4c38-484b-ab95-ea1301e9f6ff",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@STARTUP",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f7b6f390-5fe6-4e78-9f06-3375ec8cf2df",
+                            SecurityStamp = "4170e43f-c60d-4800-b221-c273752130b9",
                             TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
                             TwoFactorEnabled = false,
                             UserName = "boss@startup"
@@ -351,13 +351,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "50cd8ad5-b945-4541-90c9-156f6940c18b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ac50229b-2b5f-4f11-a992-21764b481757",
+                            ConcurrencyStamp = "7f6d22ee-177f-4e89-ad3e-cfd101350b2b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@STARTUP",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2f0226cd-9e0f-479b-a0ce-1247ebf280db",
+                            SecurityStamp = "6e1d1b2a-5341-43d7-9186-74bb3e55357f",
                             TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
                             TwoFactorEnabled = false,
                             UserName = "manager@startup"
@@ -366,13 +366,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "142838fe-7e64-484b-a769-87b327726715",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "edd8cb1c-053a-4459-be82-152f1c9e863f",
+                            ConcurrencyStamp = "82ea7124-c97a-422d-bb43-5305ebf2983e",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@STARTUP",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d47a6a3a-8372-48d7-8d2f-7146b67fc3cd",
+                            SecurityStamp = "7247a853-1547-4a6e-be87-93030b558fb8",
                             TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
                             TwoFactorEnabled = false,
                             UserName = "employee@startup"
@@ -381,13 +381,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "63babd8a-19b1-44bc-91e8-13c4df84b1a1",
+                            ConcurrencyStamp = "676529e3-62a8-4be8-b994-fd3fe340dc04",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04a4289b-d977-4ee5-a49d-6ab1cddf742b",
+                            SecurityStamp = "d68b3bdf-38a1-46f8-b191-e7c1e47d8675",
                             TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
                             TwoFactorEnabled = false,
                             UserName = "boss@company"
@@ -396,13 +396,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2cbb0288-a3dd-48cb-bf18-a5ec60ecc9ad",
+                            ConcurrencyStamp = "a42ac0c5-3cfd-4f87-9c98-37c1966eabac",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7f94d0ec-1c6a-4f72-b08e-0975ecc699f3",
+                            SecurityStamp = "257ccb73-9a82-4f29-a649-952031465d15",
                             TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
                             TwoFactorEnabled = false,
                             UserName = "manager@company"
@@ -411,13 +411,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "04517a45-d6f5-4993-888b-04c924902b3a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f42c5acc-897e-49c8-b1ca-b34766433b97",
+                            ConcurrencyStamp = "4124f7a0-2ff3-4162-8bb4-12255a285a85",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fa9fc64c-171d-49ca-9a6a-b97ff6b93430",
+                            SecurityStamp = "44bea655-7ef9-48b9-8064-2dc42848b7a0",
                             TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
                             TwoFactorEnabled = false,
                             UserName = "employee@company"
@@ -426,13 +426,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "dbcf2449-14b7-4766-9829-ae65604500b0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d05457f3-39e2-4a64-9e0f-d12abf1fa450",
+                            ConcurrencyStamp = "defd841f-9f53-4c0a-ae88-2ceadde41832",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@CORPORATE",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b831ff52-38c5-4934-9825-14ad0cd30705",
+                            SecurityStamp = "e11d7911-9914-4acc-86c1-829cdfd164d8",
                             TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
                             TwoFactorEnabled = false,
                             UserName = "boss@corporate"
@@ -441,13 +441,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "aeb83173-9ba7-4aa2-ab82-e434e2dcbe55",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "77f620c8-f6f9-451e-ae36-b608f7f1fedf",
+                            ConcurrencyStamp = "4b3f7ed1-fb53-405a-9265-e31c2c341232",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@CORPORATE",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3a764bcb-a5bc-492a-adf8-d5806255ba85",
+                            SecurityStamp = "a48e932a-0c43-4e7e-b779-aef4884687f0",
                             TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
                             TwoFactorEnabled = false,
                             UserName = "manager@corporate"
@@ -456,13 +456,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "e420f504-d953-4bec-95fd-1613fd760652",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "59efe111-b0fd-4ef6-b93b-bc8bc1d714db",
+                            ConcurrencyStamp = "6ccfdbe2-a192-4bd9-891d-418f26d8db31",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@CORPORATE",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cb1043b7-b89c-4897-b2c4-ac8670a836e6",
+                            SecurityStamp = "98564b9b-6756-4bef-b2e9-52280440d41b",
                             TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
                             TwoFactorEnabled = false,
                             UserName = "employee@corporate"
@@ -498,42 +498,42 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
-                            ConcurrencyStamp = "e70ceeac-ae21-4d19-8f22-8b9513ae8d0a",
+                            ConcurrencyStamp = "1fec374c-1f4d-4162-b87d-2ea2bbdfef9f",
                             Name = "Boss",
                             NormalizedName = "BOSS"
                         },
                         new
                         {
                             Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
-                            ConcurrencyStamp = "8c9c86c1-d4bc-493a-a7c7-234bd304de16",
+                            ConcurrencyStamp = "88c5a136-0d2f-48c0-a889-0d64a0bad28b",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
-                            ConcurrencyStamp = "4c109518-3e8e-45d1-80a4-7e1bc4537d46",
+                            ConcurrencyStamp = "cc16fe70-a781-4785-8c23-475e81d8b596",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "ecae3c35-0d88-424f-a1bc-31cba5add7a7",
-                            ConcurrencyStamp = "652e4dff-0e40-40c0-9e78-282c4141e990",
+                            ConcurrencyStamp = "db0f50f0-04fc-4984-b859-51a617574048",
                             Name = "Free",
                             NormalizedName = "FREE"
                         },
                         new
                         {
                             Id = "49161cff-c451-4c44-ac59-467883fe1517",
-                            ConcurrencyStamp = "659f0960-45d4-4eee-8b77-76ef2dd4172e",
+                            ConcurrencyStamp = "d3209e44-f609-4561-a252-015d3078d728",
                             Name = "Basic",
                             NormalizedName = "BASIC"
                         },
                         new
                         {
                             Id = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
-                            ConcurrencyStamp = "ff47ee82-dcc8-4fb5-a2b8-80f4efe8884c",
+                            ConcurrencyStamp = "02b62435-6c6a-4ae2-affd-8ab079ca6096",
                             Name = "Professional",
                             NormalizedName = "PROFESSIONAL"
                         });
@@ -686,6 +686,26 @@ namespace SampleTenant.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens", "identity");
+                });
+
+            modelBuilder.Entity("SampleTenant.Model.Invoice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenantId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Invoices", "identity");
                 });
 
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>

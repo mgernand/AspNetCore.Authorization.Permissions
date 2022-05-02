@@ -10,10 +10,13 @@
 	{
 		private readonly ILogger<InvoiceReadModel> _logger;
 
-		public InvoiceReadModel(ILogger<InvoiceReadModel> logger)
+		public InvoiceReadModel(ILogger<InvoiceReadModel> logger, ApplicationDbContext context)
 		{
 			this._logger = logger;
+			this.Context = context;
 		}
+
+		public ApplicationDbContext Context { get; }
 
 		public IActionResult OnGet()
 		{

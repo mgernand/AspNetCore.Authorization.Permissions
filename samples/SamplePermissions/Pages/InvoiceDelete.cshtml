@@ -1,4 +1,5 @@
 ﻿@page
+@using SamplePermissions.Model
 @model InvoiceDeleteModel
 @{
     ViewData["Title"] = "Invoice.Delete";
@@ -7,4 +8,30 @@
 <div class="text-center">
     <h1 class="display-4">Invoice.Delete</h1>
 	<p>Invoice.Delete</p>
+	<table>
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>Total</td>
+			<td>Note</td>
+			<td></td>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach(Invoice invoice in this.Model.Context.Invoices)
+		{
+			<tr>
+				<td>@invoice.Id</td>
+				<td>@invoice.Total.ToString("C0")</td>
+				<td>@invoice.Note</td>
+				<td>
+					<form asp-page-handler="delete" method="post">
+						<button class="btn btn-default">Delete</button>
+						<input type="hidden" name="id" value="@invoice.Id">
+					</form>
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
 </div>
