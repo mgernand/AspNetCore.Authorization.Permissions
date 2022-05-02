@@ -1,4 +1,5 @@
 ﻿@page
+@using SampleTenant.Model
 @model InvoiceDeleteModel
 @{
     ViewData["Title"] = "Invoice.Delete";
@@ -7,4 +8,32 @@
 <div class="text-center">
     <h1 class="display-4">Invoice.Delete</h1>
 	<p>Invoice.Delete</p>
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+		<tr>
+			<th scope="col" style="width: 30%">ID</th>
+			<th scope="col" style="width: 20%">Total</th>
+			<th scope="col" style="width: 40%">Note</th>
+			<th scope="col" style="width: 5%">Tenant</th>
+			<th scope="col" style="width: 5%"></th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach(Invoice invoice in this.Model.Context.Invoices)
+		{
+			<tr scope="row">
+				<td>@invoice.Id.ToString("N")</td>
+				<td>@invoice.Total.ToString("C0")</td>
+				<td>@invoice.Note</td>
+				<td>@this.Model.GetTenantName(invoice.TenantId)</td>
+				<td>
+					<form asp-page-handler="delete" method="post">
+						<button class="btn btn-sm btn-primary">Delete</button>
+						<input type="hidden" name="id" value="@invoice.Id">
+					</form>
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
 </div>

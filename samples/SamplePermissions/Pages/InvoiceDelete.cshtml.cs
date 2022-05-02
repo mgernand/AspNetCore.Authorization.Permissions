@@ -2,6 +2,7 @@
 {
 	using AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
+	using SamplePermissions.Model;
 
 	[HasPermission("Invoice.Delete")]
 	public class InvoiceDeleteModel : PageModel
@@ -20,8 +21,14 @@
 		{
 		}
 
-		public void OnPostDelete(string id)
+		public void OnPostDelete(Guid id)
 		{
+			Invoice invoice = this.Context.Invoices.FirstOrDefault(x => x.Id == id);
+			if(invoice != null)
+			{
+				this.Context.Invoices.Remove(invoice);
+				this.Context.SaveChanges();
+			}
 		}
 	}
 }

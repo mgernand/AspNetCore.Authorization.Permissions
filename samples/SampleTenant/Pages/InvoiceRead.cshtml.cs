@@ -10,10 +10,13 @@
 	{
 		private readonly ILogger<InvoiceReadModel> _logger;
 
-		public InvoiceReadModel(ILogger<InvoiceReadModel> logger)
+		public InvoiceReadModel(ILogger<InvoiceReadModel> logger, ApplicationDbContext context)
 		{
 			this._logger = logger;
+			this.Context = context;
 		}
+
+		public ApplicationDbContext Context { get; }
 
 		public IActionResult OnGet()
 		{
@@ -28,6 +31,17 @@
 			}
 
 			return this.Page();
+		}
+
+		public string GetTenantName(string tenantId)
+		{
+			string id = this.User.GetTenantId();
+			if(id == tenantId)
+			{
+				return this.User.GetTenantName();
+			}
+
+			return string.Empty;
 		}
 	}
 }

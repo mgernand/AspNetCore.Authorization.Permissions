@@ -29,7 +29,7 @@
 				Note = note
 			};
 
-			this.Context.Add(invoice);
+			this.Context.Invoices.Add(invoice);
 			this.Context.SaveChanges();
 		}
 	}
