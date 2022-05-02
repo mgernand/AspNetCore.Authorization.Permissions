@@ -40,8 +40,24 @@ the permissions claims just needs to implement the ```IClaimsProvider``` interfa
 mechanism of course.
 
 In addition to the basic permissions of users, this library provides an optional multi-tenant feature. 
-This feature allows assign tenants to users. The unique name of a tenant is then added to the user's
-claims. Storage system can then leverage the tenant name to  ==> **TODO**
+This feature allows assign tenants to users. The tenant infosmations are then added to the user's
+claims. Storage systems can then leverage the tenant information to alter queries (Single Database with
+Discriminator Column) or to select connection strings (Tenant per Database).
+
+A tenant may have several roles and the permissions of those roles are added to the user's permission
+claims. In that way additional permissions can be added to individual claims. The tenant sample applications
+provide tenants with a distict tenant role assigned which provide the following additional tenant permissions.
+Each tenant represents a separate company. The roles in this example represent different plans of a
+SaaS application.
+
+| Role           | Invoice.Statistics | Invoice.TaxExport |
+|----------------|--------------------|-------------------|
+| Free           | NO                 | NO                |
+| Basic          | **YES**            | NO                |
+| Professional   | **YES**            | **YES**           |
+
+Using tenants, roles and permissions is a good way to define differnent sets of features, f.e. when creating
+different plans of a SaaS application.
 
 ## Permission Usage
 
