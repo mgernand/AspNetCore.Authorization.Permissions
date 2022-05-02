@@ -25,7 +25,7 @@ codebase f.e. using the ```[Authorize]``` attribute. But if the boss decides he 
 to be able to delete invoices, we need to change it in the source code.
 
 Using permissions of the role defined in the table above in the ```[Authorize]``` attribute instead
-of the roles, we can just change the role confuguration in a data store and assign the permision
+of the roles, we can just change the role configuration in a data store and assign the permision
 **_Invoices.Delete_** to the role **_Boss_**. The boss used is then able to delete invocies without
 the need to change the code and re-deploy the application.
 
@@ -38,6 +38,10 @@ The library consists of two parts:
 It is possible to add different storages and claims providers. A library that wanst to provide
 the permissions claims just needs to implement the ```IClaimsProvider``` interface and the storage
 mechanism of course.
+
+In addition to the basic permissions of users, this library provides an optional multi-tenant feature. 
+This feature allows assign tenants to users. The unique name of a tenant is then added to the user's
+claims. Storage system can then leverage the tenant name to  ==> **TODO**
 
 ## Permission Usage
 
@@ -81,13 +85,44 @@ To retrict the access to an action methods just add the ```[Authorize]``` attrib
 name as contraint.
 
 ```C#
+// ASP.NET MVC controller action with attribute.
 [HttpGet]
 [HasPermission("Invoice.Payment")]
 public IActionResult Get()
 {
 	return this.Ok();
 }
+
+// Razor Pages with attribute.
+[HasPermission("Invoices.Read")]
+public class InvoicesReadModel : PageModel
+{
+	public void OnGet()
+	{
+	}
+}
+
+// Razor Pages with extension method.
+public class InvoicesReadModel : PageModel
+{
+	public IActionResult OnGet()
+	{
+		if(!this.User.HasPermission("Invoice.Read"))
+		{
+			if(this.User.IsAuthenticated())
+			{
+				return this.Forbid();
+			}
+
+			return this.Challenge();
+		}
+
+		return this.Page();
+	}
+}
 ```
+
+
 
 ## Tenant Usage
 

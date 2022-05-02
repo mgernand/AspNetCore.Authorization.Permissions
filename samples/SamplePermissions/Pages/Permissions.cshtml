@@ -1,0 +1,19 @@
+﻿@page
+@using AspNetCore.Authorization.Permissions.Abstractions
+@model PermissionsModel
+
+@{
+    ViewData["Title"] = "Permissions";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Permissions</h1>
+	<p>
+		<ul>
+			@foreach(string permission in this.User.GetPermissions())
+			{
+				<li class="text-start">@permission</li>
+			}
+		</ul>
+	</p>
+</div>

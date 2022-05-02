@@ -11,7 +11,7 @@ using SamplePermissions;
 namespace SamplePermissions.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220501193611_Initial")]
+    [Migration("20220502102823_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,9 +28,6 @@ namespace SamplePermissions.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -53,35 +50,35 @@ namespace SamplePermissions.Migrations
                         new
                         {
                             Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
-                            ConcurrencyStamp = "9420d0a3-6137-4b74-a7c3-9f59ff99557b",
+                            ConcurrencyStamp = "a8faa93b-c062-4ce8-9c1a-41fd886f77cd",
                             Name = "Invoice.Read",
                             NormalizedName = "INVOICE.READ"
                         },
                         new
                         {
                             Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
-                            ConcurrencyStamp = "5e75eb57-351e-4aca-931e-43a2a003df89",
+                            ConcurrencyStamp = "d7949da9-9297-433c-8200-c82878310fc9",
                             Name = "Invoice.Write",
                             NormalizedName = "INVOICE.WRITE"
                         },
                         new
                         {
                             Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
-                            ConcurrencyStamp = "12b89045-f5ce-4f5d-b657-f97598b7ab06",
+                            ConcurrencyStamp = "24a9ed2e-5341-4c93-967f-b3d9e2eaefda",
                             Name = "Invoice.Delete",
                             NormalizedName = "INVOICE.DELETE"
                         },
                         new
                         {
                             Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
-                            ConcurrencyStamp = "573c1419-4100-4bee-b2e0-534e0d311007",
+                            ConcurrencyStamp = "8939d526-d9e3-4af6-8764-0a1efc216d29",
                             Name = "Invoice.Send",
                             NormalizedName = "INVOICE.SEND"
                         },
                         new
                         {
                             Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
-                            ConcurrencyStamp = "96bd66d2-f884-45a0-b4c8-d803861a9df3",
+                            ConcurrencyStamp = "4898d1c6-c109-42a9-a2fb-56220705edc3",
                             Name = "Invoice.Payment",
                             NormalizedName = "INVOICE.PAYMENT"
                         });
@@ -151,12 +148,6 @@ namespace SamplePermissions.Migrations
                     b.Property<string>("DatabaseName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("TEXT");
-
                     b.Property<bool>("HasSeparateDatabase")
                         .HasColumnType("INTEGER");
 
@@ -189,12 +180,6 @@ namespace SamplePermissions.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DatabaseName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DisplayName")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("HasSeparateDatabase")
@@ -300,13 +285,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "972991d5-eb90-4e5b-afc3-47f6d9ffab23",
+                            ConcurrencyStamp = "3f19f9de-b27d-4877-b8dd-4047ad812982",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "794473a4-05fd-40f7-bd5a-f72db95064ae",
+                            SecurityStamp = "3a69e9a7-9d41-4452-9c4d-e3a83eb18ed1",
                             TwoFactorEnabled = false,
                             UserName = "boss@company"
                         },
@@ -314,13 +299,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7235cee-4e59-4adc-8796-2d32f30a836a",
+                            ConcurrencyStamp = "217e8e4a-2796-4864-bec9-e96c2e66968f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e5cad20-af59-4fea-ad0e-da8898825994",
+                            SecurityStamp = "15c40774-f93d-4612-bde6-6dcc2cbdb1a0",
                             TwoFactorEnabled = false,
                             UserName = "manager@company"
                         },
@@ -328,13 +313,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "04517a45-d6f5-4993-888b-04c924902b3a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "15ceec50-5141-437c-a4ff-1e4f27a3310b",
+                            ConcurrencyStamp = "bf9cff55-8fee-4eef-8b7c-c2e3d851246c",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "88be7bdb-91cc-4c29-99d6-c68832f10faa",
+                            SecurityStamp = "a7e8688d-4fd6-42c0-9e83-91199baf2bda",
                             TwoFactorEnabled = false,
                             UserName = "employee@company"
                         });
@@ -369,21 +354,21 @@ namespace SamplePermissions.Migrations
                         new
                         {
                             Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
-                            ConcurrencyStamp = "aebe8bb2-ece7-4783-94ea-a65295f88938",
+                            ConcurrencyStamp = "98f47bff-a3f5-4902-bd16-65a0352a2e39",
                             Name = "Boss",
                             NormalizedName = "BOSS"
                         },
                         new
                         {
                             Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
-                            ConcurrencyStamp = "0445ff03-d157-4d66-8e58-bc7f7e93661a",
+                            ConcurrencyStamp = "8fd1599f-4f7f-47f9-bd40-466e7846ebb4",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
-                            ConcurrencyStamp = "2fd80a57-cd93-4d04-9e8a-a4e33c4f3996",
+                            ConcurrencyStamp = "aab22ba1-1a7d-4c4e-b747-ad03239c10d7",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });

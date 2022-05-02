@@ -34,11 +34,6 @@
 		public virtual string NormalizedName { get; set; }
 
 		/// <summary>
-		///     Gets or sets the description of the permission.
-		/// </summary>
-		public virtual string Description { get; set; }
-
-		/// <summary>
 		///     A random value that should change whenever a permission is persisted to the store
 		/// </summary>
 		public virtual string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();

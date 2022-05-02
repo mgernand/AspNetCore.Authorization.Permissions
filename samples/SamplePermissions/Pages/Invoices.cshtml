@@ -1,0 +1,37 @@
+﻿@page
+@using AspNetCore.Authorization.Permissions.Abstractions
+@model InvoicesModel
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Invoices</h1>
+	<p>
+		@if(this.User.HasPermission("Invoice.Read"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceRead">Invoice.Read</a>
+		}
+		
+		@if(this.User.HasPermission("Invoice.Write"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceWrite">Invoice.Write</a>
+		}
+		
+		@if(this.User.HasPermission("Invoice.Delete"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceDelete">Invoice.Delete</a>
+		}
+		
+		@if(this.User.HasPermission("Invoice.Send"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceSend">Invoice.Send</a>
+		}
+		
+		@if(this.User.HasPermission("Invoice.Payment"))
+		{
+			<a class="nav-link text-dark" asp-area="" asp-page="/InvoicePayment">Invoice.Payment</a>
+		}
+	</p>
+</div>
