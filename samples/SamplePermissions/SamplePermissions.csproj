@@ -27,4 +27,8 @@
     <ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions\AspNetCore.Authorization.Permissions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

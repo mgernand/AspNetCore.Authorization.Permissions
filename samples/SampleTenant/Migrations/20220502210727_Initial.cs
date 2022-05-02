@@ -261,81 +261,135 @@ namespace SampleTenant.Migrations
 
             migrationBuilder.InsertData(
                 schema: "identity",
-                table: "Permissions",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "5b9c4926-3dc6-447c-a092-addab890a15f", "37516013-e2e7-44eb-98b3-d9929c367a55", "Invoice.Read", "INVOICE.READ" });
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("2a4fa911-f79c-4abb-b996-92b82f7cd8e1"), "This is a Startup invoice.", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", 99.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("7654f553-99ca-4a09-bbae-992aa025bef3"), "This is a Corporate invoice.", "49a049d2-23ad-41df-8806-240aebaa2f17", 399.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("842c45d1-5afc-4e55-bb70-3f4cae797cb6"), "This is a Startup invoice.", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", 99.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("907e2f11-5a14-4579-b8e3-2778950330db"), "This is a Startup invoice.", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", 99.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("ae7a8fcc-7bbd-441a-90f8-a4535c4add3f"), "This is a Company invoice.", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", 199.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("b92ca68e-eeb8-4774-a66f-df3063fbdba4"), "This is a Corporate invoice.", "49a049d2-23ad-41df-8806-240aebaa2f17", 399.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("d9b296ca-1cee-4634-b506-5fa28588ba65"), "This is a Corporate invoice.", "49a049d2-23ad-41df-8806-240aebaa2f17", 399.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("e7753c1e-97ea-48dc-94d8-bc6ad0c92f36"), "This is a Company invoice.", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", 199.95m });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Invoices",
+                columns: new[] { "Id", "Note", "TenantId", "Total" },
+                values: new object[] { new Guid("fcb1e735-e83f-45d8-875f-dee75926ad31"), "This is a Company invoice.", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", 199.95m });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Permissions",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "9c8dd197-bc4e-42b2-8789-f0b4481a05ed", "ce2af0f2-28e9-47d9-afba-e7916b1b7148", "Invoice.Statistics", "INVOICE.STATISTICS" });
+                values: new object[] { "5b9c4926-3dc6-447c-a092-addab890a15f", "15dac97c-d273-4432-88c0-566c204b2667", "Invoice.Read", "INVOICE.READ" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Permissions",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "5bd71f26-3936-42f2-8743-c98675ecce86", "Invoice.Send", "INVOICE.SEND" });
+                values: new object[] { "9c8dd197-bc4e-42b2-8789-f0b4481a05ed", "ee0803f4-f37e-456d-b57e-043f0a7ce6ca", "Invoice.Statistics", "INVOICE.STATISTICS" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Permissions",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "01cef358-e215-4a0a-be5d-56b30821dbf5", "Invoice.Write", "INVOICE.WRITE" });
+                values: new object[] { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "5cbc09d4-0be4-4825-9c39-c82ce4b4b293", "Invoice.Send", "INVOICE.SEND" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Permissions",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "bdb2dd41-46ce-4550-b86a-e841132556d3", "Invoice.Delete", "INVOICE.DELETE" });
+                values: new object[] { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "5f14ac7a-0124-4e0c-8a8f-b3d93251c9b0", "Invoice.Write", "INVOICE.WRITE" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Permissions",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "fdee585a-3a99-40e3-8540-5d2b60c37503", "Invoice.Payment", "INVOICE.PAYMENT" });
+                values: new object[] { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "d17a3d32-b998-44be-ad4a-9478aa4a1a01", "Invoice.Delete", "INVOICE.DELETE" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Permissions",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "f1af54df-c9e7-4570-850f-c563732c15b4", "4f8d2531-e29c-4852-b326-47ca1c61a769", "Invoice.TaxExport", "INVOICE.TAXEXPORT" });
+                values: new object[] { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "6e84d588-3388-4d91-9762-b611b83f0c84", "Invoice.Payment", "INVOICE.PAYMENT" });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Permissions",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "f1af54df-c9e7-4570-850f-c563732c15b4", "c52a32b4-1d09-4fb2-95bb-609d4894652b", "Invoice.TaxExport", "INVOICE.TAXEXPORT" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2c77ea15-1559-4b9b-bc20-1d64892e4297", "88c5a136-0d2f-48c0-a889-0d64a0bad28b", "Manager", "MANAGER" });
+                values: new object[] { "2c77ea15-1559-4b9b-bc20-1d64892e4297", "c6b99621-bbd3-4d1d-a3ca-87652ab21e27", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "49161cff-c451-4c44-ac59-467883fe1517", "d3209e44-f609-4561-a252-015d3078d728", "Basic", "BASIC" });
+                values: new object[] { "49161cff-c451-4c44-ac59-467883fe1517", "cdf6cfb9-8cf2-47ad-929e-23c6aaf5be74", "Basic", "BASIC" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b0df7eae-a4f9-4d58-8795-ead2aaf6a483", "1fec374c-1f4d-4162-b87d-2ea2bbdfef9f", "Boss", "BOSS" });
+                values: new object[] { "b0df7eae-a4f9-4d58-8795-ead2aaf6a483", "fb101c31-5235-4545-b4b3-0a99b4aa5528", "Boss", "BOSS" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230", "02b62435-6c6a-4ae2-affd-8ab079ca6096", "Professional", "PROFESSIONAL" });
+                values: new object[] { "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230", "a289851e-1de2-4a9b-94b7-4cb8b30780b8", "Professional", "PROFESSIONAL" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "cc16fe70-a781-4785-8c23-475e81d8b596", "Employee", "EMPLOYEE" });
+                values: new object[] { "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "e6aaaddf-b0ef-45d0-b179-7d262c3d251e", "Employee", "EMPLOYEE" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ecae3c35-0d88-424f-a1bc-31cba5add7a7", "db0f50f0-04fc-4984-b859-51a617574048", "Free", "FREE" });
+                values: new object[] { "ecae3c35-0d88-424f-a1bc-31cba5add7a7", "f1892e6d-dbe3-4e24-af0e-940da4f44b3d", "Free", "FREE" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
@@ -359,19 +413,19 @@ namespace SampleTenant.Migrations
                 schema: "identity",
                 table: "Tenants",
                 columns: new[] { "Id", "ConcurrencyStamp", "DatabaseName", "DisplayName", "HasSeparateDatabase", "IsHierarchical", "Name", "NormalizedName" },
-                values: new object[] { "49a049d2-23ad-41df-8806-240aebaa2f17", "c8c795e9-23f0-40c2-ba07-820379b127a9", null, "Corporate Corp.", false, false, "Corporate", "CORPORATE" });
+                values: new object[] { "49a049d2-23ad-41df-8806-240aebaa2f17", "366fa93e-c60d-4dd6-aa4b-671405e7667d", null, "Corporate Corp.", false, false, "Corporate", "CORPORATE" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Tenants",
                 columns: new[] { "Id", "ConcurrencyStamp", "DatabaseName", "DisplayName", "HasSeparateDatabase", "IsHierarchical", "Name", "NormalizedName" },
-                values: new object[] { "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", "8caaa6bf-ac42-4b8d-83cd-46e7c2b8bc78", null, "Startup LLC.", false, false, "Startup", "STARTUP" });
+                values: new object[] { "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", "db5acf15-36d2-4a53-a060-bdf7ca7f62e1", null, "Startup LLC.", false, false, "Startup", "STARTUP" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Tenants",
                 columns: new[] { "Id", "ConcurrencyStamp", "DatabaseName", "DisplayName", "HasSeparateDatabase", "IsHierarchical", "Name", "NormalizedName" },
-                values: new object[] { "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", "6d48e326-e73b-4483-ae12-470b6fbc344b", null, "Company Inc.", false, false, "Company", "COMPANY" });
+                values: new object[] { "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", "3d00e323-b715-42c2-878a-47dfe37a4d4b", null, "Company Inc.", false, false, "Company", "COMPANY" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
@@ -437,55 +491,55 @@ namespace SampleTenant.Migrations
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "04517a45-d6f5-4993-888b-04c924902b3a", 0, "4124f7a0-2ff3-4162-8bb4-12255a285a85", null, false, false, null, null, "EMPLOYEE@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "44bea655-7ef9-48b9-8064-2dc42848b7a0", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", false, "employee@company" });
+                values: new object[] { "04517a45-d6f5-4993-888b-04c924902b3a", 0, "23b06ce1-3aef-4873-8949-c3ed7e946c56", null, false, false, null, null, "EMPLOYEE@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "d2a729b8-1576-4d10-bc0f-53c03601d337", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", false, "employee@company" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "142838fe-7e64-484b-a769-87b327726715", 0, "82ea7124-c97a-422d-bb43-5305ebf2983e", null, false, false, null, null, "EMPLOYEE@STARTUP", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "7247a853-1547-4a6e-be87-93030b558fb8", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", false, "employee@startup" });
+                values: new object[] { "142838fe-7e64-484b-a769-87b327726715", 0, "71d9f6da-e3e2-486e-b5fe-8633d0d898f3", null, false, false, null, null, "EMPLOYEE@STARTUP", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "9ec77bea-3a5d-4982-b3a5-d492916faf96", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", false, "employee@startup" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "50cd8ad5-b945-4541-90c9-156f6940c18b", 0, "7f6d22ee-177f-4e89-ad3e-cfd101350b2b", null, false, false, null, null, "MANAGER@STARTUP", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "6e1d1b2a-5341-43d7-9186-74bb3e55357f", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", false, "manager@startup" });
+                values: new object[] { "50cd8ad5-b945-4541-90c9-156f6940c18b", 0, "a0abe836-de5f-4a91-8c7d-5d36593dc4dd", null, false, false, null, null, "MANAGER@STARTUP", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "009e6abd-92a1-484e-928c-5c5aa70a3320", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", false, "manager@startup" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "90a4dd66-78d1-4fff-a507-7f88735f7ab6", 0, "a42ac0c5-3cfd-4f87-9c98-37c1966eabac", null, false, false, null, null, "MANAGER@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "257ccb73-9a82-4f29-a649-952031465d15", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", false, "manager@company" });
+                values: new object[] { "90a4dd66-78d1-4fff-a507-7f88735f7ab6", 0, "6ec8475a-4c72-4487-bc6f-ed975d09f44e", null, false, false, null, null, "MANAGER@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "11a04aa5-e88c-4802-ad3a-2bd03b3cb361", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", false, "manager@company" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a0f112af-5e39-4b3f-bc50-015591861ec0", 0, "676529e3-62a8-4be8-b994-fd3fe340dc04", null, false, false, null, null, "BOSS@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "d68b3bdf-38a1-46f8-b191-e7c1e47d8675", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", false, "boss@company" });
+                values: new object[] { "a0f112af-5e39-4b3f-bc50-015591861ec0", 0, "38a96e8a-cf25-46f5-8000-13b6d1506eea", null, false, false, null, null, "BOSS@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "e93fe3cb-9cda-4f5f-9e1e-a8b636f87905", "ee5128d3-4cad-4bcc-aa64-f6abbb30da46", false, "boss@company" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "aeb83173-9ba7-4aa2-ab82-e434e2dcbe55", 0, "4b3f7ed1-fb53-405a-9265-e31c2c341232", null, false, false, null, null, "MANAGER@CORPORATE", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "a48e932a-0c43-4e7e-b779-aef4884687f0", "49a049d2-23ad-41df-8806-240aebaa2f17", false, "manager@corporate" });
+                values: new object[] { "aeb83173-9ba7-4aa2-ab82-e434e2dcbe55", 0, "7253b9be-acae-4b07-9dcb-fea30d4566df", null, false, false, null, null, "MANAGER@CORPORATE", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "771636eb-e198-48bc-a863-b87dd0faaf83", "49a049d2-23ad-41df-8806-240aebaa2f17", false, "manager@corporate" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbcf2449-14b7-4766-9829-ae65604500b0", 0, "defd841f-9f53-4c0a-ae88-2ceadde41832", null, false, false, null, null, "BOSS@CORPORATE", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "e11d7911-9914-4acc-86c1-829cdfd164d8", "49a049d2-23ad-41df-8806-240aebaa2f17", false, "boss@corporate" });
+                values: new object[] { "dbcf2449-14b7-4766-9829-ae65604500b0", 0, "c8dd25a1-dc5c-443c-b9ab-8476d9fdc3e0", null, false, false, null, null, "BOSS@CORPORATE", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "c9d08b22-b9a7-46ca-987f-02e39355d456", "49a049d2-23ad-41df-8806-240aebaa2f17", false, "boss@corporate" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e420f504-d953-4bec-95fd-1613fd760652", 0, "6ccfdbe2-a192-4bd9-891d-418f26d8db31", null, false, false, null, null, "EMPLOYEE@CORPORATE", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "98564b9b-6756-4bef-b2e9-52280440d41b", "49a049d2-23ad-41df-8806-240aebaa2f17", false, "employee@corporate" });
+                values: new object[] { "e420f504-d953-4bec-95fd-1613fd760652", 0, "4df9492d-a815-4642-99b2-4de1d0465779", null, false, false, null, null, "EMPLOYEE@CORPORATE", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "48f9002c-5c20-4404-ac32-d9fddd3301cb", "49a049d2-23ad-41df-8806-240aebaa2f17", false, "employee@corporate" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ea346013-ec20-4a69-8a60-8684ffb58a5f", 0, "e5af6727-4c38-484b-ab95-ea1301e9f6ff", null, false, false, null, null, "BOSS@STARTUP", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "4170e43f-c60d-4800-b221-c273752130b9", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", false, "boss@startup" });
+                values: new object[] { "ea346013-ec20-4a69-8a60-8684ffb58a5f", 0, "be3e1421-501a-4b4a-8948-32c9b112826d", null, false, false, null, null, "BOSS@STARTUP", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "75a31b6b-4c0a-47c2-8bcc-08b42b3ba3aa", "7d706acd-f5fd-4979-9e3f-c77a0bd596b2", false, "boss@startup" });
 
             migrationBuilder.InsertData(
                 schema: "identity",
@@ -540,6 +594,12 @@ namespace SampleTenant.Migrations
                 table: "UserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "b0df7eae-a4f9-4d58-8795-ead2aaf6a483", "ea346013-ec20-4a69-8a60-8684ffb58a5f" });
+
+            migrationBuilder.CreateIndex(
+                name: "InvoiceTenantIdIndex",
+                schema: "identity",
+                table: "Invoices",
+                column: "TenantId");
 
             migrationBuilder.CreateIndex(
                 name: "PermissionNameIndex",

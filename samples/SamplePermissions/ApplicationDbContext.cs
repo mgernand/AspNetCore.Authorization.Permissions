@@ -33,6 +33,26 @@
 			{
 				entity.HasKey(x => x.Id);
 				entity.Property(x => x.Id).HasValueGenerator<SequentialGuidValueGenerator>();
+
+				// Company invoices
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 199.95m,
+					Note = "This is a Company invoice."
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 199.95m,
+					Note = "This is a Company invoice."
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 199.95m,
+					Note = "This is a Company invoice."
+				});
 			});
 
 			builder.Entity<IdentityTenantUser>(entity =>

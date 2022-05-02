@@ -1,5 +1,7 @@
 ﻿namespace SampleTenant.Model
 {
+	using AspNetCore.Authorization.Permissions.Abstractions;
+
 	public class Invoice : ITenantObject
 	{
 		public Guid Id { get; set; }

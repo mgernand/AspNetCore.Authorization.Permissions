@@ -14,7 +14,7 @@
 	public static class IdentityBuilderExtensions
 	{
 		/// <summary>
-		///     Adds the EF Core store implementations for Identity and the Permissions library.
+		///     Adds the EF Core store implementations for Identity and the permissions library.
 		/// </summary>
 		/// <typeparam name="TContext"></typeparam>
 		/// <param name="builder"></param>
@@ -24,6 +24,22 @@
 		{
 			builder.AddEntityFrameworkStores<TContext>();
 			AddStores(builder.Services, builder.UserType, typeof(IdentityPermission), typeof(IdentityTenant), builder.RoleType, typeof(TContext));
+			return builder;
+		}
+
+		/// <summary>
+		///     Adds the EF Core store implementations for Identity and the permissions library.
+		/// </summary>
+		/// <typeparam name="TContext"></typeparam>
+		/// <typeparam name="TTenantAccessor"></typeparam>
+		/// <param name="builder"></param>
+		/// <returns></returns>
+		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TContext, TTenantAccessor>(this IdentityBuilder builder)
+			where TContext : DbContext
+			where TTenantAccessor : class, ITenantAccessor
+		{
+			builder.AddPermissionsEntityFrameworkStores<TContext>();
+			builder.Services.AddTransient<ITenantAccessor, TTenantAccessor>();
 			return builder;
 		}
 
@@ -97,7 +113,7 @@
 			while(type != null)
 			{
 				Type genericType = type.IsGenericType ? type.GetGenericTypeDefinition() : null;
-				if((genericType != null) && (genericType == genericBaseType))
+				if(genericType != null && genericType == genericBaseType)
 				{
 					return type;
 				}

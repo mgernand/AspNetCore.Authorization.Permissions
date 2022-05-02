@@ -23,7 +23,7 @@
 		{
 			<tr scope="row">
 				<td>@invoice.Id.ToString("N")</td>
-				<td>@invoice.Total.ToString("C0")</td>
+				<td>@invoice.Total.ToString("C2")</td>
 				<td>@invoice.Note</td>
 				<td>@this.Model.GetTenantName(invoice.TenantId)</td>
 				<td>

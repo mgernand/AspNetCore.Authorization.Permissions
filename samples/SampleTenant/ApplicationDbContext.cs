@@ -9,19 +9,39 @@
 
 	public class ApplicationDbContext : IdentityPermissionsDbContext
 	{
+		private readonly ITenantAccessor tenantAccessor;
+
 		/// <summary>
 		///     Initializes a new instance of <see cref="ApplicationDbContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+		/// <param name="tenantAccessor"></param>
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ITenantAccessor tenantAccessor)
 			: base(options)
 		{
+			this.tenantAccessor = tenantAccessor;
 		}
 
 		/// <summary>
 		///     Gets or sets the <see cref="DbSet{TEntity}" /> of invoices.
 		/// </summary>
 		public virtual DbSet<Invoice> Invoices { get; set; }
+
+		/// <inheritdoc />
+		public override int SaveChanges(bool acceptAllChangesOnSuccess)
+		{
+			this.SetTenantIdToAddedEntities(this.tenantAccessor.TenantId);
+
+			return base.SaveChanges(acceptAllChangesOnSuccess);
+		}
+
+		/// <inheritdoc />
+		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
+		{
+			this.SetTenantIdToAddedEntities(this.tenantAccessor.TenantId);
+
+			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+		}
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
@@ -33,6 +53,77 @@
 			{
 				entity.HasKey(x => x.Id);
 				entity.Property(x => x.Id).HasValueGenerator<SequentialGuidValueGenerator>();
+				entity.HasIndex(x => x.TenantId).HasDatabaseName("InvoiceTenantIdIndex");
+				entity.HasQueryFilter(x => x.TenantId == this.tenantAccessor.TenantId);
+
+				// Startup invoices
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 99.95m,
+					Note = "This is a Startup invoice.",
+					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 99.95m,
+					Note = "This is a Startup invoice.",
+					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 99.95m,
+					Note = "This is a Startup invoice.",
+					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+				});
+
+				// Company invoices
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 199.95m,
+					Note = "This is a Company invoice.",
+					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 199.95m,
+					Note = "This is a Company invoice.",
+					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 199.95m,
+					Note = "This is a Company invoice.",
+					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+				});
+
+				// Corporate invoices
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 399.95m,
+					Note = "This is a Corporate invoice.",
+					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 399.95m,
+					Note = "This is a Corporate invoice.",
+					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
+				});
+				entity.HasData(new Invoice
+				{
+					Id = Guid.NewGuid(),
+					Total = 399.95m,
+					Note = "This is a Corporate invoice.",
+					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
+				});
 			});
 
 			builder.Entity<IdentityTenant>(entity =>
