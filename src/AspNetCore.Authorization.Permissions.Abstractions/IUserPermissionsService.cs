@@ -41,6 +41,13 @@
 		bool HasPermission(IEnumerable<Claim> claims, string permission);
 
 		/// <summary>
+		///     Gets the tenant ID from the given user.
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		string GetTenantId(ClaimsPrincipal user);
+
+		/// <summary>
 		///     Gets the tenant name from the given user.
 		/// </summary>
 		/// <param name="user"></param>

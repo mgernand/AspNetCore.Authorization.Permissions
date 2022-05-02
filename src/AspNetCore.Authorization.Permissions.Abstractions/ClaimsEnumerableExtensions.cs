@@ -47,6 +47,16 @@
 		}
 
 		/// <summary>
+		///     Gets the tenant ID from the given user claims.
+		/// </summary>
+		/// <param name="claims"></param>
+		/// <returns></returns>
+		public static string GetTenantId(this IEnumerable<Claim> claims)
+		{
+			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantIdClaimType)?.Value;
+		}
+
+		/// <summary>
 		///     Gets the tenant name from the given user claims.
 		/// </summary>
 		/// <param name="claims"></param>

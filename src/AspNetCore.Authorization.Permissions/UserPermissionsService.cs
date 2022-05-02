@@ -42,6 +42,12 @@
 		}
 
 		/// <inheritdoc />
+		public string GetTenantId(ClaimsPrincipal user)
+		{
+			return user.GetTenantId();
+		}
+
+		/// <inheritdoc />
 		public string GetTenantName(ClaimsPrincipal user)
 		{
 			return user.GetTenantName();

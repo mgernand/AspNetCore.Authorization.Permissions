@@ -75,6 +75,7 @@
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send"),
+					new Claim(PermissionClaimTypes.TenantIdClaimType, "12345678"),
 					new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
 					new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 				};
@@ -115,6 +116,9 @@
 
 			if(hasTenant)
 			{
+				string tenantId = claims.GetTenantId();
+				tenantId.Should().NotBeNullOrWhiteSpace().And.Be("12345678");
+
 				string tenantName = claims.GetTenantName();
 				tenantName.Should().NotBeNullOrWhiteSpace().And.Be("test-tenant");
 

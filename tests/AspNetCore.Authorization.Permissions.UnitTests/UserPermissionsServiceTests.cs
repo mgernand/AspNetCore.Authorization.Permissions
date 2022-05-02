@@ -72,12 +72,12 @@
 				.And.Contain("Invoices.Send");
 		}
 
-
 		[Test]
-		public void ShouldGetTenantName()
+		public void ShouldGetTenantInfo()
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
+				new Claim(PermissionClaimTypes.TenantIdClaimType, "12345678"),
 				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
 				new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 			}));
@@ -89,6 +89,9 @@
 			});
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+
+			string tenantId = service.GetTenantId(principal);
+			tenantId.Should().NotBeNull().And.Be("12345678");
 
 			string tenantName = service.GetTenantName(principal);
 			tenantName.Should().NotBeNull().And.Be("test-tenant");

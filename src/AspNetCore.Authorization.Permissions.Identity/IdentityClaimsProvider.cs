@@ -49,6 +49,8 @@
 				TTenant tenant = await this.tenantManager.FindByIdAsync(tenantId);
 				claims.AddRange(await this.GetTenantPermissions(tenant));
 
+				claims.Add(new Claim(PermissionClaimTypes.TenantIdClaimType, tenantId));
+
 				string tenantName = await this.tenantManager.GetTenantNameAsync(tenant);
 				claims.Add(new Claim(PermissionClaimTypes.TenantNameClaimType, tenantName));
 

@@ -39,6 +39,16 @@
 		}
 
 		/// <summary>
+		///     Gets the tenant ID from the given user.
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		public static string GetTenantId(this ClaimsPrincipal user)
+		{
+			return user.Claims.GetTenantId();
+		}
+
+		/// <summary>
 		///     Gets the tenant name from the given user.
 		/// </summary>
 		/// <param name="user"></param>

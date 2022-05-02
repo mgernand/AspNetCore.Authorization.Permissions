@@ -38,6 +38,7 @@
 					// Only add claim types we know.
 					if(claim.Type is
 					   PermissionClaimTypes.PermissionClaimType or
+					   PermissionClaimTypes.TenantIdClaimType or
 					   PermissionClaimTypes.TenantNameClaimType or
 					   PermissionClaimTypes.TenantDisplayNameClaimType)
 					{

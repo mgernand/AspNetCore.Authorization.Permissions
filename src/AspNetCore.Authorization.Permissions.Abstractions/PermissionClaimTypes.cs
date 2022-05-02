@@ -14,6 +14,11 @@
 		public const string PermissionClaimType = "permission";
 
 		/// <summary>
+		///     The claim type for the tenant ID.
+		/// </summary>
+		public const string TenantIdClaimType = "tenant-id";
+
+		/// <summary>
 		///     The claim type for the tenant name.
 		/// </summary>
 		public const string TenantNameClaimType = "tenant-name";
