@@ -47,7 +47,7 @@
 		/// <param name="services"></param>
 		/// <param name="setupAction"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddPermissionsIdentity(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
+		public static PermissionsIdentityBuilder AddPermissionsIdentity(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
 		{
 			return services.AddPermissionsIdentity<IdentityTenantUser, IdentityRole, IdentityPermission, IdentityTenant>(setupAction);
 		}
