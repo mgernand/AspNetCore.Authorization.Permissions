@@ -1,5 +1,6 @@
 ﻿namespace SampleTenant
 {
+	using AspNetCore.Authorization.Permissions.Abstractions;
 	using AspNetCore.Authorization.Permissions.Identity;
 	using AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
 	using Microsoft.AspNetCore.Identity;
@@ -9,17 +10,17 @@
 
 	public class ApplicationDbContext : IdentityPermissionsDbContext
 	{
-		private readonly ITenantAccessor tenantAccessor;
+		private readonly ITenantProvider tenantProvider;
 
 		/// <summary>
 		///     Initializes a new instance of <see cref="ApplicationDbContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		/// <param name="tenantAccessor"></param>
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ITenantAccessor tenantAccessor)
+		/// <param name="tenantProvider"></param>
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ITenantProvider tenantProvider)
 			: base(options)
 		{
-			this.tenantAccessor = tenantAccessor;
+			this.tenantProvider = tenantProvider;
 		}
 
 		/// <summary>
@@ -30,7 +31,7 @@
 		/// <inheritdoc />
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
-			this.SetTenantIdToAddedEntities(this.tenantAccessor.TenantId);
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
 
 			return base.SaveChanges(acceptAllChangesOnSuccess);
 		}
@@ -38,7 +39,7 @@
 		/// <inheritdoc />
 		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
 		{
-			this.SetTenantIdToAddedEntities(this.tenantAccessor.TenantId);
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
 
 			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 		}
@@ -54,7 +55,7 @@
 				entity.HasKey(x => x.Id);
 				entity.Property(x => x.Id).HasValueGenerator<SequentialGuidValueGenerator>();
 				entity.HasIndex(x => x.TenantId).HasDatabaseName("InvoiceTenantIdIndex");
-				entity.HasQueryFilter(x => x.TenantId == this.tenantAccessor.TenantId);
+				entity.HasQueryFilter(x => x.TenantId == this.tenantProvider.TenantId);
 
 				// Startup invoices
 				entity.HasData(new Invoice

@@ -138,9 +138,9 @@ public class InvoicesReadModel : PageModel
 }
 ```
 
-
-
 ## Tenant Usage
 
-TODO
+TODO: ITenantContextAccessor
+
+
 

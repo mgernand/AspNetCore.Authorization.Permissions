@@ -34,7 +34,7 @@ builder.Services
 	})
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
-	.AddPermissionsEntityFrameworkStores<ApplicationDbContext, TenantAccessorFromUser>();
+	.AddPermissionsEntityFrameworkStores<ApplicationDbContext, HttpContextUserTenantProvider>();
 
 WebApplication app = builder.Build();
 

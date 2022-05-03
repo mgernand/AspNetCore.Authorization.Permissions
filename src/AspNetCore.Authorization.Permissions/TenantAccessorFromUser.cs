@@ -1,4 +1,4 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+﻿namespace AspNetCore.Authorization.Permissions
 {
 	using AspNetCore.Authorization.Permissions.Abstractions;
 	using Fluxera.Utilities.Extensions;
@@ -9,15 +9,15 @@
 	///     A tenant accessor that gets the tenant ID from the current user.
 	/// </summary>
 	[PublicAPI]
-	public class TenantAccessorFromUser : ITenantAccessor
+	public class HttpContextUserTenantProvider : ITenantProvider
 	{
 		private readonly IHttpContextAccessor accessor;
 
 		/// <summary>
-		///     Creates a new instance of the <see cref="TenantAccessorFromUser" /> type.
+		///     Creates a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
 		/// </summary>
 		/// <param name="accessor"></param>
-		public TenantAccessorFromUser(IHttpContextAccessor accessor)
+		public HttpContextUserTenantProvider(IHttpContextAccessor accessor)
 		{
 			this.accessor = accessor;
 		}

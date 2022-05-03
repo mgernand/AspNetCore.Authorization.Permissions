@@ -1,6 +1,7 @@
 ﻿namespace AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
 {
 	using System;
+	using AspNetCore.Authorization.Permissions.Abstractions;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
@@ -36,10 +37,10 @@
 		/// <returns></returns>
 		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TContext, TTenantAccessor>(this IdentityBuilder builder)
 			where TContext : DbContext
-			where TTenantAccessor : class, ITenantAccessor
+			where TTenantAccessor : class, ITenantProvider
 		{
 			builder.AddPermissionsEntityFrameworkStores<TContext>();
-			builder.Services.AddTransient<ITenantAccessor, TTenantAccessor>();
+			builder.Services.AddTransient<ITenantProvider, TTenantAccessor>();
 			return builder;
 		}
 
