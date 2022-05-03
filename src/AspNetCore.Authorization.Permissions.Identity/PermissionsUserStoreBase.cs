@@ -14,17 +14,17 @@
 	/// <typeparam name="TUser">The type representing a user.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
-	public abstract class TenantUserStoreBase<TUser, TKey> : ITenantUserStore<TUser>
-		where TUser : IdentityTenantUser<TKey>
+	public abstract class PermissionsUserStoreBase<TUser, TKey> : IPermissionsUserStore<TUser>
+		where TUser : PermissionsIdentityUser<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		private bool disposed;
 
 		/// <summary>
-		///     Creates a new instance of the <see cref="TenantUserStoreBase{TUser, TKey}" /> type.
+		///     Creates a new instance of the <see cref="PermissionsUserStoreBase{TUser,TKey}" /> type.
 		/// </summary>
 		/// <param name="describer"></param>
-		public TenantUserStoreBase(IdentityErrorDescriber describer = null)
+		public PermissionsUserStoreBase(IdentityErrorDescriber describer = null)
 		{
 			this.Describer = describer;
 		}

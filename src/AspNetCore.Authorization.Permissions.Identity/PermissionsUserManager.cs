@@ -10,14 +10,14 @@
 
 	/// <inheritdoc />
 	[PublicAPI]
-	public class TenantUserManager<TUser> : UserManager<TUser>
-		where TUser : class, ITenantUser
+	public class PermissionsUserManager<TUser> : UserManager<TUser>
+		where TUser : class, IUser
 	{
-		private readonly ITenantUserStore<TUser> tenantUserStore;
+		private readonly IPermissionsUserStore<TUser> permissionsUserStore;
 
 		/// <inheritdoc />
-		public TenantUserManager(
-			ITenantUserStore<TUser> tenantUserStore,
+		public PermissionsUserManager(
+			IPermissionsUserStore<TUser> permissionsUserStore,
 			IUserStore<TUser> userStore,
 			IOptions<IdentityOptions> optionsAccessor,
 			IPasswordHasher<TUser> passwordHasher,
@@ -26,10 +26,10 @@
 			ILookupNormalizer keyNormalizer,
 			IdentityErrorDescriber errors,
 			IServiceProvider services,
-			ILogger<TenantUserManager<TUser>> logger)
+			ILogger<PermissionsUserManager<TUser>> logger)
 			: base(userStore, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
 		{
-			this.tenantUserStore = tenantUserStore;
+			this.permissionsUserStore = permissionsUserStore;
 		}
 
 		/// <summary>
@@ -48,7 +48,7 @@
 				throw new ArgumentNullException(nameof(user));
 			}
 
-			return await this.tenantUserStore.GetTenantIdAsync(user, this.CancellationToken);
+			return await this.permissionsUserStore.GetTenantIdAsync(user, this.CancellationToken);
 		}
 	}
 }

@@ -7,7 +7,7 @@
 	///     A default permission implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityPermission : IdentityPermission<string>
+	public class PermissionsIdentityPermission : PermissionsIdentityPermission<string>
 	{
 	}
 
@@ -16,7 +16,8 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class IdentityPermission<TKey> where TKey : IEquatable<TKey>
+	public class PermissionsIdentityPermission<TKey> : IPermission
+		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Gets or sets the primary key for this user.

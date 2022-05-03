@@ -8,7 +8,8 @@
 	///     Provides an abstraction for a store which maps permissions to roles.
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
-	public interface IRolePermissionStore<TPermission> : IPermissionStore<TPermission> where TPermission : class
+	public interface IRolePermissionStore<TPermission> : IPermissionStore<TPermission>
+		where TPermission : class, IPermission
 	{
 		///// <summary>
 		/////     Add the specified <paramref name="permission" /> to the named role.

@@ -24,7 +24,7 @@
 			where TContext : DbContext
 		{
 			builder.AddEntityFrameworkStores<TContext>();
-			AddStores(builder.Services, builder.UserType, typeof(IdentityPermission), typeof(IdentityTenant), builder.RoleType, typeof(TContext));
+			AddStores(builder.Services, builder.UserType, typeof(PermissionsIdentityPermission), typeof(PermissionsIdentityTenant), builder.RoleType, typeof(TContext));
 			return builder;
 		}
 
@@ -46,13 +46,13 @@
 
 		private static void AddStores(IServiceCollection services, Type userType, Type permissionType, Type tenantType, Type roleType, Type contextType)
 		{
-			Type identityUserType = FindGenericBaseType(userType, typeof(IdentityTenantUser<>));
+			Type identityUserType = FindGenericBaseType(userType, typeof(PermissionsIdentityUser<>));
 			if(identityUserType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant user type.");
 			}
 
-			Type identityPermissionType = FindGenericBaseType(permissionType, typeof(IdentityPermission<>));
+			Type identityPermissionType = FindGenericBaseType(permissionType, typeof(PermissionsIdentityPermission<>));
 			if(identityPermissionType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity permission type.");
@@ -63,7 +63,7 @@
 				throw new InvalidOperationException("The permissions extension needs a role type to work.");
 			}
 
-			Type identityTenantType = FindGenericBaseType(tenantType, typeof(IdentityTenant<>));
+			Type identityTenantType = FindGenericBaseType(tenantType, typeof(PermissionsIdentityTenant<>));
 			if(identityTenantType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant type.");
@@ -87,7 +87,7 @@
 				// If its a custom DbContext, we can only add the default POCOs
 				permissionStoreType = typeof(PermissionStore<,,,>).MakeGenericType(permissionType, roleType, contextType, keyType);
 				tenantsStoreType = typeof(TenantStore<,,>).MakeGenericType(permissionType, contextType, keyType);
-				tenantUsersStoreType = typeof(TenantUserStore<,,>).MakeGenericType(userType, contextType, keyType);
+				tenantUsersStoreType = typeof(PermissionsUserStore<,,>).MakeGenericType(userType, contextType, keyType);
 			}
 			else
 			{
@@ -99,13 +99,13 @@
 					identityContext.GenericTypeArguments[4],
 					identityContext.GenericTypeArguments[11]);
 
-				tenantUsersStoreType = typeof(TenantUserStore<,,>).MakeGenericType(userType, contextType,
+				tenantUsersStoreType = typeof(PermissionsUserStore<,,>).MakeGenericType(userType, contextType,
 					identityContext.GenericTypeArguments[4]);
 			}
 
 			services.TryAddScoped(typeof(IPermissionStore<>).MakeGenericType(permissionType), permissionStoreType);
 			services.TryAddScoped(typeof(ITenantStore<>).MakeGenericType(tenantType), tenantsStoreType);
-			services.TryAddScoped(typeof(ITenantUserStore<>).MakeGenericType(userType), tenantUsersStoreType);
+			services.TryAddScoped(typeof(IPermissionsUserStore<>).MakeGenericType(userType), tenantUsersStoreType);
 		}
 
 		private static Type FindGenericBaseType(Type currentType, Type genericBaseType)

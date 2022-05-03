@@ -16,8 +16,8 @@
 	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
-		where TPermission : IdentityPermission<string>
-		where TRole : IdentityRole<string>
+		where TPermission : PermissionsIdentityPermission<string>
+		where TRole : PermissionsIdentityRole<string>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
@@ -38,8 +38,8 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext> : PermissionStore<TPermission, TRole, TContext, string>
-		where TPermission : IdentityPermission<string>
-		where TRole : IdentityRole<string>
+		where TPermission : PermissionsIdentityPermission<string>
+		where TRole : PermissionsIdentityRole<string>
 		where TContext : DbContext
 	{
 		/// <summary>
@@ -62,8 +62,8 @@
 	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, IdentityRolePermission<TKey>>
-		where TPermission : IdentityPermission<TKey>
-		where TRole : IdentityRole<TKey>
+		where TPermission : PermissionsIdentityPermission<TKey>
+		where TRole : PermissionsIdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
 	{
@@ -90,8 +90,8 @@
 	public class PermissionStore<TPermission, TRole, TContext, TKey, TRolePermission> : PermissionStoreBase<TPermission, TRole, TKey, TRolePermission>,
 		IQueryablePermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
-		where TPermission : IdentityPermission<TKey>
-		where TRole : IdentityRole<TKey>
+		where TPermission : PermissionsIdentityPermission<TKey>
+		where TRole : PermissionsIdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
 		where TRolePermission : IdentityRolePermission<TKey>, new()

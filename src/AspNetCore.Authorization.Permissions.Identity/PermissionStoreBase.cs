@@ -19,7 +19,7 @@
 	public abstract class PermissionStoreBase<TPermission, TRole, TKey, TRolePermission> :
 		IPermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
-		where TPermission : IdentityPermission<TKey>
+		where TPermission : PermissionsIdentityPermission<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TRolePermission : IdentityRolePermission<TKey>, new()

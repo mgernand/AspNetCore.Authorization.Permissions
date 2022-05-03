@@ -9,13 +9,13 @@
 
 	[PublicAPI]
 	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
-		where TUser : class, ITenantUser
-		where TPermission : class
-		where TTenant : class
+		where TUser : class, IUser
+		where TPermission : class, IPermission
+		where TTenant : class, ITenant
 	{
 		private readonly PermissionManager<TPermission> permissionManager;
 		private readonly TenantManager<TTenant> tenantManager;
-		private readonly TenantUserManager<TUser> userManager;
+		private readonly PermissionsUserManager<TUser> userManager;
 
 		/// <summary>
 		///     Creates a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
@@ -24,7 +24,7 @@
 		/// <param name="permissionManager"></param>
 		/// <param name="tenantManager"></param>
 		public IdentityClaimsProvider(
-			TenantUserManager<TUser> userManager,
+			PermissionsUserManager<TUser> userManager,
 			TenantManager<TTenant> tenantManager,
 			PermissionManager<TPermission> permissionManager)
 		{

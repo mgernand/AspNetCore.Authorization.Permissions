@@ -12,7 +12,8 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
-	public class TenantValidator<TTenant> : ITenantValidator<TTenant> where TTenant : class
+	public class TenantValidator<TTenant> : ITenantValidator<TTenant>
+		where TTenant : class, ITenant
 	{
 		/// <summary>
 		///     Creates a new instance of <see cref="TenantValidator{TTenant}" />.
@@ -61,7 +62,7 @@
 			else
 			{
 				TTenant owner = await manager.FindByNameAsync(tenantName);
-				if((owner != null) &&
+				if(owner != null &&
 				   !string.Equals(await manager.GetTenantIdAsync(owner), await manager.GetTenantIdAsync(tenant)))
 				{
 					errors.Add(this.Describer.DuplicateTenantName(tenantName));

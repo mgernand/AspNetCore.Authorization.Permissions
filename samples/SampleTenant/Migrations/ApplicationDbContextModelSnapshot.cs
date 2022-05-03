@@ -19,83 +19,6 @@ namespace SampleTenant.Migrations
                 .HasDefaultSchema("identity")
                 .HasAnnotation("ProductVersion", "6.0.4");
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityPermission", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("PermissionNameIndex");
-
-                    b.ToTable("Permissions", "identity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
-                            ConcurrencyStamp = "291696de-235a-45e5-bfa2-89bb17b5784a",
-                            Name = "Invoice.Read",
-                            NormalizedName = "INVOICE.READ"
-                        },
-                        new
-                        {
-                            Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
-                            ConcurrencyStamp = "79c0951f-6c9c-4e56-b3e3-4fc310710663",
-                            Name = "Invoice.Write",
-                            NormalizedName = "INVOICE.WRITE"
-                        },
-                        new
-                        {
-                            Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
-                            ConcurrencyStamp = "6ee2a2a2-1d81-41c6-9ea6-704b4705a40e",
-                            Name = "Invoice.Delete",
-                            NormalizedName = "INVOICE.DELETE"
-                        },
-                        new
-                        {
-                            Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
-                            ConcurrencyStamp = "7fcaa74e-9974-44a1-bd53-0501b85b4368",
-                            Name = "Invoice.Send",
-                            NormalizedName = "INVOICE.SEND"
-                        },
-                        new
-                        {
-                            Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
-                            ConcurrencyStamp = "4b935cf8-f7ef-4f8a-91b8-dd2329e46b8c",
-                            Name = "Invoice.Payment",
-                            NormalizedName = "INVOICE.PAYMENT"
-                        },
-                        new
-                        {
-                            Id = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed",
-                            ConcurrencyStamp = "c1d0b19d-0bc9-48d6-8d9a-3d6ad21723d9",
-                            Name = "Invoice.Statistics",
-                            NormalizedName = "INVOICE.STATISTICS"
-                        },
-                        new
-                        {
-                            Id = "f1af54df-c9e7-4570-850f-c563732c15b4",
-                            ConcurrencyStamp = "a0fc66d5-9fc5-4542-8a0f-555a88ccb65e",
-                            Name = "Invoice.TaxExport",
-                            NormalizedName = "INVOICE.TAXEXPORT"
-                        });
-                });
-
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>
                 {
                     b.Property<string>("RoleId")
@@ -163,7 +86,184 @@ namespace SampleTenant.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenant", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>", b =>
+                {
+                    b.Property<string>("TenantId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TenantId", "RoleId");
+
+                    b.ToTable("TenantRoles", "identity");
+
+                    b.HasData(
+                        new
+                        {
+                            TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
+                            RoleId = "ecae3c35-0d88-424f-a1bc-31cba5add7a7"
+                        },
+                        new
+                        {
+                            TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
+                            RoleId = "49161cff-c451-4c44-ac59-467883fe1517"
+                        },
+                        new
+                        {
+                            TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
+                            RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230"
+                        });
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("PermissionNameIndex");
+
+                    b.ToTable("Permissions", "identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
+                            ConcurrencyStamp = "746a86e1-44d4-4281-8a10-2217ad7ad483",
+                            Name = "Invoice.Read",
+                            NormalizedName = "INVOICE.READ"
+                        },
+                        new
+                        {
+                            Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
+                            ConcurrencyStamp = "3f1f0c42-3f7c-4c39-9cdc-236ece4277ed",
+                            Name = "Invoice.Write",
+                            NormalizedName = "INVOICE.WRITE"
+                        },
+                        new
+                        {
+                            Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
+                            ConcurrencyStamp = "89971c9c-8706-40a0-b39c-27c0e1e22c1e",
+                            Name = "Invoice.Delete",
+                            NormalizedName = "INVOICE.DELETE"
+                        },
+                        new
+                        {
+                            Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
+                            ConcurrencyStamp = "71892720-0ff1-4101-abd5-b72c299f2559",
+                            Name = "Invoice.Send",
+                            NormalizedName = "INVOICE.SEND"
+                        },
+                        new
+                        {
+                            Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
+                            ConcurrencyStamp = "f488a008-2356-440b-ba9b-6f2e62e82727",
+                            Name = "Invoice.Payment",
+                            NormalizedName = "INVOICE.PAYMENT"
+                        },
+                        new
+                        {
+                            Id = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed",
+                            ConcurrencyStamp = "593f8685-796e-44b5-84c5-d4541d91578e",
+                            Name = "Invoice.Statistics",
+                            NormalizedName = "INVOICE.STATISTICS"
+                        },
+                        new
+                        {
+                            Id = "f1af54df-c9e7-4570-850f-c563732c15b4",
+                            ConcurrencyStamp = "80ab66dc-d2f0-4dae-9702-048f3377f758",
+                            Name = "Invoice.TaxExport",
+                            NormalizedName = "INVOICE.TAXEXPORT"
+                        });
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("Roles", "identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
+                            ConcurrencyStamp = "c36d8a16-e2fd-4959-88ff-e5e1ddab902f",
+                            Name = "Boss",
+                            NormalizedName = "BOSS"
+                        },
+                        new
+                        {
+                            Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
+                            ConcurrencyStamp = "fcf51faf-7779-4ce9-94f9-9301b9942122",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            ConcurrencyStamp = "1c4f2123-ed65-47d5-8e9b-4b5ab8baf1d5",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "ecae3c35-0d88-424f-a1bc-31cba5add7a7",
+                            ConcurrencyStamp = "f1a70954-9655-46b4-96c4-f8915430a3d7",
+                            Name = "Free",
+                            NormalizedName = "FREE"
+                        },
+                        new
+                        {
+                            Id = "49161cff-c451-4c44-ac59-467883fe1517",
+                            ConcurrencyStamp = "6daabc8f-38bc-4d3e-b8d4-1420876f4062",
+                            Name = "Basic",
+                            NormalizedName = "BASIC"
+                        },
+                        new
+                        {
+                            Id = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
+                            ConcurrencyStamp = "417b8994-d399-45d5-8ecf-5efc674e4983",
+                            Name = "Professional",
+                            NormalizedName = "PROFESSIONAL"
+                        });
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -204,7 +304,7 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
-                            ConcurrencyStamp = "e3e3f2b5-bdf6-4786-afd7-d129006df0a5",
+                            ConcurrencyStamp = "5cf8ff61-95d4-412f-931e-34cedefc75f8",
                             DisplayName = "Startup LLC.",
                             HasSeparateDatabase = false,
                             IsHierarchical = false,
@@ -214,7 +314,7 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
-                            ConcurrencyStamp = "fcbaa9e0-acc3-4718-957a-7f42dd5650b7",
+                            ConcurrencyStamp = "c4fcca6a-3af5-4bdf-a47e-052bbca47019",
                             DisplayName = "Company Inc.",
                             HasSeparateDatabase = false,
                             IsHierarchical = false,
@@ -224,7 +324,7 @@ namespace SampleTenant.Migrations
                         new
                         {
                             Id = "49a049d2-23ad-41df-8806-240aebaa2f17",
-                            ConcurrencyStamp = "325badc5-5cd4-4fb6-93c3-912a0a76ffe8",
+                            ConcurrencyStamp = "3f01152e-9561-4997-8a1e-fe8001fdef2e",
                             DisplayName = "Corporate Corp.",
                             HasSeparateDatabase = false,
                             IsHierarchical = false,
@@ -233,37 +333,7 @@ namespace SampleTenant.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>", b =>
-                {
-                    b.Property<string>("TenantId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TenantId", "RoleId");
-
-                    b.ToTable("TenantRoles", "identity");
-
-                    b.HasData(
-                        new
-                        {
-                            TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
-                            RoleId = "ecae3c35-0d88-424f-a1bc-31cba5add7a7"
-                        },
-                        new
-                        {
-                            TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
-                            RoleId = "49161cff-c451-4c44-ac59-467883fe1517"
-                        },
-                        new
-                        {
-                            TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
-                            RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230"
-                        });
-                });
-
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -336,13 +406,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "ea346013-ec20-4a69-8a60-8684ffb58a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c3f0650-d8b3-42c7-a950-287d8818259e",
+                            ConcurrencyStamp = "4231bcd4-3c33-4a4d-a4b7-523a020b9cb2",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@STARTUP",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "74d34ddb-bae6-4a47-84c7-11cb03c5dfb8",
+                            SecurityStamp = "aeaf42a5-aace-4414-bf20-37e53026b7b9",
                             TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
                             TwoFactorEnabled = false,
                             UserName = "boss@startup"
@@ -351,13 +421,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "50cd8ad5-b945-4541-90c9-156f6940c18b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6e4b7078-6eb5-44b2-9750-96340f07015f",
+                            ConcurrencyStamp = "58ebc778-a3eb-4921-b316-a8e5c971d014",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@STARTUP",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c2e34e39-46f9-4831-a6d8-3ea4d6d6b7b9",
+                            SecurityStamp = "2b013caf-82c6-4334-8195-f6bfb517a3a0",
                             TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
                             TwoFactorEnabled = false,
                             UserName = "manager@startup"
@@ -366,13 +436,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "142838fe-7e64-484b-a769-87b327726715",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "553043de-c466-40a9-a641-1107e160c449",
+                            ConcurrencyStamp = "bece63a6-bb53-4bdf-b12f-e9347125d612",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@STARTUP",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "60993fde-085b-45c5-8edb-b80697c04bef",
+                            SecurityStamp = "caa7551e-ab64-4884-9e34-ba6e7ce08384",
                             TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
                             TwoFactorEnabled = false,
                             UserName = "employee@startup"
@@ -381,13 +451,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb9c9927-d7d9-4f4e-ada6-9d9991e0ff68",
+                            ConcurrencyStamp = "2b8e831d-1dab-4b67-a948-ff78764f8418",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c469e3a3-2c4e-457f-ad59-be234ab1b94b",
+                            SecurityStamp = "cfdf4f7d-6122-4543-9cb4-934b231b93a8",
                             TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
                             TwoFactorEnabled = false,
                             UserName = "boss@company"
@@ -396,13 +466,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c68dd3ee-5307-44dc-a22d-d18d06818134",
+                            ConcurrencyStamp = "8331840f-fb13-4833-b89d-0d86ddf7b7fc",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a92b9999-2e0e-4aae-a812-eae6754a0522",
+                            SecurityStamp = "8fbfde9d-4b98-4552-a401-78fe5c964bd8",
                             TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
                             TwoFactorEnabled = false,
                             UserName = "manager@company"
@@ -411,13 +481,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "04517a45-d6f5-4993-888b-04c924902b3a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cad4e9a2-5b6f-45f8-aed2-21b29b922639",
+                            ConcurrencyStamp = "b40cd5bd-229f-46b9-8c22-778d183012fa",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0bca1d11-9de1-46df-84e7-a890d5b17ead",
+                            SecurityStamp = "83439d64-555f-478b-8709-4a46adc74ca0",
                             TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
                             TwoFactorEnabled = false,
                             UserName = "employee@company"
@@ -426,13 +496,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "dbcf2449-14b7-4766-9829-ae65604500b0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bbb9a01b-d86a-40a1-8818-db7ff96ba2c1",
+                            ConcurrencyStamp = "1f785651-b9d3-44f6-8b84-cec413486f4f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@CORPORATE",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "510b3dd4-74f6-4808-98fc-8de03f104daa",
+                            SecurityStamp = "373a388f-30f4-4e46-9aaf-503fdcd2e33b",
                             TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
                             TwoFactorEnabled = false,
                             UserName = "boss@corporate"
@@ -441,13 +511,13 @@ namespace SampleTenant.Migrations
                         {
                             Id = "aeb83173-9ba7-4aa2-ab82-e434e2dcbe55",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c66732f-1730-4e9a-907e-48e898465473",
+                            ConcurrencyStamp = "4b5f9ae5-12ca-4302-ba4b-03f8c2e4b140",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@CORPORATE",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3030b848-8e73-45e9-8350-18c25428aece",
+                            SecurityStamp = "a7b1495d-eec4-4539-82e7-88a9474ed79a",
                             TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
                             TwoFactorEnabled = false,
                             UserName = "manager@corporate"
@@ -456,86 +526,16 @@ namespace SampleTenant.Migrations
                         {
                             Id = "e420f504-d953-4bec-95fd-1613fd760652",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e7f9754-f00a-44f5-8a6d-d01ba6548b8b",
+                            ConcurrencyStamp = "9dc9552b-beb4-4c21-ae42-12480d978fc0",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@CORPORATE",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b6980b96-bae2-4e4a-bd7b-9720cd017bb8",
+                            SecurityStamp = "870dd32a-959f-4527-b818-c49e78b13730",
                             TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
                             TwoFactorEnabled = false,
                             UserName = "employee@corporate"
-                        });
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
-
-                    b.ToTable("Roles", "identity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
-                            ConcurrencyStamp = "42427941-2b17-4d63-b974-e41e5f75e736",
-                            Name = "Boss",
-                            NormalizedName = "BOSS"
-                        },
-                        new
-                        {
-                            Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
-                            ConcurrencyStamp = "8dc82fe4-0843-432d-9023-9ab07c98cae3",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
-                            ConcurrencyStamp = "8cb5d402-e7d5-4a4b-9e50-ad0f141c6bb9",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
-                        },
-                        new
-                        {
-                            Id = "ecae3c35-0d88-424f-a1bc-31cba5add7a7",
-                            ConcurrencyStamp = "09bce734-f9eb-4330-bcb0-5a39a1580303",
-                            Name = "Free",
-                            NormalizedName = "FREE"
-                        },
-                        new
-                        {
-                            Id = "49161cff-c451-4c44-ac59-467883fe1517",
-                            ConcurrencyStamp = "2df5a2e3-7ae6-4cff-bf91-ef538919df36",
-                            Name = "Basic",
-                            NormalizedName = "BASIC"
-                        },
-                        new
-                        {
-                            Id = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
-                            ConcurrencyStamp = "2cfe45f9-c937-411b-9b55-69e23ae6772c",
-                            Name = "Professional",
-                            NormalizedName = "PROFESSIONAL"
                         });
                 });
 
@@ -690,23 +690,23 @@ namespace SampleTenant.Migrations
 
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityPermission", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission", null)
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenant", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant", null)
                         .WithMany()
                         .HasForeignKey("TenantId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -715,7 +715,7 @@ namespace SampleTenant.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -724,7 +724,7 @@ namespace SampleTenant.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -733,13 +733,13 @@ namespace SampleTenant.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -748,7 +748,7 @@ namespace SampleTenant.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

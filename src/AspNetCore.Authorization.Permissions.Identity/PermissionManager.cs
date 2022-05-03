@@ -14,7 +14,8 @@
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
 	[PublicAPI]
-	public class PermissionManager<TPermission> : IDisposable where TPermission : class
+	public class PermissionManager<TPermission> : IDisposable
+		where TPermission : class, IPermission
 	{
 		private bool disposed;
 

@@ -10,16 +10,12 @@
 	/// </summary>
 	internal sealed class AuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
 	{
-		private readonly AuthorizationOptions options;
-
 		/// <summary>
 		///     Creates a new instance of the <see cref="AuthorizationPolicyProvider" /> type.
 		/// </summary>
 		/// <param name="options"></param>
-		public AuthorizationPolicyProvider(IOptions<AuthorizationOptions> options)
-			: base(options)
+		public AuthorizationPolicyProvider(IOptions<AuthorizationOptions> options) : base(options)
 		{
-			this.options = options.Value;
 		}
 
 		/// <summary>

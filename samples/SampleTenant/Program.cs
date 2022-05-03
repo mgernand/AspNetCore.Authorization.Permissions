@@ -19,6 +19,10 @@ builder.Services.AddPermissionsAuthorization(options =>
 });
 
 builder.Services
+	.AddAuthentication(IdentityConstants.ApplicationScheme)
+	.AddIdentityCookies();
+
+builder.Services
 	.AddDbContext<ApplicationDbContext>(options =>
 	{
 		options.UseSqlite("Filename=permissions.db");

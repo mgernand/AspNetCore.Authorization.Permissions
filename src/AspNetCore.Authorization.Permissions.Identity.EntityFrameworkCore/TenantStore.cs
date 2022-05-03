@@ -11,10 +11,10 @@
 
 	/// <summary>
 	///     Represents a new instance of a persistence store for tenants, using the default implementation
-	///     of <see cref="IdentityTenantUser{TKey}" /> with a string as a primary key.
+	///     of <see cref="PermissionsIdentityUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class TenantStore : TenantStore<IdentityTenant<string>>
+	public class TenantStore : TenantStore<PermissionsIdentityTenant<string>>
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -28,8 +28,8 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
 	[PublicAPI]
-	public class TenantStore<TTenant> : TenantStore<TTenant, IdentityRole, DbContext, string>
-		where TTenant : IdentityTenant<string>, new()
+	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsIdentityRole, DbContext, string>
+		where TTenant : PermissionsIdentityTenant<string>, new()
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -46,8 +46,8 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext> : TenantStore<TTenant, TRole, TContext, string>
-		where TTenant : IdentityTenant<string>
-		where TRole : IdentityRole<string>
+		where TTenant : PermissionsIdentityTenant<string>
+		where TRole : PermissionsIdentityRole<string>
 		where TContext : DbContext
 	{
 		/// <inheritdoc />
@@ -66,8 +66,8 @@
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, IdentityTenantRole<TKey>>
-		where TTenant : IdentityTenant<TKey>
-		where TRole : IdentityRole<TKey>
+		where TTenant : PermissionsIdentityTenant<TKey>
+		where TRole : PermissionsIdentityRole<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{
@@ -89,8 +89,8 @@
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey, TTenantRole> : TenantStoreBase<TTenant, TRole, TKey, TTenantRole>,
 		IQueryableTenantStore<TTenant>
-		where TTenant : IdentityTenant<TKey>
-		where TRole : IdentityRole<TKey>
+		where TTenant : PermissionsIdentityTenant<TKey>
+		where TRole : PermissionsIdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
 		where TTenantRole : IdentityTenantRole<TKey>, new()

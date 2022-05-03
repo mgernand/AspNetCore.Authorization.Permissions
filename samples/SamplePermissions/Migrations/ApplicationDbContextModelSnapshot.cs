@@ -19,69 +19,6 @@ namespace SamplePermissions.Migrations
                 .HasDefaultSchema("identity")
                 .HasAnnotation("ProductVersion", "6.0.4");
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityPermission", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("PermissionNameIndex");
-
-                    b.ToTable("Permissions", "identity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
-                            ConcurrencyStamp = "3668bfdc-0a1f-4cad-b16a-aecb089c36f1",
-                            Name = "Invoice.Read",
-                            NormalizedName = "INVOICE.READ"
-                        },
-                        new
-                        {
-                            Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
-                            ConcurrencyStamp = "52b464fa-3daf-4ad7-9979-8a3690a2c805",
-                            Name = "Invoice.Write",
-                            NormalizedName = "INVOICE.WRITE"
-                        },
-                        new
-                        {
-                            Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
-                            ConcurrencyStamp = "196a6681-647d-4485-8099-7cdb87ab0a43",
-                            Name = "Invoice.Delete",
-                            NormalizedName = "INVOICE.DELETE"
-                        },
-                        new
-                        {
-                            Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
-                            ConcurrencyStamp = "f1f0cd5b-52d3-4aa0-abfc-ced5ff761f1d",
-                            Name = "Invoice.Send",
-                            NormalizedName = "INVOICE.SEND"
-                        },
-                        new
-                        {
-                            Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
-                            ConcurrencyStamp = "68b68788-ee56-4f0a-a65c-06be211d87f0",
-                            Name = "Invoice.Payment",
-                            NormalizedName = "INVOICE.PAYMENT"
-                        });
-                });
-
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>
                 {
                     b.Property<string>("RoleId")
@@ -134,7 +71,132 @@ namespace SamplePermissions.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenant", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>", b =>
+                {
+                    b.Property<string>("TenantId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TenantId", "RoleId");
+
+                    b.ToTable("TenantRoles", "identity");
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("PermissionNameIndex");
+
+                    b.ToTable("Permissions", "identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
+                            ConcurrencyStamp = "bbc91bd8-677b-43e4-a4b9-b9c8042800d2",
+                            Name = "Invoice.Read",
+                            NormalizedName = "INVOICE.READ"
+                        },
+                        new
+                        {
+                            Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
+                            ConcurrencyStamp = "5156f402-22a8-4223-937f-8103fc673da9",
+                            Name = "Invoice.Write",
+                            NormalizedName = "INVOICE.WRITE"
+                        },
+                        new
+                        {
+                            Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
+                            ConcurrencyStamp = "26142354-be5d-4f5d-adfc-ddd582295ff6",
+                            Name = "Invoice.Delete",
+                            NormalizedName = "INVOICE.DELETE"
+                        },
+                        new
+                        {
+                            Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
+                            ConcurrencyStamp = "26a64c80-f452-411d-9eda-870aa10beee8",
+                            Name = "Invoice.Send",
+                            NormalizedName = "INVOICE.SEND"
+                        },
+                        new
+                        {
+                            Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
+                            ConcurrencyStamp = "9a48a37d-4973-49ef-a4dd-3c54a7988cd3",
+                            Name = "Invoice.Payment",
+                            NormalizedName = "INVOICE.PAYMENT"
+                        });
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("Roles", "identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
+                            ConcurrencyStamp = "68094f47-6d38-4428-bc98-2225144bfb74",
+                            Name = "Boss",
+                            NormalizedName = "BOSS"
+                        },
+                        new
+                        {
+                            Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
+                            ConcurrencyStamp = "f51c6d1c-e043-4493-8b3a-1b67340795e8",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
+                            ConcurrencyStamp = "b19c5abe-c633-42b0-870e-d4f5f026a3e9",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        });
+                });
+
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -172,7 +234,7 @@ namespace SamplePermissions.Migrations
                     b.ToTable("AspNetTenants", "identity");
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenant<string>", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant<string>", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -203,20 +265,7 @@ namespace SamplePermissions.Migrations
                     b.ToTable("Tenants", "identity");
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>", b =>
-                {
-                    b.Property<string>("TenantId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TenantId", "RoleId");
-
-                    b.ToTable("TenantRoles", "identity");
-                });
-
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -289,13 +338,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "604adb8f-3fe0-4886-8ab1-04fc0a801e24",
+                            ConcurrencyStamp = "96e8bbbd-62f9-490e-810a-6d722d7bda02",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f285886d-79b2-484c-8bfe-ac078aeb0f1a",
+                            SecurityStamp = "bf21e5cf-1f5a-40b9-86e0-534dff3af2b2",
                             TwoFactorEnabled = false,
                             UserName = "boss@company"
                         },
@@ -303,13 +352,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aacb25a1-2c23-4084-96fb-47b3cc5de90c",
+                            ConcurrencyStamp = "e23a4ce4-85d2-4db1-82c3-3624b0ea2534",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f0163853-e1e8-4b56-a340-b75860c32f44",
+                            SecurityStamp = "bcf4d471-98c7-4181-a018-b8ddb9a5332d",
                             TwoFactorEnabled = false,
                             UserName = "manager@company"
                         },
@@ -317,64 +366,15 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "04517a45-d6f5-4993-888b-04c924902b3a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "037b1211-52ec-436b-9d94-61220e668846",
+                            ConcurrencyStamp = "a4fbef50-ab25-4829-b97a-365a10705d86",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7abe45b2-7087-4c1e-b558-176316ffce6a",
+                            SecurityStamp = "04017357-dd57-48b4-9d0f-b2f0b36ea874",
                             TwoFactorEnabled = false,
                             UserName = "employee@company"
-                        });
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
-
-                    b.ToTable("Roles", "identity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
-                            ConcurrencyStamp = "4c63b8f8-2f59-4d59-b813-d979ef5d9dfb",
-                            Name = "Boss",
-                            NormalizedName = "BOSS"
-                        },
-                        new
-                        {
-                            Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
-                            ConcurrencyStamp = "33717518-bfce-4361-8394-9c0e91d8e3ac",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
-                            ConcurrencyStamp = "3f6f57fc-45f6-4b7a-96e9-8a8b0162e044",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
                         });
                 });
 
@@ -499,23 +499,23 @@ namespace SamplePermissions.Migrations
 
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityPermission", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission", null)
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", b =>
+            modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenant", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant", null)
                         .WithMany()
                         .HasForeignKey("TenantId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -524,7 +524,7 @@ namespace SamplePermissions.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -533,7 +533,7 @@ namespace SamplePermissions.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -542,13 +542,13 @@ namespace SamplePermissions.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -557,7 +557,7 @@ namespace SamplePermissions.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.IdentityTenantUser", null)
+                    b.HasOne("AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

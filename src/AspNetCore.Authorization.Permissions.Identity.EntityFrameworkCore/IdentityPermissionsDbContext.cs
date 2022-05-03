@@ -10,7 +10,7 @@
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<IdentityTenantUser, IdentityRole, IdentityPermission, IdentityTenant, string>
+	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsIdentityUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant, string>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -34,9 +34,9 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<IdentityTenantUser, IdentityRole, TPermission, TTenant, string>
-		where TPermission : IdentityPermission
-		where TTenant : IdentityTenant
+	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<PermissionsIdentityUser, PermissionsIdentityRole, TPermission, TTenant, string>
+		where TPermission : PermissionsIdentityPermission
+		where TTenant : PermissionsIdentityTenant
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -61,10 +61,10 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TUser, TPermission, TTenant> : IdentityPermissionsDbContext<TUser, IdentityRole, TPermission, TTenant, string>
-		where TUser : IdentityTenantUser
-		where TPermission : IdentityPermission
-		where TTenant : IdentityTenant
+	public class IdentityPermissionsDbContext<TUser, TPermission, TTenant> : IdentityPermissionsDbContext<TUser, PermissionsIdentityRole, TPermission, TTenant, string>
+		where TUser : PermissionsIdentityUser
+		where TPermission : PermissionsIdentityPermission
+		where TTenant : PermissionsIdentityTenant
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -92,10 +92,10 @@
 	/// <typeparam name="TPermission"></typeparam>
 	[PublicAPI]
 	public class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>
-		where TUser : IdentityTenantUser<TKey>
-		where TRole : IdentityRole<TKey>
-		where TPermission : IdentityPermission<TKey>
-		where TTenant : IdentityTenant<TKey>
+		where TUser : PermissionsIdentityUser<TKey>
+		where TRole : PermissionsIdentityRole<TKey>
+		where TPermission : PermissionsIdentityPermission<TKey>
+		where TTenant : PermissionsIdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
@@ -132,10 +132,10 @@
 	[PublicAPI]
 	public abstract class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>
 		: IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-		where TUser : IdentityTenantUser<TKey>
-		where TRole : IdentityRole<TKey>
-		where TPermission : IdentityPermission<TKey>
-		where TTenant : IdentityTenant<TKey>
+		where TUser : PermissionsIdentityUser<TKey>
+		where TRole : PermissionsIdentityRole<TKey>
+		where TPermission : PermissionsIdentityPermission<TKey>
+		where TTenant : PermissionsIdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 		where TUserClaim : IdentityUserClaim<TKey>
 		where TUserRole : IdentityUserRole<TKey>

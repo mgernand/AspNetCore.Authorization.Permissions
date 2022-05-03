@@ -17,7 +17,7 @@
 		public static void AddIdentityClaimsProvider(this PermissionsAuthenticationOptions options)
 		{
 			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,,>)
-				.MakeGenericType(typeof(IdentityTenantUser), typeof(IdentityPermission), typeof(IdentityTenant));
+				.MakeGenericType(typeof(PermissionsIdentityUser), typeof(PermissionsIdentityPermission), typeof(PermissionsIdentityTenant));
 
 			options.AddClaimsProvider(identityClaimsProviderType);
 		}

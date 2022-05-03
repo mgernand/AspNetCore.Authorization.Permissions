@@ -9,7 +9,7 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
-	public interface ITenantValidator<TTenant> where TTenant : class
+	public interface ITenantValidator<TTenant> where TTenant : class, ITenant
 	{
 		/// <summary>
 		///     Validates the specified <paramref name="tenant" /> as an asynchronous operation.

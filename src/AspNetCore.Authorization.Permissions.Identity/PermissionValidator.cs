@@ -3,13 +3,16 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
+	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
 	///     Provides the default validation of permissions.
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
-	public class PermissionValidator<TPermission> : IPermissionValidator<TPermission> where TPermission : class
+	[PublicAPI]
+	public class PermissionValidator<TPermission> : IPermissionValidator<TPermission>
+		where TPermission : class, IPermission
 	{
 		/// <summary>
 		///     Creates a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
@@ -64,7 +67,7 @@
 			else
 			{
 				TPermission owner = await manager.FindByNameAsync(permissionName);
-				if((owner != null) &&
+				if(owner != null &&
 				   !string.Equals(await manager.GetPermissionIdAsync(owner), await manager.GetPermissionIdAsync(permission)))
 				{
 					errors.Add(this.Describer.DuplicatePermissionName(permissionName));

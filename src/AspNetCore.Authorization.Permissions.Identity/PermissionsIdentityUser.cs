@@ -8,53 +8,53 @@
 	///     A default tenant user implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityTenantUser : IdentityTenantUser<string>
+	public class PermissionsIdentityUser : PermissionsIdentityUser<string>
 	{
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityTenantUser" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityUser" />.
 		/// </summary>
 		/// <remarks>
 		///     The Id property is initialized to form a new GUID string value.
 		/// </remarks>
-		public IdentityTenantUser()
+		public PermissionsIdentityUser()
 		{
 			this.Id = Guid.NewGuid().ToString();
 			this.SecurityStamp = Guid.NewGuid().ToString();
 		}
 
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityTenantUser" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityUser" />.
 		/// </summary>
 		/// <param name="userName">The user name.</param>
 		/// <remarks>
 		///     The Id property is initialized to form a new GUID string value.
 		/// </remarks>
-		public IdentityTenantUser(string userName) : this()
+		public PermissionsIdentityUser(string userName) : this()
 		{
 			this.UserName = userName;
 		}
 	}
 
 	/// <summary>
-	///     The default tenant tenant implementation.
+	///     The default tenant user implementation.
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class IdentityTenantUser<TKey> : IdentityUser<TKey>, ITenantUser
+	public class PermissionsIdentityUser<TKey> : IdentityUser<TKey>, IUser
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityTenantUser{TKey}" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityUser{TKey}" />.
 		/// </summary>
-		public IdentityTenantUser()
+		public PermissionsIdentityUser()
 		{
 		}
 
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityTenantUser{TKey}" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityUser{TKey}" />.
 		/// </summary>
 		/// <param name="userName">The user name.</param>
-		public IdentityTenantUser(string userName) : this()
+		public PermissionsIdentityUser(string userName) : this()
 		{
 			this.UserName = userName;
 		}

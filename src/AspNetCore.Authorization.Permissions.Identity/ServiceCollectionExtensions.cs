@@ -12,6 +12,56 @@
 	public static class ServiceCollectionExtensions
 	{
 		/// <summary>
+		///     Adds the identity and permissions services for the identity default types,
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="setupAction"></param>
+		/// <returns></returns>
+		public static PermissionsIdentityBuilder AddPermissionsIdentity(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
+		{
+			return services.AddPermissionsIdentity<PermissionsIdentityUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
+		}
+
+		/// <summary>
+		///     Adds the identity and permissions services for the identity default types,
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="setupAction"></param>
+		/// <returns></returns>
+		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
+			where TUser : class, IUser
+		{
+			return services.AddPermissionsIdentity<TUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
+		}
+
+		/// <summary>
+		///     Adds the identity and permissions services for the identity default types,
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="setupAction"></param>
+		/// <returns></returns>
+		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser, TRole>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
+			where TUser : class, IUser
+			where TRole : class, IRole
+		{
+			return services.AddPermissionsIdentity<TUser, TRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
+		}
+
+		/// <summary>
+		///     Adds the identity and permissions services for the identity default types,
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="setupAction"></param>
+		/// <returns></returns>
+		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser, TRole, TPermission>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
+			where TUser : class, IUser
+			where TRole : class, IRole
+			where TPermission : class, IPermission
+		{
+			return services.AddPermissionsIdentity<TUser, TRole, TPermission, PermissionsIdentityTenant>(setupAction);
+		}
+
+		/// <summary>
 		///     Add the identity and permissions services for the configured entity types.
 		/// </summary>
 		/// <typeparam name="TUser"></typeparam>
@@ -22,15 +72,16 @@
 		/// <param name="setupAction"></param>
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser, TRole, TPermission, TTenant>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
-			where TUser : class, ITenantUser
-			where TRole : class
-			where TPermission : class
-			where TTenant : class
+			where TUser : class, IUser
+			where TRole : class, IRole
+			where TPermission : class, IPermission
+			where TTenant : class, ITenant
 		{
 			IdentityBuilder builder = services
-				.AddIdentity<TUser, TRole>(setupAction)
+				.AddIdentityCore<TUser>(setupAction)
+				.AddRoles<TRole>()
 				.AddClaimsPrincipalFactory<PermissionUserClaimsPrincipalFactory<TUser>>()
-				.AddUserManager<TenantUserManager<TUser>>();
+				.AddUserManager<PermissionsUserManager<TUser>>();
 
 			PermissionsIdentityBuilder permissionsBuilder = new PermissionsIdentityBuilder(builder, typeof(TPermission), typeof(TTenant))
 				.AddPermissionManager<PermissionManager<TPermission>>()
@@ -39,17 +90,6 @@
 				.AddTenantValidator<TenantValidator<TTenant>>();
 
 			return permissionsBuilder;
-		}
-
-		/// <summary>
-		///     Adds the identity and permissions services for the identity default types,
-		/// </summary>
-		/// <param name="services"></param>
-		/// <param name="setupAction"></param>
-		/// <returns></returns>
-		public static PermissionsIdentityBuilder AddPermissionsIdentity(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
-		{
-			return services.AddPermissionsIdentity<IdentityTenantUser, IdentityRole, IdentityPermission, IdentityTenant>(setupAction);
 		}
 	}
 }

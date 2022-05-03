@@ -16,13 +16,13 @@
 	/// </remarks>
 	[PublicAPI]
 	public class PermissionUserClaimsPrincipalFactory<TUser> : UserClaimsPrincipalFactory<TUser>
-		where TUser : class, ITenantUser
+		where TUser : class, IUser
 	{
 		private readonly IClaimsProvider claimsProvider;
 
 		/// <inheritdoc />
 		public PermissionUserClaimsPrincipalFactory(
-			TenantUserManager<TUser> userManager,
+			PermissionsUserManager<TUser> userManager,
 			IOptions<IdentityOptions> optionsAccessor,
 			IClaimsProvider claimsProvider)
 			: base(userManager, optionsAccessor)

@@ -22,26 +22,26 @@
 
 			builder.HasDefaultSchema("identity");
 
-			builder.Entity<IdentityTenantUser>(entity =>
+			builder.Entity<PermissionsIdentityUser>(entity =>
 			{
 				entity.ToTable("Users");
 
 				// The password for every user: 123456
-				entity.HasData(new IdentityTenantUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
 					UserName = "boss@company",
 					NormalizedUserName = "BOSS@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA=="
 				});
-				entity.HasData(new IdentityTenantUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
 					UserName = "manager@company",
 					NormalizedUserName = "MANAGER@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA=="
 				});
-				entity.HasData(new IdentityTenantUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "04517a45-d6f5-4993-888b-04c924902b3a",
 					UserName = "employee@company",
@@ -50,22 +50,22 @@
 				});
 			});
 
-			builder.Entity<IdentityRole>(entity =>
+			builder.Entity<PermissionsIdentityRole>(entity =>
 			{
 				entity.ToTable("Roles");
-				entity.HasData(new IdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					Name = "Boss",
 					NormalizedName = "BOSS"
 				});
-				entity.HasData(new IdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					Name = "Manager",
 					NormalizedName = "MANAGER"
 				});
-				entity.HasData(new IdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					Name = "Employee",
@@ -73,34 +73,34 @@
 				});
 			});
 
-			builder.Entity<IdentityPermission>(entity =>
+			builder.Entity<PermissionsIdentityPermission>(entity =>
 			{
 				entity.ToTable("Permissions");
-				entity.HasData(new IdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
 					Name = "Invoice.Read",
 					NormalizedName = "INVOICE.READ"
 				});
-				entity.HasData(new IdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
 					Name = "Invoice.Write",
 					NormalizedName = "INVOICE.WRITE"
 				});
-				entity.HasData(new IdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
 					Name = "Invoice.Delete",
 					NormalizedName = "INVOICE.DELETE"
 				});
-				entity.HasData(new IdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
 					Name = "Invoice.Send",
 					NormalizedName = "INVOICE.SEND"
 				});
-				entity.HasData(new IdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
 					Name = "Invoice.Payment",
@@ -180,7 +180,7 @@
 				});
 			});
 
-			builder.Entity<IdentityTenant<string>>(entity => entity.ToTable("Tenants"));
+			builder.Entity<PermissionsIdentityTenant<string>>(entity => entity.ToTable("Tenants"));
 			builder.Entity<IdentityUserClaim<string>>(entity => entity.ToTable("UserClaims"));
 			builder.Entity<IdentityUserLogin<string>>(entity => entity.ToTable("UserLogins"));
 			builder.Entity<IdentityRoleClaim<string>>(entity => entity.ToTable("RoleClaims"));

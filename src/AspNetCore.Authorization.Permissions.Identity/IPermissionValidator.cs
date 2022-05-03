@@ -7,7 +7,8 @@
 	///     Provides an abstraction for a validating a permission.
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
-	public interface IPermissionValidator<TPermission> where TPermission : class
+	public interface IPermissionValidator<TPermission>
+		where TPermission : class, IPermission
 	{
 		/// <summary>
 		///     Validates a permission as an asynchronous operation.

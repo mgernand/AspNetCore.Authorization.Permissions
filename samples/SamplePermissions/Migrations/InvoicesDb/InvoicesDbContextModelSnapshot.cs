@@ -38,19 +38,19 @@ namespace SamplePermissions.Migrations.InvoicesDb
                     b.HasData(
                         new
                         {
-                            Id = new Guid("39fa77fc-9d61-4aa7-8b03-ee35c6e9a272"),
+                            Id = new Guid("cc3b072e-af21-4104-8c52-1d144ec08f07"),
                             Note = "This is a Company invoice.",
                             Total = 199.95m
                         },
                         new
                         {
-                            Id = new Guid("cafa090b-f6f7-46aa-a654-48b6115c8aeb"),
+                            Id = new Guid("76496189-737f-4b96-93df-535d445a8cf2"),
                             Note = "This is a Company invoice.",
                             Total = 199.95m
                         },
                         new
                         {
-                            Id = new Guid("82af347d-b5b1-412c-9064-0e63a76ffc90"),
+                            Id = new Guid("14776ea1-ae17-4b4a-9a34-03158e3e8cf5"),
                             Note = "This is a Company invoice.",
                             Total = 199.95m
                         });

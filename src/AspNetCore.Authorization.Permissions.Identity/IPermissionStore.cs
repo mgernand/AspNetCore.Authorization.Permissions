@@ -12,7 +12,7 @@
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
 	[PublicAPI]
 	public interface IPermissionStore<TPermission> : IDisposable
-		where TPermission : class
+		where TPermission : class, IPermission
 	{
 		/// <summary>
 		///     Creates the specified <paramref name="permission" /> in the permission store.

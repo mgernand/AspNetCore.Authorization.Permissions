@@ -12,7 +12,7 @@
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
 	public interface ITenantStore<TTenant> : IDisposable
-		where TTenant : class
+		where TTenant : class, ITenant
 	{
 		/// <summary>
 		///     Creates the specified <paramref name="tenant" /> in the permission store.
