@@ -127,8 +127,8 @@
 	/// <typeparam name="TUserLogin">The type of the user login object.</typeparam>
 	/// <typeparam name="TRoleClaim">The type of the role claim object.</typeparam>
 	/// <typeparam name="TUserToken">The type of the user token object.</typeparam>
-	/// <typeparam name="TRolePermission"></typeparam>
-	/// <typeparam name="TTenantRole"></typeparam>
+	/// <typeparam name="TRolePermission">The type of the role permission object.</typeparam>
+	/// <typeparam name="TTenantRole">The type of the tenant role object.</typeparam>
 	[PublicAPI]
 	public abstract class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>
 		: IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>

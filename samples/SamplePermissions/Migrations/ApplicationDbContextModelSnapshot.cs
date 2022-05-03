@@ -48,35 +48,35 @@ namespace SamplePermissions.Migrations
                         new
                         {
                             Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
-                            ConcurrencyStamp = "9a459b0d-761e-4632-880e-885af83badb0",
+                            ConcurrencyStamp = "3668bfdc-0a1f-4cad-b16a-aecb089c36f1",
                             Name = "Invoice.Read",
                             NormalizedName = "INVOICE.READ"
                         },
                         new
                         {
                             Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
-                            ConcurrencyStamp = "8afc603d-a605-45e5-ae67-adda05f67971",
+                            ConcurrencyStamp = "52b464fa-3daf-4ad7-9979-8a3690a2c805",
                             Name = "Invoice.Write",
                             NormalizedName = "INVOICE.WRITE"
                         },
                         new
                         {
                             Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
-                            ConcurrencyStamp = "e37823c2-4da3-4f40-bae8-c2aa788be8c4",
+                            ConcurrencyStamp = "196a6681-647d-4485-8099-7cdb87ab0a43",
                             Name = "Invoice.Delete",
                             NormalizedName = "INVOICE.DELETE"
                         },
                         new
                         {
                             Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
-                            ConcurrencyStamp = "e57c18e2-8641-4a42-abd5-88b0191fbb05",
+                            ConcurrencyStamp = "f1f0cd5b-52d3-4aa0-abfc-ced5ff761f1d",
                             Name = "Invoice.Send",
                             NormalizedName = "INVOICE.SEND"
                         },
                         new
                         {
                             Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
-                            ConcurrencyStamp = "40d6e62a-2cc8-4eff-b17e-a25f8e554fc1",
+                            ConcurrencyStamp = "68b68788-ee56-4f0a-a65c-06be211d87f0",
                             Name = "Invoice.Payment",
                             NormalizedName = "INVOICE.PAYMENT"
                         });
@@ -289,13 +289,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ddbd5d77-820f-4195-b5ed-46f55dbd3d6c",
+                            ConcurrencyStamp = "604adb8f-3fe0-4886-8ab1-04fc0a801e24",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "BOSS@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "165e4964-f92c-4579-a523-6cf931b8d2ca",
+                            SecurityStamp = "f285886d-79b2-484c-8bfe-ac078aeb0f1a",
                             TwoFactorEnabled = false,
                             UserName = "boss@company"
                         },
@@ -303,13 +303,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "14ccea65-80c8-4729-9914-efc3892b8519",
+                            ConcurrencyStamp = "aacb25a1-2c23-4084-96fb-47b3cc5de90c",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f0f8a2b3-2aff-4330-b7b5-4b5b2974791a",
+                            SecurityStamp = "f0163853-e1e8-4b56-a340-b75860c32f44",
                             TwoFactorEnabled = false,
                             UserName = "manager@company"
                         },
@@ -317,13 +317,13 @@ namespace SamplePermissions.Migrations
                         {
                             Id = "04517a45-d6f5-4993-888b-04c924902b3a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "584be280-a6f8-4d39-ab59-48b2997dfeb3",
+                            ConcurrencyStamp = "037b1211-52ec-436b-9d94-61220e668846",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "EMPLOYEE@COMPANY",
                             PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "307a4256-653a-468d-b327-46da2fff6aa4",
+                            SecurityStamp = "7abe45b2-7087-4c1e-b558-176316ffce6a",
                             TwoFactorEnabled = false,
                             UserName = "employee@company"
                         });
@@ -358,21 +358,21 @@ namespace SamplePermissions.Migrations
                         new
                         {
                             Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
-                            ConcurrencyStamp = "86cd1920-5611-4157-9b03-0285bf4d257d",
+                            ConcurrencyStamp = "4c63b8f8-2f59-4d59-b813-d979ef5d9dfb",
                             Name = "Boss",
                             NormalizedName = "BOSS"
                         },
                         new
                         {
                             Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
-                            ConcurrencyStamp = "e8713c21-5edb-4420-8217-c71246b0955d",
+                            ConcurrencyStamp = "33717518-bfce-4361-8394-9c0e91d8e3ac",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
-                            ConcurrencyStamp = "9e16f396-5292-479d-ad7e-675c43c70780",
+                            ConcurrencyStamp = "3f6f57fc-45f6-4b7a-96e9-8a8b0162e044",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -495,43 +495,6 @@ namespace SamplePermissions.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens", "identity");
-                });
-
-            modelBuilder.Entity("SamplePermissions.Model.Invoice", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Invoices", "identity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ae4acc14-8779-43bb-b450-fbbe091fac06"),
-                            Note = "This is a Company invoice.",
-                            Total = 199.95m
-                        },
-                        new
-                        {
-                            Id = new Guid("3ba99793-57e2-437f-aa4c-a513d6449d4f"),
-                            Note = "This is a Company invoice.",
-                            Total = 199.95m
-                        },
-                        new
-                        {
-                            Id = new Guid("35caed90-0738-4ede-a674-2f6f6d84d4b3"),
-                            Note = "This is a Company invoice.",
-                            Total = 199.95m
-                        });
                 });
 
             modelBuilder.Entity("AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>", b =>

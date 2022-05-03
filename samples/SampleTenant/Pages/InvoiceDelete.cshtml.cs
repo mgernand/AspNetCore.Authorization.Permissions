@@ -10,13 +10,13 @@
 	{
 		private readonly ILogger<InvoiceReadModel> _logger;
 
-		public InvoiceDeleteModel(ILogger<InvoiceReadModel> logger, ApplicationDbContext context)
+		public InvoiceDeleteModel(ILogger<InvoiceReadModel> logger, InvoicesDbContext context)
 		{
 			this._logger = logger;
 			this.Context = context;
 		}
 
-		public ApplicationDbContext Context { get; }
+		public InvoicesDbContext Context { get; }
 
 		public void OnGet()
 		{

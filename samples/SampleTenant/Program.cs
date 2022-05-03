@@ -23,6 +23,10 @@ builder.Services
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
+	.AddDbContext<InvoicesDbContext>(options =>
+	{
+		options.UseSqlite("Filename=permissions.db");
+	})
 	.AddPermissionsIdentity(options =>
 	{
 		options.Password.RequireDigit = false;
