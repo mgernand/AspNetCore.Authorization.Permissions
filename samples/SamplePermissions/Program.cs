@@ -13,10 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 builder.Services.AddAuthorization();
-builder.Services.AddPermissionsAuthorization(options =>
-{
-	options.AddIdentityClaimsProvider();
-});
+builder.Services.AddPermissionsAuthorization();
 
 builder.Services
 	.AddAuthentication(IdentityConstants.ApplicationScheme)
@@ -42,6 +39,7 @@ builder.Services
 	})
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
+	.AddIdentityClaimsProvider()
 	.AddPermissionsEntityFrameworkStores<ApplicationDbContext>();
 
 WebApplication app = builder.Build();

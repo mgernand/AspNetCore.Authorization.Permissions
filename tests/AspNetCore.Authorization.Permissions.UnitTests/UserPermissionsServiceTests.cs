@@ -32,10 +32,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
@@ -58,10 +56,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -83,10 +79,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -111,10 +105,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -133,10 +125,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -156,10 +146,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -179,10 +167,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -201,10 +187,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -223,10 +207,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -246,10 +228,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 
@@ -268,10 +248,8 @@
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
 

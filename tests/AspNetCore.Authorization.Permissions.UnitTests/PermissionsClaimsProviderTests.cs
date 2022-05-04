@@ -91,10 +91,8 @@
 		public async Task ShouldAddClaimsToPrincipal(Type claimProviderType, int expectedCount = 3, bool hasTenant = false)
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider(claimProviderType);
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider(claimProviderType);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IClaimsProvider service = serviceProvider.GetRequiredService<IClaimsProvider>();

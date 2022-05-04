@@ -26,10 +26,8 @@
 		public async Task ShouldGetPolicyForPermission()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -48,10 +46,8 @@
 		public async Task ShouldThrowArgumentException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -68,10 +64,8 @@
 		public async Task ShouldThrowArgumentNullException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization(builder =>
-			{
-				builder.AddClaimsProvider<TestClaimsProvider>();
-			});
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
