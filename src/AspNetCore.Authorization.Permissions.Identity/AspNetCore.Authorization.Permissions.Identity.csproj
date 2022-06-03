@@ -12,9 +12,9 @@
 		<PackageId>MadEyeMatt.$(AssemblyName)</PackageId>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2022 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>6.0.2</Version>
-		<AssemblyVersion>6.0.2</AssemblyVersion>
-		<FileVersion>6.0.2</FileVersion>
+		<Version>6.0.3</Version>
+		<AssemblyVersion>6.0.3</AssemblyVersion>
+		<FileVersion>6.0.3</FileVersion>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A libary that adds permission-based authorization.</Description>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -44,9 +44,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Guards" Version="6.0.13" />
+		<PackageReference Include="Fluxera.Guards" Version="6.0.22" />
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
-		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>
