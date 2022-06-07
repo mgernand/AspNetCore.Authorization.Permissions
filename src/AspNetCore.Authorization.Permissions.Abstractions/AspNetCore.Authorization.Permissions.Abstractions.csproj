@@ -40,8 +40,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Guards" Version="6.0.22" />
-		<PackageReference Include="Fluxera.Utilities" Version="6.0.16" />
+		<PackageReference Include="Fluxera.Guards" Version="6.1.0" />
+		<PackageReference Include="Fluxera.Utilities" Version="6.1.1" />
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
 	</ItemGroup>
 
