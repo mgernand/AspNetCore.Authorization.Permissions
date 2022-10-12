@@ -2,6 +2,9 @@
 {
 	using Microsoft.AspNetCore.Identity;
 
+	/// <summary>
+	///     Extensions for the <see cref="IdentityErrorDescriber" /> type.
+	/// </summary>
 	public static class IdentityErrorDescriberExtensions
 	{
 		/// <summary>

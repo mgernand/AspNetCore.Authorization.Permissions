@@ -2,16 +2,17 @@
 {
 	using AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
+	using Microsoft.Extensions.Logging;
 	using SamplePermissions.Model;
 
 	[HasPermission("Invoice.Write")]
 	public class InvoiceWriteModel : PageModel
 	{
-		private readonly ILogger<InvoiceReadModel> _logger;
+		private readonly ILogger<InvoiceReadModel> logger;
 
 		public InvoiceWriteModel(ILogger<InvoiceReadModel> logger, InvoicesDbContext context)
 		{
-			this._logger = logger;
+			this.logger = logger;
 			this.Context = context;
 		}
 

@@ -2,12 +2,10 @@
 {
 	using System;
 	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Fluxera.Extensions.DependencyInjection;
-	using Fluxera.Guards;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.DependencyInjection.Extensions;
 
 	/// <summary>
 	///     Extensions methods for the <see cref="IServiceCollection" /> type.
@@ -44,9 +42,7 @@
 		public static IServiceCollection AddClaimsProvider<TProvider>(this IServiceCollection services)
 			where TProvider : class, IClaimsProvider
 		{
-			return services
-				.AddScoped<IClaimsProvider, TProvider>()
-				.AddClaimsProviderDecorator();
+			return services.AddClaimsProvider(typeof(TProvider));
 		}
 
 		/// <summary>
@@ -57,21 +53,21 @@
 		/// <returns></returns>
 		public static IServiceCollection AddClaimsProvider(this IServiceCollection services, Type claimsProviderType)
 		{
-			Guard.Against.False(claimsProviderType.Implements<IClaimsProvider>(), nameof(claimsProviderType),
-				"The claims provider type must implement the IClaimsProvider contract.");
+			if(!claimsProviderType.IsAssignableTo(typeof(IClaimsProvider)))
+			{
+				throw new ArgumentException(
+					"The claims provider type must implement the IClaimsProvider contract.",
+					nameof(claimsProviderType));
+			}
 
-			return services
-				.AddScoped(typeof(IClaimsProvider), claimsProviderType)
-				.AddClaimsProviderDecorator();
-		}
-
-		private static IServiceCollection AddClaimsProviderDecorator(this IServiceCollection services)
-		{
-			// Decorate the registered claims provider with an internal one
-			// that checks the provided claims for correctness.
-			services
-				.Decorate<IClaimsProvider>()
-				.With<EnsureCorrectClaimsProvider>();
+			services.TryAddScoped(claimsProviderType);
+			services.TryAddScoped<IClaimsProvider>(sp =>
+			{
+				// Decorate the registered claims provider with an internal one
+				// that checks the provided claims for correctness.
+				IClaimsProvider claimsProvider = (IClaimsProvider)sp.GetRequiredService(claimsProviderType);
+				return new EnsureCorrectClaimsProvider(claimsProvider);
+			});
 
 			return services;
 		}

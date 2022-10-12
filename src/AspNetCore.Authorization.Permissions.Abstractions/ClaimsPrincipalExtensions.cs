@@ -4,6 +4,9 @@
 	using System.Security.Claims;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     Extension methods for the <see cref="ClaimsPrincipal" /> type.
+	/// </summary>
 	[PublicAPI]
 	public static class ClaimsPrincipalExtensions
 	{

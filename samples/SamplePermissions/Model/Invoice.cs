@@ -1,5 +1,7 @@
 ﻿namespace SamplePermissions.Model
 {
+	using System;
+
 	public class Invoice
 	{
 		public Guid Id { get; set; }

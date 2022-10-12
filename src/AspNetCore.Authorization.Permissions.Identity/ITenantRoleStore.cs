@@ -59,7 +59,7 @@
 		/// </param>
 		/// <returns>
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing a flag indicating whether the
-		///     specified <paramref name="user" /> is
+		///     specified <paramref name="tenant" /> is
 		///     a member of the named role.
 		/// </returns>
 		Task<bool> IsInRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);

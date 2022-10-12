@@ -16,61 +16,61 @@
 		private class TestClaimsProvider : IClaimsProvider
 		{
 			/// <inheritdoc />
-			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
-				return new Claim[]
+				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
-				};
+				});
 			}
 		}
 
 		private class TestClaimsProviderWithDuplicatePermissions : IClaimsProvider
 		{
 			/// <inheritdoc />
-			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
-				return new Claim[]
+				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
-				};
+				});
 			}
 		}
 
 		private class TestClaimsProviderWithWrongClaimType : IClaimsProvider
 		{
 			/// <inheritdoc />
-			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
-				return new Claim[]
+				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
 					new Claim(ClaimTypes.Role, "Invoices.Write"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
-				};
+				});
 			}
 		}
 
 		private class TestClaimsProviderWithNullResult : IClaimsProvider
 		{
 			/// <inheritdoc />
-			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
-				return null;
+				return Task.FromResult<IReadOnlyCollection<Claim>>(null);
 			}
 		}
 
 		private class TestClaimsProviderWithTenant : IClaimsProvider
 		{
 			/// <inheritdoc />
-			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
-				return new Claim[]
+				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
 					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
@@ -78,7 +78,7 @@
 					new Claim(PermissionClaimTypes.TenantIdClaimType, "12345678"),
 					new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
 					new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
-				};
+				});
 			}
 		}
 

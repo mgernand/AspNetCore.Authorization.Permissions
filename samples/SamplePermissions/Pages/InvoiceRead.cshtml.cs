@@ -1,18 +1,18 @@
 ﻿namespace SamplePermissions.Pages
 {
 	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Fluxera.Utilities.Extensions;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
+	using Microsoft.Extensions.Logging;
 
 	// [HasPermission("Invoice.Read")]
 	public class InvoiceReadModel : PageModel
 	{
-		private readonly ILogger<InvoiceReadModel> _logger;
+		private readonly ILogger<InvoiceReadModel> logger;
 
 		public InvoiceReadModel(ILogger<InvoiceReadModel> logger, InvoicesDbContext context)
 		{
-			this._logger = logger;
+			this.logger = logger;
 			this.Context = context;
 		}
 
@@ -22,7 +22,7 @@
 		{
 			if(!this.User.HasPermission("Invoice.Read"))
 			{
-				if(this.User.IsAuthenticated())
+				if(this.User.Identity != null && this.User.Identity.IsAuthenticated)
 				{
 					return this.Forbid();
 				}

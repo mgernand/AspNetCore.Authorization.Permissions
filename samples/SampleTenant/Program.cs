@@ -1,8 +1,10 @@
 using AspNetCore.Authorization.Permissions;
 using AspNetCore.Authorization.Permissions.Identity;
 using AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using SampleTenant;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

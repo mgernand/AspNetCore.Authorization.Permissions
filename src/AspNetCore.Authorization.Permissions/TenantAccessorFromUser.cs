@@ -1,7 +1,6 @@
 ﻿namespace AspNetCore.Authorization.Permissions
 {
 	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Http;
 
@@ -27,7 +26,7 @@
 		{
 			get
 			{
-				if(this.accessor.HttpContext != null && this.accessor.HttpContext.User.IsAuthenticated())
+				if(this.accessor.HttpContext != null && this.accessor.HttpContext.User.Identity != null && this.accessor.HttpContext.User.Identity.IsAuthenticated)
 				{
 					return this.accessor.HttpContext?.User.GetTenantId();
 				}

@@ -5,7 +5,6 @@
 	using System.Security.Claims;
 	using System.Threading.Tasks;
 	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 
 	[UsedImplicitly]
@@ -23,7 +22,7 @@
 		{
 			IReadOnlyCollection<Claim> claims = await this.innerClaimsProvider.GetPermissionClaimsForUserAsync(userId);
 
-			IList<Claim> permissionClaims = new List<Claim>();
+			List<Claim> permissionClaims = new List<Claim>();
 
 			if(claims is not null && claims.Any())
 			{

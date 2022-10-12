@@ -16,9 +16,9 @@
 		private class TestClaimsProvider : IClaimsProvider
 		{
 			/// <inheritdoc />
-			public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
-				return Array.Empty<Claim>();
+				return Task.FromResult<IReadOnlyCollection<Claim>>(Array.Empty<Claim>());
 			}
 		}
 

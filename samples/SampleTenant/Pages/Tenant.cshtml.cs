@@ -2,15 +2,16 @@
 {
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
+	using Microsoft.Extensions.Logging;
 
 	[Authorize]
 	public class TenantModel : PageModel
 	{
-		private readonly ILogger<TenantModel> _logger;
+		private readonly ILogger<TenantModel> logger;
 
 		public TenantModel(ILogger<TenantModel> logger)
 		{
-			this._logger = logger;
+			this.logger = logger;
 		}
 
 		public void OnGet()

@@ -1,5 +1,6 @@
 ﻿namespace SamplePermissions
 {
+	using System;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.ValueGeneration;
 	using SamplePermissions.Model;

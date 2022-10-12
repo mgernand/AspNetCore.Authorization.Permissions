@@ -24,11 +24,14 @@
 		///     Creates a new instance of the <see cref="PermissionsUserStoreBase{TUser,TKey}" /> type.
 		/// </summary>
 		/// <param name="describer"></param>
-		public PermissionsUserStoreBase(IdentityErrorDescriber describer = null)
+		protected PermissionsUserStoreBase(IdentityErrorDescriber describer = null)
 		{
 			this.Describer = describer;
 		}
 
+		/// <summary>
+		///     Gets the describer.
+		/// </summary>
 		public IdentityErrorDescriber Describer { get; }
 
 		/// <summary>

@@ -1,10 +1,10 @@
 ﻿@using AspNetCore.Authorization.Permissions.Identity
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<PermissionsIdentityUser> SignInManager
-@inject UserManager<PermissionsIdentityUser> UserManager
+@inject SignInManager<PermissionsIdentityUser> signInManager
+@inject UserManager<PermissionsIdentityUser> userManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
+@if (signInManager.IsSignedIn(User))
 {
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>

@@ -1,5 +1,6 @@
 ﻿namespace SampleTenant
 {
+	using System;
 	using AspNetCore.Authorization.Permissions.Abstractions;
 	using AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;

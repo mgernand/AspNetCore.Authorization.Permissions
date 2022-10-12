@@ -1,5 +1,6 @@
 ﻿namespace SampleTenant.Model
 {
+	using System;
 	using AspNetCore.Authorization.Permissions.Abstractions;
 
 	public class Invoice : ITenantObject

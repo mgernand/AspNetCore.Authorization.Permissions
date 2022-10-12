@@ -1,5 +1,4 @@
-﻿@using Fluxera.Utilities.Extensions
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,7 +22,7 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
 						</li>
-                        @if(this.User.IsAuthenticated())
+                        @if (this.User.Identity != null && this.User.Identity.IsAuthenticated)
                         {
 	                        <li class="nav-item">
 								<a class="nav-link text-dark" asp-area="" asp-page="/Invoices">Invoices</a>

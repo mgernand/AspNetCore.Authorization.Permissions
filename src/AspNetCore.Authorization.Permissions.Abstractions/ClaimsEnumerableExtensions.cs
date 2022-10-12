@@ -4,9 +4,11 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Security.Claims;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     Extension methods for <see cref="IEnumerable{T}" /> where T is <see cref="Claim" />.
+	/// </summary>
 	[PublicAPI]
 	public static class ClaimsEnumerableExtensions
 	{
@@ -20,6 +22,7 @@
 			return claims
 				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
 				.Select(x => x.Value)
+				.ToList()
 				.AsReadOnly();
 		}
 

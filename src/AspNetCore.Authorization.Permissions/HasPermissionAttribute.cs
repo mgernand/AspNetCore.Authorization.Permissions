@@ -1,7 +1,6 @@
 ﻿namespace AspNetCore.Authorization.Permissions
 {
 	using System;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Authorization;
 
@@ -21,7 +20,12 @@
 		/// <param name="permission"></param>
 		public HasPermissionAttribute(string permission)
 		{
-			this.policy = Guard.Against.NullOrWhiteSpace(permission, nameof(permission));
+			if(string.IsNullOrWhiteSpace(permission))
+			{
+				throw new ArgumentNullException(nameof(permission));
+			}
+
+			this.policy = permission;
 		}
 
 		/// <inheritdoc />

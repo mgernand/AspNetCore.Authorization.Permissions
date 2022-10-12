@@ -1,18 +1,21 @@
 ﻿namespace SampleTenant.Pages
 {
+	using System;
+	using System.Linq;
 	using AspNetCore.Authorization.Permissions;
 	using AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
+	using Microsoft.Extensions.Logging;
 	using SampleTenant.Model;
 
 	[HasPermission("Invoice.Delete")]
 	public class InvoiceDeleteModel : PageModel
 	{
-		private readonly ILogger<InvoiceReadModel> _logger;
+		private readonly ILogger<InvoiceReadModel> logger;
 
 		public InvoiceDeleteModel(ILogger<InvoiceReadModel> logger, InvoicesDbContext context)
 		{
-			this._logger = logger;
+			this.logger = logger;
 			this.Context = context;
 		}
 

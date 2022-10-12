@@ -4,7 +4,6 @@
 	using System.Security.Claims;
 	using System.Threading.Tasks;
 	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 
 	[PublicAPI]
@@ -36,7 +35,7 @@
 		/// <inheritdoc />
 		public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 		{
-			IList<Claim> claims = new List<Claim>();
+			List<Claim> claims = new List<Claim>();
 
 			// Add the permission claims that com from user roles.
 			TUser user = await this.userManager.FindByIdAsync(userId);

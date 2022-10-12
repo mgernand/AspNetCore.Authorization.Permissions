@@ -1,6 +1,6 @@
 ﻿namespace AspNetCore.Authorization.Permissions
 {
-	using Fluxera.Guards;
+	using System;
 	using Microsoft.AspNetCore.Authorization;
 
 	internal sealed class PermissionRequirement : IAuthorizationRequirement
@@ -11,7 +11,12 @@
 		/// <param name="permission"></param>
 		public PermissionRequirement(string permission)
 		{
-			this.Permission = Guard.Against.NullOrWhiteSpace(permission, nameof(permission));
+			if(string.IsNullOrWhiteSpace(permission))
+			{
+				throw new ArgumentNullException(nameof(permission));
+			}
+
+			this.Permission = permission;
 		}
 
 		/// <summary>
