@@ -36,7 +36,20 @@
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			builder.ApplyConfiguration(new InvoiceConfiguration());
-			builder.ApplyPermissionsWithIdentity(this);
+			builder.ApplyPermissionsWithIdentity(this, options =>
+			{
+				options.UserTable = "Users";
+				options.UserClaimsTable = "UserClaims";
+				options.UserLoginsTable = "UserLogins";
+				options.UserTokensTable = "UserTokens";
+				options.RolesTable = "Roles";
+				options.RoleClaimsTable = "RoleClaims";
+				options.UserRolesTable = "UserRoles";
+				options.PermissionsTable = "Permissions";
+				options.RolePermissionsTable = "RolePermissions";
+				options.TenantsTable = "Tenants";
+				options.TenantRolesTable = "TenantRoles";
+			});
 
 			builder.Entity<PermissionsUser>(entity =>
 			{

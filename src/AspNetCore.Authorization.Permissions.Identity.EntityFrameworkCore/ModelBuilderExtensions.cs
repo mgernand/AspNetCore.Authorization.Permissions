@@ -9,6 +9,7 @@
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Infrastructure;
+	using Microsoft.EntityFrameworkCore.Metadata.Internal;
 	using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Options;
@@ -24,10 +25,11 @@
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
+		/// <param name="configureOptions"></param>
 		/// <returns></returns>
-		public static ModelBuilder ApplyPermissionsWithIdentity(this ModelBuilder builder, DbContext context)
+		public static ModelBuilder ApplyPermissionsWithIdentity(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 		{
-			return builder.ApplyPermissionsWithIdentity<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>(context);
+			return builder.ApplyPermissionsWithIdentity<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>(context, configureOptions);
 		}
 
 		/// <summary>
@@ -67,20 +69,21 @@
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
+		/// <param name="configureOptions"></param>
 		/// <typeparam name="TUser"></typeparam>
 		/// <typeparam name="TRole"></typeparam>
 		/// <typeparam name="TPermission"></typeparam>
 		/// <typeparam name="TTenant"></typeparam>
 		/// <typeparam name="TKey"></typeparam>
 		/// <returns></returns>
-		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey>(this ModelBuilder builder, DbContext context)
+		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : PermissionsUser<TKey>
 			where TRole : PermissionsRole<TKey>
 			where TPermission : PermissionsPermission<TKey>
 			where TTenant : PermissionsTenant<TKey>
 			where TKey : IEquatable<TKey>
 		{
-			return builder.ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>(context);
+			return builder.ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>(context, configureOptions);
 		}
 
 		/// <summary>
@@ -100,8 +103,9 @@
 		/// <typeparam name="TTenantRole"></typeparam>
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
+		/// <param name="configureOptions"></param>
 		/// <returns></returns>
-		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context)
+		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : PermissionsUser<TKey>
 			where TRole : PermissionsRole<TKey>
 			where TPermission : PermissionsPermission<TKey>
@@ -115,9 +119,9 @@
 			where TRolePermission : PermissionsRolePermission<TKey>
 			where TTenantRole : PermissionsTenantRole<TKey>
 		{
-			builder.ApplyIdentityUser<TUser, TKey, TUserClaim, TUserLogin, TUserToken>(context);
-			builder.ApplyIdentityUserRoles<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(context);
-			builder.ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(context);
+			builder.ApplyIdentityUser<TUser, TKey, TUserClaim, TUserLogin, TUserToken>(context, configureOptions);
+			builder.ApplyIdentityUserRoles<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(context, configureOptions);
+			builder.ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(context, configureOptions);
 
 			return builder;
 		}
@@ -140,7 +144,7 @@
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public static ModelBuilder ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context)
+		public static ModelBuilder ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : PermissionsUser<TKey>
 			where TRole : PermissionsRole<TKey>
 			where TPermission : PermissionsPermission<TKey>
@@ -154,6 +158,9 @@
 			where TRolePermission : PermissionsRolePermission<TKey>
 			where TTenantRole : PermissionsTenantRole<TKey>
 		{
+			PermissionModelBuilderOptions options = new PermissionModelBuilderOptions();
+			configureOptions?.Invoke(options);
+
 			StoreOptions storeOptions = context.GetStoreOptions();
 			int maxKeyLength = storeOptions?.MaxLengthForKeys ?? 0;
 			bool encryptPersonalData = storeOptions?.ProtectPersonalData ?? false;
@@ -166,15 +173,23 @@
 
 			builder.ApplyConfiguration(new PermissionConfiguration<TPermission, TRolePermission, TKey>
 			{
+				Table = options.PermissionsTable,
 				MaxKeyLength = maxKeyLength
 			});
-			builder.ApplyConfiguration(new RolePermissionConfiguration<TRolePermission, TKey>());
+			builder.ApplyConfiguration(new RolePermissionConfiguration<TRolePermission, TKey>
+			{
+				Table = options.RolePermissionsTable
+			});
 			builder.ApplyConfiguration(new TenantUserConfiguration<TUser, TTenant, TKey>());
 			builder.ApplyConfiguration(new TenantConfiguration<TTenant, TKey>
 			{
+				Table = options.TenantsTable,
 				PersonalDataConverter = converter
 			});
-			builder.ApplyConfiguration(new TenantRoleConfiguration<TTenantRole, TKey>());
+			builder.ApplyConfiguration(new TenantRoleConfiguration<TTenantRole, TKey>
+			{
+				Table = options.TenantRolesTable
+			});
 
 			return builder;
 		}
@@ -193,7 +208,7 @@
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public static ModelBuilder ApplyIdentityUserRoles<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(this ModelBuilder builder, DbContext context)
+		public static ModelBuilder ApplyIdentityUserRoles<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : IdentityUser<TKey>
 			where TRole : IdentityRole<TKey>
 			where TKey : IEquatable<TKey>
@@ -203,10 +218,22 @@
 			where TRoleClaim : IdentityRoleClaim<TKey>
 			where TUserToken : IdentityUserToken<TKey>
 		{
+			PermissionModelBuilderOptions options = new PermissionModelBuilderOptions();
+			configureOptions?.Invoke(options);
+
 			builder.ApplyConfiguration(new UserHasRolesConfiguration<TUser, TUserRole, TKey>());
-			builder.ApplyConfiguration(new RoleConfiguration<TRole, TUserRole, TRoleClaim, TKey>());
-			builder.ApplyConfiguration(new RoleClaimConfiguration<TRoleClaim, TKey>());
-			builder.ApplyConfiguration(new UserRoleConfiguration<TUserRole, TKey>());
+			builder.ApplyConfiguration(new RoleConfiguration<TRole, TUserRole, TRoleClaim, TKey>
+			{
+				Table = options.RolesTable
+			});
+			builder.ApplyConfiguration(new RoleClaimConfiguration<TRoleClaim, TKey>
+			{
+				Table = options.RoleClaimsTable
+			});
+			builder.ApplyConfiguration(new UserRoleConfiguration<TUserRole, TKey>
+			{
+				Table = options.UserRolesTable
+			});
 
 			return builder;
 		}
@@ -216,14 +243,18 @@
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
+		/// <param name="configureOptions"></param>
 		/// <returns></returns>
-		public static ModelBuilder ApplyIdentityUser<TUser, TKey, TUserClaim, TUserLogin, TUserToken>(this ModelBuilder builder, DbContext context)
+		public static ModelBuilder ApplyIdentityUser<TUser, TKey, TUserClaim, TUserLogin, TUserToken>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : IdentityUser<TKey>
 			where TKey : IEquatable<TKey>
 			where TUserClaim : IdentityUserClaim<TKey>
 			where TUserLogin : IdentityUserLogin<TKey>
 			where TUserToken : IdentityUserToken<TKey>
 		{
+			PermissionModelBuilderOptions options = new PermissionModelBuilderOptions();
+			configureOptions?.Invoke(options);
+
 			StoreOptions storeOptions = context.GetStoreOptions();
 			int maxKeyLength = storeOptions?.MaxLengthForKeys ?? 0;
 			bool encryptPersonalData = storeOptions?.ProtectPersonalData ?? false;
@@ -236,15 +267,21 @@
 
 			builder.ApplyConfiguration(new UserConfiguration<TUser, TUserClaim, TUserLogin, TUserToken, TKey>
 			{
+				Table = options.UserTable,
 				PersonalDataConverter = converter
 			});
-			builder.ApplyConfiguration(new UserClaimConfiguration<TUserClaim, TKey>());
+			builder.ApplyConfiguration(new UserClaimConfiguration<TUserClaim, TKey>
+			{
+				Table = options.UserClaimsTable
+			});
 			builder.ApplyConfiguration(new UserLoginConfiguration<TUserLogin, TKey>
 			{
+				Table = options.UserLoginsTable,
 				MaxKeyLength = maxKeyLength
 			});
 			builder.ApplyConfiguration(new UserTokenConfiguration<TUserToken, TKey>
 			{
+				Table = options.UserTokensTable,
 				MaxKeyLength = maxKeyLength,
 				PersonalDataConverter = converter
 			});
