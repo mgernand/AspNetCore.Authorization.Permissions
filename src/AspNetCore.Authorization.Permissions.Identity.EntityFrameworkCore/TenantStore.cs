@@ -15,7 +15,7 @@
 	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class TenantStore : TenantStore<PermissionsTenant<string>>
+	public class TenantStore : TenantStore<PermissionsTenant>
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -47,8 +47,8 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext> : TenantStore<TTenant, TRole, TContext, string>
-		where TTenant : PermissionsTenant<string>
-		where TRole : PermissionsRole<string>
+		where TTenant : PermissionsTenant
+		where TRole : PermissionsRole
 		where TContext : DbContext
 	{
 		/// <inheritdoc />

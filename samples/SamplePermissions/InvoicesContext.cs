@@ -1,32 +1,45 @@
 ﻿namespace SamplePermissions
 {
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
-	public class ApplicationDbContext : PermissionsDbContext
+	public class InvoicesContext : DbContext
 	{
 		/// <summary>
-		///     Initializes a new instance of <see cref="ApplicationDbContext" />.
+		///     Initializes a new instance of <see cref="InvoicesContext" />.
+		/// </summary>
+		public InvoicesContext()
+		{
+		}
+
+		/// <summary>
+		///     Initializes a new instance of <see cref="InvoicesContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+		public InvoicesContext(DbContextOptions<InvoicesContext> options)
 			: base(options)
 		{
 		}
 
+		/// <inheritdoc />
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			if(!optionsBuilder.IsConfigured)
+			{
+				optionsBuilder.UseSqlite("Filename=permissions.db");
+			}
+		}
+
+		/// <inheritdoc />
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
-			base.OnModelCreating(builder);
-
-			builder.HasDefaultSchema("identity");
+			builder.ApplyConfiguration(new InvoiceConfiguration());
+			builder.ApplyPermissionsWithIdentity(this);
 
 			builder.Entity<PermissionsUser>(entity =>
 			{
-				entity.ToTable("Users");
-
 				// The password for every user: 123456
 				entity.HasData(new PermissionsUser
 				{
@@ -53,7 +66,6 @@
 
 			builder.Entity<PermissionsRole>(entity =>
 			{
-				entity.ToTable("Roles");
 				entity.HasData(new PermissionsRole
 				{
 					Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
@@ -76,7 +88,6 @@
 
 			builder.Entity<PermissionsPermission>(entity =>
 			{
-				entity.ToTable("Permissions");
 				entity.HasData(new PermissionsPermission
 				{
 					Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
@@ -111,8 +122,6 @@
 
 			builder.Entity<IdentityUserRole<string>>(entity =>
 			{
-				entity.ToTable("UserRoles");
-
 				// Boss
 				entity.HasData(new IdentityUserRole<string>
 				{
@@ -137,8 +146,6 @@
 
 			builder.Entity<PermissionsRolePermission<string>>(entity =>
 			{
-				entity.ToTable("RolePermissions");
-
 				// Boss role permissions
 				entity.HasData(new PermissionsRolePermission<string>
 				{

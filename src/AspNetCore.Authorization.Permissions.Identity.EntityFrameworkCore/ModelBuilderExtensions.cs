@@ -22,6 +22,70 @@
 		/// <summary>
 		///     Applies the identity users, roles and permissions entity configurations.
 		/// </summary>
+		/// <param name="builder"></param>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public static ModelBuilder ApplyPermissionsWithIdentity(this ModelBuilder builder, DbContext context)
+		{
+			return builder.ApplyPermissionsWithIdentity<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>(context);
+		}
+
+		/// <summary>
+		///     Applies the identity users, roles and permissions entity configurations.
+		/// </summary>
+		/// <param name="builder"></param>
+		/// <param name="context"></param>
+		/// <typeparam name="TPermission"></typeparam>
+		/// <typeparam name="TTenant"></typeparam>
+		/// <returns></returns>
+		public static ModelBuilder ApplyPermissionsWithIdentity<TPermission, TTenant>(this ModelBuilder builder, DbContext context)
+			where TPermission : PermissionsPermission
+			where TTenant : PermissionsTenant
+		{
+			return builder.ApplyPermissionsWithIdentity<PermissionsUser, PermissionsRole, TPermission, TTenant, string>(context);
+		}
+
+		/// <summary>
+		///     Applies the identity users, roles and permissions entity configurations.
+		/// </summary>
+		/// <param name="builder"></param>
+		/// <param name="context"></param>
+		/// <typeparam name="TUser"></typeparam>
+		/// <typeparam name="TPermission"></typeparam>
+		/// <typeparam name="TTenant"></typeparam>
+		/// <returns></returns>
+		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TPermission, TTenant>(this ModelBuilder builder, DbContext context)
+			where TUser : PermissionsUser
+			where TPermission : PermissionsPermission
+			where TTenant : PermissionsTenant
+		{
+			return builder.ApplyPermissionsWithIdentity<TUser, PermissionsRole, TPermission, TTenant, string>(context);
+		}
+
+		/// <summary>
+		///     Applies the identity users, roles and permissions entity configurations.
+		/// </summary>
+		/// <param name="builder"></param>
+		/// <param name="context"></param>
+		/// <typeparam name="TUser"></typeparam>
+		/// <typeparam name="TRole"></typeparam>
+		/// <typeparam name="TPermission"></typeparam>
+		/// <typeparam name="TTenant"></typeparam>
+		/// <typeparam name="TKey"></typeparam>
+		/// <returns></returns>
+		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey>(this ModelBuilder builder, DbContext context)
+			where TUser : PermissionsUser<TKey>
+			where TRole : PermissionsRole<TKey>
+			where TPermission : PermissionsPermission<TKey>
+			where TTenant : PermissionsTenant<TKey>
+			where TKey : IEquatable<TKey>
+		{
+			return builder.ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>(context);
+		}
+
+		/// <summary>
+		///     Applies the identity users, roles and permissions entity configurations.
+		/// </summary>
 		/// <typeparam name="TUser"></typeparam>
 		/// <typeparam name="TRole"></typeparam>
 		/// <typeparam name="TPermission"></typeparam>

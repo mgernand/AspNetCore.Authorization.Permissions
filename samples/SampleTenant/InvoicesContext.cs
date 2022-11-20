@@ -1,31 +1,52 @@
 ﻿namespace SampleTenant
 {
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
-	public class ApplicationDbContext : PermissionsDbContext
+	public class InvoicesContext : DbContext
 	{
+		private readonly ITenantProvider tenantProvider;
+
 		/// <summary>
-		///     Initializes a new instance of <see cref="ApplicationDbContext" />.
+		///     Initializes a new instance of <see cref="InvoicesContext" />.
 		/// </summary>
-		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+		public InvoicesContext()
 		{
 		}
 
+		/// <summary>
+		///     Initializes a new instance of <see cref="InvoicesContext" />.
+		/// </summary>
+		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
+		/// <param name="tenantProvider"></param>
+		public InvoicesContext(DbContextOptions<InvoicesContext> options, ITenantProvider tenantProvider)
+			: base(options)
+		{
+			this.tenantProvider = tenantProvider;
+		}
+
+		/// <inheritdoc />
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			if(!optionsBuilder.IsConfigured)
+			{
+				optionsBuilder.UseSqlite("Filename=permissions.db");
+			}
+		}
+
+		/// <inheritdoc />
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
-			base.OnModelCreating(builder);
-
-			builder.HasDefaultSchema("identity");
+			builder.ApplyConfiguration(new InvoiceConfiguration(this.tenantProvider));
+			builder.ApplyPermissionsWithIdentity(this);
 
 			builder.Entity<PermissionsTenant>(entity =>
 			{
-				entity.ToTable("Tenants");
-
 				// Tenant: Startup
 				entity.HasData(new PermissionsTenant
 				{
@@ -56,8 +77,6 @@
 
 			builder.Entity<PermissionsUser>(entity =>
 			{
-				entity.ToTable("Users");
-
 				// The password for every user: 123456
 
 				// Tenant: Startup
@@ -141,8 +160,6 @@
 
 			builder.Entity<PermissionsRole>(entity =>
 			{
-				entity.ToTable("Roles");
-
 				// User roles.
 				entity.HasData(new PermissionsRole
 				{
@@ -186,8 +203,6 @@
 
 			builder.Entity<PermissionsPermission>(entity =>
 			{
-				entity.ToTable("Permissions");
-
 				// User permissions.
 				entity.HasData(new PermissionsPermission
 				{
@@ -237,8 +252,6 @@
 
 			builder.Entity<IdentityUserRole<string>>(entity =>
 			{
-				entity.ToTable("UserRoles");
-
 				// Boss Startup
 				entity.HasData(new IdentityUserRole<string>
 				{
@@ -299,8 +312,6 @@
 
 			builder.Entity<PermissionsTenantRole<string>>(entity =>
 			{
-				entity.ToTable("TenantRoles");
-
 				// Startup has role Free
 				entity.HasData(new PermissionsTenantRole<string>
 				{
@@ -325,8 +336,6 @@
 
 			builder.Entity<PermissionsRolePermission<string>>(entity =>
 			{
-				entity.ToTable("RolePermissions");
-
 				// Boss role permissions
 				entity.HasData(new PermissionsRolePermission<string>
 				{
@@ -389,11 +398,22 @@
 					PermissionId = "f1af54df-c9e7-4570-850f-c563732c15b4"
 				});
 			});
+		}
 
-			builder.Entity<IdentityUserClaim<string>>(entity => entity.ToTable("UserClaims"));
-			builder.Entity<IdentityUserLogin<string>>(entity => entity.ToTable("UserLogins"));
-			builder.Entity<IdentityRoleClaim<string>>(entity => entity.ToTable("RoleClaims"));
-			builder.Entity<IdentityUserToken<string>>(entity => entity.ToTable("UserTokens"));
+		/// <inheritdoc />
+		public override int SaveChanges(bool acceptAllChangesOnSuccess)
+		{
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
+
+			return base.SaveChanges(acceptAllChangesOnSuccess);
+		}
+
+		/// <inheritdoc />
+		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
+		{
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
+
+			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 		}
 	}
 }

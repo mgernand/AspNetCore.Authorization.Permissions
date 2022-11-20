@@ -17,8 +17,8 @@
 	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
-		where TPermission : PermissionsPermission<string>
-		where TRole : PermissionsRole<string>
+		where TPermission : PermissionsPermission
+		where TRole : PermissionsRole
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
@@ -39,8 +39,8 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext> : PermissionStore<TPermission, TRole, TContext, string>
-		where TPermission : PermissionsPermission<string>
-		where TRole : PermissionsRole<string>
+		where TPermission : PermissionsPermission
+		where TRole : PermissionsRole
 		where TContext : DbContext
 	{
 		/// <summary>

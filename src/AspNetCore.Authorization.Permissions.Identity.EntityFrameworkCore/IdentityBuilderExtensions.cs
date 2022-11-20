@@ -87,7 +87,7 @@
 			{
 				// If its a custom DbContext, we can only add the default POCOs
 				permissionStoreType = typeof(PermissionStore<,,,>).MakeGenericType(permissionType, roleType, contextType, keyType);
-				tenantsStoreType = typeof(TenantStore<,,>).MakeGenericType(permissionType, contextType, keyType);
+				tenantsStoreType = typeof(TenantStore<,,,>).MakeGenericType(tenantType, roleType, contextType, keyType);
 				tenantUsersStoreType = typeof(PermissionsUserStore<,,>).MakeGenericType(userType, contextType, keyType);
 			}
 			else

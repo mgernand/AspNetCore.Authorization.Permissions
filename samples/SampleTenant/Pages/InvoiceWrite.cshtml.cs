@@ -9,13 +9,13 @@
 	{
 		private readonly ILogger<InvoiceReadModel> logger;
 
-		public InvoiceWriteModel(ILogger<InvoiceReadModel> logger, InvoicesDbContext context)
+		public InvoiceWriteModel(ILogger<InvoiceReadModel> logger, InvoicesContext context)
 		{
 			this.logger = logger;
 			this.Context = context;
 		}
 
-		public InvoicesDbContext Context { get; }
+		public InvoicesContext Context { get; }
 
 		public void OnGet()
 		{
@@ -29,7 +29,7 @@
 				Note = note
 			};
 
-			this.Context.Invoices.Add(invoice);
+			this.Context.Set<Invoice>().Add(invoice);
 			this.Context.SaveChanges();
 		}
 	}
