@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +14,7 @@
 	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
 	public class PermissionConfiguration<TPermission, TRolePermission, TKey> : IEntityTypeConfiguration<TPermission>
-		where TPermission : PermissionsIdentityPermission<TKey>
+		where TPermission : PermissionsPermission<TKey>
 		where TRolePermission : IdentityRolePermission<TKey>
 		where TKey : IEquatable<TKey>
 	{

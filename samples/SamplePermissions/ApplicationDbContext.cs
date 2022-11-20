@@ -74,34 +74,34 @@
 				});
 			});
 
-			builder.Entity<PermissionsIdentityPermission>(entity =>
+			builder.Entity<PermissionsPermission>(entity =>
 			{
 				entity.ToTable("Permissions");
-				entity.HasData(new PermissionsIdentityPermission
+				entity.HasData(new PermissionsPermission
 				{
 					Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
 					Name = "Invoice.Read",
 					NormalizedName = "INVOICE.READ"
 				});
-				entity.HasData(new PermissionsIdentityPermission
+				entity.HasData(new PermissionsPermission
 				{
 					Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
 					Name = "Invoice.Write",
 					NormalizedName = "INVOICE.WRITE"
 				});
-				entity.HasData(new PermissionsIdentityPermission
+				entity.HasData(new PermissionsPermission
 				{
 					Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
 					Name = "Invoice.Delete",
 					NormalizedName = "INVOICE.DELETE"
 				});
-				entity.HasData(new PermissionsIdentityPermission
+				entity.HasData(new PermissionsPermission
 				{
 					Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
 					Name = "Invoice.Send",
 					NormalizedName = "INVOICE.SEND"
 				});
-				entity.HasData(new PermissionsIdentityPermission
+				entity.HasData(new PermissionsPermission
 				{
 					Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
 					Name = "Invoice.Payment",

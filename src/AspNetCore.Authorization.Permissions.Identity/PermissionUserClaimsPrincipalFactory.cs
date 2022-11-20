@@ -19,13 +19,13 @@
 	public class PermissionUserClaimsPrincipalFactory<TUser> : UserClaimsPrincipalFactory<TUser>
 		where TUser : class, IUser
 	{
-		private readonly MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider claimsProvider;
+		private readonly IClaimsProvider claimsProvider;
 
 		/// <inheritdoc />
 		public PermissionUserClaimsPrincipalFactory(
 			PermissionsUserManager<TUser> userManager,
 			IOptions<IdentityOptions> optionsAccessor,
-			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider claimsProvider)
+			IClaimsProvider claimsProvider)
 			: base(userManager, optionsAccessor)
 		{
 			this.claimsProvider = claimsProvider;
@@ -35,7 +35,7 @@
 		protected override async Task<ClaimsIdentity> GenerateClaimsAsync(TUser user)
 		{
 			ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
-			string userId = ClaimsEnumerableExtensions.GetUserId(identity.Claims);
+			string userId = identity.Claims.GetUserId();
 			IReadOnlyCollection<Claim> claims = await this.claimsProvider.GetPermissionClaimsForUserAsync(userId);
 			identity.AddClaims(claims);
 

@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model
 {
 	using System;
 	using JetBrains.Annotations;
@@ -7,7 +7,7 @@
 	///     A default permission implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsIdentityPermission : PermissionsIdentityPermission<string>
+	public class PermissionsPermission : PermissionsPermission<string>
 	{
 	}
 
@@ -16,7 +16,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class PermissionsIdentityPermission<TKey> : IPermission
+	public class PermissionsPermission<TKey> : IPermission
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>

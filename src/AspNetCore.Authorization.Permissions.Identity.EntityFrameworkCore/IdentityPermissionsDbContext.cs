@@ -12,7 +12,7 @@
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsIdentityPermission, PermissionsIdentityTenant, string>
+	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsIdentityTenant, string>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -37,7 +37,7 @@
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
 	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, TPermission, TTenant, string>
-		where TPermission : PermissionsIdentityPermission
+		where TPermission : PermissionsPermission
 		where TTenant : PermissionsIdentityTenant
 	{
 		/// <summary>
@@ -65,7 +65,7 @@
 	[PublicAPI]
 	public class IdentityPermissionsDbContext<TUser, TPermission, TTenant> : IdentityPermissionsDbContext<TUser, PermissionsRole, TPermission, TTenant, string>
 		where TUser : PermissionsUser
-		where TPermission : PermissionsIdentityPermission
+		where TPermission : PermissionsPermission
 		where TTenant : PermissionsIdentityTenant
 	{
 		/// <summary>
@@ -96,7 +96,7 @@
 	public class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
-		where TPermission : PermissionsIdentityPermission<TKey>
+		where TPermission : PermissionsPermission<TKey>
 		where TTenant : PermissionsIdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
@@ -136,7 +136,7 @@
 		: IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
-		where TPermission : PermissionsIdentityPermission<TKey>
+		where TPermission : PermissionsPermission<TKey>
 		where TTenant : PermissionsIdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 		where TUserClaim : IdentityUserClaim<TKey>

@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -19,7 +20,7 @@
 	public abstract class PermissionStoreBase<TPermission, TRole, TKey, TRolePermission> :
 		IPermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
-		where TPermission : PermissionsIdentityPermission<TKey>
+		where TPermission : PermissionsPermission<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TRolePermission : IdentityRolePermission<TKey>, new()
