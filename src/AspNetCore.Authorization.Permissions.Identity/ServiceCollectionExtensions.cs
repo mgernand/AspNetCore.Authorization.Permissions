@@ -20,7 +20,7 @@
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
 		{
-			return services.AddPermissionsIdentity<PermissionsUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
+			return services.AddPermissionsIdentity<PermissionsUser, PermissionsRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
 		}
 
 		/// <summary>
@@ -32,7 +32,7 @@
 		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
 			where TUser : class, IUser
 		{
-			return services.AddPermissionsIdentity<TUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
+			return services.AddPermissionsIdentity<TUser, PermissionsRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
 		}
 
 		/// <summary>

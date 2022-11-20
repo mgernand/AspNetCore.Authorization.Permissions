@@ -139,24 +139,24 @@
 				});
 			});
 
-			builder.Entity<PermissionsIdentityRole>(entity =>
+			builder.Entity<PermissionsRole>(entity =>
 			{
 				entity.ToTable("Roles");
 
 				// User roles.
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					Name = "Boss",
 					NormalizedName = "BOSS"
 				});
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					Name = "Manager",
 					NormalizedName = "MANAGER"
 				});
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					Name = "Employee",
@@ -164,19 +164,19 @@
 				});
 
 				// Tenant roles.
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "ecae3c35-0d88-424f-a1bc-31cba5add7a7",
 					Name = "Free",
 					NormalizedName = "FREE"
 				});
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "49161cff-c451-4c44-ac59-467883fe1517",
 					Name = "Basic",
 					NormalizedName = "BASIC"
 				});
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
 					Name = "Professional",

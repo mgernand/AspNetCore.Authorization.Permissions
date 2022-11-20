@@ -51,22 +51,22 @@
 				});
 			});
 
-			builder.Entity<PermissionsIdentityRole>(entity =>
+			builder.Entity<PermissionsRole>(entity =>
 			{
 				entity.ToTable("Roles");
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					Name = "Boss",
 					NormalizedName = "BOSS"
 				});
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					Name = "Manager",
 					NormalizedName = "MANAGER"
 				});
-				entity.HasData(new PermissionsIdentityRole
+				entity.HasData(new PermissionsRole
 				{
 					Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					Name = "Employee",

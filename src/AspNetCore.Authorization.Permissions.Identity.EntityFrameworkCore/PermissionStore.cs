@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,7 @@
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
 		where TPermission : PermissionsIdentityPermission<string>
-		where TRole : PermissionsIdentityRole<string>
+		where TRole : PermissionsRole<string>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
@@ -39,7 +40,7 @@
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext> : PermissionStore<TPermission, TRole, TContext, string>
 		where TPermission : PermissionsIdentityPermission<string>
-		where TRole : PermissionsIdentityRole<string>
+		where TRole : PermissionsRole<string>
 		where TContext : DbContext
 	{
 		/// <summary>
@@ -63,7 +64,7 @@
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, IdentityRolePermission<TKey>>
 		where TPermission : PermissionsIdentityPermission<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{
@@ -91,7 +92,7 @@
 		IQueryablePermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
 		where TPermission : PermissionsIdentityPermission<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
 		where TRolePermission : IdentityRolePermission<TKey>, new()

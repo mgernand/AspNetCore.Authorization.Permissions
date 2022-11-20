@@ -29,7 +29,7 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
 	[PublicAPI]
-	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsIdentityRole, DbContext, string>
+	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsRole, DbContext, string>
 		where TTenant : PermissionsIdentityTenant<string>, new()
 	{
 		/// <inheritdoc />
@@ -48,7 +48,7 @@
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext> : TenantStore<TTenant, TRole, TContext, string>
 		where TTenant : PermissionsIdentityTenant<string>
-		where TRole : PermissionsIdentityRole<string>
+		where TRole : PermissionsRole<string>
 		where TContext : DbContext
 	{
 		/// <inheritdoc />
@@ -68,7 +68,7 @@
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, IdentityTenantRole<TKey>>
 		where TTenant : PermissionsIdentityTenant<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{
@@ -91,7 +91,7 @@
 	public class TenantStore<TTenant, TRole, TContext, TKey, TTenantRole> : TenantStoreBase<TTenant, TRole, TKey, TTenantRole>,
 		IQueryableTenantStore<TTenant>
 		where TTenant : PermissionsIdentityTenant<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
 		where TTenantRole : IdentityTenantRole<TKey>, new()
