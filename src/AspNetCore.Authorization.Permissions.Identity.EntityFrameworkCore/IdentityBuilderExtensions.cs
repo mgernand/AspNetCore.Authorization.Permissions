@@ -3,6 +3,7 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +47,7 @@
 
 		private static void AddStores(IServiceCollection services, Type userType, Type permissionType, Type tenantType, Type roleType, Type contextType)
 		{
-			Type identityUserType = FindGenericBaseType(userType, typeof(PermissionsIdentityUser<>));
+			Type identityUserType = FindGenericBaseType(userType, typeof(PermissionsUser<>));
 			if(identityUserType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant user type.");

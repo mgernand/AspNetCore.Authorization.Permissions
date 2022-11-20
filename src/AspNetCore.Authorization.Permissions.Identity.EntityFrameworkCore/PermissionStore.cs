@@ -64,8 +64,8 @@
 	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, IdentityRolePermission<TKey>>
 		where TPermission : PermissionsIdentityPermission<TKey>
 		where TRole : PermissionsIdentityRole<TKey>
-		where TKey : IEquatable<TKey>
 		where TContext : DbContext
+		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TRole, TContext, TKey}" />.

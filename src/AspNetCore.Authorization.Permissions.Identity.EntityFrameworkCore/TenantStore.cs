@@ -6,12 +6,13 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
 	/// <summary>
 	///     Represents a new instance of a persistence store for tenants, using the default implementation
-	///     of <see cref="PermissionsIdentityUser{TKey}" /> with a string as a primary key.
+	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
 	public class TenantStore : TenantStore<PermissionsIdentityTenant<string>>

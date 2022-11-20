@@ -2,6 +2,7 @@
 {
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
@@ -53,14 +54,14 @@
 				});
 			});
 
-			builder.Entity<PermissionsIdentityUser>(entity =>
+			builder.Entity<PermissionsUser>(entity =>
 			{
 				entity.ToTable("Users");
 
 				// The password for every user: 123456
 
 				// Tenant: Startup
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "ea346013-ec20-4a69-8a60-8684ffb58a5f",
 					UserName = "boss@startup",
@@ -68,7 +69,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "50cd8ad5-b945-4541-90c9-156f6940c18b",
 					UserName = "manager@startup",
@@ -76,7 +77,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "142838fe-7e64-484b-a769-87b327726715",
 					UserName = "employee@startup",
@@ -86,7 +87,7 @@
 				});
 
 				// Tenant: Company
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
 					UserName = "boss@company",
@@ -94,7 +95,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
 					UserName = "manager@company",
@@ -102,7 +103,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "04517a45-d6f5-4993-888b-04c924902b3a",
 					UserName = "employee@company",
@@ -112,7 +113,7 @@
 				});
 
 				// Tenant: Corporate
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "dbcf2449-14b7-4766-9829-ae65604500b0",
 					UserName = "boss@corporate",
@@ -120,7 +121,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "aeb83173-9ba7-4aa2-ab82-e434e2dcbe55",
 					UserName = "manager@corporate",
@@ -128,7 +129,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
-				entity.HasData(new PermissionsIdentityUser
+				entity.HasData(new PermissionsUser
 				{
 					Id = "e420f504-d953-4bec-95fd-1613fd760652",
 					UserName = "employee@corporate",

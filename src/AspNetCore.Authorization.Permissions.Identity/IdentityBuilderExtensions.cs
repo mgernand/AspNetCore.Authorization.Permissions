@@ -18,7 +18,7 @@
 		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider(this IdentityBuilder builder)
 		{
-			return builder.AddIdentityClaimsProvider<PermissionsIdentityUser, PermissionsIdentityPermission, PermissionsIdentityTenant>();
+			return builder.AddIdentityClaimsProvider<PermissionsUser, PermissionsIdentityPermission, PermissionsIdentityTenant>();
 		}
 
 		/// <summary>

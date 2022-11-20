@@ -3,6 +3,7 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsIdentityUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant, string>
+	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant, string>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -35,7 +36,7 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<PermissionsIdentityUser, PermissionsIdentityRole, TPermission, TTenant, string>
+	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<PermissionsUser, PermissionsIdentityRole, TPermission, TTenant, string>
 		where TPermission : PermissionsIdentityPermission
 		where TTenant : PermissionsIdentityTenant
 	{
@@ -63,7 +64,7 @@
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
 	public class IdentityPermissionsDbContext<TUser, TPermission, TTenant> : IdentityPermissionsDbContext<TUser, PermissionsIdentityRole, TPermission, TTenant, string>
-		where TUser : PermissionsIdentityUser
+		where TUser : PermissionsUser
 		where TPermission : PermissionsIdentityPermission
 		where TTenant : PermissionsIdentityTenant
 	{
@@ -93,7 +94,7 @@
 	/// <typeparam name="TPermission"></typeparam>
 	[PublicAPI]
 	public class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>
-		where TUser : PermissionsIdentityUser<TKey>
+		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsIdentityRole<TKey>
 		where TPermission : PermissionsIdentityPermission<TKey>
 		where TTenant : PermissionsIdentityTenant<TKey>
@@ -133,7 +134,7 @@
 	[PublicAPI]
 	public abstract class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>
 		: IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
-		where TUser : PermissionsIdentityUser<TKey>
+		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsIdentityRole<TKey>
 		where TPermission : PermissionsIdentityPermission<TKey>
 		where TTenant : PermissionsIdentityTenant<TKey>

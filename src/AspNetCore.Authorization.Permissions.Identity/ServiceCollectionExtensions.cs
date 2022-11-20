@@ -20,7 +20,7 @@
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
 		{
-			return services.AddPermissionsIdentity<PermissionsIdentityUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
+			return services.AddPermissionsIdentity<PermissionsUser, PermissionsIdentityRole, PermissionsIdentityPermission, PermissionsIdentityTenant>(setupAction);
 		}
 
 		/// <summary>
