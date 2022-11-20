@@ -1,14 +1,13 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model
 {
 	using System;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 
 	/// <summary>
 	///     A default tenant implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsIdentityTenant : PermissionsIdentityTenant<string>
+	public class PermissionsTenant : PermissionsTenant<string>
 	{
 	}
 
@@ -17,7 +16,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class PermissionsIdentityTenant<TKey> : ITenant
+	public class PermissionsTenant<TKey> : ITenant
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>

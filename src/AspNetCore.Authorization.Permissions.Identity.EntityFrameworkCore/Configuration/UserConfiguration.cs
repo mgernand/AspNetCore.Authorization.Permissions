@@ -15,7 +15,7 @@
 	[PublicAPI]
 	public class UserConfiguration<TUser, TTenant, TKey> : IEntityTypeConfiguration<TUser>
 		where TUser : PermissionsUser<TKey>
-		where TTenant : PermissionsIdentityTenant<TKey>
+		where TTenant : PermissionsTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <inheritdoc />

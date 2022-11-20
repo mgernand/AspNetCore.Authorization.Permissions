@@ -181,7 +181,7 @@
 				});
 			});
 
-			builder.Entity<PermissionsIdentityTenant<string>>(entity => entity.ToTable("Tenants"));
+			builder.Entity<PermissionsTenant<string>>(entity => entity.ToTable("Tenants"));
 			builder.Entity<IdentityUserClaim<string>>(entity => entity.ToTable("UserClaims"));
 			builder.Entity<IdentityUserLogin<string>>(entity => entity.ToTable("UserLogins"));
 			builder.Entity<IdentityRoleClaim<string>>(entity => entity.ToTable("RoleClaims"));

@@ -22,12 +22,12 @@
 
 			builder.HasDefaultSchema("identity");
 
-			builder.Entity<PermissionsIdentityTenant>(entity =>
+			builder.Entity<PermissionsTenant>(entity =>
 			{
 				entity.ToTable("Tenants");
 
 				// Tenant: Startup
-				entity.HasData(new PermissionsIdentityTenant
+				entity.HasData(new PermissionsTenant
 				{
 					Id = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
 					Name = "Startup",
@@ -36,7 +36,7 @@
 				});
 
 				// Tenant: Company
-				entity.HasData(new PermissionsIdentityTenant
+				entity.HasData(new PermissionsTenant
 				{
 					Id = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
 					Name = "Company",
@@ -45,7 +45,7 @@
 				});
 
 				// Tenant: Corporate
-				entity.HasData(new PermissionsIdentityTenant
+				entity.HasData(new PermissionsTenant
 				{
 					Id = "49a049d2-23ad-41df-8806-240aebaa2f17",
 					Name = "Corporate",

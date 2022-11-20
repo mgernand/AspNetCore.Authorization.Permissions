@@ -12,7 +12,7 @@
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsIdentityTenant, string>
+	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -38,7 +38,7 @@
 	[PublicAPI]
 	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, TPermission, TTenant, string>
 		where TPermission : PermissionsPermission
-		where TTenant : PermissionsIdentityTenant
+		where TTenant : PermissionsTenant
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -66,7 +66,7 @@
 	public class IdentityPermissionsDbContext<TUser, TPermission, TTenant> : IdentityPermissionsDbContext<TUser, PermissionsRole, TPermission, TTenant, string>
 		where TUser : PermissionsUser
 		where TPermission : PermissionsPermission
-		where TTenant : PermissionsIdentityTenant
+		where TTenant : PermissionsTenant
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityDbContext" />.
@@ -97,7 +97,7 @@
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TPermission : PermissionsPermission<TKey>
-		where TTenant : PermissionsIdentityTenant<TKey>
+		where TTenant : PermissionsTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
@@ -137,7 +137,7 @@
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TPermission : PermissionsPermission<TKey>
-		where TTenant : PermissionsIdentityTenant<TKey>
+		where TTenant : PermissionsTenant<TKey>
 		where TKey : IEquatable<TKey>
 		where TUserClaim : IdentityUserClaim<TKey>
 		where TUserRole : IdentityUserRole<TKey>

@@ -25,7 +25,7 @@
 			where TContext : DbContext
 		{
 			builder.AddEntityFrameworkStores<TContext>();
-			AddStores(builder.Services, builder.UserType, typeof(PermissionsPermission), typeof(PermissionsIdentityTenant), builder.RoleType, typeof(TContext));
+			AddStores(builder.Services, builder.UserType, typeof(PermissionsPermission), typeof(PermissionsTenant), builder.RoleType, typeof(TContext));
 			return builder;
 		}
 
@@ -64,7 +64,7 @@
 				throw new InvalidOperationException("The permissions extension needs a role type to work.");
 			}
 
-			Type identityTenantType = FindGenericBaseType(tenantType, typeof(PermissionsIdentityTenant<>));
+			Type identityTenantType = FindGenericBaseType(tenantType, typeof(PermissionsTenant<>));
 			if(identityTenantType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant type.");

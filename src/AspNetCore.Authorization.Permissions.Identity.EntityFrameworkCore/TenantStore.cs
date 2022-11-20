@@ -15,7 +15,7 @@
 	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class TenantStore : TenantStore<PermissionsIdentityTenant<string>>
+	public class TenantStore : TenantStore<PermissionsTenant<string>>
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -30,7 +30,7 @@
 	/// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsRole, DbContext, string>
-		where TTenant : PermissionsIdentityTenant<string>, new()
+		where TTenant : PermissionsTenant<string>, new()
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -47,7 +47,7 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext> : TenantStore<TTenant, TRole, TContext, string>
-		where TTenant : PermissionsIdentityTenant<string>
+		where TTenant : PermissionsTenant<string>
 		where TRole : PermissionsRole<string>
 		where TContext : DbContext
 	{
@@ -67,7 +67,7 @@
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, IdentityTenantRole<TKey>>
-		where TTenant : PermissionsIdentityTenant<TKey>
+		where TTenant : PermissionsTenant<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
@@ -90,7 +90,7 @@
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey, TTenantRole> : TenantStoreBase<TTenant, TRole, TKey, TTenantRole>,
 		IQueryableTenantStore<TTenant>
-		where TTenant : PermissionsIdentityTenant<TKey>
+		where TTenant : PermissionsTenant<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
