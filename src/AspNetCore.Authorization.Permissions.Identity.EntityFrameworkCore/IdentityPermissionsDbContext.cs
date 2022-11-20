@@ -93,7 +93,7 @@
 	/// <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
 	/// <typeparam name="TPermission"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>
+	public class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, IdentityTenantRole<TKey>>
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TPermission : PermissionsPermission<TKey>
@@ -144,7 +144,7 @@
 		where TUserLogin : IdentityUserLogin<TKey>
 		where TRoleClaim : IdentityRoleClaim<TKey>
 		where TUserToken : IdentityUserToken<TKey>
-		where TRolePermission : IdentityRolePermission<TKey>
+		where TRolePermission : PermissionsRolePermission<TKey>
 		where TTenantRole : IdentityTenantRole<TKey>
 	{
 		/// <summary>

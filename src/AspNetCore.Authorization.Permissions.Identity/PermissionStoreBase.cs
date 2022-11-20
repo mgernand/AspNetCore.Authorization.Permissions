@@ -23,7 +23,7 @@
 		where TPermission : PermissionsPermission<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
-		where TRolePermission : IdentityRolePermission<TKey>, new()
+		where TRolePermission : PermissionsRolePermission<TKey>, new()
 	{
 		private bool disposed;
 
@@ -146,7 +146,7 @@
 		protected abstract Task<TRole> FindRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
-		///     Called to create a new instance of a <see cref="IdentityRolePermission{TKey}" />.
+		///     Called to create a new instance of a <see cref="PermissionsRolePermission{TKey}" />.
 		/// </summary>
 		/// <param name="permission">The associated permission.</param>
 		/// <param name="role">The associated role.</param>

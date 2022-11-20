@@ -62,7 +62,7 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
 	[PublicAPI]
-	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, IdentityRolePermission<TKey>>
+	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, PermissionsRolePermission<TKey>>
 		where TPermission : PermissionsPermission<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
@@ -95,7 +95,7 @@
 		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
-		where TRolePermission : IdentityRolePermission<TKey>, new()
+		where TRolePermission : PermissionsRolePermission<TKey>, new()
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TContext, TKey, TRolePermission}" />.

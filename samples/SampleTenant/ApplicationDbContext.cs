@@ -323,46 +323,46 @@
 				});
 			});
 
-			builder.Entity<IdentityRolePermission<string>>(entity =>
+			builder.Entity<PermissionsRolePermission<string>>(entity =>
 			{
 				entity.ToTable("RolePermissions");
 
 				// Boss role permissions
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
 
 				// Manager role permissions
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					PermissionId = "e123b8c0-0646-4075-b73e-07ca9d611c8e"
 				});
 
 				// Employee role permissions
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "be5b92e5-c6c6-480b-b235-d4df402a73cc"
 				});
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2"
 				});
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "ef54d62d-a36b-4ab3-b868-f170c0054fac"
@@ -371,19 +371,19 @@
 				// Free role permissions => none
 
 				// Basic role permissions
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "49161cff-c451-4c44-ac59-467883fe1517",
 					PermissionId = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed"
 				});
 
 				// Professional role permissions
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
 					PermissionId = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed"
 				});
-				entity.HasData(new IdentityRolePermission<string>
+				entity.HasData(new PermissionsRolePermission<string>
 				{
 					RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
 					PermissionId = "f1af54df-c9e7-4570-850f-c563732c15b4"

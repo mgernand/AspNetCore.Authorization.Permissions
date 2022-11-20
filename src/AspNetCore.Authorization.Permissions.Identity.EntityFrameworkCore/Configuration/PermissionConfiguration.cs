@@ -15,7 +15,7 @@
 	[PublicAPI]
 	public class PermissionConfiguration<TPermission, TRolePermission, TKey> : IEntityTypeConfiguration<TPermission>
 		where TPermission : PermissionsPermission<TKey>
-		where TRolePermission : IdentityRolePermission<TKey>
+		where TRolePermission : PermissionsRolePermission<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
