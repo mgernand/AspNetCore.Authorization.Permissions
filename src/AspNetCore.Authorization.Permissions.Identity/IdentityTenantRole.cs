@@ -1,9 +1,9 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using JetBrains.Annotations;
+    using System;
+    using JetBrains.Annotations;
 
-	/// <summary>
+    /// <summary>
 	///     Represents the link between a tenant and a role.
 	/// </summary>
 	/// <typeparam name="TKey">The type of the primary key used for tenant and roles.</typeparam>

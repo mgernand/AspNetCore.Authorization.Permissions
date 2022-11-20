@@ -4,15 +4,15 @@
 	using System.Collections.Generic;
 	using System.Security.Claims;
 	using System.Threading.Tasks;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using FluentAssertions;
+    using FluentAssertions;
 	using Microsoft.Extensions.DependencyInjection;
 	using NUnit.Framework;
+    using ServiceCollectionExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.ServiceCollectionExtensions;
 
-	[TestFixture]
+    [TestFixture]
 	public class UserPermissionsServiceTests
 	{
-		private class TestClaimsProvider : IClaimsProvider
+		private class TestClaimsProvider : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
@@ -26,17 +26,17 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			IReadOnlyCollection<string> result = service.GetPermissionsFrom(principal.Claims);
 			result.Should().NotBeNullOrEmpty()
@@ -50,16 +50,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			IReadOnlyCollection<string> result = service.GetPermissionsFrom(principal);
 			result.Should().NotBeNullOrEmpty()
@@ -73,16 +73,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.TenantIdClaimType, "12345678"),
-				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
-				new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantIdClaimType, "12345678"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			string tenantId = service.GetTenantId(principal);
 			tenantId.Should().NotBeNull().And.Be("12345678");
@@ -99,16 +99,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			bool result = service.HasPermission(principal.Claims, "Invoices.Write".ToLowerInvariant());
 			result.Should().BeTrue();
@@ -119,16 +119,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 
 			bool result = service.HasPermission(principal.Claims, "invOiCeS.wriTe");
@@ -140,16 +140,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			bool result = service.HasPermission(principal.Claims, "Invoices.Write");
 			result.Should().BeTrue();
@@ -161,16 +161,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			bool result = service.HasPermission(principal.Claims, "Invoices.Write".ToUpperInvariant());
 			result.Should().BeTrue();
@@ -181,16 +181,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			bool result = service.HasPermission(principal, "Invoices.Write".ToLowerInvariant());
 			result.Should().BeTrue();
@@ -201,16 +201,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 
 			bool result = service.HasPermission(principal, "invOiCeS.wriTe");
@@ -222,16 +222,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			bool result = service.HasPermission(principal, "Invoices.Write");
 			result.Should().BeTrue();
@@ -242,16 +242,16 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
-			IUserPermissionsService service = serviceProvider.GetRequiredService<IUserPermissionsService>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService>();
 
 			bool result = service.HasPermission(principal, "Invoices.Write".ToUpperInvariant());
 			result.Should().BeTrue();

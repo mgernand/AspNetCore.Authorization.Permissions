@@ -1,10 +1,10 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
+    using System;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
+    /// <summary>
 	///     A default tenant user implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]

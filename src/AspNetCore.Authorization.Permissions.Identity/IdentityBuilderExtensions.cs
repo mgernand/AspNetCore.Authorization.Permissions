@@ -1,10 +1,10 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
+    using System;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
+    /// <summary>
 	///     Extension methods for the <see cref="IdentityBuilderExtensions" /> type.
 	/// </summary>
 	[PublicAPI]

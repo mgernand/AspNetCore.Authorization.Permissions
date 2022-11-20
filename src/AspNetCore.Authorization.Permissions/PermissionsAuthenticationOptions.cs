@@ -1,8 +1,8 @@
-﻿namespace AspNetCore.Authorization.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-	using JetBrains.Annotations;
+    using JetBrains.Annotations;
 
-	/// <summary>
+    /// <summary>
 	///     The options for the permission authorization.
 	/// </summary>
 	[PublicAPI]

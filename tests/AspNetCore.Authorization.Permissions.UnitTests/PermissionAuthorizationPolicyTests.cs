@@ -4,16 +4,16 @@
 	using System.Collections.Generic;
 	using System.Security.Claims;
 	using System.Threading.Tasks;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using FluentAssertions;
+    using FluentAssertions;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.Extensions.DependencyInjection;
 	using NUnit.Framework;
+    using ServiceCollectionExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.ServiceCollectionExtensions;
 
-	[TestFixture]
+    [TestFixture]
 	public class PermissionAuthorizationPolicyTests
 	{
-		private class TestClaimsProvider : IClaimsProvider
+		private class TestClaimsProvider : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
@@ -26,8 +26,8 @@
 		public async Task ShouldGetPolicyForPermission()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -46,8 +46,8 @@
 		public async Task ShouldThrowArgumentException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
@@ -64,8 +64,8 @@
 		public async Task ShouldThrowArgumentNullException()
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider<TestClaimsProvider>();
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});

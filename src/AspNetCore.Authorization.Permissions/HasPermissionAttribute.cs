@@ -1,10 +1,10 @@
-﻿namespace AspNetCore.Authorization.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-	using System;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Authorization;
+    using System;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Authorization;
 
-	/// <summary>
+    /// <summary>
 	///     This attribute can be applied just like the [Authorize].
 	///     This will only allow users which have a role containing the given permission.
 	/// </summary>

@@ -1,16 +1,17 @@
-﻿namespace AspNetCore.Authorization.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-	using System.Collections.Generic;
-	using System.Security.Claims;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using JetBrains.Annotations;
+    using System.Collections.Generic;
+    using System.Security.Claims;
+    using JetBrains.Annotations;
+    using ClaimsEnumerableExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsEnumerableExtensions;
+    using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions;
 
-	[UsedImplicitly]
-	internal sealed class UserPermissionsService : IUserPermissionsService
+    [UsedImplicitly]
+	internal sealed class UserPermissionsService : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IUserPermissionsService
 	{
-		private readonly IPermissionLookupNormalizer permissionLookupNormalizer;
+		private readonly MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IPermissionLookupNormalizer permissionLookupNormalizer;
 
-		public UserPermissionsService(IPermissionLookupNormalizer permissionLookupNormalizer)
+		public UserPermissionsService(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IPermissionLookupNormalizer permissionLookupNormalizer)
 		{
 			this.permissionLookupNormalizer = permissionLookupNormalizer;
 		}
@@ -18,45 +19,45 @@
 		/// <inheritdoc />
 		public IReadOnlyCollection<string> GetPermissionsFrom(ClaimsPrincipal user)
 		{
-			return user.GetPermissions();
+			return ClaimsPrincipalExtensions.GetPermissions(user);
 		}
 
 		/// <inheritdoc />
 		public IReadOnlyCollection<string> GetPermissionsFrom(IEnumerable<Claim> claims)
 		{
-			return claims.GetPermissions();
+			return ClaimsEnumerableExtensions.GetPermissions(claims);
 		}
 
 		/// <inheritdoc />
 		public bool HasPermission(ClaimsPrincipal user, string permission)
 		{
 			string normalizedName = this.permissionLookupNormalizer.NormalizeName(permission);
-			return user.HasPermission(normalizedName);
+			return ClaimsPrincipalExtensions.HasPermission(user, normalizedName);
 		}
 
 		/// <inheritdoc />
 		public bool HasPermission(IEnumerable<Claim> claims, string permission)
 		{
 			string normalizedName = this.permissionLookupNormalizer.NormalizeName(permission);
-			return claims.HasPermission(normalizedName);
+			return ClaimsEnumerableExtensions.HasPermission(claims, normalizedName);
 		}
 
 		/// <inheritdoc />
 		public string GetTenantId(ClaimsPrincipal user)
 		{
-			return user.GetTenantId();
+			return ClaimsPrincipalExtensions.GetTenantId(user);
 		}
 
 		/// <inheritdoc />
 		public string GetTenantName(ClaimsPrincipal user)
 		{
-			return user.GetTenantName();
+			return ClaimsPrincipalExtensions.GetTenantName(user);
 		}
 
 		/// <inheritdoc />
 		public string GetTenantDisplayName(ClaimsPrincipal user)
 		{
-			return user.GetTenantDisplayName();
+			return ClaimsPrincipalExtensions.GetTenantDisplayName(user);
 		}
 	}
 }
