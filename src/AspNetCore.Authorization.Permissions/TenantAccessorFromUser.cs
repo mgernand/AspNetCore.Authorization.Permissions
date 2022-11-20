@@ -1,14 +1,14 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Http;
-    using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using Microsoft.AspNetCore.Http;
 
-    /// <summary>
+	/// <summary>
 	///     A tenant accessor that gets the tenant ID from the current user.
 	/// </summary>
 	[PublicAPI]
-	public class HttpContextUserTenantProvider : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantProvider
+	public class HttpContextUserTenantProvider : ITenantProvider
 	{
 		private readonly IHttpContextAccessor accessor;
 
@@ -26,9 +26,9 @@
 		{
 			get
 			{
-				if(this.accessor.HttpContext != null && this.accessor.HttpContext.User.Identity != null && this.accessor.HttpContext.User.Identity.IsAuthenticated)
+				if(this.accessor.HttpContext?.User.Identity != null && this.accessor.HttpContext.User.Identity.IsAuthenticated)
 				{
-					return ClaimsPrincipalExtensions.GetTenantId(this.accessor.HttpContext?.User);
+					return (this.accessor.HttpContext?.User).GetTenantId();
 				}
 
 				return null;

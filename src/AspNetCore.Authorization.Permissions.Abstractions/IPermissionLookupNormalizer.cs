@@ -1,8 +1,8 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 {
-    using JetBrains.Annotations;
+	using JetBrains.Annotations;
 
-    /// <summary>
+	/// <summary>
 	///     Provides a contract for normalizing permission names for lookup purposes.
 	/// </summary>
 	[PublicAPI]

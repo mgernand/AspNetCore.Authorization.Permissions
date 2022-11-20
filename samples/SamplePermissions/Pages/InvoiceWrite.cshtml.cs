@@ -1,6 +1,6 @@
 ﻿namespace SamplePermissions.Pages
 {
-    using Microsoft.AspNetCore.Mvc.RazorPages;
+	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 	using SamplePermissions.Model;
 

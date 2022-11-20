@@ -1,5 +1,5 @@
 ﻿@page
-@using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions
+@using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 @model TenantModel
 
 @{
@@ -7,10 +7,10 @@
 }
 
 <div class="text-center">
-	<h1 class="display-4">Tenant</h1>
-	<div class="text-start">
-		<p>Tenant ID: <strong>@ClaimsPrincipalExtensions.GetTenantId(this.User)</strong></p>
-		<p>Tenant Name: <strong>@ClaimsPrincipalExtensions.GetTenantName(this.User)</strong></p>
-		<p>Tenant Display Name: <strong>@ClaimsPrincipalExtensions.GetTenantDisplayName(this.User)</strong></p>
-	</div>
+    <h1 class="display-4">Tenant</h1>
+    <div class="text-start">
+        <p>Tenant ID: <strong>@User.GetTenantId()</strong></p>
+        <p>Tenant Name: <strong>@User.GetTenantName()</strong></p>
+        <p>Tenant Display Name: <strong>@User.GetTenantDisplayName()</strong></p>
+    </div>
 </div>

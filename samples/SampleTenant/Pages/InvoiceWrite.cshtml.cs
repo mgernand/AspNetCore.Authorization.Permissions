@@ -1,6 +1,6 @@
 ﻿namespace SampleTenant.Pages
 {
-    using Microsoft.AspNetCore.Mvc.RazorPages;
+	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 	using SampleTenant.Model;
 

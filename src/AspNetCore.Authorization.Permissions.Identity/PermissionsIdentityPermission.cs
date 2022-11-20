@@ -1,9 +1,9 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System;
-    using JetBrains.Annotations;
+	using System;
+	using JetBrains.Annotations;
 
-    /// <summary>
+	/// <summary>
 	///     A default permission implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]

@@ -7,26 +7,26 @@
 
 <div class="text-center">
     <h1 class="display-4">Invoice.Read</h1>
-	<p>Invoice.Read</p>
-	<table class="table table-striped table-hover table-bordered">
-		<thead>
-		<tr>
-			<th scope="col" style="width: 30%">ID</th>
-			<th scope="col" style="width: 20%">Total</th>
-			<th scope="col" style="width: 45%">Note</th>
-			<th scope="col" style="width: 5%">Tenant</th>
-		</tr>
-		</thead>
-		<tbody>
-		@foreach(Invoice invoice in this.Model.Context.Invoices)
-		{
-			<tr scope="row">
-				<td>@invoice.Id.ToString("N")</td>
-				<td>@invoice.Total.ToString("C2")</td>
-				<td>@invoice.Note</td>
-				<td>@this.Model.GetTenantName(invoice.TenantId)</td>
-			</tr>
-		}
-		</tbody>
-	</table>
+    <p>Invoice.Read</p>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col" style="width: 30%">ID</th>
+            <th scope="col" style="width: 20%">Total</th>
+            <th scope="col" style="width: 45%">Note</th>
+            <th scope="col" style="width: 5%">Tenant</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(Invoice invoice in Model.Context.Invoices)
+        {
+            <tr scope="row">
+                <td>@invoice.Id.ToString("N")</td>
+                <td>@invoice.Total.ToString("C2")</td>
+                <td>@invoice.Note</td>
+                <td>@Model.GetTenantName(invoice.TenantId)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>

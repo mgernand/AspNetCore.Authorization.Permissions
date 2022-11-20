@@ -4,15 +4,16 @@
 	using System.Collections.Generic;
 	using System.Security.Claims;
 	using System.Threading.Tasks;
-    using FluentAssertions;
+	using FluentAssertions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.Extensions.DependencyInjection;
 	using NUnit.Framework;
-    using ServiceCollectionExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.ServiceCollectionExtensions;
 
-    [TestFixture]
+	[TestFixture]
 	public class UpperInvariantPermissionLookupNormalizerTests
 	{
-		private class TestClaimsProvider : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
+		private class TestClaimsProvider : IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
@@ -37,11 +38,11 @@
 		public void ShouldNormalizeName(string inout, string expected)
 		{
 			IServiceCollection services = new ServiceCollection();
-			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
-			ServiceCollectionExtensions.AddClaimsProvider<TestClaimsProvider>(services);
+			services.AddPermissionsAuthorization();
+			services.AddClaimsProvider<TestClaimsProvider>();
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IPermissionLookupNormalizer service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IPermissionLookupNormalizer>();
+			IPermissionLookupNormalizer service = serviceProvider.GetRequiredService<IPermissionLookupNormalizer>();
 			string result = service.NormalizeName(inout);
 
 			result.Should().NotBeNullOrEmpty().And.Be(expected);

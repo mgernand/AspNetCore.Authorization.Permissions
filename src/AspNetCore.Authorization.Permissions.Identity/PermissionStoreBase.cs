@@ -1,14 +1,14 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
 	///     Creates a new instance of a persistence store for roles.
 	/// </summary>
 	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>

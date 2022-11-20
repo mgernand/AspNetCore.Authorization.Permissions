@@ -1,17 +1,18 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Security.Claims;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 
-    [UsedImplicitly]
-	internal sealed class EnsureCorrectClaimsProvider : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
+	[UsedImplicitly]
+	internal sealed class EnsureCorrectClaimsProvider : IClaimsProvider
 	{
-		private readonly MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider innerClaimsProvider;
+		private readonly IClaimsProvider innerClaimsProvider;
 
-		public EnsureCorrectClaimsProvider(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider innerClaimsProvider)
+		public EnsureCorrectClaimsProvider(IClaimsProvider innerClaimsProvider)
 		{
 			this.innerClaimsProvider = innerClaimsProvider;
 		}
@@ -35,10 +36,10 @@
 
 					// Only add claim types we know.
 					if(claim.Type is
-					   MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType or
-					   MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantIdClaimType or
-					   MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantNameClaimType or
-					   MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantDisplayNameClaimType)
+					   PermissionClaimTypes.PermissionClaimType or
+					   PermissionClaimTypes.TenantIdClaimType or
+					   PermissionClaimTypes.TenantNameClaimType or
+					   PermissionClaimTypes.TenantDisplayNameClaimType)
 					{
 						permissionClaims.Add(claim);
 					}

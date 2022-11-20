@@ -1,8 +1,8 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 {
-    using JetBrains.Annotations;
+	using JetBrains.Annotations;
 
-    /// <summary>
+	/// <summary>
 	///     A contract for entities that belong to a tenant.
 	/// </summary>
 	[PublicAPI]

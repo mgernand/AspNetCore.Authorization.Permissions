@@ -1,12 +1,13 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System.Collections.Generic;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
+	using System.Collections.Generic;
+	using System.Security.Claims;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 
-    [PublicAPI]
-	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
+	[PublicAPI]
+	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
 		where TUser : class, IUser
 		where TPermission : class, IPermission
 		where TTenant : class, ITenant
@@ -47,13 +48,13 @@
 				TTenant tenant = await this.tenantManager.FindByIdAsync(tenantId);
 				claims.AddRange(await this.GetTenantPermissions(tenant));
 
-				claims.Add(new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantIdClaimType, tenantId));
+				claims.Add(new Claim(PermissionClaimTypes.TenantIdClaimType, tenantId));
 
 				string tenantName = await this.tenantManager.GetTenantNameAsync(tenant);
-				claims.Add(new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantNameClaimType, tenantName));
+				claims.Add(new Claim(PermissionClaimTypes.TenantNameClaimType, tenantName));
 
 				string tenantDisplayName = await this.tenantManager.GetTenantDisplayNameAsync(tenant);
-				claims.Add(new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantDisplayNameClaimType, tenantDisplayName));
+				claims.Add(new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, tenantDisplayName));
 			}
 
 			return claims.AsReadOnly();
@@ -71,7 +72,7 @@
 				{
 					if(permission is not null)
 					{
-						claims.Add(new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, permission.ToString()));
+						claims.Add(new Claim(PermissionClaimTypes.PermissionClaimType, permission.ToString()));
 					}
 				}
 			}
@@ -91,7 +92,7 @@
 				{
 					if(permission is not null)
 					{
-						claims.Add(new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, permission.ToString()));
+						claims.Add(new Claim(PermissionClaimTypes.PermissionClaimType, permission.ToString()));
 					}
 				}
 			}

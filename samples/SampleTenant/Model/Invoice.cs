@@ -2,7 +2,7 @@
 {
 	using System;
 
-    public class Invoice : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantObject
+	public class Invoice : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantObject
 	{
 		public Guid Id { get; set; }
 

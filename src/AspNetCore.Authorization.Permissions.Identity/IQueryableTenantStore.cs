@@ -1,8 +1,8 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System.Linq;
+	using System.Linq;
 
-    /// <summary>
+	/// <summary>
 	///     Provides an abstraction for querying tenants in a tenant store.
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>

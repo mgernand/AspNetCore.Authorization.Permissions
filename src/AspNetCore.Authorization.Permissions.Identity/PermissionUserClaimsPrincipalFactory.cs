@@ -1,14 +1,14 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System.Collections.Generic;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.Options;
-    using ClaimsEnumerableExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsEnumerableExtensions;
+	using System.Collections.Generic;
+	using System.Security.Claims;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.Extensions.Options;
 
-    /// <summary>
+	/// <summary>
 	///     Adds permission and tenant claims to the user's claims.
 	/// </summary>
 	/// <remarks>
@@ -34,7 +34,7 @@
 		protected override async Task<ClaimsIdentity> GenerateClaimsAsync(TUser user)
 		{
 			ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
-			string userId = ClaimsEnumerableExtensions.GetUserId(identity.Claims);
+			string userId = identity.Claims.GetUserId();
 			IReadOnlyCollection<Claim> claims = await this.claimsProvider.GetPermissionClaimsForUserAsync(userId);
 			identity.AddClaims(claims);
 

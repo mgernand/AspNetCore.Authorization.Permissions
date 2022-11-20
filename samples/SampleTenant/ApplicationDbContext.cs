@@ -1,9 +1,11 @@
 ﻿namespace SampleTenant
 {
-    using Microsoft.AspNetCore.Identity;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
-	public class ApplicationDbContext : MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.IdentityPermissionsDbContext
+	public class ApplicationDbContext : IdentityPermissionsDbContext
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="ApplicationDbContext" />.
@@ -19,12 +21,12 @@
 
 			builder.HasDefaultSchema("identity");
 
-			builder.Entity<MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant>(entity =>
+			builder.Entity<PermissionsIdentityTenant>(entity =>
 			{
 				entity.ToTable("Tenants");
 
 				// Tenant: Startup
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant
+				entity.HasData(new PermissionsIdentityTenant
 				{
 					Id = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
 					Name = "Startup",
@@ -33,7 +35,7 @@
 				});
 
 				// Tenant: Company
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant
+				entity.HasData(new PermissionsIdentityTenant
 				{
 					Id = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
 					Name = "Company",
@@ -42,7 +44,7 @@
 				});
 
 				// Tenant: Corporate
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityTenant
+				entity.HasData(new PermissionsIdentityTenant
 				{
 					Id = "49a049d2-23ad-41df-8806-240aebaa2f17",
 					Name = "Corporate",
@@ -51,14 +53,14 @@
 				});
 			});
 
-			builder.Entity<MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser>(entity =>
+			builder.Entity<PermissionsIdentityUser>(entity =>
 			{
 				entity.ToTable("Users");
 
 				// The password for every user: 123456
 
 				// Tenant: Startup
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "ea346013-ec20-4a69-8a60-8684ffb58a5f",
 					UserName = "boss@startup",
@@ -66,7 +68,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "50cd8ad5-b945-4541-90c9-156f6940c18b",
 					UserName = "manager@startup",
@@ -74,7 +76,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "142838fe-7e64-484b-a769-87b327726715",
 					UserName = "employee@startup",
@@ -84,7 +86,7 @@
 				});
 
 				// Tenant: Company
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
 					UserName = "boss@company",
@@ -92,7 +94,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
 					UserName = "manager@company",
@@ -100,7 +102,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "04517a45-d6f5-4993-888b-04c924902b3a",
 					UserName = "employee@company",
@@ -110,7 +112,7 @@
 				});
 
 				// Tenant: Corporate
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "dbcf2449-14b7-4766-9829-ae65604500b0",
 					UserName = "boss@corporate",
@@ -118,7 +120,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "aeb83173-9ba7-4aa2-ab82-e434e2dcbe55",
 					UserName = "manager@corporate",
@@ -126,7 +128,7 @@
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityUser
+				entity.HasData(new PermissionsIdentityUser
 				{
 					Id = "e420f504-d953-4bec-95fd-1613fd760652",
 					UserName = "employee@corporate",
@@ -136,24 +138,24 @@
 				});
 			});
 
-			builder.Entity<MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole>(entity =>
+			builder.Entity<PermissionsIdentityRole>(entity =>
 			{
 				entity.ToTable("Roles");
 
 				// User roles.
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					Name = "Boss",
 					NormalizedName = "BOSS"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					Name = "Manager",
 					NormalizedName = "MANAGER"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					Name = "Employee",
@@ -161,19 +163,19 @@
 				});
 
 				// Tenant roles.
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "ecae3c35-0d88-424f-a1bc-31cba5add7a7",
 					Name = "Free",
 					NormalizedName = "FREE"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "49161cff-c451-4c44-ac59-467883fe1517",
 					Name = "Basic",
 					NormalizedName = "BASIC"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityRole
+				entity.HasData(new PermissionsIdentityRole
 				{
 					Id = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
 					Name = "Professional",
@@ -181,36 +183,36 @@
 				});
 			});
 
-			builder.Entity<MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission>(entity =>
+			builder.Entity<PermissionsIdentityPermission>(entity =>
 			{
 				entity.ToTable("Permissions");
 
 				// User permissions.
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "5b9c4926-3dc6-447c-a092-addab890a15f",
 					Name = "Invoice.Read",
 					NormalizedName = "INVOICE.READ"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "be5b92e5-c6c6-480b-b235-d4df402a73cc",
 					Name = "Invoice.Write",
 					NormalizedName = "INVOICE.WRITE"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "e123b8c0-0646-4075-b73e-07ca9d611c8e",
 					Name = "Invoice.Delete",
 					NormalizedName = "INVOICE.DELETE"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2",
 					Name = "Invoice.Send",
 					NormalizedName = "INVOICE.SEND"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "ef54d62d-a36b-4ab3-b868-f170c0054fac",
 					Name = "Invoice.Payment",
@@ -218,13 +220,13 @@
 				});
 
 				// Tenant permissions.
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed",
 					Name = "Invoice.Statistics",
 					NormalizedName = "INVOICE.STATISTICS"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.PermissionsIdentityPermission
+				entity.HasData(new PermissionsIdentityPermission
 				{
 					Id = "f1af54df-c9e7-4570-850f-c563732c15b4",
 					Name = "Invoice.TaxExport",
@@ -294,72 +296,72 @@
 				});
 			});
 
-			builder.Entity<MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>>(entity =>
+			builder.Entity<IdentityTenantRole<string>>(entity =>
 			{
 				entity.ToTable("TenantRoles");
 
 				// Startup has role Free
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>
+				entity.HasData(new IdentityTenantRole<string>
 				{
 					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
 					RoleId = "ecae3c35-0d88-424f-a1bc-31cba5add7a7"
 				});
 
 				// Company has role Basic
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>
+				entity.HasData(new IdentityTenantRole<string>
 				{
 					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
 					RoleId = "49161cff-c451-4c44-ac59-467883fe1517"
 				});
 
 				// Corporate has role Professional
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityTenantRole<string>
+				entity.HasData(new IdentityTenantRole<string>
 				{
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
 					RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230"
 				});
 			});
 
-			builder.Entity<MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>>(entity =>
+			builder.Entity<IdentityRolePermission<string>>(entity =>
 			{
 				entity.ToTable("RolePermissions");
 
 				// Boss role permissions
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
 
 				// Manager role permissions
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					PermissionId = "e123b8c0-0646-4075-b73e-07ca9d611c8e"
 				});
 
 				// Employee role permissions
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "be5b92e5-c6c6-480b-b235-d4df402a73cc"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "ef54d62d-a36b-4ab3-b868-f170c0054fac"
@@ -368,19 +370,19 @@
 				// Free role permissions => none
 
 				// Basic role permissions
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "49161cff-c451-4c44-ac59-467883fe1517",
 					PermissionId = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed"
 				});
 
 				// Professional role permissions
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
 					PermissionId = "9c8dd197-bc4e-42b2-8789-f0b4481a05ed"
 				});
-				entity.HasData(new MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityRolePermission<string>
+				entity.HasData(new IdentityRolePermission<string>
 				{
 					RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230",
 					PermissionId = "f1af54df-c9e7-4570-850f-c563732c15b4"

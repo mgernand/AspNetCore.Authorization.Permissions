@@ -1,8 +1,8 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
 	///     Extensions for the <see cref="IdentityErrorDescriber" /> type.
 	/// </summary>
 	public static class IdentityErrorDescriberExtensions
