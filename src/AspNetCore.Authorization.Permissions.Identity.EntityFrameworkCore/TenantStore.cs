@@ -66,7 +66,7 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
-	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, IdentityTenantRole<TKey>>
+	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, PermissionsTenantRole<TKey>>
 		where TTenant : PermissionsTenant<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
@@ -94,7 +94,7 @@
 		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
-		where TTenantRole : IdentityTenantRole<TKey>, new()
+		where TTenantRole : PermissionsTenantRole<TKey>, new()
 	{
 		/// <inheritdoc />
 		public TenantStore(TContext context, IdentityErrorDescriber describer = null)

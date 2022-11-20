@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model
 {
 	using System;
 	using JetBrains.Annotations;
@@ -8,7 +8,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the primary key used for tenant and roles.</typeparam>
 	[PublicAPI]
-	public class IdentityTenantRole<TKey> where TKey : IEquatable<TKey>
+	public class PermissionsTenantRole<TKey> where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Gets or sets the primary key of the tenant that is linked to a role.

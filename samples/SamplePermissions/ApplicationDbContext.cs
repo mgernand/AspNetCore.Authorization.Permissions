@@ -186,7 +186,7 @@
 			builder.Entity<IdentityUserLogin<string>>(entity => entity.ToTable("UserLogins"));
 			builder.Entity<IdentityRoleClaim<string>>(entity => entity.ToTable("RoleClaims"));
 			builder.Entity<IdentityUserToken<string>>(entity => entity.ToTable("UserTokens"));
-			builder.Entity<IdentityTenantRole<string>>(entity => entity.ToTable("TenantRoles"));
+			builder.Entity<PermissionsTenantRole<string>>(entity => entity.ToTable("TenantRoles"));
 		}
 	}
 }

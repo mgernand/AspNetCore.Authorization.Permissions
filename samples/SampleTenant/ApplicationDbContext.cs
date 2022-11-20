@@ -297,26 +297,26 @@
 				});
 			});
 
-			builder.Entity<IdentityTenantRole<string>>(entity =>
+			builder.Entity<PermissionsTenantRole<string>>(entity =>
 			{
 				entity.ToTable("TenantRoles");
 
 				// Startup has role Free
-				entity.HasData(new IdentityTenantRole<string>
+				entity.HasData(new PermissionsTenantRole<string>
 				{
 					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2",
 					RoleId = "ecae3c35-0d88-424f-a1bc-31cba5add7a7"
 				});
 
 				// Company has role Basic
-				entity.HasData(new IdentityTenantRole<string>
+				entity.HasData(new PermissionsTenantRole<string>
 				{
 					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46",
 					RoleId = "49161cff-c451-4c44-ac59-467883fe1517"
 				});
 
 				// Corporate has role Professional
-				entity.HasData(new IdentityTenantRole<string>
+				entity.HasData(new PermissionsTenantRole<string>
 				{
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17",
 					RoleId = "c7602fdc-a7ef-4c6c-a69f-f8d2dbb5d230"
