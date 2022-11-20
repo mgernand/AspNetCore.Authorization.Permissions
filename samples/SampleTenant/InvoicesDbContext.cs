@@ -1,22 +1,27 @@
 ﻿namespace SampleTenant
 {
 	using System;
+	using System.Threading;
+	using System.Threading.Tasks;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.ValueGeneration;
 	using SampleTenant.Model;
 
-	public class InvoicesDbContext : TenantDbContext
+	public class InvoicesDbContext : DbContext
 	{
+		private readonly ITenantProvider tenantProvider;
+
 		/// <summary>
 		///     Initializes a new instance of <see cref="InvoicesDbContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
 		/// <param name="tenantProvider"></param>
 		public InvoicesDbContext(DbContextOptions<InvoicesDbContext> options, ITenantProvider tenantProvider)
-			: base(options, tenantProvider)
+			: base(options)
 		{
+			this.tenantProvider = tenantProvider;
 		}
 
 		/// <summary>
@@ -38,7 +43,7 @@
 
 				// Add a tenant query filter.
 				entity.HasIndex(x => x.TenantId).HasDatabaseName("InvoiceTenantIdIndex");
-				entity.HasQueryFilter(x => x.TenantId == this.TenantProvider.TenantId);
+				entity.HasQueryFilter(x => x.TenantId == this.tenantProvider.TenantId);
 
 				// Startup invoices
 				entity.HasData(new Invoice
@@ -109,6 +114,22 @@
 					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
 			});
+		}
+
+		/// <inheritdoc />
+		public override int SaveChanges(bool acceptAllChangesOnSuccess)
+		{
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
+
+			return base.SaveChanges(acceptAllChangesOnSuccess);
+		}
+
+		/// <inheritdoc />
+		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
+		{
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
+
+			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 		}
 	}
 }

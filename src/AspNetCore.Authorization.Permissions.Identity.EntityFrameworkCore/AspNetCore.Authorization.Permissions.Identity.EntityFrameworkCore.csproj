@@ -55,4 +55,8 @@
 	  <ProjectReference Include="..\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Configuration\" />
+	</ItemGroup>
+
 </Project>
