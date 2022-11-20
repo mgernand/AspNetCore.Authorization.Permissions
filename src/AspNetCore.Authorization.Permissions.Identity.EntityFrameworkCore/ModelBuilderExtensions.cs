@@ -143,6 +143,7 @@
 		/// <typeparam name="TTenantRole"></typeparam>
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
+		/// <param name="configureOptions"></param>
 		/// <returns></returns>
 		public static ModelBuilder ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : PermissionsUser<TKey>
@@ -207,6 +208,7 @@
 		/// <typeparam name="TUserToken"></typeparam>
 		/// <param name="builder"></param>
 		/// <param name="context"></param>
+		/// <param name="configureOptions"></param>
 		/// <returns></returns>
 		public static ModelBuilder ApplyIdentityUserRoles<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 			where TUser : IdentityUser<TKey>
