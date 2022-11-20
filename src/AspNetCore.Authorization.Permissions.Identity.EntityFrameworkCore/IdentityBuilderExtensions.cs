@@ -3,6 +3,7 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,7 @@
 			where TContext : DbContext
 		{
 			builder.AddEntityFrameworkStores<TContext>();
-			AddStores(builder.Services, builder.UserType, typeof(PermissionsIdentityPermission), typeof(PermissionsIdentityTenant), builder.RoleType, typeof(TContext));
+			AddStores(builder.Services, builder.UserType, typeof(PermissionsPermission), typeof(PermissionsTenant), builder.RoleType, typeof(TContext));
 			return builder;
 		}
 
@@ -46,13 +47,13 @@
 
 		private static void AddStores(IServiceCollection services, Type userType, Type permissionType, Type tenantType, Type roleType, Type contextType)
 		{
-			Type identityUserType = FindGenericBaseType(userType, typeof(PermissionsIdentityUser<>));
+			Type identityUserType = FindGenericBaseType(userType, typeof(PermissionsUser<>));
 			if(identityUserType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant user type.");
 			}
 
-			Type identityPermissionType = FindGenericBaseType(permissionType, typeof(PermissionsIdentityPermission<>));
+			Type identityPermissionType = FindGenericBaseType(permissionType, typeof(PermissionsPermission<>));
 			if(identityPermissionType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity permission type.");
@@ -63,7 +64,7 @@
 				throw new InvalidOperationException("The permissions extension needs a role type to work.");
 			}
 
-			Type identityTenantType = FindGenericBaseType(tenantType, typeof(PermissionsIdentityTenant<>));
+			Type identityTenantType = FindGenericBaseType(tenantType, typeof(PermissionsTenant<>));
 			if(identityTenantType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant type.");
@@ -81,12 +82,12 @@
 			Type tenantsStoreType;
 			Type tenantUsersStoreType;
 
-			Type identityContext = FindGenericBaseType(contextType, typeof(IdentityPermissionsDbContext<,,,,,,,,,,,>));
+			Type identityContext = FindGenericBaseType(contextType, typeof(PermissionsDbContext<,,,,,,,,,,,>));
 			if(identityContext == null)
 			{
 				// If its a custom DbContext, we can only add the default POCOs
 				permissionStoreType = typeof(PermissionStore<,,,>).MakeGenericType(permissionType, roleType, contextType, keyType);
-				tenantsStoreType = typeof(TenantStore<,,>).MakeGenericType(permissionType, contextType, keyType);
+				tenantsStoreType = typeof(TenantStore<,,,>).MakeGenericType(tenantType, roleType, contextType, keyType);
 				tenantUsersStoreType = typeof(PermissionsUserStore<,,>).MakeGenericType(userType, contextType, keyType);
 			}
 			else

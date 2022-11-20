@@ -3,6 +3,7 @@
 	using System.Collections.Generic;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 
 	/// <summary>
 	///     Provides an abstraction for a store which maps permissions to roles.

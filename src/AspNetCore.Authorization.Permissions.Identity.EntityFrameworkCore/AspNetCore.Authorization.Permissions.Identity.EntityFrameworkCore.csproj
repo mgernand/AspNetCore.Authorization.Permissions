@@ -55,4 +55,19 @@
 	  <ProjectReference Include="..\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Configuration\Identity\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Configuration\Identity\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
 </Project>

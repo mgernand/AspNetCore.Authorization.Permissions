@@ -1,6 +1,7 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
 	using System.Linq;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 
 	/// <summary>
 	///     Provides an abstraction for querying permissions in a permission store.

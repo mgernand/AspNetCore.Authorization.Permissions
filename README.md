@@ -68,25 +68,23 @@ The users, roles and permissions are added to the storage using the ```Applicati
 Core migrations. The code is omitted in this document, but you can look it up in the samples code.
 
 ```C#
-// ... Previous service configuration omitted.
+// Previous service configuration omitted.
 
 builder.Services.AddAuthorization();
-builder.Services.AddPermissionsAuthorization(options =>
-{
-	options.AddIdentityClaimsProvider();
-});
+builder.Services.AddPermissionsAuthorization();
 
 builder.Services
-	.AddDbContext<ApplicationDbContext>(options =>
+	.AddDbContext<InvoicesContext>(options =>
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
 	.AddPermissionsIdentity()
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
-	.AddPermissionsEntityFrameworkStores<ApplicationDbContext>();
+	.AddIdentityClaimsProvider()
+	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
-// Additional service configuration omitted ...
+// Additional service configuration omitted.
 ```
 
 ### Restrict access based on permissions
@@ -140,7 +138,24 @@ public class InvoicesReadModel : PageModel
 
 ## Tenant Usage
 
-TODO: ITenantContextAccessor
+```C#
+// Previous service configuration omitted.
 
+builder.Services
+	.AddAuthentication(IdentityConstants.ApplicationScheme)
+	.AddIdentityCookies();
 
+builder.Services
+	.AddDbContext<InvoicesContext>(options =>
+	{
+		options.UseSqlite("Filename=permissions.db");
+	})
+	.AddPermissionsIdentity()
+	.AddDefaultUI()
+	.AddDefaultTokenProviders()
+	.AddIdentityClaimsProvider()
+	.AddPermissionsEntityFrameworkStores<InvoicesContext, HttpContextUserTenantProvider>();
+
+// Additional service configuration omitted.
+```
 

@@ -5,6 +5,7 @@
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.Options;
 
@@ -18,13 +19,13 @@
 	public class PermissionUserClaimsPrincipalFactory<TUser> : UserClaimsPrincipalFactory<TUser>
 		where TUser : class, IUser
 	{
-		private readonly MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider claimsProvider;
+		private readonly IClaimsProvider claimsProvider;
 
 		/// <inheritdoc />
 		public PermissionUserClaimsPrincipalFactory(
 			PermissionsUserManager<TUser> userManager,
 			IOptions<IdentityOptions> optionsAccessor,
-			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider claimsProvider)
+			IClaimsProvider claimsProvider)
 			: base(userManager, optionsAccessor)
 		{
 			this.claimsProvider = claimsProvider;

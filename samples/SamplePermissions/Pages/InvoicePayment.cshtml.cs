@@ -8,13 +8,13 @@
 	{
 		private readonly ILogger<InvoiceReadModel> logger;
 
-		public InvoicePaymentModel(ILogger<InvoiceReadModel> logger, ApplicationDbContext context)
+		public InvoicePaymentModel(ILogger<InvoiceReadModel> logger, InvoicesContext context)
 		{
 			this.logger = logger;
 			this.Context = context;
 		}
 
-		public ApplicationDbContext Context { get; }
+		public InvoicesContext Context { get; }
 
 		public void OnGet()
 		{

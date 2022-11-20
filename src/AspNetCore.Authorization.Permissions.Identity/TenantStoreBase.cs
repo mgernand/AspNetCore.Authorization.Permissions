@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -17,10 +18,10 @@
 	/// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
 	[PublicAPI]
 	public abstract class TenantStoreBase<TTenant, TRole, TKey, TTenantRole> : ITenantRoleStore<TTenant>
-		where TTenant : PermissionsIdentityTenant<TKey>
+		where TTenant : PermissionsTenant<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
-		where TTenantRole : IdentityTenantRole<TKey>, new()
+		where TTenantRole : PermissionsTenantRole<TKey>, new()
 	{
 		private bool disposed;
 
@@ -205,7 +206,7 @@
 		protected abstract Task<TTenant> FindTenantAsync(TKey tenantId, CancellationToken cancellationToken);
 
 		/// <summary>
-		///     Called to create a new instance of a <see cref="IdentityTenantRole{TKey}" />.
+		///     Called to create a new instance of a <see cref="PermissionsTenantRole{TKey}" />.
 		/// </summary>
 		/// <param name="tenant">The associated tenant.</param>
 		/// <param name="role">The associated role.</param>

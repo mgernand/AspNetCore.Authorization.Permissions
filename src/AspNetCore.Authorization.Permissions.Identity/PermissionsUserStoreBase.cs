@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -15,7 +16,7 @@
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
 	public abstract class PermissionsUserStoreBase<TUser, TKey> : IPermissionsUserStore<TUser>
-		where TUser : PermissionsIdentityUser<TKey>
+		where TUser : PermissionsUser<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		private bool disposed;

@@ -3,15 +3,16 @@
 	using System;
 	using System.Linq;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
 	/// <summary>
 	///     Represents a new instance of a persistence store for users, using the default implementation
-	///     of <see cref="PermissionsIdentityUser{TKey}" /> with a string as a primary key.
+	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsUserStore : PermissionsUserStore<PermissionsIdentityUser<string>>
+	public class PermissionsUserStore : PermissionsUserStore<PermissionsUser>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionsUserStore" />.
@@ -29,7 +30,7 @@
 	/// <typeparam name="TUser">The type representing a user.</typeparam>
 	[PublicAPI]
 	public class PermissionsUserStore<TUser> : PermissionsUserStore<TUser, DbContext, string>
-		where TUser : PermissionsIdentityUser<string>, new()
+		where TUser : PermissionsUser, new()
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionsUserStore{TUser}" />.
@@ -48,7 +49,7 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class PermissionsUserStore<TUser, TContext> : PermissionsUserStore<TUser, TContext, string>
-		where TUser : PermissionsIdentityUser<string>
+		where TUser : PermissionsUser
 		where TContext : DbContext
 	{
 		/// <summary>
@@ -69,7 +70,7 @@
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
 	public class PermissionsUserStore<TUser, TContext, TKey> : PermissionsUserStoreBase<TUser, TKey>
-		where TUser : PermissionsIdentityUser<TKey>
+		where TUser : PermissionsUser<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{

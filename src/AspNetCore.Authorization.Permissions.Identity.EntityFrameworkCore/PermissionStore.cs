@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
@@ -16,8 +17,8 @@
 	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
-		where TPermission : PermissionsIdentityPermission<string>
-		where TRole : PermissionsIdentityRole<string>
+		where TPermission : PermissionsPermission
+		where TRole : PermissionsRole
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
@@ -38,8 +39,8 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext> : PermissionStore<TPermission, TRole, TContext, string>
-		where TPermission : PermissionsIdentityPermission<string>
-		where TRole : PermissionsIdentityRole<string>
+		where TPermission : PermissionsPermission
+		where TRole : PermissionsRole
 		where TContext : DbContext
 	{
 		/// <summary>
@@ -61,11 +62,11 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
 	[PublicAPI]
-	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, IdentityRolePermission<TKey>>
-		where TPermission : PermissionsIdentityPermission<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
-		where TKey : IEquatable<TKey>
+	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, PermissionsRolePermission<TKey>>
+		where TPermission : PermissionsPermission<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
+		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TRole, TContext, TKey}" />.
@@ -90,11 +91,11 @@
 	public class PermissionStore<TPermission, TRole, TContext, TKey, TRolePermission> : PermissionStoreBase<TPermission, TRole, TKey, TRolePermission>,
 		IQueryablePermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
-		where TPermission : PermissionsIdentityPermission<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+		where TPermission : PermissionsPermission<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
-		where TRolePermission : IdentityRolePermission<TKey>, new()
+		where TRolePermission : PermissionsRolePermission<TKey>, new()
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TContext, TKey, TRolePermission}" />.

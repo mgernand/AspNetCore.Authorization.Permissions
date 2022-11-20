@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -17,7 +18,7 @@
 		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider(this IdentityBuilder builder)
 		{
-			return builder.AddIdentityClaimsProvider<PermissionsIdentityUser, PermissionsIdentityPermission, PermissionsIdentityTenant>();
+			return builder.AddIdentityClaimsProvider<PermissionsUser, PermissionsPermission, PermissionsTenant>();
 		}
 
 		/// <summary>
@@ -28,7 +29,7 @@
 		public static IdentityBuilder AddIdentityClaimsProvider<TUser>(this IdentityBuilder builder)
 			where TUser : class, IUser
 		{
-			return builder.AddIdentityClaimsProvider<TUser, PermissionsIdentityPermission, PermissionsIdentityTenant>();
+			return builder.AddIdentityClaimsProvider<TUser, PermissionsPermission, PermissionsTenant>();
 		}
 
 		/// <summary>
@@ -40,7 +41,7 @@
 			where TUser : class, IUser
 			where TPermission : class, IPermission
 		{
-			return builder.AddIdentityClaimsProvider<TUser, TPermission, PermissionsIdentityTenant>();
+			return builder.AddIdentityClaimsProvider<TUser, TPermission, PermissionsTenant>();
 		}
 
 		/// <summary>

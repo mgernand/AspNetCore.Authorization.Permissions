@@ -6,15 +6,16 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
 	/// <summary>
 	///     Represents a new instance of a persistence store for tenants, using the default implementation
-	///     of <see cref="PermissionsIdentityUser{TKey}" /> with a string as a primary key.
+	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class TenantStore : TenantStore<PermissionsIdentityTenant<string>>
+	public class TenantStore : TenantStore<PermissionsTenant>
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -28,8 +29,8 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
 	[PublicAPI]
-	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsIdentityRole, DbContext, string>
-		where TTenant : PermissionsIdentityTenant<string>, new()
+	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsRole, DbContext, string>
+		where TTenant : PermissionsTenant<string>, new()
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -46,8 +47,8 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext> : TenantStore<TTenant, TRole, TContext, string>
-		where TTenant : PermissionsIdentityTenant<string>
-		where TRole : PermissionsIdentityRole<string>
+		where TTenant : PermissionsTenant
+		where TRole : PermissionsRole
 		where TContext : DbContext
 	{
 		/// <inheritdoc />
@@ -65,9 +66,9 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
-	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, IdentityTenantRole<TKey>>
-		where TTenant : PermissionsIdentityTenant<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, PermissionsTenantRole<TKey>>
+		where TTenant : PermissionsTenant<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{
@@ -89,11 +90,11 @@
 	[PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey, TTenantRole> : TenantStoreBase<TTenant, TRole, TKey, TTenantRole>,
 		IQueryableTenantStore<TTenant>
-		where TTenant : PermissionsIdentityTenant<TKey>
-		where TRole : PermissionsIdentityRole<TKey>
+		where TTenant : PermissionsTenant<TKey>
+		where TRole : PermissionsRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
-		where TTenantRole : IdentityTenantRole<TKey>, new()
+		where TTenantRole : PermissionsTenantRole<TKey>, new()
 	{
 		/// <inheritdoc />
 		public TenantStore(TContext context, IdentityErrorDescriber describer = null)

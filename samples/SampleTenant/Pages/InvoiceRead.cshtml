@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach(Invoice invoice in Model.Context.Invoices)
+        @foreach(Invoice invoice in Model.Context.Set<Invoice>())
         {
             <tr scope="row">
                 <td>@invoice.Id.ToString("N")</td>

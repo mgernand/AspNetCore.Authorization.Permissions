@@ -22,11 +22,7 @@ builder.Services
 	.AddIdentityCookies();
 
 builder.Services
-	.AddDbContext<ApplicationDbContext>(options =>
-	{
-		options.UseSqlite("Filename=permissions.db");
-	})
-	.AddDbContext<InvoicesDbContext>(options =>
+	.AddDbContext<InvoicesContext>(options =>
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
@@ -42,7 +38,7 @@ builder.Services
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
 	.AddIdentityClaimsProvider()
-	.AddPermissionsEntityFrameworkStores<ApplicationDbContext, HttpContextUserTenantProvider>();
+	.AddPermissionsEntityFrameworkStores<InvoicesContext, HttpContextUserTenantProvider>();
 
 WebApplication app = builder.Build();
 
