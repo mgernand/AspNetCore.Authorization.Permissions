@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
 	///     A default tenant implementation that used a string as type for the ID.
@@ -22,11 +23,13 @@
 		/// <summary>
 		///     Gets or sets the primary key for this user.
 		/// </summary>
+		[PersonalData]
 		public virtual TKey Id { get; set; }
 
 		/// <summary>
 		///     Gets or sets the name of the tenant.
 		/// </summary>
+		[ProtectedPersonalData]
 		public virtual string Name { get; set; }
 
 		/// <summary>
@@ -37,6 +40,7 @@
 		/// <summary>
 		///     Gets or sets the display name of the tenant.
 		/// </summary>
+		[ProtectedPersonalData]
 		public virtual string DisplayName { get; set; }
 
 		/// <summary>
@@ -50,13 +54,15 @@
 		public bool IsHierarchical { get; set; }
 
 		/// <summary>
-		///     Flag, indicating if the tenant's data is store in a separatem database.
+		///     Flag, indicating if the tenant's data is store in a separate database.
 		/// </summary>
+		[PersonalData]
 		public bool HasSeparateDatabase { get; set; }
 
 		/// <summary>
 		///     Gets or sets the name of the database where the tenant's data is stored.
 		/// </summary>
+		[ProtectedPersonalData]
 		public string DatabaseName { get; set; }
 
 		/// <summary>
@@ -65,7 +71,7 @@
 		/// <returns>The name of the tenant.</returns>
 		public override string ToString()
 		{
-			return this.Name;
+			return this.Name ?? string.Empty;
 		}
 	}
 }

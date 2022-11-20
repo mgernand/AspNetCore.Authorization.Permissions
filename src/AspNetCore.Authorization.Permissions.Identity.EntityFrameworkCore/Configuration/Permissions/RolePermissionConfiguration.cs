@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration.Permissions
 {
 	using System;
 	using JetBrains.Annotations;
@@ -17,11 +17,11 @@
 	}
 
 	/// <summary>
-    ///     An entity type configuration.
-    /// </summary>
-    /// <typeparam name="TRolePermission"></typeparam>
-    /// <typeparam name="TKey"></typeparam>
-    [PublicAPI]
+	///     An entity type configuration.
+	/// </summary>
+	/// <typeparam name="TRolePermission"></typeparam>
+	/// <typeparam name="TKey"></typeparam>
+	[PublicAPI]
 	public class RolePermissionConfiguration<TRolePermission, TKey> : IEntityTypeConfiguration<TRolePermission>
 		where TRolePermission : PermissionsRolePermission<TKey>
 		where TKey : IEquatable<TKey>
@@ -32,7 +32,7 @@
 		public string Table { get; init; } = "AspNetRolePermissions";
 
 		/// <inheritdoc />
-		public void Configure(EntityTypeBuilder<TRolePermission> builder)
+		public virtual void Configure(EntityTypeBuilder<TRolePermission> builder)
 		{
 			builder.ToTable(this.Table);
 

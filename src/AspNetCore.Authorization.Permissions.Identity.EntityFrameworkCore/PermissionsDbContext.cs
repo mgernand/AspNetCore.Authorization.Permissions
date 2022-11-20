@@ -2,30 +2,28 @@
 {
 	using System;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
 
 	/// <summary>
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>
+	public class PermissionsDbContext : PermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>
 	{
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityDbContext" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityDbContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public IdentityPermissionsDbContext(DbContextOptions options) : base(options)
+		public PermissionsDbContext(DbContextOptions options) : base(options)
 		{
 		}
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="IdentityDbContext" /> class.
+		///     Initializes a new instance of the <see cref="PermissionsIdentityDbContext" /> class.
 		/// </summary>
-		protected IdentityPermissionsDbContext()
+		protected PermissionsDbContext()
 		{
 		}
 	}
@@ -36,22 +34,22 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TPermission, TTenant> : IdentityPermissionsDbContext<PermissionsUser, PermissionsRole, TPermission, TTenant, string>
+	public class PermissionsDbContext<TPermission, TTenant> : PermissionsDbContext<PermissionsUser, PermissionsRole, TPermission, TTenant, string>
 		where TPermission : PermissionsPermission
 		where TTenant : PermissionsTenant
 	{
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityDbContext" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityDbContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public IdentityPermissionsDbContext(DbContextOptions options) : base(options)
+		public PermissionsDbContext(DbContextOptions options) : base(options)
 		{
 		}
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="IdentityDbContext" /> class.
+		///     Initializes a new instance of the <see cref="PermissionsIdentityDbContext" /> class.
 		/// </summary>
-		protected IdentityPermissionsDbContext()
+		protected PermissionsDbContext()
 		{
 		}
 	}
@@ -63,23 +61,23 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TUser, TPermission, TTenant> : IdentityPermissionsDbContext<TUser, PermissionsRole, TPermission, TTenant, string>
+	public class PermissionsDbContext<TUser, TPermission, TTenant> : PermissionsDbContext<TUser, PermissionsRole, TPermission, TTenant, string>
 		where TUser : PermissionsUser
 		where TPermission : PermissionsPermission
 		where TTenant : PermissionsTenant
 	{
 		/// <summary>
-		///     Initializes a new instance of <see cref="IdentityDbContext" />.
+		///     Initializes a new instance of <see cref="PermissionsIdentityDbContext" />.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public IdentityPermissionsDbContext(DbContextOptions options) : base(options)
+		public PermissionsDbContext(DbContextOptions options) : base(options)
 		{
 		}
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="IdentityDbContext" /> class.
+		///     Initializes a new instance of the <see cref="PermissionsIdentityDbContext" /> class.
 		/// </summary>
-		protected IdentityPermissionsDbContext()
+		protected PermissionsDbContext()
 		{
 		}
 	}
@@ -93,7 +91,7 @@
 	/// <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
 	/// <typeparam name="TPermission"></typeparam>
 	[PublicAPI]
-	public class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>
+	public class PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TPermission : PermissionsPermission<TKey>
@@ -104,14 +102,14 @@
 		///     Initializes a new instance of the db context.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		public IdentityPermissionsDbContext(DbContextOptions options) : base(options)
+		public PermissionsDbContext(DbContextOptions options) : base(options)
 		{
 		}
 
 		/// <summary>
 		///     Initializes a new instance of the class.
 		/// </summary>
-		protected IdentityPermissionsDbContext()
+		protected PermissionsDbContext()
 		{
 		}
 	}
@@ -132,8 +130,7 @@
 	/// <typeparam name="TRolePermission">The type of the role permission object.</typeparam>
 	/// <typeparam name="TTenantRole">The type of the tenant role object.</typeparam>
 	[PublicAPI]
-	public abstract class IdentityPermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>
-		: IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+	public abstract class PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole> : PermissionsIdentityDbContext
 		where TUser : PermissionsUser<TKey>
 		where TRole : PermissionsRole<TKey>
 		where TPermission : PermissionsPermission<TKey>
@@ -151,14 +148,14 @@
 		///     Initializes a new instance of the class.
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
-		protected IdentityPermissionsDbContext(DbContextOptions options) : base(options)
+		protected PermissionsDbContext(DbContextOptions options) : base(options)
 		{
 		}
 
 		/// <summary>
 		///     Initializes a new instance of the class.
 		/// </summary>
-		protected IdentityPermissionsDbContext()
+		protected PermissionsDbContext()
 		{
 		}
 
@@ -182,11 +179,7 @@
 		{
 			base.OnModelCreating(builder);
 
-			builder.ApplyConfiguration(new PermissionConfiguration<TPermission, TRolePermission, TKey>());
-			builder.ApplyConfiguration(new RolePermissionConfiguration<TRolePermission, TKey>());
-			builder.ApplyConfiguration(new UserConfiguration<TUser, TTenant, TKey>());
-			builder.ApplyConfiguration(new TenantConfiguration<TTenant, TKey>());
-			builder.ApplyConfiguration(new TenantRoleConfiguration<TTenantRole, TKey>());
+			builder.ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this);
 		}
 	}
 }

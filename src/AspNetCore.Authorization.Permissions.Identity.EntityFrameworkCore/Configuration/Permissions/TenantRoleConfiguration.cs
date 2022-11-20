@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration.Permissions
 {
 	using System;
 	using JetBrains.Annotations;
@@ -32,7 +32,7 @@
 		public string Table { get; init; } = "AspNetTenantRoles";
 
 		/// <inheritdoc />
-		public void Configure(EntityTypeBuilder<TTenantRole> builder)
+		public virtual void Configure(EntityTypeBuilder<TTenantRole> builder)
 		{
 			builder.ToTable(this.Table);
 

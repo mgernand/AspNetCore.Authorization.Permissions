@@ -6,7 +6,7 @@
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
-	public class ApplicationDbContext : IdentityPermissionsDbContext
+	public class ApplicationDbContext : PermissionsDbContext
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="ApplicationDbContext" />.

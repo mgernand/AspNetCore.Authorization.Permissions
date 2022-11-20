@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration.Permissions
 {
 	using System;
 	using JetBrains.Annotations;
@@ -17,14 +17,14 @@
 		where TRolePermission : PermissionsRolePermission<string>
 	{
 	}
-	
+
 	/// <summary>
-        ///     An entity type configuration.
-        /// </summary>
-        /// <typeparam name="TPermission"></typeparam>
-        /// <typeparam name="TRolePermission"></typeparam>
-        /// <typeparam name="TKey"></typeparam>
-        [PublicAPI]
+	///     An entity type configuration.
+	/// </summary>
+	/// <typeparam name="TPermission"></typeparam>
+	/// <typeparam name="TRolePermission"></typeparam>
+	/// <typeparam name="TKey"></typeparam>
+	[PublicAPI]
 	public class PermissionConfiguration<TPermission, TRolePermission, TKey> : IEntityTypeConfiguration<TPermission>
 		where TPermission : PermissionsPermission<TKey>
 		where TRolePermission : PermissionsRolePermission<TKey>
@@ -35,16 +35,27 @@
 		/// </summary>
 		public string Table { get; init; } = "AspNetPermissions";
 
+		/// <summary>
+		///     Specifies the maximum length.
+		/// </summary>
+		/// <remarks>The default is 256. Only applied if greater than 0.</remarks>
+		public int MaxKeyLength { get; init; } = 256;
+
 		/// <inheritdoc />
-		public void Configure(EntityTypeBuilder<TPermission> builder)
+		public virtual void Configure(EntityTypeBuilder<TPermission> builder)
 		{
 			builder.ToTable(this.Table);
 
 			builder.HasKey(x => x.Id);
 			builder.HasIndex(x => x.NormalizedName).HasDatabaseName("PermissionNameIndex").IsUnique();
+
 			builder.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
-			builder.Property(x => x.Name).HasMaxLength(256);
-			builder.Property(x => x.NormalizedName).HasMaxLength(256);
+
+			if(this.MaxKeyLength > 0)
+			{
+				builder.Property(x => x.Name).HasMaxLength(this.MaxKeyLength);
+				builder.Property(x => x.NormalizedName).HasMaxLength(this.MaxKeyLength);
+			}
 
 			builder.HasMany<TRolePermission>().WithOne().HasForeignKey(x => x.PermissionId).IsRequired();
 		}

@@ -82,7 +82,7 @@
 			Type tenantsStoreType;
 			Type tenantUsersStoreType;
 
-			Type identityContext = FindGenericBaseType(contextType, typeof(IdentityPermissionsDbContext<,,,,,,,,,,,>));
+			Type identityContext = FindGenericBaseType(contextType, typeof(PermissionsDbContext<,,,,,,,,,,,>));
 			if(identityContext == null)
 			{
 				// If its a custom DbContext, we can only add the default POCOs

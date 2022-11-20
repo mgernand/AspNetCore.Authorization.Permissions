@@ -45,7 +45,7 @@
 		/// <returns>The name of the permission.</returns>
 		public override string ToString()
 		{
-			return this.Name;
+			return this.Name ?? string.Empty;
 		}
 	}
 }
