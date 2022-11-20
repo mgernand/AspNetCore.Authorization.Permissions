@@ -1,11 +1,11 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.DependencyInjection;
+	using System;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.Extensions.DependencyInjection;
 
-    /// <summary>
+	/// <summary>
 	///     Extension methods for the <see cref="IServiceCollection" /> type.
 	/// </summary>
 	[PublicAPI]

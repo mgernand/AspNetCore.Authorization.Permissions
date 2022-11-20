@@ -1,9 +1,9 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System;
-    using JetBrains.Annotations;
+	using System;
+	using JetBrains.Annotations;
 
-    /// <summary>
+	/// <summary>
 	///     A contract for an implementation that represents a user in the identity system.
 	/// </summary>
 	[PublicAPI]

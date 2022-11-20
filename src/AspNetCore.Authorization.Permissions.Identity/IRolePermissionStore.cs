@@ -1,10 +1,10 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
+	using System.Collections.Generic;
+	using System.Threading;
+	using System.Threading.Tasks;
 
-    /// <summary>
+	/// <summary>
 	///     Provides an abstraction for a store which maps permissions to roles.
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>

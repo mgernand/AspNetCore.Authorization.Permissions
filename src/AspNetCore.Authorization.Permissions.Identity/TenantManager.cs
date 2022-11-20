@@ -1,16 +1,16 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Security.Claims;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.Logging;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Security.Claims;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.Extensions.Logging;
 
-    /// <summary>
+	/// <summary>
 	///     Provides the APIs for managing tenants in a persistence store.
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>

@@ -1,8 +1,8 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 {
-    using JetBrains.Annotations;
+	using JetBrains.Annotations;
 
-    /// <summary>
+	/// <summary>
 	///     The available user claim types.
 	/// </summary>
 	[PublicAPI]

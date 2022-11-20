@@ -1,5 +1,5 @@
 ﻿@page
-@using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions
+@using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 @model InvoicesModel
 
 @{
@@ -8,30 +8,30 @@
 
 <div class="text-center">
     <h1 class="display-4">Invoices</h1>
-	<p>
-		@if(ClaimsPrincipalExtensions.HasPermission(this.User, "Invoice.Read"))
-		{
-			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceRead">Invoice.Read</a>
-		}
-		
-		@if(ClaimsPrincipalExtensions.HasPermission(this.User, "Invoice.Write"))
-		{
-			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceWrite">Invoice.Write</a>
-		}
-		
-		@if(ClaimsPrincipalExtensions.HasPermission(this.User, "Invoice.Delete"))
-		{
-			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceDelete">Invoice.Delete</a>
-		}
-		
-		@if(ClaimsPrincipalExtensions.HasPermission(this.User, "Invoice.Send"))
-		{
-			<a class="nav-link text-dark" asp-area="" asp-page="/InvoiceSend">Invoice.Send</a>
-		}
-		
-		@if(ClaimsPrincipalExtensions.HasPermission(this.User, "Invoice.Payment"))
-		{
-			<a class="nav-link text-dark" asp-area="" asp-page="/InvoicePayment">Invoice.Payment</a>
-		}
-	</p>
+    <p>
+        @if(User.HasPermission("Invoice.Read"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceRead">Invoice.Read</a>
+        }
+
+        @if(User.HasPermission("Invoice.Write"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceWrite">Invoice.Write</a>
+        }
+
+        @if(User.HasPermission("Invoice.Delete"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceDelete">Invoice.Delete</a>
+        }
+
+        @if(User.HasPermission("Invoice.Send"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceSend">Invoice.Send</a>
+        }
+
+        @if(User.HasPermission("Invoice.Payment"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoicePayment">Invoice.Payment</a>
+        }
+    </p>
 </div>

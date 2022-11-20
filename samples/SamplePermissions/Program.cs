@@ -1,10 +1,11 @@
+using MadEyeMatt.AspNetCore.Authorization.Permissions;
+using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity;
+using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SamplePermissions;
-using IdentityBuilderExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.IdentityBuilderExtensions;
-using ServiceCollectionExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.ServiceCollectionExtensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -14,31 +15,34 @@ builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 builder.Services.AddAuthorization();
-ServiceCollectionExtensions.AddPermissionsAuthorization(builder.Services);
+builder.Services.AddPermissionsAuthorization();
 
 builder.Services
 	.AddAuthentication(IdentityConstants.ApplicationScheme)
 	.AddIdentityCookies();
 
-MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.IdentityBuilderExtensions.AddPermissionsEntityFrameworkStores<ApplicationDbContext>(IdentityBuilderExtensions.AddIdentityClaimsProvider(MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.ServiceCollectionExtensions.AddPermissionsIdentity(builder.Services
-            .AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlite("Filename=permissions.db");
-            })
-            .AddDbContext<InvoicesDbContext>(options =>
-            {
-                options.UseSqlite("Filename=permissions.db");
-            }), options =>
-        {
-            options.Password.RequireDigit = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequiredLength = 99;
-            options.Password.RequiredUniqueChars = 0;
-        })
-        .AddDefaultUI()
-        .AddDefaultTokenProviders()));
+builder.Services
+	.AddDbContext<ApplicationDbContext>(options =>
+	{
+		options.UseSqlite("Filename=permissions.db");
+	})
+	.AddDbContext<InvoicesDbContext>(options =>
+	{
+		options.UseSqlite("Filename=permissions.db");
+	})
+	.AddPermissionsIdentity(options =>
+	{
+		options.Password.RequireDigit = false;
+		options.Password.RequireLowercase = false;
+		options.Password.RequireNonAlphanumeric = false;
+		options.Password.RequireUppercase = false;
+		options.Password.RequiredLength = 6;
+		options.Password.RequiredUniqueChars = 0;
+	})
+	.AddDefaultUI()
+	.AddDefaultTokenProviders()
+	.AddIdentityClaimsProvider()
+	.AddPermissionsEntityFrameworkStores<ApplicationDbContext>();
 
 WebApplication app = builder.Build();
 

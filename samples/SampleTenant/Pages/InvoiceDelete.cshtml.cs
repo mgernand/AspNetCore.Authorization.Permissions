@@ -2,12 +2,12 @@
 {
 	using System;
 	using System.Linq;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 	using SampleTenant.Model;
-    using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions;
 
-    [MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.Delete")]
+	[MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.Delete")]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;
@@ -36,10 +36,10 @@
 
 		public string GetTenantName(string tenantId)
 		{
-			string id = ClaimsPrincipalExtensions.GetTenantId(this.User);
+			string id = this.User.GetTenantId();
 			if(id == tenantId)
 			{
-				return ClaimsPrincipalExtensions.GetTenantName(this.User);
+				return this.User.GetTenantName();
 			}
 
 			return string.Empty;
