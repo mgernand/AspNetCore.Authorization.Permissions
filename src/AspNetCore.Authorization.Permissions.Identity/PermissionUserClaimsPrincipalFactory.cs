@@ -5,6 +5,7 @@
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.Options;
 
@@ -34,7 +35,7 @@
 		protected override async Task<ClaimsIdentity> GenerateClaimsAsync(TUser user)
 		{
 			ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
-			string userId = identity.Claims.GetUserId();
+			string userId = ClaimsEnumerableExtensions.GetUserId(identity.Claims);
 			IReadOnlyCollection<Claim> claims = await this.claimsProvider.GetPermissionClaimsForUserAsync(userId);
 			identity.AddClaims(claims);
 

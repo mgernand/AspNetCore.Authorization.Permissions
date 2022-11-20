@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
@@ -180,46 +181,11 @@
 		{
 			base.OnModelCreating(builder);
 
-			builder.Entity<TPermission>(entity =>
-			{
-				entity.HasKey(x => x.Id);
-				entity.HasIndex(x => x.NormalizedName).HasDatabaseName("PermissionNameIndex").IsUnique();
-				entity.ToTable("AspNetPermissions");
-				entity.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
-
-				entity.Property(x => x.Name).HasMaxLength(256);
-				entity.Property(x => x.NormalizedName).HasMaxLength(256);
-
-				entity.HasMany<TRolePermission>().WithOne().HasForeignKey(x => x.PermissionId).IsRequired();
-			});
-
-			builder.Entity<TRolePermission>(entity =>
-			{
-				entity.HasKey(x => new { x.RoleId, x.PermissionId });
-				entity.ToTable("AspNetRolePermissions");
-			});
-
-			builder.Entity<TUser>(entity =>
-			{
-				entity.HasOne<TTenant>().WithMany().HasForeignKey(x => x.TenantId);
-			});
-
-			builder.Entity<TTenant>(entity =>
-			{
-				entity.HasKey(x => x.Id);
-				entity.HasIndex(x => x.NormalizedName).HasDatabaseName("TenantNameIndex").IsUnique();
-				entity.ToTable("AspNetTenants");
-				entity.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
-
-				entity.Property(x => x.Name).HasMaxLength(256);
-				entity.Property(x => x.NormalizedName).HasMaxLength(256);
-			});
-
-			builder.Entity<TTenantRole>(entity =>
-			{
-				entity.HasKey(x => new { x.TenantId, x.RoleId });
-				entity.ToTable("AspNetTenantRoles");
-			});
+			builder.ApplyConfiguration(new PermissionConfiguration<TPermission, TRolePermission, TKey>());
+			builder.ApplyConfiguration(new RolePermissionConfiguration<TRolePermission, TKey>());
+			builder.ApplyConfiguration(new UserConfiguration<TUser, TTenant, TKey>());
+			builder.ApplyConfiguration(new TenantConfiguration<TTenant, TKey>());
+			builder.ApplyConfiguration(new TenantRoleConfiguration<TTenantRole, TKey>());
 		}
 	}
 }

@@ -4,6 +4,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 
 	/// <summary>
 	///     Provides an abstraction for a store which manages tenant user accounts.

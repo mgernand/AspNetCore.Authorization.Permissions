@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 
 	/// <summary>
 	///     A default tenant implementation that used a string as type for the ID.

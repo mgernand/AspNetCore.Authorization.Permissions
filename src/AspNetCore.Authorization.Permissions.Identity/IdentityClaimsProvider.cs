@@ -5,6 +5,7 @@
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 
 	[PublicAPI]
 	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
