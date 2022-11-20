@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.Logging;
 
