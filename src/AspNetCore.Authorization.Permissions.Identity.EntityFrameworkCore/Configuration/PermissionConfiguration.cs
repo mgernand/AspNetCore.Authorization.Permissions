@@ -11,8 +11,20 @@
 	/// </summary>
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TRolePermission"></typeparam>
-	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
+	public class PermissionConfiguration<TPermission, TRolePermission> : PermissionConfiguration<TPermission, TRolePermission, string>
+		where TPermission : PermissionsPermission<string>
+		where TRolePermission : PermissionsRolePermission<string>
+	{
+	}
+	
+	/// <summary>
+        ///     An entity type configuration.
+        /// </summary>
+        /// <typeparam name="TPermission"></typeparam>
+        /// <typeparam name="TRolePermission"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        [PublicAPI]
 	public class PermissionConfiguration<TPermission, TRolePermission, TKey> : IEntityTypeConfiguration<TPermission>
 		where TPermission : PermissionsPermission<TKey>
 		where TRolePermission : PermissionsRolePermission<TKey>

@@ -10,6 +10,16 @@
 	///     An entity type configuration.
 	/// </summary>
 	/// <typeparam name="TTenant"></typeparam>
+	[PublicAPI]
+	public class TenantConfiguration<TTenant> : TenantConfiguration<TTenant, string>
+		where TTenant : PermissionsTenant<string>
+	{
+	}
+
+	/// <summary>
+	///     An entity type configuration.
+	/// </summary>
+	/// <typeparam name="TTenant"></typeparam>
 	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
 	public class TenantConfiguration<TTenant, TKey> : IEntityTypeConfiguration<TTenant>

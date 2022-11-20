@@ -10,8 +10,18 @@
 	///     An entity type configuration.
 	/// </summary>
 	/// <typeparam name="TRolePermission"></typeparam>
-	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
+	public class RolePermissionConfiguration<TRolePermission> : RolePermissionConfiguration<TRolePermission, string>
+		where TRolePermission : PermissionsRolePermission<string>
+	{
+	}
+
+	/// <summary>
+    ///     An entity type configuration.
+    /// </summary>
+    /// <typeparam name="TRolePermission"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    [PublicAPI]
 	public class RolePermissionConfiguration<TRolePermission, TKey> : IEntityTypeConfiguration<TRolePermission>
 		where TRolePermission : PermissionsRolePermission<TKey>
 		where TKey : IEquatable<TKey>

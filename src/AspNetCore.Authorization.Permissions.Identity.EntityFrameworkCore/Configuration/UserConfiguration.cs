@@ -11,6 +11,18 @@
 	/// </summary>
 	/// <typeparam name="TUser"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
+	[PublicAPI]
+	public class UserConfiguration<TUser, TTenant> : UserConfiguration<TUser, TTenant, string>
+		where TUser : PermissionsUser<string>
+		where TTenant : PermissionsTenant<string>
+	{
+	}
+
+	/// <summary>
+	///     An entity type configuration.
+	/// </summary>
+	/// <typeparam name="TUser"></typeparam>
+	/// <typeparam name="TTenant"></typeparam>
 	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
 	public class UserConfiguration<TUser, TTenant, TKey> : IEntityTypeConfiguration<TUser>
