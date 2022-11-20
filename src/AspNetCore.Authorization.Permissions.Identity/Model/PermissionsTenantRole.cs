@@ -4,6 +4,14 @@
 	using JetBrains.Annotations;
 
 	/// <summary>
+	///     Represents the link between a tenant and a role that uses a string as type for the keys.
+	/// </summary>
+	[PublicAPI]
+	public class PermissionsTenantRole : PermissionsTenantRole<string>
+	{
+	}
+
+	/// <summary>
 	///     Represents the link between a tenant and a role.
 	/// </summary>
 	/// <typeparam name="TKey">The type of the primary key used for tenant and roles.</typeparam>

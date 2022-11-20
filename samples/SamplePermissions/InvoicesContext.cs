@@ -133,80 +133,73 @@
 				});
 			});
 
-			builder.Entity<IdentityUserRole<string>>(entity =>
+			builder.Entity<IdentityUserRole>(entity =>
 			{
 				// Boss
-				entity.HasData(new IdentityUserRole<string>
+				entity.HasData(new IdentityUserRole
 				{
 					UserId = "a0f112af-5e39-4b3f-bc50-015591861ec0",
 					RoleId = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483"
 				});
 
 				// Manager
-				entity.HasData(new IdentityUserRole<string>
+				entity.HasData(new IdentityUserRole
 				{
 					UserId = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297"
 				});
 
 				// Employee
-				entity.HasData(new IdentityUserRole<string>
+				entity.HasData(new IdentityUserRole
 				{
 					UserId = "04517a45-d6f5-4993-888b-04c924902b3a",
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2"
 				});
 			});
 
-			builder.Entity<PermissionsRolePermission<string>>(entity =>
+			builder.Entity<PermissionsRolePermission>(entity =>
 			{
 				// Boss role permissions
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
 
 				// Manager role permissions
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					PermissionId = "e123b8c0-0646-4075-b73e-07ca9d611c8e"
 				});
 
 				// Employee role permissions
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "5b9c4926-3dc6-447c-a092-addab890a15f"
 				});
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "be5b92e5-c6c6-480b-b235-d4df402a73cc"
 				});
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2"
 				});
-				entity.HasData(new PermissionsRolePermission<string>
+				entity.HasData(new PermissionsRolePermission
 				{
 					RoleId = "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2",
 					PermissionId = "ef54d62d-a36b-4ab3-b868-f170c0054fac"
 				});
 			});
-
-			builder.Entity<PermissionsTenant<string>>(entity => entity.ToTable("Tenants"));
-			builder.Entity<IdentityUserClaim<string>>(entity => entity.ToTable("UserClaims"));
-			builder.Entity<IdentityUserLogin<string>>(entity => entity.ToTable("UserLogins"));
-			builder.Entity<IdentityRoleClaim<string>>(entity => entity.ToTable("RoleClaims"));
-			builder.Entity<IdentityUserToken<string>>(entity => entity.ToTable("UserTokens"));
-			builder.Entity<PermissionsTenantRole<string>>(entity => entity.ToTable("TenantRoles"));
 		}
 	}
 }

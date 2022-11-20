@@ -3,6 +3,15 @@
 	using System;
 	using JetBrains.Annotations;
 
+
+	/// <summary>
+	///     Represents the link between a role and a permission that uses a string as type for the keys.
+	/// </summary>
+	[PublicAPI]
+	public class PermissionsRolePermission : PermissionsRolePermission<string>
+	{
+	}
+
 	/// <summary>
 	///     Represents the link between a role and a permission.
 	/// </summary>
