@@ -2,11 +2,11 @@
 {
 	using System.Collections.Generic;
 	using System.Security.Claims;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using FluentAssertions;
+    using FluentAssertions;
 	using NUnit.Framework;
+    using ClaimsEnumerableExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsEnumerableExtensions;
 
-	[TestFixture]
+    [TestFixture]
 	public class ClaimsEnumerableExtensionsTests
 	{
 		[Test]
@@ -14,12 +14,12 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			IReadOnlyCollection<string> result = principal.Claims.GetPermissions();
+			IReadOnlyCollection<string> result = ClaimsEnumerableExtensions.GetPermissions(principal.Claims);
 			result.Should().NotBeNullOrEmpty()
 				.And.Contain("Invoices.Read")
 				.And.Contain("Invoices.Write")
@@ -31,18 +31,18 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.TenantIdClaimType, "12345678"),
-				new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
-				new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantIdClaimType, "12345678"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 			}));
 
-			string tenantId = principal.Claims.GetTenantId();
+			string tenantId = ClaimsEnumerableExtensions.GetTenantId(principal.Claims);
 			tenantId.Should().NotBeNull().And.Be("12345678");
 
-			string tenantName = principal.Claims.GetTenantName();
+			string tenantName = ClaimsEnumerableExtensions.GetTenantName(principal.Claims);
 			tenantName.Should().NotBeNull().And.Be("test-tenant");
 
-			string tenantDisplayName = principal.Claims.GetTenantDisplayName();
+			string tenantDisplayName = ClaimsEnumerableExtensions.GetTenantDisplayName(principal.Claims);
 			tenantDisplayName.Should().NotBeNull().And.Be("Test Tenant Inc.");
 		}
 
@@ -54,7 +54,7 @@
 				new Claim(ClaimTypes.NameIdentifier, "123456")
 			}));
 
-			string result = principal.Claims.GetUserId();
+			string result = ClaimsEnumerableExtensions.GetUserId(principal.Claims);
 
 			result.Should().NotBeNull().And.Be("123456");
 		}
@@ -64,12 +64,12 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.Claims.HasPermission("Invoices.Write".ToLowerInvariant());
+			bool result = ClaimsEnumerableExtensions.HasPermission(principal.Claims, "Invoices.Write".ToLowerInvariant());
 			result.Should().BeTrue();
 		}
 
@@ -78,12 +78,12 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.Claims.HasPermission("invOiCeS.wriTe");
+			bool result = ClaimsEnumerableExtensions.HasPermission(principal.Claims, "invOiCeS.wriTe");
 			result.Should().BeTrue();
 		}
 
@@ -92,12 +92,12 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.Claims.HasPermission("Invoices.Write");
+			bool result = ClaimsEnumerableExtensions.HasPermission(principal.Claims, "Invoices.Write");
 			result.Should().BeTrue();
 		}
 
@@ -107,12 +107,12 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
 			{
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-				new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+				new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 			}));
 
-			bool result = principal.Claims.HasPermission("Invoices.Write".ToUpperInvariant());
+			bool result = ClaimsEnumerableExtensions.HasPermission(principal.Claims, "Invoices.Write".ToUpperInvariant());
 			result.Should().BeTrue();
 		}
 
@@ -121,7 +121,7 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity());
 
-			string result = principal.Claims.GetUserId();
+			string result = ClaimsEnumerableExtensions.GetUserId(principal.Claims);
 
 			result.Should().BeNull();
 		}
@@ -131,7 +131,7 @@
 		{
 			ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity());
 
-			string result = principal.Claims.GetTenantName();
+			string result = ClaimsEnumerableExtensions.GetTenantName(principal.Claims);
 
 			result.Should().BeNull();
 		}

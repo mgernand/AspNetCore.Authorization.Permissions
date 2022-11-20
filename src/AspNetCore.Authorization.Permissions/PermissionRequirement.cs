@@ -1,9 +1,9 @@
-﻿namespace AspNetCore.Authorization.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-	using System;
-	using Microsoft.AspNetCore.Authorization;
+    using System;
+    using Microsoft.AspNetCore.Authorization;
 
-	internal sealed class PermissionRequirement : IAuthorizationRequirement
+    internal sealed class PermissionRequirement : IAuthorizationRequirement
 	{
 		/// <summary>
 		///     Creates a new instance of the <see cref="PermissionRequirement" /> type.

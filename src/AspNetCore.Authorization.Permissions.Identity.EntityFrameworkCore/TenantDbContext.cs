@@ -1,13 +1,12 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
 {
-	using System.Threading;
-	using System.Threading.Tasks;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-	using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
 
-	/// <summary>
+    /// <summary>
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
@@ -18,7 +17,7 @@
 		/// </summary>
 		/// <param name="options">The options to be used by a <see cref="DbContext" />.</param>
 		/// <param name="tenantProvider"></param>
-		protected TenantDbContext(DbContextOptions options, ITenantProvider tenantProvider)
+		protected TenantDbContext(DbContextOptions options, MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantProvider tenantProvider)
 			: base(options)
 		{
 			this.TenantProvider = tenantProvider;
@@ -34,7 +33,7 @@
 		/// <summary>
 		///     Gets the tenant provider.
 		/// </summary>
-		protected ITenantProvider TenantProvider { get; }
+		protected MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantProvider TenantProvider { get; }
 
 		/// <inheritdoc />
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)

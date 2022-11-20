@@ -1,14 +1,14 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.Extensions.Logging;
-	using Microsoft.Extensions.Options;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
 
-	/// <inheritdoc />
+    /// <inheritdoc />
 	[PublicAPI]
 	public class PermissionsUserManager<TUser> : UserManager<TUser>
 		where TUser : class, IUser

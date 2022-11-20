@@ -1,10 +1,9 @@
 ﻿namespace SampleTenant.Pages
 {
-	using AspNetCore.Authorization.Permissions;
-	using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 
-	[HasPermission("Invoice.Statistics")]
+	[MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.Statistics")]
 	public class InvoiceStatisticsModel : PageModel
 	{
 		private readonly ILogger<InvoiceStatisticsModel> logger;

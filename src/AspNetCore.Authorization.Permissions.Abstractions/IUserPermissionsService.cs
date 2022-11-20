@@ -1,10 +1,10 @@
-﻿namespace AspNetCore.Authorization.Permissions.Abstractions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 {
-	using System.Collections.Generic;
-	using System.Security.Claims;
-	using JetBrains.Annotations;
+    using System.Collections.Generic;
+    using System.Security.Claims;
+    using JetBrains.Annotations;
 
-	/// <summary>
+    /// <summary>
 	///     A contract for a service that provides the permissions of a user.
 	/// </summary>
 	[PublicAPI]

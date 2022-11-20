@@ -1,12 +1,12 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
 {
-	using System;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-	using Microsoft.EntityFrameworkCore;
+    using System;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
 
-	/// <summary>
+    /// <summary>
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]

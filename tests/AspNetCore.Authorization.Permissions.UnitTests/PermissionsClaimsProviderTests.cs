@@ -5,58 +5,59 @@
 	using System.Linq;
 	using System.Security.Claims;
 	using System.Threading.Tasks;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using FluentAssertions;
+    using FluentAssertions;
 	using Microsoft.Extensions.DependencyInjection;
 	using NUnit.Framework;
+    using ClaimsEnumerableExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsEnumerableExtensions;
+    using ServiceCollectionExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.ServiceCollectionExtensions;
 
-	[TestFixture]
+    [TestFixture]
 	public class PermissionsClaimsProviderTests
 	{
-		private class TestClaimsProvider : IClaimsProvider
+		private class TestClaimsProvider : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
 				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 				});
 			}
 		}
 
-		private class TestClaimsProviderWithDuplicatePermissions : IClaimsProvider
+		private class TestClaimsProviderWithDuplicatePermissions : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
 				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 				});
 			}
 		}
 
-		private class TestClaimsProviderWithWrongClaimType : IClaimsProvider
+		private class TestClaimsProviderWithWrongClaimType : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
 				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
 					new Claim(ClaimTypes.Role, "Invoices.Write"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send")
 				});
 			}
 		}
 
-		private class TestClaimsProviderWithNullResult : IClaimsProvider
+		private class TestClaimsProviderWithNullResult : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
@@ -65,19 +66,19 @@
 			}
 		}
 
-		private class TestClaimsProviderWithTenant : IClaimsProvider
+		private class TestClaimsProviderWithTenant : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider
 		{
 			/// <inheritdoc />
 			public Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 			{
 				return Task.FromResult<IReadOnlyCollection<Claim>>(new Claim[]
 				{
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
-					new Claim(PermissionClaimTypes.PermissionClaimType, "Invoices.Send"),
-					new Claim(PermissionClaimTypes.TenantIdClaimType, "12345678"),
-					new Claim(PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
-					new Claim(PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Read"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Write"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType, "Invoices.Send"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantIdClaimType, "12345678"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantNameClaimType, "test-tenant"),
+					new Claim(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantDisplayNameClaimType, "Test Tenant Inc.")
 				});
 			}
 		}
@@ -91,40 +92,40 @@
 		public async Task ShouldAddClaimsToPrincipal(Type claimProviderType, int expectedCount = 3, bool hasTenant = false)
 		{
 			IServiceCollection services = new ServiceCollection();
-			services.AddPermissionsAuthorization();
-			services.AddClaimsProvider(claimProviderType);
+			ServiceCollectionExtensions.AddPermissionsAuthorization(services);
+			ServiceCollectionExtensions.AddClaimsProvider(services, claimProviderType);
 			ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-			IClaimsProvider service = serviceProvider.GetRequiredService<IClaimsProvider>();
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider service = serviceProvider.GetRequiredService<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider>();
 			IReadOnlyCollection<Claim> claims = await service.GetPermissionClaimsForUserAsync("12345678");
 
 			if(expectedCount == 3)
 			{
-				claims.HasPermission("Invoices.Read").Should().BeTrue();
-				claims.HasPermission("Invoices.Write").Should().BeTrue();
-				claims.HasPermission("Invoices.Send").Should().BeTrue();
+				ClaimsEnumerableExtensions.HasPermission(claims, "Invoices.Read").Should().BeTrue();
+				ClaimsEnumerableExtensions.HasPermission(claims, "Invoices.Write").Should().BeTrue();
+				ClaimsEnumerableExtensions.HasPermission(claims, "Invoices.Send").Should().BeTrue();
 			}
 
 			if(expectedCount == 2)
 			{
-				claims.HasPermission("Invoices.Read").Should().BeTrue();
-				claims.HasPermission("Invoices.Write").Should().BeFalse();
-				claims.HasPermission("Invoices.Send").Should().BeTrue();
+				ClaimsEnumerableExtensions.HasPermission(claims, "Invoices.Read").Should().BeTrue();
+				ClaimsEnumerableExtensions.HasPermission(claims, "Invoices.Write").Should().BeFalse();
+				ClaimsEnumerableExtensions.HasPermission(claims, "Invoices.Send").Should().BeTrue();
 			}
 
 			if(hasTenant)
 			{
-				string tenantId = claims.GetTenantId();
+				string tenantId = ClaimsEnumerableExtensions.GetTenantId(claims);
 				tenantId.Should().NotBeNullOrWhiteSpace().And.Be("12345678");
 
-				string tenantName = claims.GetTenantName();
+				string tenantName = ClaimsEnumerableExtensions.GetTenantName(claims);
 				tenantName.Should().NotBeNullOrWhiteSpace().And.Be("test-tenant");
 
-				string tenantDisplayName = claims.GetTenantDisplayName();
+				string tenantDisplayName = ClaimsEnumerableExtensions.GetTenantDisplayName(claims);
 				tenantDisplayName.Should().NotBeNullOrWhiteSpace().And.Be("Test Tenant Inc.");
 			}
 
-			claims.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType).Should().HaveCount(expectedCount);
+			claims.Where(x => x.Type == MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.PermissionClaimType).Should().HaveCount(expectedCount);
 
 			await serviceProvider.DisposeAsync();
 		}

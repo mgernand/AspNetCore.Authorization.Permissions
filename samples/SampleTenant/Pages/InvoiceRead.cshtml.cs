@@ -1,11 +1,11 @@
 ﻿namespace SampleTenant.Pages
 {
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
+    using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions;
 
-	// [HasPermission("Invoice.Read")]
+    // [HasPermission("Invoice.Read")]
 	public class InvoiceReadModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;
@@ -20,7 +20,7 @@
 
 		public IActionResult OnGet()
 		{
-			if(!this.User.HasPermission("Invoice.Read"))
+			if(!ClaimsPrincipalExtensions.HasPermission(this.User, "Invoice.Read"))
 			{
 				if(this.User.Identity != null && this.User.Identity.IsAuthenticated)
 				{
@@ -35,10 +35,10 @@
 
 		public string GetTenantName(string tenantId)
 		{
-			string id = this.User.GetTenantId();
+			string id = ClaimsPrincipalExtensions.GetTenantId(this.User);
 			if(id == tenantId)
 			{
-				return this.User.GetTenantName();
+				return ClaimsPrincipalExtensions.GetTenantName(this.User);
 			}
 
 			return string.Empty;

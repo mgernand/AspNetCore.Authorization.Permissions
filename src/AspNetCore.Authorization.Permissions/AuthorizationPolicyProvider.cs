@@ -1,10 +1,10 @@
-﻿namespace AspNetCore.Authorization.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
-	using System.Threading.Tasks;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.Extensions.Options;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.Extensions.Options;
 
-	/// <summary>
+    /// <summary>
 	///     See: https://www.jerriepelser.com/blog/creating-dynamic-authorization-policies-aspnet-core/
 	///     See: https://github.com/JonPSmith/PermissionAccessControl/issues/3
 	/// </summary>

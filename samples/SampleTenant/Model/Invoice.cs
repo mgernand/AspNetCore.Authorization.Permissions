@@ -1,9 +1,8 @@
 ﻿namespace SampleTenant.Model
 {
 	using System;
-	using AspNetCore.Authorization.Permissions.Abstractions;
 
-	public class Invoice : ITenantObject
+    public class Invoice : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantObject
 	{
 		public Guid Id { get; set; }
 

@@ -1,11 +1,11 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
 
-	/// <summary>
+    /// <summary>
 	///     Provides an abstraction for a store which manages tenant user accounts.
 	/// </summary>
 	/// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>

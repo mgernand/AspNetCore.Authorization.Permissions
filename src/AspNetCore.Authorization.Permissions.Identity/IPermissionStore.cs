@@ -1,12 +1,12 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
+    /// <summary>
 	///     Provides an abstraction for a store which manages user permissions.
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>

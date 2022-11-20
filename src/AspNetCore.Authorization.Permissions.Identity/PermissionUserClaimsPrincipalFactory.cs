@@ -1,14 +1,14 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System.Collections.Generic;
-	using System.Security.Claims;
-	using System.Threading.Tasks;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.Extensions.Options;
+    using System.Collections.Generic;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Options;
+    using ClaimsEnumerableExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsEnumerableExtensions;
 
-	/// <summary>
+    /// <summary>
 	///     Adds permission and tenant claims to the user's claims.
 	/// </summary>
 	/// <remarks>
@@ -18,13 +18,13 @@
 	public class PermissionUserClaimsPrincipalFactory<TUser> : UserClaimsPrincipalFactory<TUser>
 		where TUser : class, IUser
 	{
-		private readonly IClaimsProvider claimsProvider;
+		private readonly MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider claimsProvider;
 
 		/// <inheritdoc />
 		public PermissionUserClaimsPrincipalFactory(
 			PermissionsUserManager<TUser> userManager,
 			IOptions<IdentityOptions> optionsAccessor,
-			IClaimsProvider claimsProvider)
+			MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.IClaimsProvider claimsProvider)
 			: base(userManager, optionsAccessor)
 		{
 			this.claimsProvider = claimsProvider;
@@ -34,7 +34,7 @@
 		protected override async Task<ClaimsIdentity> GenerateClaimsAsync(TUser user)
 		{
 			ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
-			string userId = identity.Claims.GetUserId();
+			string userId = ClaimsEnumerableExtensions.GetUserId(identity.Claims);
 			IReadOnlyCollection<Claim> claims = await this.claimsProvider.GetPermissionClaimsForUserAsync(userId);
 			identity.AddClaims(claims);
 

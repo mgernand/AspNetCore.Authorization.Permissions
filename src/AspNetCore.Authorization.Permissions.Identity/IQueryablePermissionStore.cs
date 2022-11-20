@@ -1,8 +1,8 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System.Linq;
+    using System.Linq;
 
-	/// <summary>
+    /// <summary>
 	///     Provides an abstraction for querying permissions in a permission store.
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>

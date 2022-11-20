@@ -1,17 +1,16 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Security.Claims;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.Extensions.Logging;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Logging;
 
-	/// <summary>
+    /// <summary>
 	///     Provides the APIs for managing tenants in a persistence store.
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
@@ -356,7 +355,7 @@
 				throw new ArgumentNullException(nameof(principal));
 			}
 
-			return principal.FindFirstValue(PermissionClaimTypes.TenantNameClaimType);
+			return principal.FindFirstValue(MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.PermissionClaimTypes.TenantNameClaimType);
 		}
 
 		/// <summary>

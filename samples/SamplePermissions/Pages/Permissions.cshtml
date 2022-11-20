@@ -1,6 +1,6 @@
 ﻿@page
 @using System.Security.Claims
-@using AspNetCore.Authorization.Permissions.Abstractions
+@using ClaimsPrincipalExtensions = MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ClaimsPrincipalExtensions
 @model PermissionsModel
 
 @{
@@ -11,7 +11,7 @@
     <h1 class="display-4">Permissions</h1>
 	<p>
 		<ul class="text-start">
-			@foreach(string permission in this.User.GetPermissions())
+			@foreach(string permission in ClaimsPrincipalExtensions.GetPermissions(this.User))
 			{
 				<li>@permission</li>
 			}

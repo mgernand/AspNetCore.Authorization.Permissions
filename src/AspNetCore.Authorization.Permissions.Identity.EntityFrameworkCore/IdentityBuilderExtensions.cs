@@ -1,14 +1,13 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
 {
-	using System;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using JetBrains.Annotations;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.Extensions.DependencyInjection.Extensions;
+    using System;
+    using JetBrains.Annotations;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
 
-	/// <summary>
+    /// <summary>
 	///     Extension methods for the <see cref="EntityFrameworkCore.IdentityBuilderExtensions" /> type.
 	/// </summary>
 	[PublicAPI]
@@ -37,10 +36,10 @@
 		/// <returns></returns>
 		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TContext, TTenantAccessor>(this IdentityBuilder builder)
 			where TContext : DbContext
-			where TTenantAccessor : class, ITenantProvider
+			where TTenantAccessor : class, MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantProvider
 		{
 			builder.AddPermissionsEntityFrameworkStores<TContext>();
-			builder.Services.AddTransient<ITenantProvider, TTenantAccessor>();
+			builder.Services.AddTransient<MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantProvider, TTenantAccessor>();
 			return builder;
 		}
 

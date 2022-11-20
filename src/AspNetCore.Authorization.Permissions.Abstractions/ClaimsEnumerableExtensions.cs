@@ -1,12 +1,12 @@
-﻿namespace AspNetCore.Authorization.Permissions.Abstractions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Security.Claims;
-	using JetBrains.Annotations;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Claims;
+    using JetBrains.Annotations;
 
-	/// <summary>
+    /// <summary>
 	///     Extension methods for <see cref="IEnumerable{T}" /> where T is <see cref="Claim" />.
 	/// </summary>
 	[PublicAPI]

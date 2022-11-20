@@ -1,11 +1,10 @@
-﻿namespace AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
 {
-	using System.Linq;
-	using AspNetCore.Authorization.Permissions.Abstractions;
-	using Microsoft.EntityFrameworkCore;
-	using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using System.Linq;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-	/// <summary>
+    /// <summary>
 	///     Extension methods for the <see cref="DbContext" /> type.
 	/// </summary>
 	public static class DbContextExtensions
@@ -19,7 +18,7 @@
 		{
 			foreach(EntityEntry entry in context.ChangeTracker.Entries().Where(x => x.State == EntityState.Added))
 			{
-				if(entry.Entity is ITenantObject tenantObject)
+				if(entry.Entity is MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantObject tenantObject)
 				{
 					if(string.IsNullOrWhiteSpace(tenantObject.TenantId))
 					{
