@@ -47,8 +47,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
