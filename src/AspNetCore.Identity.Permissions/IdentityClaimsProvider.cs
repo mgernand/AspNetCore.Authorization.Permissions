@@ -1,13 +1,13 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System.Collections.Generic;
-	using System.Security.Claims;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using System.Collections.Generic;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 
-	[PublicAPI]
+    [PublicAPI]
 	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
 		where TUser : class, IUser
 		where TPermission : class, IPermission

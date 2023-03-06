@@ -1,14 +1,14 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System.Threading.Tasks;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
-	///     Provides an abstraction for a validating a permission.
-	/// </summary>
-	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
-	public interface IPermissionValidator<TPermission>
+    /// <summary>
+    ///     Provides an abstraction for a validating a permission.
+    /// </summary>
+    /// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
+    public interface IPermissionValidator<TPermission>
 		where TPermission : class, IPermission
 	{
 		/// <summary>

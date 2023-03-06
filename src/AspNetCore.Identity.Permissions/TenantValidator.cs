@@ -1,18 +1,18 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
-	///     Provides validation services for tenant classes.
-	/// </summary>
-	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Provides validation services for tenant classes.
+    /// </summary>
+    /// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
+    [PublicAPI]
 	public class TenantValidator<TTenant> : ITenantValidator<TTenant>
 		where TTenant : class, ITenant
 	{

@@ -1,17 +1,17 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
-	///     Provides the default validation of permissions.
-	/// </summary>
-	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Provides the default validation of permissions.
+    /// </summary>
+    /// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
+    [PublicAPI]
 	public class PermissionValidator<TPermission> : IPermissionValidator<TPermission>
 		where TPermission : class, IPermission
 	{

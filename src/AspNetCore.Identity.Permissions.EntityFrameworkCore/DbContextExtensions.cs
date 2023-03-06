@@ -14,8 +14,8 @@
 		///     Sets the given tenant ID to the added entities.
 		/// </summary>
 		/// <param name="context"></param>
-		/// <param name="tenantId"></param>
-		public static void SetTenantIdToAddedEntities(this DbContext context, string tenantId)
+		/// <param name="tenantID"></param>
+		public static void SetTenantIdToAddedEntities(this DbContext context, string tenantID)
 		{
 			foreach(EntityEntry entry in context.ChangeTracker.Entries().Where(x => x.State == EntityState.Added))
 			{
@@ -23,7 +23,7 @@
 				{
 					if(string.IsNullOrWhiteSpace(tenantObject.TenantID))
 					{
-						tenantObject.TenantID = tenantId;
+						tenantObject.TenantID = tenantID;
 					}
 				}
 			}

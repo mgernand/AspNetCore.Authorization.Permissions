@@ -1,15 +1,15 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.Extensions.DependencyInjection;
+    using System;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
 
-	/// <summary>
-	///     Extension methods for the <see cref="IServiceCollection" /> type.
-	/// </summary>
-	[PublicAPI]
+    /// <summary>
+    ///     Extension methods for the <see cref="IServiceCollection" /> type.
+    /// </summary>
+    [PublicAPI]
 	public static class ServiceCollectionExtensions
 	{
 		/// <summary>

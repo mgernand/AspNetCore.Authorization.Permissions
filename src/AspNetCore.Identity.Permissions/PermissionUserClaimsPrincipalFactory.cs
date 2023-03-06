@@ -1,21 +1,21 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System.Collections.Generic;
-	using System.Security.Claims;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.Extensions.Options;
+    using System.Collections.Generic;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Options;
 
-	/// <summary>
-	///     Adds permission and tenant claims to the user's claims.
-	/// </summary>
-	/// <remarks>
-	///     See:https://korzh.com/blogs/net-tricks/aspnet-identity-store-user-data-in-claims
-	/// </remarks>
-	[PublicAPI]
+    /// <summary>
+    ///     Adds permission and tenant claims to the user's claims.
+    /// </summary>
+    /// <remarks>
+    ///     See:https://korzh.com/blogs/net-tricks/aspnet-identity-store-user-data-in-claims
+    /// </remarks>
+    [PublicAPI]
 	public class PermissionUserClaimsPrincipalFactory<TUser> : UserClaimsPrincipalFactory<TUser>
 		where TUser : class, IUser
 	{

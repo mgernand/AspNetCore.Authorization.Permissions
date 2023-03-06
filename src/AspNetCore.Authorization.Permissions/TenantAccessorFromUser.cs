@@ -23,7 +23,7 @@
 
 		/// <inheritdoc />
 		public string TenantID
-		{
+        {
 			get
 			{
 				if(this.accessor.HttpContext?.User.Identity != null && this.accessor.HttpContext.User.Identity.IsAuthenticated)

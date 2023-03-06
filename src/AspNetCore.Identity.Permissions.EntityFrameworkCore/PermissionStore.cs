@@ -1,21 +1,22 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.Stores;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for permissions.
-	/// </summary>
-	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
-	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Creates a new instance of a persistence store for permissions.
+    /// </summary>
+    /// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
+    /// <typeparam name="TRole">The type of the class representing a role</typeparam>
+    [PublicAPI]
 	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
 		where TPermission : PermissionsPermission
 		where TRole : PermissionsRole
