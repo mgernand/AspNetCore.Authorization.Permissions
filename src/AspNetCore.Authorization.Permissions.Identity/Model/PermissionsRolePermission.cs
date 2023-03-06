@@ -1,8 +1,7 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.Model
 {
 	using System;
 	using JetBrains.Annotations;
-
 
 	/// <summary>
 	///     Represents the link between a role and a permission that uses a string as type for the keys.

@@ -52,7 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj" />
+	  <ProjectReference Include="..\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Identity.Permissions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

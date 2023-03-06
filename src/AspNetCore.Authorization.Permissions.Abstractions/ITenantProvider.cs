@@ -11,6 +11,6 @@
 		/// <summary>
 		///     Gets the tenant ID.
 		/// </summary>
-		string TenantId { get; }
+		string TenantID { get; }
 	}
 }

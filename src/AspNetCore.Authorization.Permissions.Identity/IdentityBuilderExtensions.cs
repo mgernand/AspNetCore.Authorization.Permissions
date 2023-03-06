@@ -1,8 +1,9 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
 	using System;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>

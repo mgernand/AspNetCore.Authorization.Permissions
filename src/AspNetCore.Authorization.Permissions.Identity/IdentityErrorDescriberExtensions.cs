@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
 	using Microsoft.AspNetCore.Identity;
 

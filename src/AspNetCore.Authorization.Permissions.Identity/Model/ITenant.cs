@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.Model
 {
 	using JetBrains.Annotations;
 

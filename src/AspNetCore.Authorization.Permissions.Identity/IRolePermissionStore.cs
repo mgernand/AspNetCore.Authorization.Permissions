@@ -1,9 +1,9 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
 	using System.Collections.Generic;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 
 	/// <summary>
 	///     Provides an abstraction for a store which maps permissions to roles.

@@ -23,13 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Pe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Abstractions", "src\AspNetCore.Authorization.Permissions.Abstractions\AspNetCore.Authorization.Permissions.Abstractions.csproj", "{188E0288-2D1F-4618-A8DC-8AAF6281A713}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Identity", "src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj", "{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions", "src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Identity.Permissions.csproj", "{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{38E0E64A-6A46-47C7-A169-24A6069D80E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore", "src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.csproj", "{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore", "src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj", "{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleTenant", "samples\SampleTenant\SampleTenant.csproj", "{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleTenant", "samples\SampleTenant\SampleTenant.csproj", "{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

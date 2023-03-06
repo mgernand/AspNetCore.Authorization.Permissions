@@ -22,7 +22,7 @@
 		}
 
 		/// <inheritdoc />
-		public string TenantId
+		public string TenantID
 		{
 			get
 			{

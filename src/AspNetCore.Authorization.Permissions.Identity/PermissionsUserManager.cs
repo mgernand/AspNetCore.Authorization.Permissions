@@ -1,10 +1,10 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.Logging;
 	using Microsoft.Extensions.Options;

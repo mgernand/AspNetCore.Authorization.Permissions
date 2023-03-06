@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Configuration.Identity {
+namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Identity {
     using System;
     
     
@@ -39,8 +39,8 @@ namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFramewo
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.Conf" +
-                            "iguration.Identity.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Iden" +
+                            "tity.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

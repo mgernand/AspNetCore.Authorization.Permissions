@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
 	using System.Linq;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
@@ -21,9 +21,9 @@
 			{
 				if(entry.Entity is ITenantObject tenantObject)
 				{
-					if(string.IsNullOrWhiteSpace(tenantObject.TenantId))
+					if(string.IsNullOrWhiteSpace(tenantObject.TenantID))
 					{
-						tenantObject.TenantId = tenantId;
+						tenantObject.TenantID = tenantId;
 					}
 				}
 			}

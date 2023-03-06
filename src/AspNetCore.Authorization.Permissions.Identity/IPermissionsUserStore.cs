@@ -1,10 +1,10 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
 	using System;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 
 	/// <summary>
 	///     Provides an abstraction for a store which manages tenant user accounts.

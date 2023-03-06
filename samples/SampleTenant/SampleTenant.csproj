@@ -22,8 +22,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj" />
+		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Identity.Permissions.csproj" />
 		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions\AspNetCore.Authorization.Permissions.csproj" />
 	</ItemGroup>
 

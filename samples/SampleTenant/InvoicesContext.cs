@@ -3,8 +3,8 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
@@ -416,7 +416,7 @@
 		/// <inheritdoc />
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
-			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantID);
 
 			return base.SaveChanges(acceptAllChangesOnSuccess);
 		}
@@ -424,7 +424,7 @@
 		/// <inheritdoc />
 		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
 		{
-			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantId);
+			this.SetTenantIdToAddedEntities(this.tenantProvider.TenantID);
 
 			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 		}

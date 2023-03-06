@@ -3,7 +3,7 @@
 // Taken from PR: https://github.com/dotnet/aspnetcore/pull/13392
 // Copyright(c) @dazinator (https://github.com/dazinator, http://darrelltunnell.net, Darrell Tunnell)
 
-namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore
+namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
 	using System;
 	using JetBrains.Annotations;

@@ -1,7 +1,7 @@
 ﻿namespace SamplePermissions
 {
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
