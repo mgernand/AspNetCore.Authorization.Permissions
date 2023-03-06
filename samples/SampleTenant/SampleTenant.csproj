@@ -22,9 +22,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Identity.Permissions.csproj" />
+		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions.Abstractions\AspNetCore.Authorization.Permissions.Abstractions.csproj" />
 		<ProjectReference Include="..\..\src\AspNetCore.Authorization.Permissions\AspNetCore.Authorization.Permissions.csproj" />
+		<ProjectReference Include="..\..\src\AspNetCore.Identity.Permissions.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\src\AspNetCore.Identity.Permissions\AspNetCore.Identity.Permissions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

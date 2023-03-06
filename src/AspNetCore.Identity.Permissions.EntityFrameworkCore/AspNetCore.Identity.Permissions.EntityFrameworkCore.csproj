@@ -14,9 +14,9 @@
 		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2022-2023 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>7.0.0</Version>
-		<AssemblyVersion>7.0.0</AssemblyVersion>
-		<FileVersion>7.0.0</FileVersion>
+		<Version>7.2.0</Version>
+		<AssemblyVersion>7.2.0</AssemblyVersion>
+		<FileVersion>7.2.0</FileVersion>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A libary that adds permission-based authorization.</Description>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -47,12 +47,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj" />
+	  <ProjectReference Include="..\AspNetCore.Identity.Permissions\AspNetCore.Identity.Permissions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
