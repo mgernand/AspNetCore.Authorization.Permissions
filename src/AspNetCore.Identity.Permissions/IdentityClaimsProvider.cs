@@ -1,21 +1,20 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System.Collections.Generic;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
-    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+	using System.Collections.Generic;
+	using System.Security.Claims;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 
-    [PublicAPI]
+	[UsedImplicitly]
 	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
-		where TUser : class, IUser
-		where TPermission : class, IPermission
-		where TTenant : class, ITenant
+		where TUser : class
+		where TPermission : class
+		where TTenant : class
 	{
-		private readonly PermissionManager<TPermission> permissionManager;
-		private readonly TenantManager<TTenant> tenantManager;
-		private readonly PermissionsUserManager<TUser> userManager;
+		private readonly ITenantUserManager<TUser> userManager;
+		private readonly ITenantManager<TTenant> tenantManager;
+        private readonly IPermissionManager<TPermission> permissionManager;
 
 		/// <summary>
 		///     Creates a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
@@ -24,9 +23,9 @@
 		/// <param name="permissionManager"></param>
 		/// <param name="tenantManager"></param>
 		public IdentityClaimsProvider(
-			PermissionsUserManager<TUser> userManager,
-			TenantManager<TTenant> tenantManager,
-			PermissionManager<TPermission> permissionManager)
+			ITenantUserManager<TUser> userManager,
+			ITenantManager<TTenant> tenantManager,
+			IPermissionManager<TPermission> permissionManager)
 		{
 			this.userManager = userManager;
 			this.tenantManager = tenantManager;

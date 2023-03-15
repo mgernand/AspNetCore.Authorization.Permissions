@@ -1,19 +1,18 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-    using Microsoft.AspNetCore.Identity;
+	using System;
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
-    ///     Provides the default validation of permissions.
-    /// </summary>
-    /// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Provides the default validation of permissions.
+	/// </summary>
+	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
+	[PublicAPI]
 	public class PermissionValidator<TPermission> : IPermissionValidator<TPermission>
-		where TPermission : class, IPermission
+		where TPermission : class
 	{
 		/// <summary>
 		///     Creates a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
@@ -29,13 +28,13 @@
 		/// <summary>
 		///     Validates a permission as an asynchronous operation.
 		/// </summary>
-		/// <param name="manager">The <see cref="PermissionManager{TPermission}" /> managing the permission store.</param>
+		/// <param name="manager">The <see cref="IPermissionManager{TPermission}" /> managing the permission store.</param>
 		/// <param name="permission">The permission to validate.</param>
 		/// <returns>
 		///     A <see cref="Task{TResult}" /> that represents the <see cref="IdentityResult" /> of the asynchronous
 		///     validation.
 		/// </returns>
-		public async Task<IdentityResult> ValidateAsync(PermissionManager<TPermission> manager, TPermission permission)
+		public async Task<IdentityResult> ValidateAsync(IPermissionManager<TPermission> manager, TPermission permission)
 		{
 			if(manager == null)
 			{
@@ -49,16 +48,13 @@
 
 			List<IdentityError> errors = new List<IdentityError>();
 			await this.ValidatePermissionName(manager, permission, errors);
-			if(errors.Count > 0)
-			{
-				return IdentityResult.Failed(errors.ToArray());
-			}
 
-			return IdentityResult.Success;
+			return errors.Count > 0
+				? IdentityResult.Failed(errors.ToArray())
+				: IdentityResult.Success;
 		}
 
-		private async Task ValidatePermissionName(PermissionManager<TPermission> manager, TPermission permission,
-			ICollection<IdentityError> errors)
+		private async Task ValidatePermissionName(IPermissionManager<TPermission> manager, TPermission permission, ICollection<IdentityError> errors)
 		{
 			string permissionName = await manager.GetPermissionNameAsync(permission);
 			if(string.IsNullOrWhiteSpace(permissionName))
@@ -68,8 +64,7 @@
 			else
 			{
 				TPermission owner = await manager.FindByNameAsync(permissionName);
-				if(owner != null &&
-				   !string.Equals(await manager.GetPermissionIdAsync(owner), await manager.GetPermissionIdAsync(permission)))
+				if(owner != null && !string.Equals(await manager.GetPermissionIdAsync(owner), await manager.GetPermissionIdAsync(permission)))
 				{
 					errors.Add(this.Describer.DuplicatePermissionName(permissionName));
 				}

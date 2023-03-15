@@ -1,15 +1,15 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using JetBrains.Annotations;
-    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.DependencyInjection;
+	using System;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.Extensions.DependencyInjection;
 
-    /// <summary>
-    ///     Extension methods for the <see cref="IServiceCollection" /> type.
-    /// </summary>
-    [PublicAPI]
+	/// <summary>
+	///     Extension methods for the <see cref="IServiceCollection" /> type.
+	/// </summary>
+	[PublicAPI]
 	public static class ServiceCollectionExtensions
 	{
 		/// <summary>
@@ -30,7 +30,7 @@
 		/// <param name="setupAction"></param>
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
-			where TUser : class, IUser
+			where TUser : class
 		{
 			return services.AddPermissionsIdentity<TUser, PermissionsRole, PermissionsPermission, PermissionsTenant>(setupAction);
 		}
@@ -42,8 +42,8 @@
 		/// <param name="setupAction"></param>
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser, TRole>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
-			where TUser : class, IUser
-			where TRole : class, IRole
+			where TUser : class
+			where TRole : class
 		{
 			return services.AddPermissionsIdentity<TUser, TRole, PermissionsPermission, PermissionsTenant>(setupAction);
 		}
@@ -55,9 +55,9 @@
 		/// <param name="setupAction"></param>
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser, TRole, TPermission>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
-			where TUser : class, IUser
-			where TRole : class, IRole
-			where TPermission : class, IPermission
+			where TUser : class
+			where TRole : class
+			where TPermission : class
 		{
 			return services.AddPermissionsIdentity<TUser, TRole, TPermission, PermissionsTenant>(setupAction);
 		}
@@ -73,16 +73,18 @@
 		/// <param name="setupAction"></param>
 		/// <returns></returns>
 		public static PermissionsIdentityBuilder AddPermissionsIdentity<TUser, TRole, TPermission, TTenant>(this IServiceCollection services, Action<IdentityOptions> setupAction = null)
-			where TUser : class, IUser
-			where TRole : class, IRole
-			where TPermission : class, IPermission
-			where TTenant : class, ITenant
+			where TUser : class
+			where TRole : class
+			where TPermission : class
+			where TTenant : class
 		{
-			IdentityBuilder builder = services
+			setupAction ??= _ => { };
+
+            IdentityBuilder builder = services
 				.AddIdentityCore<TUser>(setupAction)
 				.AddRoles<TRole>()
 				.AddClaimsPrincipalFactory<PermissionUserClaimsPrincipalFactory<TUser>>()
-				.AddUserManager<PermissionsUserManager<TUser>>();
+				.AddUserManager<TenantUserManager<TUser>>();
 
 			PermissionsIdentityBuilder permissionsBuilder = new PermissionsIdentityBuilder(builder, typeof(TPermission), typeof(TTenant))
 				.AddPermissionManager<PermissionManager<TPermission>>()
@@ -90,7 +92,12 @@
 				.AddTenantManager<TenantManager<TTenant>>()
 				.AddTenantValidator<TenantValidator<TTenant>>();
 
-			return permissionsBuilder;
+			services.AddScoped<IPermissionManager<TPermission>>(serviceProvider => serviceProvider.GetRequiredService<PermissionManager<TPermission>>());
+			services.AddScoped<ITenantManager<TTenant>>(serviceProvider => serviceProvider.GetRequiredService<TenantManager<TTenant>>());
+			services.AddScoped<IUserManager<TUser>>(serviceProvider => serviceProvider.GetRequiredService<TenantUserManager<TUser>>());
+			services.AddScoped<ITenantUserManager<TUser>>(serviceProvider => serviceProvider.GetRequiredService<TenantUserManager<TUser>>());
+
+            return permissionsBuilder;
 		}
 	}
 }

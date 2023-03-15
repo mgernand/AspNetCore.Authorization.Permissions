@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using System.Collections.Generic;
 	using System.Security.Claims;

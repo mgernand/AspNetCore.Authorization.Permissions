@@ -11,7 +11,7 @@
 	<PropertyGroup>
 		<PackageId>MadEyeMatt.$(AssemblyName)</PackageId>
 		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
-		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_").Replace(".Abstractions", ""))</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2022-2023 Matthias Gernand. All rights reserved.</Copyright>
 		<Version>7.2.0</Version>

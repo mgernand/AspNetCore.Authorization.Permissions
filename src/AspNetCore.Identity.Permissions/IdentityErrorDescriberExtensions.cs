@@ -8,17 +8,17 @@
 	public static class IdentityErrorDescriberExtensions
 	{
 		/// <summary>
-		///     Returns an <see cref="IdentityError" /> indicating the specified <paramref name="permission" /> name is invalid.
+		///     Returns an <see cref="IdentityError" /> indicating the specified <paramref name="permissionName" /> name is invalid.
 		/// </summary>
 		/// <param name="describer"></param>
-		/// <param name="permission">The invalid permission.</param>
-		/// <returns>An <see cref="IdentityError" /> indicating the specific role <paramref name="permission" /> name is invalid.</returns>
-		public static IdentityError InvalidPermissionName(this IdentityErrorDescriber describer, string permission)
+		/// <param name="permissionName">The invalid permission.</param>
+		/// <returns>An <see cref="IdentityError" /> indicating the specific role <paramref name="permissionName" /> name is invalid.</returns>
+		public static IdentityError InvalidPermissionName(this IdentityErrorDescriber describer, string permissionName)
 		{
 			return new IdentityError
 			{
 				Code = nameof(InvalidPermissionName),
-				Description = $"Invalid permission name '{permission}'." //Resources.FormatInvalidRoleName(role)
+				Description = $"Invalid permission name '{permissionName}'." //Resources.FormatInvalidRoleName(role)
 			};
 		}
 

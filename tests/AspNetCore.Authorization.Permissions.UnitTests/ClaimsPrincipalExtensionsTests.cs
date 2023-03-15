@@ -3,7 +3,7 @@
 	using System.Collections.Generic;
 	using System.Security.Claims;
 	using FluentAssertions;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using NUnit.Framework;
 
 	[TestFixture]

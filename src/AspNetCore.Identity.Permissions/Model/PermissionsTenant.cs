@@ -17,8 +17,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class PermissionsTenant<TKey> : ITenant
-		where TKey : IEquatable<TKey>
+	public class PermissionsTenant<TKey> where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Gets or sets the primary key for this user.

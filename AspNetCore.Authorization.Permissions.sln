@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permiss
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore", "src\AspNetCore.Identity.Permissions.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj", "{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.Core", "src\AspNetCore.Identity.Permissions.Core\AspNetCore.Identity.Permissions.Core.csproj", "{525124A3-58D5-4301-A898-967D999CFB61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
 		{30A8E652-AD3F-42B8-AEDB-133660992475} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{525124A3-58D5-4301-A898-967D999CFB61} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}

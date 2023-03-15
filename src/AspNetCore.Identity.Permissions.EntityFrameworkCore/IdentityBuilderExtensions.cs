@@ -1,19 +1,18 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
-    using System;
-    using JetBrains.Annotations;
-    using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
-    using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-    using MadEyeMatt.AspNetCore.Identity.Permissions.Stores;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.DependencyInjection.Extensions;
+	using System;
+	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.EntityFrameworkCore;
+	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.DependencyInjection.Extensions;
 
-    /// <summary>
-    ///     Extension methods for the <see cref="IdentityBuilderExtensions" /> type.
-    /// </summary>
-    [PublicAPI]
+	/// <summary>
+	///     Extension methods for the <see cref="IdentityBuilderExtensions" /> type.
+	/// </summary>
+	[PublicAPI]
 	public static class IdentityBuilderExtensions
 	{
 		/// <summary>

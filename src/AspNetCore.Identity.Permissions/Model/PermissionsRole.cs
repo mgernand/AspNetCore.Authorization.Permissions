@@ -39,8 +39,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type used for the primary key for the role.</typeparam>
 	[PublicAPI]
-	public class PermissionsRole<TKey> : IdentityRole<TKey>, IRole
-		where TKey : IEquatable<TKey>
+	public class PermissionsRole<TKey> : IdentityRole<TKey> where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityRole{TKey}" />.

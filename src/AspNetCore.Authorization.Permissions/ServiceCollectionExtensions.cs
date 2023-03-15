@@ -2,7 +2,6 @@
 {
 	using System;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.DependencyInjection.Extensions;

@@ -1,7 +1,6 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.AspNetCore.Http;
 
 	/// <summary>
@@ -23,7 +22,7 @@
 
 		/// <inheritdoc />
 		public string TenantID
-        {
+		{
 			get
 			{
 				if(this.accessor.HttpContext?.User.Identity != null && this.accessor.HttpContext.User.Identity.IsAuthenticated)

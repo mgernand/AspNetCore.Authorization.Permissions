@@ -40,7 +40,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class PermissionsUser<TKey> : IdentityUser<TKey>, IUser
+	public class PermissionsUser<TKey> : IdentityUser<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>

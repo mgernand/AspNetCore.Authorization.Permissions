@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using System;
 	using System.Collections.Generic;
@@ -19,7 +19,12 @@
 		/// <returns></returns>
 		public static IReadOnlyCollection<string> GetPermissions(this IEnumerable<Claim> claims)
 		{
-			return claims
+			if (claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
+            return claims
 				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
 				.Select(x => x.Value)
 				.ToList()
@@ -34,7 +39,12 @@
 		/// <returns></returns>
 		public static bool HasPermission(this IEnumerable<Claim> claims, string permission)
 		{
-			return claims
+			if (claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
+            return claims
 				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
 				.Any(x => x.Value.Equals(permission.Normalize(), StringComparison.InvariantCultureIgnoreCase));
 		}
@@ -46,7 +56,12 @@
 		/// <returns></returns>
 		public static string GetUserId(this IEnumerable<Claim> claims)
 		{
-			return claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+			if (claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
+            return claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 		}
 
 		/// <summary>
@@ -56,7 +71,12 @@
 		/// <returns></returns>
 		public static string GetTenantId(this IEnumerable<Claim> claims)
 		{
-			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantIdClaimType)?.Value;
+			if (claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
+            return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantIdClaimType)?.Value;
 		}
 
 		/// <summary>
@@ -66,7 +86,12 @@
 		/// <returns></returns>
 		public static string GetTenantName(this IEnumerable<Claim> claims)
 		{
-			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantNameClaimType)?.Value;
+			if (claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
+            return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantNameClaimType)?.Value;
 		}
 
 		/// <summary>
@@ -76,7 +101,12 @@
 		/// <returns></returns>
 		public static string GetTenantDisplayName(this IEnumerable<Claim> claims)
 		{
-			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantDisplayNameClaimType)?.Value;
+			if (claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
+            return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantDisplayNameClaimType)?.Value;
 		}
 	}
 }

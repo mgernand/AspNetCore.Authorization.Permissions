@@ -1,7 +1,7 @@
 ﻿namespace SampleTenant.Model
 {
 	using System;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 
 	public class Invoice : ITenantObject
 	{

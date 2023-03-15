@@ -5,7 +5,6 @@
 	using System.Security.Claims;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 
 	[UsedImplicitly]
 	internal sealed class EnsureCorrectClaimsProvider : IClaimsProvider

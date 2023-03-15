@@ -28,7 +28,7 @@
 		/// <param name="builder"></param>
 		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider<TUser>(this IdentityBuilder builder)
-			where TUser : class, IUser
+			where TUser : class
 		{
 			return builder.AddIdentityClaimsProvider<TUser, PermissionsPermission, PermissionsTenant>();
 		}
@@ -39,8 +39,8 @@
 		/// <param name="builder"></param>
 		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission>(this IdentityBuilder builder)
-			where TUser : class, IUser
-			where TPermission : class, IPermission
+			where TUser : class
+			where TPermission : class
 		{
 			return builder.AddIdentityClaimsProvider<TUser, TPermission, PermissionsTenant>();
 		}
@@ -51,9 +51,9 @@
 		/// <param name="builder"></param>
 		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission, TTenant>(this IdentityBuilder builder)
-			where TUser : class, IUser
-			where TPermission : class, IPermission
-			where TTenant : class, ITenant
+			where TUser : class
+			where TPermission : class
+			where TTenant : class
 		{
 			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,,>)
 				.MakeGenericType(typeof(TUser), typeof(TPermission), typeof(TTenant));

@@ -1,12 +1,12 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.DependencyInjection;
+	using System;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.Extensions.DependencyInjection;
 
-    /// <inheritdoc />
-    [PublicAPI]
+	/// <inheritdoc />
+	[PublicAPI]
 	public class PermissionsIdentityBuilder : IdentityBuilder
 	{
 		/// <inheritdoc />

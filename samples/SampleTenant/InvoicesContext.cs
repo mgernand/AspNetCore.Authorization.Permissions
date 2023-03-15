@@ -2,7 +2,7 @@
 {
 	using System.Threading;
 	using System.Threading.Tasks;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;

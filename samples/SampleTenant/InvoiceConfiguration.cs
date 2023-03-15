@@ -1,7 +1,7 @@
 ﻿namespace SampleTenant
 {
 	using System;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;
 	using Microsoft.EntityFrameworkCore.ValueGeneration;
