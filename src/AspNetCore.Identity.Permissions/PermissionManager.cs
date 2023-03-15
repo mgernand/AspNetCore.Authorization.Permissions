@@ -437,13 +437,12 @@
 
 		private IRolePermissionStore<TPermission> GetRolePermissionStore()
 		{
-			IRolePermissionStore<TPermission> cast = this.Store as IRolePermissionStore<TPermission>;
-			if(cast == null)
+			if(this.Store is IRolePermissionStore<TPermission> cast)
 			{
-				throw new NotSupportedException("The store was not a IRolePermissionStore.");
+				return cast;
 			}
 
-			return cast;
-		}
+			throw new NotSupportedException("The permission store was not a IRolePermissionStore.");
+        }
 	}
 }

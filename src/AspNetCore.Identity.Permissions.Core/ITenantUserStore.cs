@@ -10,7 +10,7 @@
 	/// </summary>
 	/// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
 	[PublicAPI]
-	public interface IPermissionsUserStore<in TUser> : IDisposable
+	public interface ITenantUserStore<in TUser> : IDisposable
 		where TUser : class
 	{
 		/// <summary>

@@ -88,7 +88,7 @@
 				// If its a custom DbContext, we can only add the default POCOs
 				permissionStoreType = typeof(PermissionStore<,,,>).MakeGenericType(permissionType, roleType, contextType, keyType);
 				tenantsStoreType = typeof(TenantStore<,,,>).MakeGenericType(tenantType, roleType, contextType, keyType);
-				tenantUsersStoreType = typeof(PermissionsUserStore<,,>).MakeGenericType(userType, contextType, keyType);
+				tenantUsersStoreType = typeof(TenantUserStore<,,>).MakeGenericType(userType, contextType, keyType);
 			}
 			else
 			{
@@ -100,13 +100,13 @@
 					identityContext.GenericTypeArguments[4],
 					identityContext.GenericTypeArguments[11]);
 
-				tenantUsersStoreType = typeof(PermissionsUserStore<,,>).MakeGenericType(userType, contextType,
+				tenantUsersStoreType = typeof(TenantUserStore<,,>).MakeGenericType(userType, contextType,
 					identityContext.GenericTypeArguments[4]);
 			}
 
 			services.TryAddScoped(typeof(IPermissionStore<>).MakeGenericType(permissionType), permissionStoreType);
 			services.TryAddScoped(typeof(ITenantStore<>).MakeGenericType(tenantType), tenantsStoreType);
-			services.TryAddScoped(typeof(IPermissionsUserStore<>).MakeGenericType(userType), tenantUsersStoreType);
+			services.TryAddScoped(typeof(ITenantUserStore<>).MakeGenericType(userType), tenantUsersStoreType);
 		}
 
 		private static Type FindGenericBaseType(Type currentType, Type genericBaseType)

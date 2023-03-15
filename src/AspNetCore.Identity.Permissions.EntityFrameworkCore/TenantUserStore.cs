@@ -12,14 +12,14 @@
 	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsUserStore : PermissionsUserStore<PermissionsUser>
+	public class TenantUserStore : TenantUserStore<PermissionsUser>
 	{
 		/// <summary>
-		///     Constructs a new instance of <see cref="PermissionsUserStore" />.
+		///     Constructs a new instance of <see cref="TenantUserStore" />.
 		/// </summary>
 		/// <param name="context">The <see cref="DbContext" />.</param>
 		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-		public PermissionsUserStore(DbContext context, IdentityErrorDescriber describer = null) : base(context, describer)
+		public TenantUserStore(DbContext context, IdentityErrorDescriber describer = null) : base(context, describer)
 		{
 		}
 	}
@@ -29,15 +29,15 @@
 	/// </summary>
 	/// <typeparam name="TUser">The type representing a user.</typeparam>
 	[PublicAPI]
-	public class PermissionsUserStore<TUser> : PermissionsUserStore<TUser, DbContext, string>
+	public class TenantUserStore<TUser> : TenantUserStore<TUser, DbContext, string>
 		where TUser : PermissionsUser, new()
 	{
 		/// <summary>
-		///     Constructs a new instance of <see cref="PermissionsUserStore{TUser}" />.
+		///     Constructs a new instance of <see cref="TenantUserStore{TUser}" />.
 		/// </summary>
 		/// <param name="context">The <see cref="DbContext" />.</param>
 		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-		public PermissionsUserStore(DbContext context, IdentityErrorDescriber describer = null) : base(context, describer)
+		public TenantUserStore(DbContext context, IdentityErrorDescriber describer = null) : base(context, describer)
 		{
 		}
 	}
@@ -48,16 +48,16 @@
 	/// <typeparam name="TUser">The type representing a user.</typeparam>
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
-	public class PermissionsUserStore<TUser, TContext> : PermissionsUserStore<TUser, TContext, string>
+	public class TenantUserStore<TUser, TContext> : TenantUserStore<TUser, TContext, string>
 		where TUser : PermissionsUser
 		where TContext : DbContext
 	{
 		/// <summary>
-		///     Constructs a new instance of <see cref="PermissionsUserStore{TUser,TContext,TKey}" />.
+		///     Constructs a new instance of <see cref="TenantUserStore{TUser,TContext,TKey}" />.
 		/// </summary>
 		/// <param name="context">The <see cref="DbContext" />.</param>
 		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-		public PermissionsUserStore(TContext context, IdentityErrorDescriber describer = null) : base(context, describer)
+		public TenantUserStore(TContext context, IdentityErrorDescriber describer = null) : base(context, describer)
 		{
 		}
 	}
@@ -69,13 +69,13 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
-	public class PermissionsUserStore<TUser, TContext, TKey> : PermissionsUserStoreBase<TUser, TKey>
+	public class TenantUserStore<TUser, TContext, TKey> : TenantUserStoreBase<TUser, TKey>
 		where TUser : PermissionsUser<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{
 		/// <inheritdoc />
-		public PermissionsUserStore(TContext context, IdentityErrorDescriber describer = null)
+		public TenantUserStore(TContext context, IdentityErrorDescriber describer = null)
 			: base(describer)
 		{
 			this.Context = context;

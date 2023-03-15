@@ -62,42 +62,35 @@
 
 		private async Task<IList<Claim>> GetUserPermissions(TUser user)
 		{
-			IList<string> rolesNames = await this.userManager.GetRolesAsync(user);
-
-			IList<Claim> claims = new List<Claim>();
-			foreach(string roleName in rolesNames)
-			{
-				IList<TPermission> permissions = await this.permissionManager.GetPermissionsInRoleAsync(roleName);
-				foreach(TPermission permission in permissions)
-				{
-					if(permission is not null)
-					{
-						claims.Add(new Claim(PermissionClaimTypes.PermissionClaimType, permission.ToString()));
-					}
-				}
-			}
-
-			return claims;
-		}
+			IList<string> roleNames = await this.userManager.GetRolesAsync(user);
+			return await this.GetPermissions(roleNames);
+        }
 
 		private async Task<IList<Claim>> GetTenantPermissions(TTenant tenant)
 		{
-			IList<string> rolesNames = await this.tenantManager.GetRolesAsync(tenant);
+			IList<string> roleNames = await this.tenantManager.GetRolesAsync(tenant);
+			return await this.GetPermissions(roleNames);
+		}
 
+		private async Task<IList<Claim>> GetPermissions(IEnumerable<string> roleNames)
+		{
 			IList<Claim> claims = new List<Claim>();
-			foreach(string roleName in rolesNames)
+			foreach (string roleName in roleNames)
 			{
 				IList<TPermission> permissions = await this.permissionManager.GetPermissionsInRoleAsync(roleName);
-				foreach(TPermission permission in permissions)
+				foreach (TPermission permission in permissions)
 				{
-					if(permission is not null)
+					if(permission is null)
 					{
-						claims.Add(new Claim(PermissionClaimTypes.PermissionClaimType, permission.ToString()));
+						continue;
 					}
+
+					string permissionName = await this.permissionManager.GetPermissionNameAsync(permission);
+					claims.Add(new Claim(PermissionClaimTypes.PermissionClaimType, permissionName));
 				}
 			}
 
 			return claims;
-		}
+        }
 	}
 }

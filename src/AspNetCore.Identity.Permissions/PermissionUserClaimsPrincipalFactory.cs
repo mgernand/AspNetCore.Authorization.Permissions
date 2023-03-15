@@ -22,7 +22,7 @@
 
 		/// <inheritdoc />
 		public PermissionUserClaimsPrincipalFactory(
-			TenantUserManager<TUser> userManager,
+			UserManager<TUser> userManager,
 			IOptions<IdentityOptions> optionsAccessor,
 			IClaimsProvider claimsProvider)
 			: base(userManager, optionsAccessor)

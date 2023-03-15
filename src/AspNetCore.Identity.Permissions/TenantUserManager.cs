@@ -18,11 +18,11 @@
 	public class TenantUserManager<TUser> : UserManager<TUser>, ITenantUserManager<TUser>
 		where TUser : class
 	{
-		private readonly IPermissionsUserStore<TUser> permissionsUserStore;
+		private readonly ITenantUserStore<TUser> tenantUserStore;
 
 		/// <inheritdoc />
 		public TenantUserManager(
-			IPermissionsUserStore<TUser> permissionsUserStore,
+			ITenantUserStore<TUser> tenantUserStore,
 			IUserStore<TUser> userStore,
 			IOptions<IdentityOptions> optionsAccessor,
 			IPasswordHasher<TUser> passwordHasher,
@@ -34,7 +34,7 @@
 			ILogger<TenantUserManager<TUser>> logger)
 			: base(userStore, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
 		{
-			this.permissionsUserStore = permissionsUserStore;
+			this.tenantUserStore = tenantUserStore;
 		}
 
 		/// <summary>
@@ -53,7 +53,7 @@
 				throw new ArgumentNullException(nameof(user));
 			}
 
-			return await this.permissionsUserStore.GetTenantIdAsync(user, this.CancellationToken);
+			return await this.tenantUserStore.GetTenantIdAsync(user, this.CancellationToken);
 		}
 
 		/// <summary>

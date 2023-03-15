@@ -268,6 +268,7 @@
 									   join role in this.Roles on tenantRole.RoleId equals role.Id
 									   where tenantRole.TenantId.Equals(userId)
 									   select role.Name;
+
 			return await query.ToListAsync(cancellationToken);
 		}
 
