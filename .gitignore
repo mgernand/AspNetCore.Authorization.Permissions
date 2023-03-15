@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/samples/SampleTenant/permissions.db-shm
+/samples/SampleTenant/permissions.db-wal
