@@ -10,12 +10,12 @@
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 
-    /// <summary>
-    ///     Represents a new instance of a persistence store for permissions, using the default implementation
-    ///     of <see cref="IdentityPermission{TKey}" /> and <see cref="PermissionsRole{TKey}"/> with a string as a primary key.
-    /// </summary>
-    [PublicAPI]
-	public class PermissionStore: PermissionStore<IdentityPermission, IdentityRole, DbContext, string>
+	/// <summary>
+	///     Represents a new instance of a persistence store for permissions, using the default implementation
+	///     of <see cref="IdentityPermission{TKey}" /> and <see cref="IdentityRole{TKey}" /> with a string as a primary key.
+	/// </summary>
+	[PublicAPI]
+	public class PermissionStore : PermissionStore<IdentityPermission, IdentityRole, DbContext, string>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
@@ -29,7 +29,7 @@
 	}
 
 	/// <summary>
-	///      Represents a new instance of a persistence store for the specified permission type.
+	///     Represents a new instance of a persistence store for the specified permission type.
 	/// </summary>
 	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
 	[PublicAPI]
@@ -47,16 +47,16 @@
 		}
 	}
 
-    /// <summary>
-    ///      Represents a new instance of a persistence store for the specified permission and role types.
-    /// </summary>
-    /// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
-    /// <typeparam name="TRole">The type of the class representing a role</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Represents a new instance of a persistence store for the specified permission and role types.
+	/// </summary>
+	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
+	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
+	[PublicAPI]
 	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
 		where TPermission : IdentityPermission
 		where TRole : IdentityRole
-    {
+	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
 		/// </summary>
@@ -68,17 +68,17 @@
 		}
 	}
 
-    /// <summary>
-    ///     Represents a new instance of a persistence store for the specified permission, role and db context types.
-    /// </summary>
-    /// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
-    /// <typeparam name="TRole">The type of the class representing a role</typeparam>
-    /// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Represents a new instance of a persistence store for the specified permission, role and db context types.
+	/// </summary>
+	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
+	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
+	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
+	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext> : PermissionStore<TPermission, TRole, TContext, string>
 		where TPermission : IdentityPermission
 		where TRole : IdentityRole
-        where TContext : DbContext
+		where TContext : DbContext
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole, TContext}" />.
@@ -91,14 +91,14 @@
 		}
 	}
 
-    /// <summary>
-    ///     Represents a new instance of a persistence store for the specified permission, role, db context and key types.
-    /// </summary>
-    /// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
-    /// <typeparam name="TRole"></typeparam>
-    /// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
-    /// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Represents a new instance of a persistence store for the specified permission, role, db context and key types.
+	/// </summary>
+	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
+	/// <typeparam name="TRole"></typeparam>
+	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
+	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
+	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext, TKey> : PermissionStore<TPermission, TRole, TContext, TKey, IdentityRolePermission<TKey>>
 		where TPermission : IdentityPermission<TKey>
 		where TRole : IdentityRole<TKey>
@@ -116,15 +116,16 @@
 		}
 	}
 
-    /// <summary>
-    ///     Represents a new instance of a persistence store for the specified permission, role, db context, key and role permission types.
-    /// </summary>
-    /// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
-    /// <typeparam name="TRole"></typeparam>
-    /// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
-    /// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
-    /// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Represents a new instance of a persistence store for the specified permission, role, db context, key and role
+	///     permission types.
+	/// </summary>
+	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
+	/// <typeparam name="TRole"></typeparam>
+	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
+	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
+	/// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
+	[PublicAPI]
 	public class PermissionStore<TPermission, TRole, TContext, TKey, TRolePermission> : PermissionStoreBase<TPermission, TRole, TKey, TRolePermission>,
 		IQueryablePermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>

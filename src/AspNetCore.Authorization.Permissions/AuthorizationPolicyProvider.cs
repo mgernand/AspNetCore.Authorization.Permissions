@@ -18,12 +18,12 @@
 		{
 		}
 
-        /// <summary>
-        ///     This gets the <see cref="PermissionRequirement"/> for the given policyName.
-        /// </summary>
-        /// <param name="policyName"></param>
-        /// <returns></returns>
-        public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
+		/// <summary>
+		///     This gets the <see cref="PermissionRequirement" /> for the given policyName.
+		/// </summary>
+		/// <param name="policyName"></param>
+		/// <returns></returns>
+		public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
 		{
 			return await base.GetPolicyAsync(policyName) ?? BuildPermissionPolicy(policyName);
 		}

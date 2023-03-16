@@ -16,13 +16,13 @@
 		private readonly ITenantManager<TTenant> tenantManager;
 		private readonly IPermissionManager<TPermission> permissionManager;
 
-        /// <summary>
+		/// <summary>
 		///     Initializes a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
-        /// </summary>
-        /// <param name="userManager"></param>
-        /// <param name="permissionManager"></param>
-        /// <param name="tenantManager"></param>
-        public IdentityClaimsProvider(
+		/// </summary>
+		/// <param name="userManager"></param>
+		/// <param name="permissionManager"></param>
+		/// <param name="tenantManager"></param>
+		public IdentityClaimsProvider(
 			ITenantUserManager<TUser> userManager,
 			ITenantManager<TTenant> tenantManager,
 			IPermissionManager<TPermission> permissionManager)

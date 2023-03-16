@@ -77,9 +77,11 @@
 		/// <param name="authenticationProperties">Properties applied to the login and authentication cookie.</param>
 		/// <param name="additionalClaims">Additional claims that will be stored in the cookie.</param>
 		/// <returns>The task object representing the asynchronous operation.</returns>
-		Task SignInWithClaimsAsync(TUser user, AuthenticationProperties? authenticationProperties, IEnumerable<Claim> additionalClaims);
+		Task SignInWithClaimsAsync(TUser user, AuthenticationProperties authenticationProperties, IEnumerable<Claim> additionalClaims);
 
-		/// <summary>Signs the current user out of the application.</summary>
+		/// <summary>
+		///     Signs the current user out of the application.
+		/// </summary>
 		Task SignOutAsync();
 
 		/// <summary>

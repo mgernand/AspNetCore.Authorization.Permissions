@@ -19,15 +19,15 @@
 	{
 		private bool disposed;
 
-        /// <summary>
+		/// <summary>
 		///     Initializes a new instance of the <see cref="TenantManager{TTenant}" /> type.
-        /// </summary>
-        /// <param name="store">The persistence store the manager will operate over.</param>
-        /// <param name="tenantValidators">A collection of validators for tenants.</param>
-        /// <param name="keyNormalizer">The normalizer to use when normalizing tenant names to keys.</param>
-        /// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
-        /// <param name="logger">The logger used to log messages, warnings and errors.</param>
-        public TenantManager(
+		/// </summary>
+		/// <param name="store">The persistence store the manager will operate over.</param>
+		/// <param name="tenantValidators">A collection of validators for tenants.</param>
+		/// <param name="keyNormalizer">The normalizer to use when normalizing tenant names to keys.</param>
+		/// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
+		/// <param name="logger">The logger used to log messages, warnings and errors.</param>
+		public TenantManager(
 			ITenantStore<TTenant> store,
 			IEnumerable<ITenantValidator<TTenant>> tenantValidators,
 			ILookupNormalizer keyNormalizer,

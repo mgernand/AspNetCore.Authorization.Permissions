@@ -8,13 +8,13 @@
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
-    ///     Provides an abstraction for managing users in a persistence store.
-    /// </summary>
-    /// <remarks>
-    ///     Interface extracted from <see cref="UserManager{TUser}" />.
-    /// </remarks>
-    /// <typeparam name="TUser">The type encapsulating a user.</typeparam>
-    [PublicAPI]
+	///     Provides an abstraction for managing users in a persistence store.
+	/// </summary>
+	/// <remarks>
+	///     Interface extracted from <see cref="UserManager{TUser}" />.
+	/// </remarks>
+	/// <typeparam name="TUser">The type encapsulating a user.</typeparam>
+	[PublicAPI]
 	public interface IUserManager<TUser> : IDisposable
 		where TUser : class
 	{

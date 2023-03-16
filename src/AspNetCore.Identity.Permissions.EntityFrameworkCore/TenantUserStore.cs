@@ -24,11 +24,11 @@
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	///     Represents a new instance of a persistence store for the specified user type.
-    /// </summary>
-    /// <typeparam name="TUser">The type representing a user.</typeparam>
-    [PublicAPI]
+	/// </summary>
+	/// <typeparam name="TUser">The type representing a user.</typeparam>
+	[PublicAPI]
 	public class TenantUserStore<TUser> : TenantUserStore<TUser, DbContext, string>
 		where TUser : IdentityTenantUser, new()
 	{

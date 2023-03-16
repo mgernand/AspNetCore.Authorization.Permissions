@@ -175,13 +175,13 @@
 			{
 				// User roles.
 				entity.HasData(new IdentityRole
-                {
+				{
 					Id = "b0df7eae-a4f9-4d58-8795-ead2aaf6a483",
 					Name = "Boss",
 					NormalizedName = "BOSS"
 				});
 				entity.HasData(new IdentityRole
-                {
+				{
 					Id = "2c77ea15-1559-4b9b-bc20-1d64892e4297",
 					Name = "Manager",
 					NormalizedName = "MANAGER"
@@ -195,7 +195,7 @@
 
 				// Tenant roles.
 				entity.HasData(new IdentityRole
-                {
+				{
 					Id = "ecae3c35-0d88-424f-a1bc-31cba5add7a7",
 					Name = "Free",
 					NormalizedName = "FREE"

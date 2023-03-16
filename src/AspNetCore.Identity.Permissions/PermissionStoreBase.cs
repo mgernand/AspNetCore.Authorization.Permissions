@@ -9,14 +9,14 @@
 	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
-    ///     Initializes a new instance of a persistence store for roles.
-    /// </summary>
-    /// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
-    /// <typeparam name="TRole">The type representing a role.</typeparam>
-    /// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
-    /// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Initializes a new instance of a persistence store for roles.
+	/// </summary>
+	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
+	/// <typeparam name="TRole">The type representing a role.</typeparam>
+	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
+	/// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
+	[PublicAPI]
 	public abstract class PermissionStoreBase<TPermission, TRole, TKey, TRolePermission> :
 		IPermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>

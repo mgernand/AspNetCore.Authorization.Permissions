@@ -21,15 +21,15 @@
 	{
 		private bool disposed;
 
-        /// <summary>
+		/// <summary>
 		///     Initializes a new instance of the <see cref="PermissionManager{TPermission}" /> type.
-        /// </summary>
-        /// <param name="store">The persistence store the manager will operate over.</param>
-        /// <param name="permissionValidators">A collection of validators for permissions.</param>
-        /// <param name="keyNormalizer">The normalizer to use when normalizing permission names to keys.</param>
-        /// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
-        /// <param name="logger">The logger used to log messages, warnings and errors.</param>
-        public PermissionManager(
+		/// </summary>
+		/// <param name="store">The persistence store the manager will operate over.</param>
+		/// <param name="permissionValidators">A collection of validators for permissions.</param>
+		/// <param name="keyNormalizer">The normalizer to use when normalizing permission names to keys.</param>
+		/// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
+		/// <param name="logger">The logger used to log messages, warnings and errors.</param>
+		public PermissionManager(
 			IPermissionStore<TPermission> store,
 			IEnumerable<IPermissionValidator<TPermission>> permissionValidators,
 			ILookupNormalizer keyNormalizer,

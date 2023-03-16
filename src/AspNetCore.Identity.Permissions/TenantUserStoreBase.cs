@@ -21,11 +21,11 @@
 	{
 		private bool disposed;
 
-        /// <summary>
+		/// <summary>
 		///     Initializes a new instance of the <see cref="TenantUserStoreBase{TUser,TKey}" /> type.
-        /// </summary>
-        /// <param name="describer"></param>
-        protected TenantUserStoreBase(IdentityErrorDescriber describer = null)
+		/// </summary>
+		/// <param name="describer"></param>
+		protected TenantUserStoreBase(IdentityErrorDescriber describer = null)
 		{
 			this.Describer = describer;
 		}

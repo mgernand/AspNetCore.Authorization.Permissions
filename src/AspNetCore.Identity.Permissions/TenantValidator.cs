@@ -15,11 +15,11 @@
 	public class TenantValidator<TTenant> : ITenantValidator<TTenant>
 		where TTenant : class
 	{
-        /// <summary>
+		/// <summary>
 		///     Initializes a new instance of <see cref="TenantValidator{TTenant}" />.
-        /// </summary>
-        /// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
-        public TenantValidator(PermissionsErrorDescriber errors = null)
+		/// </summary>
+		/// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
+		public TenantValidator(PermissionsErrorDescriber errors = null)
 		{
 			this.Describer = errors ?? new PermissionsErrorDescriber();
 		}

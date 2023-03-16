@@ -9,14 +9,14 @@
 	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
-    ///     Initializes a new instance of a persistence store for tenants.
-    /// </summary>
-    /// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
-    /// <typeparam name="TRole">The type representing a role.</typeparam>
-    /// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
-    /// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     Initializes a new instance of a persistence store for tenants.
+	/// </summary>
+	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
+	/// <typeparam name="TRole">The type representing a role.</typeparam>
+	/// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
+	/// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
+	[PublicAPI]
 	public abstract class TenantStoreBase<TTenant, TRole, TKey, TTenantRole> : ITenantRoleStore<TTenant>
 		where TTenant : PermissionsTenant<TKey>
 		where TRole : IdentityRole<TKey>

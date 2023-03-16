@@ -96,7 +96,7 @@
 			services.AddScoped<IRoleManager<TRole>>(serviceProvider => serviceProvider.GetRequiredService<CustomRoleManager<TRole>>());
 			services.AddScoped<ISignInManager<TUser>>(serviceProvider => serviceProvider.GetRequiredService<CustomSignInManager<TUser>>());
 
-            PermissionIdentityBuilder permissionsBuilder = new PermissionIdentityBuilder(builder, typeof(TPermission), typeof(TTenant))
+			PermissionIdentityBuilder permissionsBuilder = new PermissionIdentityBuilder(builder, typeof(TPermission), typeof(TTenant))
 				.AddPermissionManager<PermissionManager<TPermission>>()
 				.AddTenantManager<TenantManager<TTenant>>()
 				.AddTenantValidator<TenantValidator<TTenant>>()

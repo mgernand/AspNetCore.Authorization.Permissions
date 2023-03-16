@@ -14,11 +14,11 @@
 	public class PermissionValidator<TPermission> : IPermissionValidator<TPermission>
 		where TPermission : class
 	{
-        /// <summary>
+		/// <summary>
 		///     Initializes a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
-        /// </summary>
-        /// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
-        public PermissionValidator(PermissionsErrorDescriber errors = null)
+		/// </summary>
+		/// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
+		public PermissionValidator(PermissionsErrorDescriber errors = null)
 		{
 			this.Describer = errors ?? new PermissionsErrorDescriber();
 		}
