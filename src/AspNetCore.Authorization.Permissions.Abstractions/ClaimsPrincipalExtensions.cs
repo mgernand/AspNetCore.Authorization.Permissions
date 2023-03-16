@@ -1,5 +1,6 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Security.Claims;
 	using JetBrains.Annotations;
@@ -17,6 +18,11 @@
 		/// <returns></returns>
 		public static IReadOnlyCollection<string> GetPermissions(this ClaimsPrincipal user)
 		{
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
 			return user.Claims.GetPermissions();
 		}
 
@@ -28,6 +34,11 @@
 		/// <returns></returns>
 		public static bool HasPermission(this ClaimsPrincipal user, string permission)
 		{
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
 			return user.Claims.HasPermission(permission);
 		}
 
@@ -38,7 +49,12 @@
 		/// <returns></returns>
 		public static string GetUserId(this ClaimsPrincipal user)
 		{
-			return user.Claims.GetUserId();
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
+			return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 		}
 
 		/// <summary>
@@ -48,7 +64,12 @@
 		/// <returns></returns>
 		public static string GetTenantId(this ClaimsPrincipal user)
 		{
-			return user.Claims.GetTenantId();
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
+			return user.FindFirst(PermissionClaimTypes.TenantIdClaimType)?.Value;
 		}
 
 		/// <summary>
@@ -58,7 +79,12 @@
 		/// <returns></returns>
 		public static string GetTenantName(this ClaimsPrincipal user)
 		{
-			return user.Claims.GetTenantName();
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
+			return user.FindFirst(PermissionClaimTypes.TenantNameClaimType)?.Value;
 		}
 
 		/// <summary>
@@ -68,7 +94,12 @@
 		/// <returns></returns>
 		public static string GetTenantDisplayName(this ClaimsPrincipal user)
 		{
-			return user.Claims.GetTenantDisplayName();
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
+			return user.FindFirst(PermissionClaimTypes.TenantDisplayNameClaimType)?.Value;
 		}
 	}
 }

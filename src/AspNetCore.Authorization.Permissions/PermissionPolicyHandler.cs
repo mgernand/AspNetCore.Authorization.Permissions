@@ -1,7 +1,6 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using System.Threading.Tasks;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.AspNetCore.Authorization;
 
 	/// <summary>

@@ -6,7 +6,6 @@
 	using System.Threading.Tasks;
 	using FluentAssertions;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.Extensions.DependencyInjection;
 	using NUnit.Framework;

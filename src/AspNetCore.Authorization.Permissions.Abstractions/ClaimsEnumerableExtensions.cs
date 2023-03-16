@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions
+﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using System;
 	using System.Collections.Generic;
@@ -19,6 +19,11 @@
 		/// <returns></returns>
 		public static IReadOnlyCollection<string> GetPermissions(this IEnumerable<Claim> claims)
 		{
+			if(claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
 			return claims
 				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
 				.Select(x => x.Value)
@@ -34,6 +39,11 @@
 		/// <returns></returns>
 		public static bool HasPermission(this IEnumerable<Claim> claims, string permission)
 		{
+			if(claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
 			return claims
 				.Where(x => x.Type == PermissionClaimTypes.PermissionClaimType)
 				.Any(x => x.Value.Equals(permission.Normalize(), StringComparison.InvariantCultureIgnoreCase));
@@ -46,6 +56,11 @@
 		/// <returns></returns>
 		public static string GetUserId(this IEnumerable<Claim> claims)
 		{
+			if(claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
 			return claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 		}
 
@@ -56,6 +71,11 @@
 		/// <returns></returns>
 		public static string GetTenantId(this IEnumerable<Claim> claims)
 		{
+			if(claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
 			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantIdClaimType)?.Value;
 		}
 
@@ -66,6 +86,11 @@
 		/// <returns></returns>
 		public static string GetTenantName(this IEnumerable<Claim> claims)
 		{
+			if(claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
 			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantNameClaimType)?.Value;
 		}
 
@@ -76,6 +101,11 @@
 		/// <returns></returns>
 		public static string GetTenantDisplayName(this IEnumerable<Claim> claims)
 		{
+			if(claims == null)
+			{
+				throw new ArgumentNullException(nameof(claims));
+			}
+
 			return claims?.SingleOrDefault(x => x.Type == PermissionClaimTypes.TenantDisplayNameClaimType)?.Value;
 		}
 	}

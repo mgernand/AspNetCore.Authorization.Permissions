@@ -1,7 +1,6 @@
 ﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
 	using Microsoft.AspNetCore.Http;
 
 	/// <summary>
@@ -12,17 +11,17 @@
 	{
 		private readonly IHttpContextAccessor accessor;
 
-		/// <summary>
-		///     Creates a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
-		/// </summary>
-		/// <param name="accessor"></param>
-		public HttpContextUserTenantProvider(IHttpContextAccessor accessor)
+        /// <summary>
+		///     Initializes a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
+        /// </summary>
+        /// <param name="accessor"></param>
+        public HttpContextUserTenantProvider(IHttpContextAccessor accessor)
 		{
 			this.accessor = accessor;
 		}
 
 		/// <inheritdoc />
-		public string TenantId
+		public string TenantID
 		{
 			get
 			{

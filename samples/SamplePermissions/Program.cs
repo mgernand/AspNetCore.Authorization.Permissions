@@ -1,6 +1,6 @@
 using MadEyeMatt.AspNetCore.Authorization.Permissions;
-using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity;
-using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore;
+using MadEyeMatt.AspNetCore.Identity.Permissions;
+using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

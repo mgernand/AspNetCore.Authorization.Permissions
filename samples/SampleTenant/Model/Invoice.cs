@@ -1,8 +1,9 @@
 ﻿namespace SampleTenant.Model
 {
 	using System;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 
-	public class Invoice : MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions.ITenantObject
+	public class Invoice : ITenantObject
 	{
 		public Guid Id { get; set; }
 
@@ -11,6 +12,6 @@
 		public string Note { get; set; }
 
 		/// <inheritdoc />
-		public string TenantId { get; set; }
+		public string TenantID { get; set; }
 	}
 }

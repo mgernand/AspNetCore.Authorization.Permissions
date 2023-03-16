@@ -1,7 +1,7 @@
 ﻿namespace SampleTenant
 {
 	using System;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions.Abstractions;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;
 	using Microsoft.EntityFrameworkCore.ValueGeneration;
@@ -25,8 +25,8 @@
 			builder.Property(x => x.Id).HasValueGenerator<SequentialGuidValueGenerator>();
 
 			// Add a tenant query filter.
-			builder.HasIndex(x => x.TenantId).HasDatabaseName("InvoiceTenantIdIndex");
-			builder.HasQueryFilter(x => x.TenantId == this.tenantProvider.TenantId);
+			builder.HasIndex(x => x.TenantID).HasDatabaseName("InvoiceTenantIdIndex");
+			builder.HasQueryFilter(x => x.TenantID == this.tenantProvider.TenantID);
 
 			// Startup invoices
 			builder.HasData(new Invoice
@@ -34,21 +34,21 @@
 				Id = Guid.NewGuid(),
 				Total = 99.95m,
 				Note = "This is a Startup invoice.",
-				TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+				TenantID = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 			});
 			builder.HasData(new Invoice
 			{
 				Id = Guid.NewGuid(),
 				Total = 99.95m,
 				Note = "This is a Startup invoice.",
-				TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+				TenantID = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 			});
 			builder.HasData(new Invoice
 			{
 				Id = Guid.NewGuid(),
 				Total = 99.95m,
 				Note = "This is a Startup invoice.",
-				TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+				TenantID = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 			});
 
 			// Company invoices
@@ -57,21 +57,21 @@
 				Id = Guid.NewGuid(),
 				Total = 199.95m,
 				Note = "This is a Company invoice.",
-				TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+				TenantID = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 			});
 			builder.HasData(new Invoice
 			{
 				Id = Guid.NewGuid(),
 				Total = 199.95m,
 				Note = "This is a Company invoice.",
-				TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+				TenantID = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 			});
 			builder.HasData(new Invoice
 			{
 				Id = Guid.NewGuid(),
 				Total = 199.95m,
 				Note = "This is a Company invoice.",
-				TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+				TenantID = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 			});
 
 			// Corporate invoices
@@ -80,21 +80,21 @@
 				Id = Guid.NewGuid(),
 				Total = 399.95m,
 				Note = "This is a Corporate invoice.",
-				TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
+				TenantID = "49a049d2-23ad-41df-8806-240aebaa2f17"
 			});
 			builder.HasData(new Invoice
 			{
 				Id = Guid.NewGuid(),
 				Total = 399.95m,
 				Note = "This is a Corporate invoice.",
-				TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
+				TenantID = "49a049d2-23ad-41df-8806-240aebaa2f17"
 			});
 			builder.HasData(new Invoice
 			{
 				Id = Guid.NewGuid(),
 				Total = 399.95m,
 				Note = "This is a Corporate invoice.",
-				TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
+				TenantID = "49a049d2-23ad-41df-8806-240aebaa2f17"
 			});
 		}
 	}

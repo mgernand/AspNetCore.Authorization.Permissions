@@ -25,7 +25,7 @@
                 <td>@invoice.Id.ToString("N")</td>
                 <td>@invoice.Total.ToString("C2")</td>
                 <td>@invoice.Note</td>
-                <td>@Model.GetTenantName(invoice.TenantId)</td>
+                <td>@Model.GetTenantName(invoice.TenantID)</td>
                 <td>
                     <form asp-page-handler="delete" method="post">
                         <button class="btn btn-sm btn-primary">Delete</button>

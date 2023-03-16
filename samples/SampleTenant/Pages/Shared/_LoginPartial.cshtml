@@ -1,7 +1,7 @@
-﻿@using MadEyeMatt.AspNetCore.Authorization.Permissions.Identity.Model
+﻿@using MadEyeMatt.AspNetCore.Identity.Permissions.Model
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<PermissionsUser> signInManager
-@inject UserManager<PermissionsUser> userManager
+@inject SignInManager<IdentityTenantUser> signInManager
+@inject UserManager<IdentityTenantUser> userManager
 
 <ul class="navbar-nav">
     @if(signInManager.IsSignedIn(User))

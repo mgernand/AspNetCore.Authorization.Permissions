@@ -5,6 +5,7 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{24143346-BEA0-4E8E-9249-17FF05C9772F}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -23,13 +24,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Pe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Abstractions", "src\AspNetCore.Authorization.Permissions.Abstractions\AspNetCore.Authorization.Permissions.Abstractions.csproj", "{188E0288-2D1F-4618-A8DC-8AAF6281A713}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Identity", "src\AspNetCore.Authorization.Permissions.Identity\AspNetCore.Authorization.Permissions.Identity.csproj", "{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{38E0E64A-6A46-47C7-A169-24A6069D80E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore", "src\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore\AspNetCore.Authorization.Permissions.Identity.EntityFrameworkCore.csproj", "{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleTenant", "samples\SampleTenant\SampleTenant.csproj", "{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleTenant", "samples\SampleTenant\SampleTenant.csproj", "{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions", "src\AspNetCore.Identity.Permissions\AspNetCore.Identity.Permissions.csproj", "{30A8E652-AD3F-42B8-AEDB-133660992475}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore", "src\AspNetCore.Identity.Permissions.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj", "{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.Core", "src\AspNetCore.Identity.Permissions.Core\AspNetCore.Identity.Permissions.Core.csproj", "{525124A3-58D5-4301-A898-967D999CFB61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,18 +56,22 @@ Global
 		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{188E0288-2D1F-4618-A8DC-8AAF6281A713}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30A8E652-AD3F-42B8-AEDB-133660992475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A8E652-AD3F-42B8-AEDB-133660992475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A8E652-AD3F-42B8-AEDB-133660992475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A8E652-AD3F-42B8-AEDB-133660992475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{525124A3-58D5-4301-A898-967D999CFB61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,10 +81,11 @@ Global
 		{263050E7-B671-4A38-8A20-F933FB9AD987} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
 		{A01CDEBF-8DB4-4792-9366-D53A91F2292D} = {9BE8804F-BCC0-48CF-9AEC-ED97414B0C78}
 		{188E0288-2D1F-4618-A8DC-8AAF6281A713} = {EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}
-		{F5E8F68F-1DB2-40A0-8071-6B6D2D2F7EC5} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 		{38E0E64A-6A46-47C7-A169-24A6069D80E4} = {EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}
-		{FC53BA36-7FE5-4D3B-944B-CD0F34FD0320} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
+		{30A8E652-AD3F-42B8-AEDB-133660992475} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{525124A3-58D5-4301-A898-967D999CFB61} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}
