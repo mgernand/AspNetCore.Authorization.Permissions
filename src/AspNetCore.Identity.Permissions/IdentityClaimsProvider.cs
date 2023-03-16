@@ -14,15 +14,15 @@
 	{
 		private readonly ITenantUserManager<TUser> userManager;
 		private readonly ITenantManager<TTenant> tenantManager;
-        private readonly IPermissionManager<TPermission> permissionManager;
+		private readonly IPermissionManager<TPermission> permissionManager;
 
-		/// <summary>
-		///     Creates a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
-		/// </summary>
-		/// <param name="userManager"></param>
-		/// <param name="permissionManager"></param>
-		/// <param name="tenantManager"></param>
-		public IdentityClaimsProvider(
+        /// <summary>
+		///     Initializes a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="permissionManager"></param>
+        /// <param name="tenantManager"></param>
+        public IdentityClaimsProvider(
 			ITenantUserManager<TUser> userManager,
 			ITenantManager<TTenant> tenantManager,
 			IPermissionManager<TPermission> permissionManager)
@@ -64,7 +64,7 @@
 		{
 			IList<string> roleNames = await this.userManager.GetRolesAsync(user);
 			return await this.GetPermissions(roleNames);
-        }
+		}
 
 		private async Task<IList<Claim>> GetTenantPermissions(TTenant tenant)
 		{
@@ -75,10 +75,10 @@
 		private async Task<IList<Claim>> GetPermissions(IEnumerable<string> roleNames)
 		{
 			IList<Claim> claims = new List<Claim>();
-			foreach (string roleName in roleNames)
+			foreach(string roleName in roleNames)
 			{
 				IList<TPermission> permissions = await this.permissionManager.GetPermissionsInRoleAsync(roleName);
-				foreach (TPermission permission in permissions)
+				foreach(TPermission permission in permissions)
 				{
 					if(permission is null)
 					{
@@ -91,6 +91,6 @@
 			}
 
 			return claims;
-        }
+		}
 	}
 }

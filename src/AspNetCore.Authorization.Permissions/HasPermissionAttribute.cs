@@ -15,7 +15,7 @@
 		private string policy;
 
 		/// <summary>
-		///     Creates a new instance of the <see cref="HasPermissionAttribute" /> type.
+		///     Initializes a new instance of the <see cref="HasPermissionAttribute" /> type.
 		/// </summary>
 		/// <param name="permission"></param>
 		public HasPermissionAttribute(string permission)

@@ -11,24 +11,28 @@
 	internal sealed class AuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
 	{
 		/// <summary>
-		///     Creates a new instance of the <see cref="AuthorizationPolicyProvider" /> type.
+		///     Initializes a new instance of the <see cref="AuthorizationPolicyProvider" /> type.
 		/// </summary>
 		/// <param name="options"></param>
 		public AuthorizationPolicyProvider(IOptions<AuthorizationOptions> options) : base(options)
 		{
 		}
 
-		/// <summary>
-		///     This gets the PermissionRequirement for the given policyName
-		/// </summary>
-		/// <param name="policyName"></param>
-		/// <returns></returns>
-		public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
+        /// <summary>
+        ///     This gets the <see cref="PermissionRequirement"/> for the given policyName.
+        /// </summary>
+        /// <param name="policyName"></param>
+        /// <returns></returns>
+        public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
 		{
-			return await base.GetPolicyAsync(policyName)
-				?? new AuthorizationPolicyBuilder()
-					.AddRequirements(new PermissionRequirement(policyName))
-					.Build();
+			return await base.GetPolicyAsync(policyName) ?? BuildPermissionPolicy(policyName);
+		}
+
+		private static AuthorizationPolicy BuildPermissionPolicy(string policyName)
+		{
+			return new AuthorizationPolicyBuilder()
+				.AddRequirements(new PermissionRequirement(policyName))
+				.Build();
 		}
 	}
 }

@@ -15,11 +15,11 @@
 	{
 		/// <inheritdoc />
 		public CustomRoleManager(
-			IRoleStore<TRole> store, 
-			IEnumerable<IRoleValidator<TRole>> roleValidators, 
-			ILookupNormalizer keyNormalizer, 
-			IdentityErrorDescriber errors, 
-			ILogger<RoleManager<TRole>> logger) 
+			IRoleStore<TRole> store,
+			IEnumerable<IRoleValidator<TRole>> roleValidators,
+			ILookupNormalizer keyNormalizer,
+			IdentityErrorDescriber errors,
+			ILogger<RoleManager<TRole>> logger)
 			: base(store, roleValidators, keyNormalizer, errors, logger)
 		{
 		}

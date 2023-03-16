@@ -7,7 +7,7 @@
 	///     Represents the link between a tenant and a role that uses a string as type for the keys.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsTenantRole : PermissionsTenantRole<string>
+	public class IdentityTenantRole : IdentityTenantRole<string>
 	{
 	}
 
@@ -16,7 +16,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the primary key used for tenant and roles.</typeparam>
 	[PublicAPI]
-	public class PermissionsTenantRole<TKey> where TKey : IEquatable<TKey>
+	public class IdentityTenantRole<TKey> where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Gets or sets the primary key of the tenant that is linked to a role.

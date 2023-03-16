@@ -5,11 +5,11 @@
 
 	internal sealed class PermissionRequirement : IAuthorizationRequirement
 	{
-		/// <summary>
-		///     Creates a new instance of the <see cref="PermissionRequirement" /> type.
-		/// </summary>
-		/// <param name="permission"></param>
-		public PermissionRequirement(string permission)
+        /// <summary>
+		///     Initializes a new instance of the <see cref="PermissionRequirement" /> type.
+        /// </summary>
+        /// <param name="permission"></param>
+        public PermissionRequirement(string permission)
 		{
 			if(string.IsNullOrWhiteSpace(permission))
 			{

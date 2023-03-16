@@ -15,7 +15,7 @@
 		where TPermission : class
 	{
         /// <summary>
-        ///     Creates a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
+		///     Initializes a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
         /// </summary>
         /// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
         public PermissionValidator(PermissionsErrorDescriber errors = null)
@@ -23,7 +23,7 @@
 			this.Describer = errors ?? new PermissionsErrorDescriber();
 		}
 
-        private PermissionsErrorDescriber Describer { get; }
+		private PermissionsErrorDescriber Describer { get; }
 
 		/// <summary>
 		///     Validates a permission as an asynchronous operation.

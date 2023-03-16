@@ -13,7 +13,7 @@
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
 	public class TenantUserConfiguration<TUser, TTenant> : TenantUserConfiguration<TUser, TTenant, string>
-		where TUser : PermissionsUser<string>
+		where TUser : IdentityTenantUser<string>
 		where TTenant : PermissionsTenant<string>
 	{
 	}
@@ -26,7 +26,7 @@
 	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
 	public class TenantUserConfiguration<TUser, TTenant, TKey> : IEntityTypeConfiguration<TUser>
-		where TUser : PermissionsUser<TKey>
+		where TUser : IdentityTenantUser<TKey>
 		where TTenant : PermissionsTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{

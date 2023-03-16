@@ -12,10 +12,10 @@
 
 	/// <summary>
 	///     Represents a new instance of a persistence store for tenants, using the default implementation
-	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
+	///     of <see cref="IdentityTenantUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class TenantStore : TenantStore<PermissionsTenant>
+	public class TenantStore : TenantStore<IdentityTenant>
 	{
 		/// <inheritdoc />
 		public TenantStore(DbContext context, IdentityErrorDescriber describer = null)
@@ -24,12 +24,12 @@
 		}
 	}
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for tenants.
-	/// </summary>
-	/// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
-	[PublicAPI]
-	public class TenantStore<TTenant> : TenantStore<TTenant, PermissionsRole, DbContext, string>
+    /// <summary>
+    ///     Represents a new instance of a persistence store for the specified tenant type.
+    /// </summary>
+    /// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
+    [PublicAPI]
+	public class TenantStore<TTenant> : TenantStore<TTenant, IdentityRole, DbContext, string>
 		where TTenant : PermissionsTenant<string>, new()
 	{
 		/// <inheritdoc />
@@ -39,17 +39,17 @@
 		}
 	}
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for tenants.
-	/// </summary>
-	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
-	/// <typeparam name="TRole">The type representing a role.</typeparam>
-	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Represents a new instance of a persistence store for the specified tenant, role and db context types.
+    /// </summary>
+    /// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
+    /// <typeparam name="TRole">The type representing a role.</typeparam>
+    /// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
+    [PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext> : TenantStore<TTenant, TRole, TContext, string>
-		where TTenant : PermissionsTenant
-		where TRole : PermissionsRole
-		where TContext : DbContext
+		where TTenant : IdentityTenant
+		where TRole : IdentityRole
+        where TContext : DbContext
 	{
 		/// <inheritdoc />
 		public TenantStore(TContext context, IdentityErrorDescriber describer = null)
@@ -58,17 +58,17 @@
 		}
 	}
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for tenants.
-	/// </summary>
-	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
-	/// <typeparam name="TRole">The type representing a role.</typeparam>
-	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
-	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
-	[PublicAPI]
-	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, PermissionsTenantRole<TKey>>
+    /// <summary>
+    ///     Represents a new instance of a persistence store for the specified tenant, role, db context and key types.
+    /// </summary>
+    /// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
+    /// <typeparam name="TRole">The type representing a role.</typeparam>
+    /// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
+    /// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
+    [PublicAPI]
+	public class TenantStore<TTenant, TRole, TContext, TKey> : TenantStore<TTenant, TRole, TContext, TKey, IdentityTenantRole<TKey>>
 		where TTenant : PermissionsTenant<TKey>
-		where TRole : PermissionsRole<TKey>
+		where TRole : IdentityRole<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{
@@ -79,22 +79,22 @@
 		}
 	}
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for tenants.
-	/// </summary>
-	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
-	/// <typeparam name="TRole">The type representing a role.</typeparam>
-	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
-	/// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
-	/// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Represents a new instance of a persistence store for the specified tenant, role, db context, key and role types.
+    /// </summary>
+    /// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
+    /// <typeparam name="TRole">The type representing a role.</typeparam>
+    /// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
+    /// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
+    /// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
+    [PublicAPI]
 	public class TenantStore<TTenant, TRole, TContext, TKey, TTenantRole> : TenantStoreBase<TTenant, TRole, TKey, TTenantRole>,
 		IQueryableTenantStore<TTenant>
 		where TTenant : PermissionsTenant<TKey>
-		where TRole : PermissionsRole<TKey>
+		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TContext : DbContext
-		where TTenantRole : PermissionsTenantRole<TKey>, new()
+		where TTenantRole : IdentityTenantRole<TKey>, new()
 	{
 		/// <inheritdoc />
 		public TenantStore(TContext context, IdentityErrorDescriber describer = null)

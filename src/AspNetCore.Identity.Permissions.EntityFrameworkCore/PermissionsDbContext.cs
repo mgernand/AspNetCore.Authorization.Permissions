@@ -10,7 +10,7 @@
 	///     Base class for the Entity Framework database context used for identity.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsDbContext : PermissionsDbContext<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>
+	public class PermissionsDbContext : PermissionsDbContext<IdentityTenantUser, IdentityRole, IdentityPermission, IdentityTenant, string>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="PermissionsIdentityDbContext" />.
@@ -34,9 +34,9 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class PermissionsDbContext<TPermission, TTenant> : PermissionsDbContext<PermissionsUser, PermissionsRole, TPermission, TTenant, string>
-		where TPermission : PermissionsPermission
-		where TTenant : PermissionsTenant
+	public class PermissionsDbContext<TPermission, TTenant> : PermissionsDbContext<IdentityTenantUser, IdentityRole, TPermission, TTenant, string>
+		where TPermission : IdentityPermission
+		where TTenant : IdentityTenant
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="PermissionsIdentityDbContext" />.
@@ -61,10 +61,10 @@
 	/// <typeparam name="TPermission"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class PermissionsDbContext<TUser, TPermission, TTenant> : PermissionsDbContext<TUser, PermissionsRole, TPermission, TTenant, string>
-		where TUser : PermissionsUser
-		where TPermission : PermissionsPermission
-		where TTenant : PermissionsTenant
+	public class PermissionsDbContext<TUser, TPermission, TTenant> : PermissionsDbContext<TUser, IdentityRole, TPermission, TTenant, string>
+		where TUser : IdentityTenantUser
+		where TPermission : IdentityPermission
+		where TTenant : IdentityTenant
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="PermissionsIdentityDbContext" />.
@@ -91,10 +91,10 @@
 	/// <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
 	/// <typeparam name="TPermission"></typeparam>
 	[PublicAPI]
-	public class PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>
-		where TUser : PermissionsUser<TKey>
-		where TRole : PermissionsRole<TKey>
-		where TPermission : PermissionsPermission<TKey>
+	public class PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey> : PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>
+		where TUser : IdentityTenantUser<TKey>
+		where TRole : IdentityRole<TKey>
+		where TPermission : IdentityPermission<TKey>
 		where TTenant : PermissionsTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
@@ -131,9 +131,9 @@
 	/// <typeparam name="TTenantRole">The type of the tenant role object.</typeparam>
 	[PublicAPI]
 	public abstract class PermissionsDbContext<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole> : PermissionsIdentityDbContext
-		where TUser : PermissionsUser<TKey>
-		where TRole : PermissionsRole<TKey>
-		where TPermission : PermissionsPermission<TKey>
+		where TUser : IdentityTenantUser<TKey>
+		where TRole : IdentityRole<TKey>
+		where TPermission : IdentityPermission<TKey>
 		where TTenant : PermissionsTenant<TKey>
 		where TKey : IEquatable<TKey>
 		where TUserClaim : IdentityUserClaim<TKey>
@@ -141,8 +141,8 @@
 		where TUserLogin : IdentityUserLogin<TKey>
 		where TRoleClaim : IdentityRoleClaim<TKey>
 		where TUserToken : IdentityUserToken<TKey>
-		where TRolePermission : PermissionsRolePermission<TKey>
-		where TTenantRole : PermissionsTenantRole<TKey>
+		where TRolePermission : IdentityRolePermission<TKey>
+		where TTenantRole : IdentityTenantRole<TKey>
 	{
 		/// <summary>
 		///     Initializes a new instance of the class.

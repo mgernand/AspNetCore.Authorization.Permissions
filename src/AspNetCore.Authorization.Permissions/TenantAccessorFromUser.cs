@@ -11,11 +11,11 @@
 	{
 		private readonly IHttpContextAccessor accessor;
 
-		/// <summary>
-		///     Creates a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
-		/// </summary>
-		/// <param name="accessor"></param>
-		public HttpContextUserTenantProvider(IHttpContextAccessor accessor)
+        /// <summary>
+		///     Initializes a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
+        /// </summary>
+        /// <param name="accessor"></param>
+        public HttpContextUserTenantProvider(IHttpContextAccessor accessor)
 		{
 			this.accessor = accessor;
 		}

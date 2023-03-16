@@ -9,21 +9,21 @@
 	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for roles.
-	/// </summary>
-	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
-	/// <typeparam name="TRole">The type representing a role.</typeparam>
-	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
-	/// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Initializes a new instance of a persistence store for roles.
+    /// </summary>
+    /// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
+    /// <typeparam name="TRole">The type representing a role.</typeparam>
+    /// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
+    /// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
+    [PublicAPI]
 	public abstract class PermissionStoreBase<TPermission, TRole, TKey, TRolePermission> :
 		IPermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
-		where TPermission : PermissionsPermission<TKey>
+		where TPermission : IdentityPermission<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
-		where TRolePermission : PermissionsRolePermission<TKey>, new()
+		where TRolePermission : IdentityRolePermission<TKey>, new()
 	{
 		private bool disposed;
 
@@ -146,7 +146,7 @@
 		protected abstract Task<TRole> FindRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
-		///     Called to create a new instance of a <see cref="PermissionsRolePermission{TKey}" />.
+		///     Called to create a new instance of a <see cref="IdentityRolePermission{TKey}" />.
 		/// </summary>
 		/// <param name="permission">The associated permission.</param>
 		/// <param name="role">The associated role.</param>

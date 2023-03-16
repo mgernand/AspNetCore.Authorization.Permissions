@@ -5,6 +5,7 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{24143346-BEA0-4E8E-9249-17FF05C9772F}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -31,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permiss
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore", "src\AspNetCore.Identity.Permissions.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj", "{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.Core", "src\AspNetCore.Identity.Permissions.Core\AspNetCore.Identity.Permissions.Core.csproj", "{525124A3-58D5-4301-A898-967D999CFB61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.Core", "src\AspNetCore.Identity.Permissions.Core\AspNetCore.Identity.Permissions.Core.csproj", "{525124A3-58D5-4301-A898-967D999CFB61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

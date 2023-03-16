@@ -9,10 +9,10 @@
 
 	/// <summary>
 	///     Represents a new instance of a persistence store for users, using the default implementation
-	///     of <see cref="PermissionsUser{TKey}" /> with a string as a primary key.
+	///     of <see cref="IdentityTenantUser{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class TenantUserStore : TenantUserStore<PermissionsUser>
+	public class TenantUserStore : TenantUserStore<IdentityTenantUser>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="TenantUserStore" />.
@@ -24,13 +24,13 @@
 		}
 	}
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for the specified user type.
-	/// </summary>
-	/// <typeparam name="TUser">The type representing a user.</typeparam>
-	[PublicAPI]
+    /// <summary>
+	///     Represents a new instance of a persistence store for the specified user type.
+    /// </summary>
+    /// <typeparam name="TUser">The type representing a user.</typeparam>
+    [PublicAPI]
 	public class TenantUserStore<TUser> : TenantUserStore<TUser, DbContext, string>
-		where TUser : PermissionsUser, new()
+		where TUser : IdentityTenantUser, new()
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="TenantUserStore{TUser}" />.
@@ -49,7 +49,7 @@
 	/// <typeparam name="TContext">The type of the data context class used to access the store.</typeparam>
 	[PublicAPI]
 	public class TenantUserStore<TUser, TContext> : TenantUserStore<TUser, TContext, string>
-		where TUser : PermissionsUser
+		where TUser : IdentityTenantUser
 		where TContext : DbContext
 	{
 		/// <summary>
@@ -70,7 +70,7 @@
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	[PublicAPI]
 	public class TenantUserStore<TUser, TContext, TKey> : TenantUserStoreBase<TUser, TKey>
-		where TUser : PermissionsUser<TKey>
+		where TUser : IdentityTenantUser<TKey>
 		where TContext : DbContext
 		where TKey : IEquatable<TKey>
 	{

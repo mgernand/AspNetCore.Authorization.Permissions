@@ -19,7 +19,7 @@
 		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider(this IdentityBuilder builder)
 		{
-			return builder.AddIdentityClaimsProvider<PermissionsUser, PermissionsPermission, PermissionsTenant>();
+			return builder.AddIdentityClaimsProvider<IdentityTenantUser, IdentityPermission, IdentityTenant>();
 		}
 
 		/// <summary>
@@ -30,7 +30,7 @@
 		public static IdentityBuilder AddIdentityClaimsProvider<TUser>(this IdentityBuilder builder)
 			where TUser : class
 		{
-			return builder.AddIdentityClaimsProvider<TUser, PermissionsPermission, PermissionsTenant>();
+			return builder.AddIdentityClaimsProvider<TUser, IdentityPermission, IdentityTenant>();
 		}
 
 		/// <summary>
@@ -42,7 +42,7 @@
 			where TUser : class
 			where TPermission : class
 		{
-			return builder.AddIdentityClaimsProvider<TUser, TPermission, PermissionsTenant>();
+			return builder.AddIdentityClaimsProvider<TUser, TPermission, IdentityTenant>();
 		}
 
 		/// <summary>

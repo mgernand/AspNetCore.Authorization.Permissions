@@ -116,15 +116,15 @@
 		/// </returns>
 		Task<IList<TPermission>> GetPermissionsInRoleAsync(string roleName);
 
-        /// <summary>
-        ///     Returns the users permission claim values if present otherwise returns null.
-        /// </summary>
-        /// <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal" /> instance.</param>
-        /// <returns>The users permission claim values, or empty list if the claim is not present.</returns>
-        /// <remarks>
-        ///     The users permission claims are identified by
-        ///     <see cref="F:MadEyeMatt.AspNetCore.Authorization.Permissions.PermissionClaimTypes.PermissionClaimType" />.
-        /// </remarks>
-        IList<string> GetPermissions(ClaimsPrincipal principal);
-    }
+		/// <summary>
+		///     Returns the users permission claim values if present otherwise returns null.
+		/// </summary>
+		/// <param name="principal">The <see cref="T:System.Security.Claims.ClaimsPrincipal" /> instance.</param>
+		/// <returns>The users permission claim values, or empty list if the claim is not present.</returns>
+		/// <remarks>
+		///     The users permission claims are identified by
+		///     <see cref="F:MadEyeMatt.AspNetCore.Authorization.Permissions.PermissionClaimTypes.PermissionClaimType" />.
+		/// </remarks>
+		IList<string> GetPermissions(ClaimsPrincipal principal);
+	}
 }

@@ -9,19 +9,19 @@
 	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
-	///     Creates a new instance of a persistence store for tenants.
-	/// </summary>
-	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
-	/// <typeparam name="TRole">The type representing a role.</typeparam>
-	/// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
-	/// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Initializes a new instance of a persistence store for tenants.
+    /// </summary>
+    /// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
+    /// <typeparam name="TRole">The type representing a role.</typeparam>
+    /// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
+    /// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
+    [PublicAPI]
 	public abstract class TenantStoreBase<TTenant, TRole, TKey, TTenantRole> : ITenantRoleStore<TTenant>
 		where TTenant : PermissionsTenant<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
-		where TTenantRole : PermissionsTenantRole<TKey>, new()
+		where TTenantRole : IdentityTenantRole<TKey>, new()
 	{
 		private bool disposed;
 
@@ -206,7 +206,7 @@
 		protected abstract Task<TTenant> FindTenantAsync(TKey tenantId, CancellationToken cancellationToken);
 
 		/// <summary>
-		///     Called to create a new instance of a <see cref="PermissionsTenantRole{TKey}" />.
+		///     Called to create a new instance of a <see cref="IdentityTenantRole{TKey}" />.
 		/// </summary>
 		/// <param name="tenant">The associated tenant.</param>
 		/// <param name="role">The associated role.</param>

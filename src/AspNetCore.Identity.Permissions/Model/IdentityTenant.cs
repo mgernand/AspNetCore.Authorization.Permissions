@@ -8,7 +8,7 @@
 	///     A default tenant implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionsTenant : PermissionsTenant<string>
+	public class IdentityTenant : PermissionsTenant<string>
 	{
 	}
 

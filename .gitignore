@@ -353,4 +353,3 @@ MigrationBackup/
 *.db-shm
 *.db-wal
 *.db
-/samples/SamplePermissions/permissions.db

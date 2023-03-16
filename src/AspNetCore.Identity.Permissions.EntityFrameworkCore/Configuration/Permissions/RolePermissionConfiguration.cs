@@ -12,7 +12,7 @@
 	/// <typeparam name="TRolePermission"></typeparam>
 	[PublicAPI]
 	public class RolePermissionConfiguration<TRolePermission> : RolePermissionConfiguration<TRolePermission, string>
-		where TRolePermission : PermissionsRolePermission<string>
+		where TRolePermission : IdentityRolePermission<string>
 	{
 	}
 
@@ -23,7 +23,7 @@
 	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
 	public class RolePermissionConfiguration<TRolePermission, TKey> : IEntityTypeConfiguration<TRolePermission>
-		where TRolePermission : PermissionsRolePermission<TKey>
+		where TRolePermission : IdentityRolePermission<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>

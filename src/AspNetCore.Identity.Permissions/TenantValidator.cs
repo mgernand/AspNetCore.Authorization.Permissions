@@ -16,7 +16,7 @@
 		where TTenant : class
 	{
         /// <summary>
-        ///     Creates a new instance of <see cref="TenantValidator{TTenant}" />.
+		///     Initializes a new instance of <see cref="TenantValidator{TTenant}" />.
         /// </summary>
         /// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
         public TenantValidator(PermissionsErrorDescriber errors = null)

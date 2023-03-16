@@ -19,15 +19,15 @@
 	{
 		private bool disposed;
 
-		/// <summary>
-		///     Creates a new instance of the <see cref="TenantManager{TTenant}" /> type.
-		/// </summary>
-		/// <param name="store">The persistence store the manager will operate over.</param>
-		/// <param name="tenantValidators">A collection of validators for tenants.</param>
-		/// <param name="keyNormalizer">The normalizer to use when normalizing tenant names to keys.</param>
-		/// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
-		/// <param name="logger">The logger used to log messages, warnings and errors.</param>
-		public TenantManager(
+        /// <summary>
+		///     Initializes a new instance of the <see cref="TenantManager{TTenant}" /> type.
+        /// </summary>
+        /// <param name="store">The persistence store the manager will operate over.</param>
+        /// <param name="tenantValidators">A collection of validators for tenants.</param>
+        /// <param name="keyNormalizer">The normalizer to use when normalizing tenant names to keys.</param>
+        /// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
+        /// <param name="logger">The logger used to log messages, warnings and errors.</param>
+        public TenantManager(
 			ITenantStore<TTenant> store,
 			IEnumerable<ITenantValidator<TTenant>> tenantValidators,
 			ILookupNormalizer keyNormalizer,
@@ -349,7 +349,7 @@
 		{
 			this.ThrowIfDisposed();
 			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
-			if (tenant == null)
+			if(tenant == null)
 			{
 				throw new ArgumentNullException(nameof(tenant));
 			}
@@ -357,12 +357,12 @@
 			return await store.GetRolesAsync(tenant, this.CancellationToken);
 		}
 
-        /// <summary>
-        ///     Gets a normalized representation of the specified <paramref name="tenantName" />.
-        /// </summary>
-        /// <param name="tenantName">The value to normalize.</param>
-        /// <returns>A normalized representation of the specified <paramref name="tenantName" />.</returns>
-        public virtual string NormalizeName(string tenantName)
+		/// <summary>
+		///     Gets a normalized representation of the specified <paramref name="tenantName" />.
+		/// </summary>
+		/// <param name="tenantName">The value to normalize.</param>
+		/// <returns>A normalized representation of the specified <paramref name="tenantName" />.</returns>
+		public virtual string NormalizeName(string tenantName)
 		{
 			return this.KeyNormalizer == null ? tenantName : this.KeyNormalizer.NormalizeName(tenantName);
 		}

@@ -11,10 +11,10 @@
 	using Microsoft.Extensions.Options;
 
 	/// <summary>
-    ///     Provides the APIs for managing tenant users in a persistence store.
-    /// </summary>
-    /// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
-    [PublicAPI]
+	///     Provides the APIs for managing tenant users in a persistence store.
+	/// </summary>
+	/// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
+	[PublicAPI]
 	public class TenantUserManager<TUser> : UserManager<TUser>, ITenantUserManager<TUser>
 		where TUser : class
 	{
@@ -68,7 +68,7 @@
 		public string GetTenantId(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-            if (principal == null)
+			if(principal == null)
 			{
 				throw new ArgumentNullException(nameof(principal));
 			}
@@ -88,7 +88,7 @@
 		public string GetTenantName(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-            if (principal == null)
+			if(principal == null)
 			{
 				throw new ArgumentNullException(nameof(principal));
 			}
@@ -108,7 +108,7 @@
 		public string GetTenantDisplayName(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-            if (principal == null)
+			if(principal == null)
 			{
 				throw new ArgumentNullException(nameof(principal));
 			}

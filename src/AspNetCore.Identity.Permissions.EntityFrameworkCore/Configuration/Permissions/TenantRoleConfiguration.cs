@@ -12,7 +12,7 @@
 	/// <typeparam name="TTenantRole"></typeparam>
 	[PublicAPI]
 	public class TenantRoleConfiguration<TTenantRole> : TenantRoleConfiguration<TTenantRole, string>
-		where TTenantRole : PermissionsTenantRole<string>
+		where TTenantRole : IdentityTenantRole<string>
 	{
 	}
 
@@ -23,7 +23,7 @@
 	/// <typeparam name="TKey"></typeparam>
 	[PublicAPI]
 	public class TenantRoleConfiguration<TTenantRole, TKey> : IEntityTypeConfiguration<TTenantRole>
-		where TTenantRole : PermissionsTenantRole<TKey>
+		where TTenantRole : IdentityTenantRole<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>

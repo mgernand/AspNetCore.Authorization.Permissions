@@ -28,7 +28,7 @@
 		/// <returns></returns>
 		public static ModelBuilder ApplyPermissionsWithIdentity(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
 		{
-			return builder.ApplyPermissionsWithIdentity<PermissionsUser, PermissionsRole, PermissionsPermission, PermissionsTenant, string>(context, configureOptions);
+			return builder.ApplyPermissionsWithIdentity<IdentityTenantUser, IdentityRole, IdentityPermission, IdentityTenant, string>(context, configureOptions);
 		}
 
 		/// <summary>
@@ -40,10 +40,10 @@
 		/// <typeparam name="TTenant"></typeparam>
 		/// <returns></returns>
 		public static ModelBuilder ApplyPermissionsWithIdentity<TPermission, TTenant>(this ModelBuilder builder, DbContext context)
-			where TPermission : PermissionsPermission
-			where TTenant : PermissionsTenant
+			where TPermission : IdentityPermission
+			where TTenant : IdentityTenant
 		{
-			return builder.ApplyPermissionsWithIdentity<PermissionsUser, PermissionsRole, TPermission, TTenant, string>(context);
+			return builder.ApplyPermissionsWithIdentity<IdentityTenantUser, IdentityRole, TPermission, TTenant, string>(context);
 		}
 
 		/// <summary>
@@ -56,11 +56,11 @@
 		/// <typeparam name="TTenant"></typeparam>
 		/// <returns></returns>
 		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TPermission, TTenant>(this ModelBuilder builder, DbContext context)
-			where TUser : PermissionsUser
-			where TPermission : PermissionsPermission
-			where TTenant : PermissionsTenant
+			where TUser : IdentityTenantUser
+			where TPermission : IdentityPermission
+			where TTenant : IdentityTenant
 		{
-			return builder.ApplyPermissionsWithIdentity<TUser, PermissionsRole, TPermission, TTenant, string>(context);
+			return builder.ApplyPermissionsWithIdentity<TUser, IdentityRole, TPermission, TTenant, string>(context);
 		}
 
 		/// <summary>
@@ -76,13 +76,13 @@
 		/// <typeparam name="TKey"></typeparam>
 		/// <returns></returns>
 		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
-			where TUser : PermissionsUser<TKey>
-			where TRole : PermissionsRole<TKey>
-			where TPermission : PermissionsPermission<TKey>
+			where TUser : IdentityTenantUser<TKey>
+			where TRole : IdentityRole<TKey>
+			where TPermission : IdentityPermission<TKey>
 			where TTenant : PermissionsTenant<TKey>
 			where TKey : IEquatable<TKey>
 		{
-			return builder.ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, PermissionsRolePermission<TKey>, PermissionsTenantRole<TKey>>(context, configureOptions);
+			return builder.ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>(context, configureOptions);
 		}
 
 		/// <summary>
@@ -105,9 +105,9 @@
 		/// <param name="configureOptions"></param>
 		/// <returns></returns>
 		public static ModelBuilder ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
-			where TUser : PermissionsUser<TKey>
-			where TRole : PermissionsRole<TKey>
-			where TPermission : PermissionsPermission<TKey>
+			where TUser : IdentityTenantUser<TKey>
+			where TRole : IdentityRole<TKey>
+			where TPermission : IdentityPermission<TKey>
 			where TTenant : PermissionsTenant<TKey>
 			where TKey : IEquatable<TKey>
 			where TUserClaim : IdentityUserClaim<TKey>
@@ -115,8 +115,8 @@
 			where TUserLogin : IdentityUserLogin<TKey>
 			where TRoleClaim : IdentityRoleClaim<TKey>
 			where TUserToken : IdentityUserToken<TKey>
-			where TRolePermission : PermissionsRolePermission<TKey>
-			where TTenantRole : PermissionsTenantRole<TKey>
+			where TRolePermission : IdentityRolePermission<TKey>
+			where TTenantRole : IdentityTenantRole<TKey>
 		{
 			builder.ApplyIdentityUser<TUser, TKey, TUserClaim, TUserLogin, TUserToken>(context, configureOptions);
 			builder.ApplyIdentityUserRoles<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(context, configureOptions);
@@ -145,9 +145,9 @@
 		/// <param name="configureOptions"></param>
 		/// <returns></returns>
 		public static ModelBuilder ApplyIdentityPermissions<TUser, TRole, TPermission, TTenant, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken, TRolePermission, TTenantRole>(this ModelBuilder builder, DbContext context, Action<PermissionModelBuilderOptions> configureOptions = null)
-			where TUser : PermissionsUser<TKey>
-			where TRole : PermissionsRole<TKey>
-			where TPermission : PermissionsPermission<TKey>
+			where TUser : IdentityTenantUser<TKey>
+			where TRole : IdentityRole<TKey>
+			where TPermission : IdentityPermission<TKey>
 			where TTenant : PermissionsTenant<TKey>
 			where TKey : IEquatable<TKey>
 			where TUserClaim : IdentityUserClaim<TKey>
@@ -155,8 +155,8 @@
 			where TUserLogin : IdentityUserLogin<TKey>
 			where TRoleClaim : IdentityRoleClaim<TKey>
 			where TUserToken : IdentityUserToken<TKey>
-			where TRolePermission : PermissionsRolePermission<TKey>
-			where TTenantRole : PermissionsTenantRole<TKey>
+			where TRolePermission : IdentityRolePermission<TKey>
+			where TTenantRole : IdentityTenantRole<TKey>
 		{
 			PermissionModelBuilderOptions options = new PermissionModelBuilderOptions();
 			configureOptions?.Invoke(options);
