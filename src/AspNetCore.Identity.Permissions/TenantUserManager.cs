@@ -11,10 +11,10 @@
 	using Microsoft.Extensions.Options;
 
 	/// <summary>
-	///     Provides the APIs for managing tenant users in a persistence store.
-	/// </summary>
-	/// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
-	[PublicAPI]
+    ///     Provides the APIs for managing tenant users in a persistence store.
+    /// </summary>
+    /// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
+    [PublicAPI]
 	public class TenantUserManager<TUser> : UserManager<TUser>, ITenantUserManager<TUser>
 		where TUser : class
 	{

@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CanOnlyProtectStrings" xml:space="preserve">
-    <value>[ProtectedPersonalData] only works strings by default.</value>
-    <comment>error when attribute is used on a non string property.</comment>
+  <data name="DuplicatePermissionName" xml:space="preserve">
+    <value>Duplicate permission name '{0}'.</value>
+    <comment>0 - The name of the permission.</comment>
+  </data>
+  <data name="DuplicateTenantName" xml:space="preserve">
+    <value>Duplicate tenant name '{0}'.</value>
+    <comment>0 - The name of the tenant.</comment>
+  </data>
+  <data name="InvalidPermissionName" xml:space="preserve">
+    <value>Invalid permission name '{0}'.</value>
+    <comment>0 - The name of the permission.</comment>
+  </data>
+  <data name="InvalidTenantName" xml:space="preserve">
+    <value>Invalid tenant name '{0}'.</value>
+    <comment>0 - The name of the tenant.</comment>
   </data>
 </root>

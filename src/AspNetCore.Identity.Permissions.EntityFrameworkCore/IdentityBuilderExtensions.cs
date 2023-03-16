@@ -41,7 +41,7 @@
 			where TTenantAccessor : class, ITenantProvider
 		{
 			builder.AddPermissionsEntityFrameworkStores<TContext>();
-			builder.Services.AddTransient<ITenantProvider, TTenantAccessor>();
+			builder.Services.AddScoped<ITenantProvider, TTenantAccessor>();
 			return builder;
 		}
 

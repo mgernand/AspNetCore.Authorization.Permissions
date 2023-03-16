@@ -83,19 +83,21 @@
             IdentityBuilder builder = services
 				.AddIdentityCore<TUser>(setupAction)
 				.AddRoles<TRole>()
-				.AddClaimsPrincipalFactory<PermissionUserClaimsPrincipalFactory<TUser>>()
-				.AddUserManager<TenantUserManager<TUser>>();
+				.AddUserManager<TenantUserManager<TUser>>()
+				.AddRoleManager<CustomRoleManager<TRole>>()
+				.AddErrorDescriber<PermissionsErrorDescriber>()
+				.AddClaimsPrincipalFactory<PermissionUserClaimsPrincipalFactory<TUser>>();
 
-			PermissionsIdentityBuilder permissionsBuilder = new PermissionsIdentityBuilder(builder, typeof(TPermission), typeof(TTenant))
-				.AddPermissionManager<PermissionManager<TPermission>>()
-				.AddPermissionValidator<PermissionValidator<TPermission>>()
-				.AddTenantManager<TenantManager<TTenant>>()
-				.AddTenantValidator<TenantValidator<TTenant>>();
-
-			services.AddScoped<IPermissionManager<TPermission>>(serviceProvider => serviceProvider.GetRequiredService<PermissionManager<TPermission>>());
-			services.AddScoped<ITenantManager<TTenant>>(serviceProvider => serviceProvider.GetRequiredService<TenantManager<TTenant>>());
+			services.AddScoped<PermissionsErrorDescriber>();
 			services.AddScoped<IUserManager<TUser>>(serviceProvider => serviceProvider.GetRequiredService<TenantUserManager<TUser>>());
 			services.AddScoped<ITenantUserManager<TUser>>(serviceProvider => serviceProvider.GetRequiredService<TenantUserManager<TUser>>());
+			services.AddScoped<IRoleManager<TRole>>(serviceProvider => serviceProvider.GetRequiredService<CustomRoleManager<TRole>>());
+
+            PermissionsIdentityBuilder permissionsBuilder = new PermissionsIdentityBuilder(builder, typeof(TPermission), typeof(TTenant))
+				.AddPermissionManager<PermissionManager<TPermission>>()
+				.AddTenantManager<TenantManager<TTenant>>()
+				.AddTenantValidator<TenantValidator<TTenant>>()
+				.AddPermissionValidator<PermissionValidator<TPermission>>();
 
             return permissionsBuilder;
 		}

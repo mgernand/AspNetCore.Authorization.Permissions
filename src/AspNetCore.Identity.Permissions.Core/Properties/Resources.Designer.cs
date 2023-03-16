@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Identity {
+namespace MadEyeMatt.AspNetCore.Identity.Permissions.Properties {
     using System;
     
     
@@ -39,8 +39,7 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Iden" +
-                            "tity.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Identity.Permissions.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,11 +61,38 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [ProtectedPersonalData] only works strings by default..
+        ///   Looks up a localized string similar to Duplicate permission name &apos;{0}&apos;..
         /// </summary>
-        internal static string CanOnlyProtectStrings {
+        internal static string DuplicatePermissionName {
             get {
-                return ResourceManager.GetString("CanOnlyProtectStrings", resourceCulture);
+                return ResourceManager.GetString("DuplicatePermissionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate tenant name &apos;{0}&apos;..
+        /// </summary>
+        internal static string DuplicateTenantName {
+            get {
+                return ResourceManager.GetString("DuplicateTenantName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid permission name &apos;{0}&apos;..
+        /// </summary>
+        internal static string InvalidPermissionName {
+            get {
+                return ResourceManager.GetString("InvalidPermissionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid tenant name &apos;{0}&apos;..
+        /// </summary>
+        internal static string InvalidTenantName {
+            get {
+                return ResourceManager.GetString("InvalidTenantName", resourceCulture);
             }
         }
     }

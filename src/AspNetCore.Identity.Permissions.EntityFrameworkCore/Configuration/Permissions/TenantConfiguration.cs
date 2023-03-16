@@ -6,6 +6,7 @@
 	using System.Reflection;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Identity;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;

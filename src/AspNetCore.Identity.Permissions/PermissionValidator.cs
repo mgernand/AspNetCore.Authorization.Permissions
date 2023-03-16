@@ -14,16 +14,16 @@
 	public class PermissionValidator<TPermission> : IPermissionValidator<TPermission>
 		where TPermission : class
 	{
-		/// <summary>
-		///     Creates a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
-		/// </summary>
-		/// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
-		public PermissionValidator(IdentityErrorDescriber errors = null)
+        /// <summary>
+        ///     Creates a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
+        /// </summary>
+        /// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
+        public PermissionValidator(PermissionsErrorDescriber errors = null)
 		{
-			this.Describer = errors ?? new IdentityErrorDescriber();
+			this.Describer = errors ?? new PermissionsErrorDescriber();
 		}
 
-		private IdentityErrorDescriber Describer { get; }
+        private PermissionsErrorDescriber Describer { get; }
 
 		/// <summary>
 		///     Validates a permission as an asynchronous operation.

@@ -15,24 +15,16 @@
 	public class TenantValidator<TTenant> : ITenantValidator<TTenant>
 		where TTenant : class
 	{
-		/// <summary>
-		///     Creates a new instance of <see cref="TenantValidator{TTenant}" />.
-		/// </summary>
-		/// <param name="errors">The <see cref="IdentityErrorDescriber" /> used to provider error messages.</param>
-		public TenantValidator(IdentityErrorDescriber errors = null)
+        /// <summary>
+        ///     Creates a new instance of <see cref="TenantValidator{TTenant}" />.
+        /// </summary>
+        /// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
+        public TenantValidator(PermissionsErrorDescriber errors = null)
 		{
-			this.Describer = errors ?? new IdentityErrorDescriber();
+			this.Describer = errors ?? new PermissionsErrorDescriber();
 		}
 
-		/// <summary>
-		///     Gets the <see cref="IdentityErrorDescriber" /> used to provider error messages for the current
-		///     <see cref="UserValidator{TUser}" />.
-		/// </summary>
-		/// <value>
-		///     The <see cref="IdentityErrorDescriber" /> used to provider error messages for the current
-		///     <see cref="UserValidator{TUser}" />.
-		/// </value>
-		public IdentityErrorDescriber Describer { get; }
+		private PermissionsErrorDescriber Describer { get; }
 
 		/// <inheritdoc />
 		public async Task<IdentityResult> ValidateAsync(ITenantManager<TTenant> manager, TTenant tenant)

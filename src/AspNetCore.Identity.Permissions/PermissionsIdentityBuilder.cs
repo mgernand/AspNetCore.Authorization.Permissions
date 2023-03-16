@@ -33,19 +33,23 @@
 		/// <typeparam name="TPermissionManager">The type of the permission manager to add.</typeparam>
 		public virtual PermissionsIdentityBuilder AddPermissionManager<TPermissionManager>() where TPermissionManager : class
 		{
-			Type userManagerType = typeof(PermissionManager<>).MakeGenericType(this.PermissionType);
-			Type customType = typeof(TPermissionManager);
-			if(!userManagerType.IsAssignableFrom(customType))
+			Type permissionManagerType = typeof(PermissionManager<>).MakeGenericType(this.PermissionType);
+			Type permissionManagerInterfaceType = typeof(IPermissionManager<>).MakeGenericType(this.PermissionType);
+
+            Type customType = typeof(TPermissionManager);
+			if(!permissionManagerType.IsAssignableFrom(customType))
 			{
 				throw new InvalidOperationException($"Invalid PermissionManager: '{this.PermissionType.Name}'");
 			}
 
-			if(userManagerType != customType)
+			if(permissionManagerType != customType)
 			{
-				this.Services.AddScoped(customType, services => services.GetRequiredService(userManagerType));
+				this.Services.AddScoped(customType, services => services.GetRequiredService(permissionManagerType));
 			}
 
-			return this.AddScoped(userManagerType, customType);
+			this.Services.AddScoped(permissionManagerInterfaceType, serviceProvider => serviceProvider.GetRequiredService(permissionManagerType));
+
+			return this.AddScoped(permissionManagerType, customType);
 		}
 
 		/// <summary>
@@ -54,19 +58,23 @@
 		/// <typeparam name="TTenantManager">The type of the tenant manager to add.</typeparam>
 		public virtual PermissionsIdentityBuilder AddTenantManager<TTenantManager>() where TTenantManager : class
 		{
-			Type userManagerType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
-			Type customType = typeof(TTenantManager);
-			if(!userManagerType.IsAssignableFrom(customType))
+			Type tenantManagerType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
+			Type tenantManagerInterfaceType = typeof(ITenantManager<>).MakeGenericType(this.TenantType);
+
+            Type customType = typeof(TTenantManager);
+			if(!tenantManagerType.IsAssignableFrom(customType))
 			{
 				throw new InvalidOperationException($"Invalid TenantManager: '{this.TenantType.Name}'");
 			}
 
-			if(userManagerType != customType)
+			if(tenantManagerType != customType)
 			{
-				this.Services.AddScoped(customType, services => services.GetRequiredService(userManagerType));
+				this.Services.AddScoped(customType, services => services.GetRequiredService(tenantManagerType));
 			}
 
-			return this.AddScoped(userManagerType, customType);
+			this.Services.AddScoped(tenantManagerInterfaceType, serviceProvider => serviceProvider.GetRequiredService(tenantManagerType));
+
+            return this.AddScoped(tenantManagerType, customType);
 		}
 
 		/// <summary>
