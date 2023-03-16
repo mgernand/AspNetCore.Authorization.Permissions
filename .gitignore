@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 /samples/SampleTenant/permissions.db-shm
 /samples/SampleTenant/permissions.db-wal
+/samples/SampleTenant/permissions.db
