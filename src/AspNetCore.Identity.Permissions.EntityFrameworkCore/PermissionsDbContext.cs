@@ -95,7 +95,7 @@
 		where TUser : IdentityTenantUser<TKey>
 		where TRole : IdentityRole<TKey>
 		where TPermission : IdentityPermission<TKey>
-		where TTenant : PermissionsTenant<TKey>
+		where TTenant : IdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <summary>
@@ -134,7 +134,7 @@
 		where TUser : IdentityTenantUser<TKey>
 		where TRole : IdentityRole<TKey>
 		where TPermission : IdentityPermission<TKey>
-		where TTenant : PermissionsTenant<TKey>
+		where TTenant : IdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 		where TUserClaim : IdentityUserClaim<TKey>
 		where TUserRole : IdentityUserRole<TKey>

@@ -8,7 +8,7 @@
 	///     A default tenant implementation that used a string as type for the ID.
 	/// </summary>
 	[PublicAPI]
-	public class IdentityTenant : PermissionsTenant<string>
+	public class IdentityTenant : IdentityTenant<string>
 	{
 	}
 
@@ -17,7 +17,7 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class PermissionsTenant<TKey> where TKey : IEquatable<TKey>
+	public class IdentityTenant<TKey> where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Gets or sets the primary key for this user.

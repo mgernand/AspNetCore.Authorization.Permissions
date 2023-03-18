@@ -1,6 +1,5 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-	using System;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
@@ -10,7 +9,7 @@
 	/// </summary>
 	/// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
 	[PublicAPI]
-	public interface ITenantUserStore<in TUser> : IDisposable
+	public interface ITenantUserStore<in TUser>
 		where TUser : class
 	{
 		/// <summary>

@@ -14,7 +14,7 @@
 	[PublicAPI]
 	public class TenantUserConfiguration<TUser, TTenant> : TenantUserConfiguration<TUser, TTenant, string>
 		where TUser : IdentityTenantUser<string>
-		where TTenant : PermissionsTenant<string>
+		where TTenant : IdentityTenant
 	{
 	}
 
@@ -27,7 +27,7 @@
 	[PublicAPI]
 	public class TenantUserConfiguration<TUser, TTenant, TKey> : IEntityTypeConfiguration<TUser>
 		where TUser : IdentityTenantUser<TKey>
-		where TTenant : PermissionsTenant<TKey>
+		where TTenant : IdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
 	{
 		/// <inheritdoc />

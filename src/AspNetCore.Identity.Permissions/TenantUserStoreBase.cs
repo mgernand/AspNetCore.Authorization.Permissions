@@ -40,14 +40,6 @@
 		/// </summary>
 		public abstract IQueryable<TUser> Users { get; }
 
-		/// <summary>
-		///     Dispose the store
-		/// </summary>
-		public void Dispose()
-		{
-			this.disposed = true;
-		}
-
 		/// <inheritdoc />
 		public virtual Task<string> GetTenantIdAsync(TUser user, CancellationToken cancellationToken)
 		{
@@ -59,6 +51,14 @@
 			}
 
 			return Task.FromResult(this.ConvertIdToString(user.TenantId));
+		}
+
+		/// <summary>
+		///     Dispose the store
+		/// </summary>
+		public void Dispose()
+		{
+			this.disposed = true;
 		}
 
 		/// <summary>

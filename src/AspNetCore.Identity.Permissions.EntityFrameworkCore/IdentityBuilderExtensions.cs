@@ -64,7 +64,7 @@
 				throw new InvalidOperationException("The permissions extension needs a role type to work.");
 			}
 
-			Type identityTenantType = FindGenericBaseType(tenantType, typeof(PermissionsTenant<>));
+			Type identityTenantType = FindGenericBaseType(tenantType, typeof(IdentityTenant));
 			if(identityTenantType == null)
 			{
 				throw new InvalidOperationException("The given type is not an identity tenant type.");

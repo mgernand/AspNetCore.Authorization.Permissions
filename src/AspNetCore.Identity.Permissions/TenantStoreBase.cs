@@ -18,7 +18,7 @@
 	/// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
 	[PublicAPI]
 	public abstract class TenantStoreBase<TTenant, TRole, TKey, TTenantRole> : ITenantRoleStore<TTenant>
-		where TTenant : PermissionsTenant<TKey>
+		where TTenant : IdentityTenant<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
 		where TTenantRole : IdentityTenantRole<TKey>, new()

@@ -79,7 +79,7 @@
 			where TUser : IdentityTenantUser<TKey>
 			where TRole : IdentityRole<TKey>
 			where TPermission : IdentityPermission<TKey>
-			where TTenant : PermissionsTenant<TKey>
+			where TTenant : IdentityTenant<TKey>
 			where TKey : IEquatable<TKey>
 		{
 			return builder.ApplyPermissionsWithIdentity<TUser, TRole, TPermission, TTenant, TKey, IdentityUserClaim<TKey>, IdentityUserRole<TKey>, IdentityUserLogin<TKey>, IdentityRoleClaim<TKey>, IdentityUserToken<TKey>, IdentityRolePermission<TKey>, IdentityTenantRole<TKey>>(context, configureOptions);
@@ -108,7 +108,7 @@
 			where TUser : IdentityTenantUser<TKey>
 			where TRole : IdentityRole<TKey>
 			where TPermission : IdentityPermission<TKey>
-			where TTenant : PermissionsTenant<TKey>
+			where TTenant : IdentityTenant<TKey>
 			where TKey : IEquatable<TKey>
 			where TUserClaim : IdentityUserClaim<TKey>
 			where TUserRole : IdentityUserRole<TKey>
@@ -148,7 +148,7 @@
 			where TUser : IdentityTenantUser<TKey>
 			where TRole : IdentityRole<TKey>
 			where TPermission : IdentityPermission<TKey>
-			where TTenant : PermissionsTenant<TKey>
+			where TTenant : IdentityTenant<TKey>
 			where TKey : IEquatable<TKey>
 			where TUserClaim : IdentityUserClaim<TKey>
 			where TUserRole : IdentityUserRole<TKey>
