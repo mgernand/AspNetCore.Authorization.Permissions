@@ -70,18 +70,25 @@ Core migrations. The code is omitted in this document, but you can look it up in
 ```C#
 // Previous service configuration omitted.
 
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
 builder.Services.AddAuthorization();
 builder.Services.AddPermissionsAuthorization();
+
+builder.Services
+	.AddAuthentication(IdentityConstants.ApplicationScheme)
+	.AddIdentityCookies();
 
 builder.Services
 	.AddDbContext<InvoicesContext>(options =>
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
-	.AddPermissionsIdentity()
+	.AddPermissionsIdentityCore<IdentityUser, IdentityRole, IdentityPermission>()
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
-	.AddIdentityClaimsProvider()
+	.AddPermissionClaimsProvider()
 	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 // Additional service configuration omitted.
@@ -141,6 +148,12 @@ public class InvoicesReadModel : PageModel
 ```C#
 // Previous service configuration omitted.
 
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+builder.Services.AddAuthorization();
+builder.Services.AddPermissionsAuthorization();
+
 builder.Services
 	.AddAuthentication(IdentityConstants.ApplicationScheme)
 	.AddIdentityCookies();
@@ -150,7 +163,7 @@ builder.Services
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
-	.AddPermissionsIdentity()
+	.AddPermissionsIdentityCore<IdentityTenant, IdentityUser, IdentityRole, IdentityPermission>()
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
 	.AddIdentityClaimsProvider()

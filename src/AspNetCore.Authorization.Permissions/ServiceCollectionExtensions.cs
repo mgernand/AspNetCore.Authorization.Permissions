@@ -20,7 +20,7 @@
 		/// <returns></returns>
 		public static IServiceCollection AddPermissionsAuthorization(this IServiceCollection services, Action<PermissionsAuthenticationOptions> configureAction = null)
 		{
-			services.AddAuthorization();
+			services.AddAuthorizationCore();
 			services.AddSingleton<IAuthorizationPolicyProvider, AuthorizationPolicyProvider>();
 			services.AddSingleton<IAuthorizationHandler, PermissionPolicyHandler>();
 			services.AddTransient<IUserPermissionsService, UserPermissionsService>();

@@ -31,7 +31,7 @@
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
-			ServiceProvider serviceProvider = services.BuildServiceProvider();
+			IServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IAuthorizationPolicyProvider service = serviceProvider.GetRequiredService<IAuthorizationPolicyProvider>();
 			service.Should().NotBeNull();
@@ -51,7 +51,7 @@
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
-			ServiceProvider serviceProvider = services.BuildServiceProvider();
+			IServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IAuthorizationPolicyProvider service = serviceProvider.GetRequiredService<IAuthorizationPolicyProvider>();
 			service.Should().NotBeNull();
@@ -69,7 +69,7 @@
 			services.Configure<AuthorizationOptions>(options =>
 			{
 			});
-			ServiceProvider serviceProvider = services.BuildServiceProvider();
+			IServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			IAuthorizationPolicyProvider service = serviceProvider.GetRequiredService<IAuthorizationPolicyProvider>();
 			service.Should().NotBeNull();

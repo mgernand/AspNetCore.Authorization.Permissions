@@ -12,12 +12,12 @@
 	[PublicAPI]
 	public static class ServiceCollectionExtensions
 	{
-		/// <summary>
-		///     Adds the identity and permissions services for the identity default types.
-		/// </summary>
-		/// <param name="services"></param>
-		/// <returns></returns>
-		public static PermissionIdentityBuilder AddPermissionsIdentityCore<TUser, TRole, TPermission>(this IServiceCollection services)
+        /// <summary>
+        ///     Adds the identity and permissions services for the identity types.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static PermissionIdentityBuilder AddPermissionsIdentityCore<TUser, TRole, TPermission>(this IServiceCollection services)
 			where TUser : class
 			where TRole : class
 			where TPermission : class
@@ -26,7 +26,7 @@
 		}
 
 		/// <summary>
-        ///     Adds the identity and permissions services for the identity default types,
+        ///     Adds the identity and permissions services for the identity types.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="setupAction"></param>
@@ -55,7 +55,7 @@
 		}
 
 		/// <summary>
-		///     Adds the identity and permissions services for the identity default types.
+		///     Adds the identity and permissions services for the identity types.
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
@@ -69,7 +69,7 @@
 		}
 
 		/// <summary>
-		///     Adds the identity and permissions services for the identity default types,
+		///     Adds the identity and permissions services for the identity types.
 		/// </summary>
 		/// <param name="services"></param>
 		/// <param name="setupAction"></param>

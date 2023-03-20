@@ -33,15 +33,15 @@
 		///     Adds the EF Core store implementations for Identity and the permissions library.
 		/// </summary>
 		/// <typeparam name="TContext"></typeparam>
-		/// <typeparam name="TTenantAccessor"></typeparam>
+		/// <typeparam name="TTenantProvider"></typeparam>
 		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TContext, TTenantAccessor>(this IdentityBuilder builder)
+		public static IdentityBuilder AddPermissionsEntityFrameworkStores<TContext, TTenantProvider>(this IdentityBuilder builder)
 			where TContext : DbContext
-			where TTenantAccessor : class, ITenantProvider
+			where TTenantProvider : class, ITenantProvider
 		{
 			builder.AddPermissionsEntityFrameworkStores<TContext>();
-			builder.Services.AddScoped<ITenantProvider, TTenantAccessor>();
+			builder.Services.AddScoped<ITenantProvider, TTenantProvider>();
 			return builder;
 		}
 

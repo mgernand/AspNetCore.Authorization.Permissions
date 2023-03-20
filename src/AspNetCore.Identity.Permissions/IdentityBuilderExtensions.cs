@@ -11,11 +11,11 @@
 	[PublicAPI]
 	public static class IdentityBuilderExtensions
 	{
-		/// <summary>
-		///		Adds the <see cref="PermissionClaimsProvider{TUser,TPermission}"/> or the <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}"/>.
-		/// </summary>
-		/// <returns></returns>
-		public static IdentityBuilder AddPermissionClaimsProvider(this IdentityBuilder builder)
+        /// <summary>
+        ///		Adds the <see cref="PermissionClaimsProvider{TUser,TPermission}"/> or the <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}"/>.
+        /// </summary>
+        /// <returns></returns>
+        public static IdentityBuilder AddPermissionClaimsProvider(this IdentityBuilder builder)
 		{
 			if(builder is PermissionIdentityBuilder permissionBuilder)
 			{
