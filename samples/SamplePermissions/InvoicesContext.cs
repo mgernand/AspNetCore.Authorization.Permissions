@@ -48,29 +48,29 @@
 				options.UserRolesTable = "UserRoles";
 				options.PermissionsTable = "Permissions";
 				options.RolePermissionsTable = "RolePermissions";
-				options.TenantsTable = "Tenants";
-				options.TenantRolesTable = "TenantRoles";
+				//options.TenantsTable = "Tenants";
+				//options.TenantRolesTable = "TenantRoles";
 			});
 
-			builder.Entity<IdentityTenantUser>(entity =>
+			builder.Entity<IdentityUser>(entity =>
 			{
 				// The password for every user: 123456
-				entity.HasData(new IdentityTenantUser
-				{
+				entity.HasData(new IdentityUser
+                {
 					Id = "a0f112af-5e39-4b3f-bc50-015591861ec0",
 					UserName = "boss@company",
 					NormalizedUserName = "BOSS@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA=="
 				});
-				entity.HasData(new IdentityTenantUser
-				{
+				entity.HasData(new IdentityUser
+                {
 					Id = "90a4dd66-78d1-4fff-a507-7f88735f7ab6",
 					UserName = "manager@company",
 					NormalizedUserName = "MANAGER@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA=="
 				});
-				entity.HasData(new IdentityTenantUser
-				{
+				entity.HasData(new IdentityUser
+                {
 					Id = "04517a45-d6f5-4993-888b-04c924902b3a",
 					UserName = "employee@company",
 					NormalizedUserName = "EMPLOYEE@COMPANY",

@@ -9,15 +9,15 @@
 	[PublicAPI]
 	public class HttpContextUserTenantProvider : ITenantProvider
 	{
-		private readonly IHttpContextAccessor accessor;
+		private readonly IHttpContextAccessor httpContextAccessor;
 
 		/// <summary>
 		///     Initializes a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
 		/// </summary>
-		/// <param name="accessor"></param>
-		public HttpContextUserTenantProvider(IHttpContextAccessor accessor)
+		/// <param name="httpContextAccessor"></param>
+		public HttpContextUserTenantProvider(IHttpContextAccessor httpContextAccessor)
 		{
-			this.accessor = accessor;
+			this.httpContextAccessor = httpContextAccessor;
 		}
 
 		/// <inheritdoc />
@@ -25,9 +25,9 @@
 		{
 			get
 			{
-				if(this.accessor.HttpContext?.User.Identity != null && this.accessor.HttpContext.User.Identity.IsAuthenticated)
+				if(this.httpContextAccessor.HttpContext?.User.Identity != null && this.httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
 				{
-					return (this.accessor.HttpContext?.User).GetTenantId();
+					return (this.httpContextAccessor.HttpContext?.User).GetTenantId();
 				}
 
 				return null;

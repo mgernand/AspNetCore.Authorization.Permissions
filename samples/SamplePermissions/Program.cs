@@ -1,7 +1,6 @@
 using MadEyeMatt.AspNetCore.Authorization.Permissions;
 using MadEyeMatt.AspNetCore.Identity.Permissions;
 using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
-using MadEyeMatt.Extensions.Identity.Permissions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +26,7 @@ builder.Services
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
-	.AddPermissionsIdentity<IdentityUser, IdentityRole, IdentityPermission>(options =>
+	.AddPermissionsIdentityCore<IdentityUser, IdentityRole, IdentityPermission>(options =>
 	{
 		options.Password.RequireDigit = false;
 		options.Password.RequireLowercase = false;
@@ -38,8 +37,11 @@ builder.Services
 	})
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
-	.AddIdentityClaimsProvider<IdentityUser, IdentityPermission>()
-	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
+	.AddPermissionClaimsProvider()
+	.AddUserManager<AspNetUserManager<IdentityUser>>()
+	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
+	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
+    .AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 WebApplication app = builder.Build();
 

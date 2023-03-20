@@ -17,13 +17,13 @@
 		/// <summary>
 		///     Initializes a new instance of the <see cref="PermissionValidator{TPermission}" /> type.
 		/// </summary>
-		/// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
-		public PermissionValidator(PermissionsErrorDescriber errors = null)
+		/// <param name="errors">The <see cref="PermissionIdentityErrorDescriber" /> used to provider error messages.</param>
+		public PermissionValidator(PermissionIdentityErrorDescriber errors = null)
 		{
-			this.Describer = errors ?? new PermissionsErrorDescriber();
+			this.Describer = errors ?? new PermissionIdentityErrorDescriber();
 		}
 
-		private PermissionsErrorDescriber Describer { get; }
+		private PermissionIdentityErrorDescriber Describer { get; }
 
 		/// <summary>
 		///     Validates a permission as an asynchronous operation.

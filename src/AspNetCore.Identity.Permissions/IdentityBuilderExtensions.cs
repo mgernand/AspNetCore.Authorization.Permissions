@@ -6,44 +6,38 @@
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
-	///     Extension methods for the <see cref="IdentityBuilderExtensions" /> type.
+	///     Extension methods for the <see cref="IdentityBuilder" /> type.
 	/// </summary>
 	[PublicAPI]
 	public static class IdentityBuilderExtensions
 	{
 		/// <summary>
-		///     Adds the claims provider for the identity library.
+		///		Adds the <see cref="PermissionClaimsProvider{TUser,TPermission}"/> or the <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}"/>.
 		/// </summary>
-		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission>(this IdentityBuilder builder)
-			where TUser : class
-			where TPermission : class
+		public static IdentityBuilder AddPermissionClaimsProvider(this IdentityBuilder builder)
 		{
-			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,>)
-				.MakeGenericType(typeof(TUser), typeof(TPermission));
+			if(builder is PermissionIdentityBuilder permissionBuilder)
+			{
+				return permissionBuilder.AddPermissionClaimsProvider();
+			}
 
-			builder.Services.AddClaimsProvider(identityClaimsProviderType);
-
-			return builder;
-        }
+			throw new InvalidOperationException($"The builder was not of {nameof(PermissionIdentityBuilder)} type.");
+		}
 
 		/// <summary>
-		///     Adds the claims provider for the identity library.
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TTenant, TUser, TPermission>(this IdentityBuilder builder)
-			where TTenant : class
-            where TUser : class
-			where TPermission : class
+        ///		Adds the <see cref="PermissionClaimsProvider{TUser,TPermission}"/> or the <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}"/>.
+        /// </summary>
+        /// <returns></returns>
+        public static PermissionIdentityBuilder AddPermissionClaimsProvider(this PermissionIdentityBuilder builder)
 		{
-			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,,>)
-				.MakeGenericType(typeof(TTenant), typeof(TUser), typeof(TPermission));
+			Type identityClaimsProviderType = builder.TenantType is null
+				? typeof(PermissionClaimsProvider<,>).MakeGenericType(builder.UserType, builder.PermissionType)
+				: typeof(PermissionClaimsProvider<,,>).MakeGenericType(builder.TenantType, builder.UserType, builder.PermissionType);
 
 			builder.Services.AddClaimsProvider(identityClaimsProviderType);
 
-			return builder;
+            return builder;
 		}
-	}
+    }
 }

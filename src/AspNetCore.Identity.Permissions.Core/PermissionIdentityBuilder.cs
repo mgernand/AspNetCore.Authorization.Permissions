@@ -5,28 +5,50 @@
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.DependencyInjection;
 
-	/// <inheritdoc />
-	[PublicAPI]
+	/// <summary>
+	///		Helper functions for configuring permissions identity services.
+	/// </summary>
+    [PublicAPI]
 	public class PermissionIdentityBuilder : IdentityBuilder
 	{
-		/// <inheritdoc />
-		public PermissionIdentityBuilder(IdentityBuilder builder, Type tenantType, Type permissionType)
-			: this(builder, permissionType)
+		///  <summary>
+		/// 		Initializes a new instance of the <see cref="PermissionIdentityBuilder"/> type..
+		///  </summary>
+		///  <param name="user"></param>
+		///  <param name="permission">The <see cref="Type"/> to use for the permission.</param>
+		///  <param name="services">The <see cref="IServiceCollection"/> to attach to.</param>
+		public PermissionIdentityBuilder(Type user, Type permission, IServiceCollection services) : base(user, services)
 		{
-			this.TenantType = tenantType;
+			if (permission.IsValueType)
+			{
+				throw new ArgumentException(@"Permission type can't be a value type.", nameof(permission));
+			}
+
+			this.PermissionType = permission;
 		}
 
-		/// <inheritdoc />
-        public PermissionIdentityBuilder(IdentityBuilder builder, Type permissionType)
-			: base(builder.UserType, builder.RoleType, builder.Services)
-        {
-			this.PermissionType = permissionType;
-        }
+		///  <summary>
+		/// 		Initializes a new instance of the <see cref="PermissionIdentityBuilder"/> type..
+		///  </summary>
+		///  <param name="tenant">>The <see cref="Type"/> to use for the tenant.</param>
+		///  <param name="user"></param>
+		///  <param name="permission">The <see cref="Type"/> to use for the permission.</param>
+		///  <param name="services">The <see cref="IServiceCollection"/> to attach to.</param>
+		public PermissionIdentityBuilder(Type tenant, Type user, Type permission, IServiceCollection services) 
+			: this(user, permission, services)
+		{
+			if (tenant.IsValueType)
+			{
+				throw new ArgumentException(@"Tenant type can't be a value type.", nameof(tenant));
+			}
 
-		/// <summary>
-		///     Gets the configured tenant type.
-		/// </summary>
-		public Type TenantType { get; }
+			this.TenantType = tenant;
+		}
+
+        /// <summary>
+        ///     Gets the configured tenant type.
+        /// </summary>
+        public Type TenantType { get; }
 
         /// <summary>
         ///     Gets the configured permission type.
@@ -34,15 +56,50 @@
         public Type PermissionType { get; }
 
 		/// <summary>
-		///     Adds a <see cref="PermissionManager{TUser}" /> for the <see cref="PermissionType" />.
+		///     Adds an <see cref="IPermissionValidator{TPermission}" /> for the <see cref="PermissionType" />.
 		/// </summary>
-		/// <typeparam name="TPermissionManager">The type of the permission manager to add.</typeparam>
-		public virtual PermissionIdentityBuilder AddPermissionManager<TPermissionManager>() where TPermissionManager : class
+		/// <typeparam name="TValidator">The permission validator type.</typeparam>
+		public virtual PermissionIdentityBuilder AddPermissionValidator<TValidator>() where TValidator : class
+		{
+			return this.AddScoped(typeof(IPermissionValidator<>).MakeGenericType(this.PermissionType), typeof(TValidator));
+		}
+
+		/// <summary>
+		///     Adds an <see cref="ITenantValidator{TPermission}" /> for the <see cref="TenantType" />.
+		/// </summary>
+		/// <typeparam name="TValidator">The tenant validator type.</typeparam>
+		public virtual PermissionIdentityBuilder AddTenantValidator<TValidator>() where TValidator : class
+		{
+			return this.AddScoped(typeof(ITenantValidator<>).MakeGenericType(this.TenantType), typeof(TValidator));
+		}
+
+		/// <summary>
+		/// Adds an <see cref="IPermissionStore{TUser}"/> for the <see cref="PermissionType"/>.
+		/// </summary>
+		/// <typeparam name="TStore">The permission store type.</typeparam>
+		public virtual PermissionIdentityBuilder AddPermissionStore<TStore>() where TStore : class
+		{
+			return this.AddScoped(typeof(IPermissionStore<>).MakeGenericType(this.PermissionType), typeof(TStore));
+		}
+
+		/// <summary>
+		/// Adds an <see cref="ITenantStore{TUser}"/> for the <see cref="TenantType"/>.
+		/// </summary>
+		/// <typeparam name="TStore">The tenant store type.</typeparam>
+		public virtual PermissionIdentityBuilder AddTenantStore<TStore>() where TStore : class
+		{
+			return this.AddScoped(typeof(ITenantStore<>).MakeGenericType(this.TenantType), typeof(TStore));
+		}
+
+        /// <summary>
+        ///     Adds a <see cref="PermissionManager{TPermission}" /> for the <see cref="PermissionType" />.
+        /// </summary>
+        /// <typeparam name="TPermissionManager">The type of the permission manager to add.</typeparam>
+        public virtual PermissionIdentityBuilder AddPermissionManager<TPermissionManager>() where TPermissionManager : class
 		{
 			Type permissionManagerType = typeof(PermissionManager<>).MakeGenericType(this.PermissionType);
-			Type permissionManagerInterfaceType = typeof(PermissionManager<>).MakeGenericType(this.PermissionType);
-
 			Type customType = typeof(TPermissionManager);
+
 			if(!permissionManagerType.IsAssignableFrom(customType))
 			{
 				throw new InvalidOperationException($"Invalid PermissionManager: '{this.PermissionType.Name}'");
@@ -53,8 +110,6 @@
 				this.Services.AddScoped(customType, services => services.GetRequiredService(permissionManagerType));
 			}
 
-			this.Services.AddScoped(permissionManagerInterfaceType, serviceProvider => serviceProvider.GetRequiredService(permissionManagerType));
-
 			return this.AddScoped(permissionManagerType, customType);
 		}
 
@@ -64,10 +119,14 @@
 		/// <typeparam name="TTenantManager">The type of the tenant manager to add.</typeparam>
 		public virtual PermissionIdentityBuilder AddTenantManager<TTenantManager>() where TTenantManager : class
 		{
-			Type tenantManagerType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
-			Type tenantManagerInterfaceType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
+			if(this.TenantType is null)
+			{
+				return this;
+			}
 
+			Type tenantManagerType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
 			Type customType = typeof(TTenantManager);
+
 			if(!tenantManagerType.IsAssignableFrom(customType))
 			{
 				throw new InvalidOperationException($"Invalid TenantManager: '{this.TenantType.Name}'");
@@ -78,29 +137,8 @@
 				this.Services.AddScoped(customType, services => services.GetRequiredService(tenantManagerType));
 			}
 
-			this.Services.AddScoped(tenantManagerInterfaceType, serviceProvider => serviceProvider.GetRequiredService(tenantManagerType));
-
 			return this.AddScoped(tenantManagerType, customType);
-		}
 
-		/// <summary>
-		///     Adds an <see cref="IPermissionValidator{TPermission}" /> for the <see cref="PermissionType" />.
-		/// </summary>
-		/// <typeparam name="TValidator">The permission validator type.</typeparam>
-		public virtual PermissionIdentityBuilder AddPermissionValidator<TValidator>()
-			where TValidator : class
-		{
-			return this.AddScoped(typeof(IPermissionValidator<>).MakeGenericType(this.PermissionType), typeof(TValidator));
-		}
-
-		/// <summary>
-		///     Adds an <see cref="ITenantValidator{TPermission}" /> for the <see cref="TenantType" />.
-		/// </summary>
-		/// <typeparam name="TValidator">The tenant validator type.</typeparam>
-		public virtual PermissionIdentityBuilder AddTenantValidator<TValidator>()
-			where TValidator : class
-		{
-			return this.AddScoped(typeof(ITenantValidator<>).MakeGenericType(this.TenantType), typeof(TValidator));
 		}
 
 		private PermissionIdentityBuilder AddScoped(Type serviceType, Type concreteType)

@@ -14,7 +14,7 @@
 	///     These errors are returned to controllers and are generally used as display messages to end users.
 	/// </remarks>
 	[PublicAPI]
-	public class PermissionsErrorDescriber : IdentityErrorDescriber
+	public class PermissionIdentityErrorDescriber : IdentityErrorDescriber
 	{
 		/// <summary>
 		///     Returns an <see cref="IdentityError" /> indicating the specified <paramref name="permissionName" /> name is

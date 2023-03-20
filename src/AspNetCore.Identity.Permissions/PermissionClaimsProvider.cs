@@ -7,18 +7,18 @@
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 
 	[UsedImplicitly]
-	internal sealed class IdentityClaimsProvider<TUser, TPermission> : IdentityClaimsProviderBase<TPermission>
+	internal sealed class PermissionClaimsProvider<TUser, TPermission> : PermissionClaimsProviderBase<TPermission>
 		where TUser : class
 		where TPermission : class
 	{
 		private readonly TenantUserManager<TUser> userManager;
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission}" /> type:
+		///     Initializes a new instance of the <see cref="PermissionClaimsProvider{TUser,TPermission}" /> type:
 		/// </summary>
 		/// <param name="userManager"></param>
 		/// <param name="permissionManager"></param>
-		public IdentityClaimsProvider(
+		public PermissionClaimsProvider(
 			TenantUserManager<TUser> userManager,
 			PermissionManager<TPermission> permissionManager) : base(permissionManager)
 		{
@@ -45,7 +45,7 @@
 	}
 
 	[UsedImplicitly]
-	internal sealed class IdentityClaimsProvider<TTenant, TUser, TPermission> : IdentityClaimsProviderBase<TPermission>
+	internal sealed class PermissionClaimsProvider<TTenant, TUser, TPermission> : PermissionClaimsProviderBase<TPermission>
 		where TTenant : class
         where TUser : class
 		where TPermission : class
@@ -54,12 +54,12 @@
 		private readonly TenantManager<TTenant> tenantManager;
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
+		///     Initializes a new instance of the <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}" /> type:
 		/// </summary>
 		/// <param name="userManager"></param>
 		/// <param name="tenantManager"></param>
 		/// <param name="permissionManager"></param>
-		public IdentityClaimsProvider(
+		public PermissionClaimsProvider(
 			TenantManager<TTenant> tenantManager,
             TenantUserManager<TUser> userManager,
 			PermissionManager<TPermission> permissionManager) : base(permissionManager)

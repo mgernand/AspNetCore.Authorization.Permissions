@@ -18,13 +18,13 @@
 		/// <summary>
 		///     Initializes a new instance of <see cref="TenantValidator{TTenant}" />.
 		/// </summary>
-		/// <param name="errors">The <see cref="PermissionsErrorDescriber" /> used to provider error messages.</param>
-		public TenantValidator(PermissionsErrorDescriber errors = null)
+		/// <param name="errors">The <see cref="PermissionIdentityErrorDescriber" /> used to provider error messages.</param>
+		public TenantValidator(PermissionIdentityErrorDescriber errors = null)
 		{
-			this.Describer = errors ?? new PermissionsErrorDescriber();
+			this.Describer = errors ?? new PermissionIdentityErrorDescriber();
 		}
 
-		private PermissionsErrorDescriber Describer { get; }
+		private PermissionIdentityErrorDescriber Describer { get; }
 
 		/// <inheritdoc />
 		public async Task<IdentityResult> ValidateAsync(TenantManager<TTenant> manager, TTenant tenant)

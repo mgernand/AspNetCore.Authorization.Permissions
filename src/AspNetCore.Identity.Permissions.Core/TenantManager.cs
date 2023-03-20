@@ -14,7 +14,8 @@
 	/// </summary>
 	/// <typeparam name="TTenant">The type encapsulating a tenant.</typeparam>
 	[PublicAPI]
-	public class TenantManager<TTenant> where TTenant : class
+	public class TenantManager<TTenant> : IDisposable
+		where TTenant : class
 	{
 		private bool disposed;
 

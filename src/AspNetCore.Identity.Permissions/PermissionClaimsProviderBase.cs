@@ -5,16 +5,16 @@
 	using System.Threading.Tasks;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 
-	internal abstract class IdentityClaimsProviderBase<TPermission> : IClaimsProvider
+	internal abstract class PermissionClaimsProviderBase<TPermission> : IClaimsProvider
         where TPermission : class
 	{
 		private readonly PermissionManager<TPermission> permissionManager;
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="IdentityClaimsProviderBase{TPermission}" /> type:
+		///     Initializes a new instance of the <see cref="PermissionClaimsProviderBase{TPermission}" /> type:
 		/// </summary>
 		/// <param name="permissionManager"></param>
-		protected IdentityClaimsProviderBase(
+		protected PermissionClaimsProviderBase(
 			PermissionManager<TPermission> permissionManager)
 		{
 			this.permissionManager = permissionManager;
