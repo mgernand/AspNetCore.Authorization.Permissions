@@ -1,17 +1,17 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
-	using System;
-	using System.Linq;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
-	/// <summary>
-	///     Represents a new instance of a persistence store for users, using the default implementation
-	///     of <see cref="IdentityTenantUser{TKey}" /> with a string as a primary key.
-	/// </summary>
-	[PublicAPI]
+    /// <summary>
+    ///     Represents a new instance of a persistence store for users, using the default implementation
+    ///     of <see cref="IdentityTenantUser" /> with a string as a primary key.
+    /// </summary>
+    [PublicAPI]
 	public class TenantUserStore : TenantUserStore<IdentityTenantUser>
 	{
 		/// <summary>

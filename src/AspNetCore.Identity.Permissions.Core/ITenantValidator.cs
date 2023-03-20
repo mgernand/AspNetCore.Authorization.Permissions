@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions
 {
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
@@ -20,6 +20,6 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the
 		///     <see cref="IdentityResult" /> of the validation operation.
 		/// </returns>
-		Task<IdentityResult> ValidateAsync(ITenantManager<TTenant> manager, TTenant tenant);
+		Task<IdentityResult> ValidateAsync(TenantManager<TTenant> manager, TTenant tenant);
 	}
 }

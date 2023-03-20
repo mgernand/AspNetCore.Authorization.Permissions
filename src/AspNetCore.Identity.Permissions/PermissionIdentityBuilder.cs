@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.DependencyInjection;
 
@@ -10,22 +11,28 @@
 	public class PermissionIdentityBuilder : IdentityBuilder
 	{
 		/// <inheritdoc />
-		public PermissionIdentityBuilder(IdentityBuilder builder, Type permissionType, Type tenantType)
-			: base(builder.UserType, builder.RoleType, builder.Services)
+		public PermissionIdentityBuilder(IdentityBuilder builder, Type tenantType, Type permissionType)
+			: this(builder, permissionType)
 		{
-			this.PermissionType = permissionType;
 			this.TenantType = tenantType;
 		}
 
-		/// <summary>
-		///     Gets the configured permission type.
-		/// </summary>
-		public Type PermissionType { get; }
+		/// <inheritdoc />
+        public PermissionIdentityBuilder(IdentityBuilder builder, Type permissionType)
+			: base(builder.UserType, builder.RoleType, builder.Services)
+        {
+			this.PermissionType = permissionType;
+        }
 
 		/// <summary>
 		///     Gets the configured tenant type.
 		/// </summary>
 		public Type TenantType { get; }
+
+        /// <summary>
+        ///     Gets the configured permission type.
+        /// </summary>
+        public Type PermissionType { get; }
 
 		/// <summary>
 		///     Adds a <see cref="PermissionManager{TUser}" /> for the <see cref="PermissionType" />.
@@ -34,7 +41,7 @@
 		public virtual PermissionIdentityBuilder AddPermissionManager<TPermissionManager>() where TPermissionManager : class
 		{
 			Type permissionManagerType = typeof(PermissionManager<>).MakeGenericType(this.PermissionType);
-			Type permissionManagerInterfaceType = typeof(IPermissionManager<>).MakeGenericType(this.PermissionType);
+			Type permissionManagerInterfaceType = typeof(PermissionManager<>).MakeGenericType(this.PermissionType);
 
 			Type customType = typeof(TPermissionManager);
 			if(!permissionManagerType.IsAssignableFrom(customType))
@@ -59,7 +66,7 @@
 		public virtual PermissionIdentityBuilder AddTenantManager<TTenantManager>() where TTenantManager : class
 		{
 			Type tenantManagerType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
-			Type tenantManagerInterfaceType = typeof(ITenantManager<>).MakeGenericType(this.TenantType);
+			Type tenantManagerInterfaceType = typeof(TenantManager<>).MakeGenericType(this.TenantType);
 
 			Type customType = typeof(TTenantManager);
 			if(!tenantManagerType.IsAssignableFrom(customType))

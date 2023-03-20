@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -28,13 +29,13 @@
 		/// <summary>
 		///     Validates a permission as an asynchronous operation.
 		/// </summary>
-		/// <param name="manager">The <see cref="IPermissionManager{TPermission}" /> managing the permission store.</param>
+		/// <param name="manager">The <see cref="PermissionManager{TPermission}" /> managing the permission store.</param>
 		/// <param name="permission">The permission to validate.</param>
 		/// <returns>
 		///     A <see cref="Task{TResult}" /> that represents the <see cref="IdentityResult" /> of the asynchronous
 		///     validation.
 		/// </returns>
-		public async Task<IdentityResult> ValidateAsync(IPermissionManager<TPermission> manager, TPermission permission)
+		public async Task<IdentityResult> ValidateAsync(PermissionManager<TPermission> manager, TPermission permission)
 		{
 			if(manager == null)
 			{
@@ -54,7 +55,7 @@
 				: IdentityResult.Success;
 		}
 
-		private async Task ValidatePermissionName(IPermissionManager<TPermission> manager, TPermission permission, ICollection<IdentityError> errors)
+		private async Task ValidatePermissionName(PermissionManager<TPermission> manager, TPermission permission, ICollection<IdentityError> errors)
 		{
 			string permissionName = await manager.GetPermissionNameAsync(permission);
 			if(string.IsNullOrWhiteSpace(permissionName))

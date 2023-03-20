@@ -1,14 +1,14 @@
 ﻿namespace SampleTenant
 {
-	using System.Threading;
-	using System.Threading.Tasks;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using MadEyeMatt.AspNetCore.Authorization.Permissions;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
-	public class InvoicesContext : DbContext
+    public class InvoicesContext : DbContext
 	{
 		private readonly ITenantProvider tenantProvider;
 

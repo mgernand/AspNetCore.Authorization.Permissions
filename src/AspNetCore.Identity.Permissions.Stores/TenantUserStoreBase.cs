@@ -1,20 +1,19 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions
 {
-	using System;
-	using System.ComponentModel;
-	using System.Linq;
-	using System.Threading;
-	using System.Threading.Tasks;
+    using System;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity;
 
-	/// <summary>
-	///     Represents a new instance of a persistence store for the specified user and role types.
-	/// </summary>
-	/// <typeparam name="TUser">The type representing a user.</typeparam>
-	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     Represents a new instance of a persistence store for the specified user and role types.
+    /// </summary>
+    /// <typeparam name="TUser">The type representing a user.</typeparam>
+    /// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
+    [PublicAPI]
 	public abstract class TenantUserStoreBase<TUser, TKey> : ITenantUserStore<TUser>
 		where TUser : IdentityTenantUser<TKey>
 		where TKey : IEquatable<TKey>

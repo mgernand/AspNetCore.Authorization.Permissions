@@ -5,35 +5,72 @@
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 
 	[UsedImplicitly]
-	internal sealed class IdentityClaimsProvider<TUser, TPermission, TTenant> : IClaimsProvider
+	internal sealed class IdentityClaimsProvider<TUser, TPermission> : IdentityClaimsProviderBase<TPermission>
 		where TUser : class
 		where TPermission : class
-		where TTenant : class
 	{
-		private readonly ITenantUserManager<TUser> userManager;
-		private readonly ITenantManager<TTenant> tenantManager;
-		private readonly IPermissionManager<TPermission> permissionManager;
+		private readonly TenantUserManager<TUser> userManager;
+
+		/// <summary>
+		///     Initializes a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission}" /> type:
+		/// </summary>
+		/// <param name="userManager"></param>
+		/// <param name="permissionManager"></param>
+		public IdentityClaimsProvider(
+			TenantUserManager<TUser> userManager,
+			PermissionManager<TPermission> permissionManager) : base(permissionManager)
+		{
+			this.userManager = userManager;
+		}
+
+		/// <inheritdoc />
+		public override async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+		{
+			List<Claim> claims = new List<Claim>();
+
+			// Add the permission claims that com from user roles.
+			TUser user = await this.userManager.FindByIdAsync(userId);
+			claims.AddRange(await this.GetUserPermissions(user));
+
+			return claims.AsReadOnly();
+		}
+
+		private async Task<IList<Claim>> GetUserPermissions(TUser user)
+		{
+			IList<string> roleNames = await this.userManager.GetRolesAsync(user);
+			return await this.GetPermissionClaims(roleNames);
+		}
+	}
+
+	[UsedImplicitly]
+	internal sealed class IdentityClaimsProvider<TTenant, TUser, TPermission> : IdentityClaimsProviderBase<TPermission>
+		where TTenant : class
+        where TUser : class
+		where TPermission : class
+	{
+		private readonly TenantUserManager<TUser> userManager;
+		private readonly TenantManager<TTenant> tenantManager;
 
 		/// <summary>
 		///     Initializes a new instance of the <see cref="IdentityClaimsProvider{TUser, TPermission, TTenant}" /> type:
 		/// </summary>
 		/// <param name="userManager"></param>
-		/// <param name="permissionManager"></param>
 		/// <param name="tenantManager"></param>
+		/// <param name="permissionManager"></param>
 		public IdentityClaimsProvider(
-			ITenantUserManager<TUser> userManager,
-			ITenantManager<TTenant> tenantManager,
-			IPermissionManager<TPermission> permissionManager)
+			TenantManager<TTenant> tenantManager,
+            TenantUserManager<TUser> userManager,
+			PermissionManager<TPermission> permissionManager) : base(permissionManager)
 		{
 			this.userManager = userManager;
 			this.tenantManager = tenantManager;
-			this.permissionManager = permissionManager;
 		}
 
 		/// <inheritdoc />
-		public async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
+		public override async Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId)
 		{
 			List<Claim> claims = new List<Claim>();
 
@@ -63,34 +100,13 @@
 		private async Task<IList<Claim>> GetUserPermissions(TUser user)
 		{
 			IList<string> roleNames = await this.userManager.GetRolesAsync(user);
-			return await this.GetPermissions(roleNames);
+			return await this.GetPermissionClaims(roleNames);
 		}
 
 		private async Task<IList<Claim>> GetTenantPermissions(TTenant tenant)
 		{
 			IList<string> roleNames = await this.tenantManager.GetRolesAsync(tenant);
-			return await this.GetPermissions(roleNames);
-		}
-
-		private async Task<IList<Claim>> GetPermissions(IEnumerable<string> roleNames)
-		{
-			IList<Claim> claims = new List<Claim>();
-			foreach(string roleName in roleNames)
-			{
-				IList<TPermission> permissions = await this.permissionManager.GetPermissionsInRoleAsync(roleName);
-				foreach(TPermission permission in permissions)
-				{
-					if(permission is null)
-					{
-						continue;
-					}
-
-					string permissionName = await this.permissionManager.GetPermissionNameAsync(permission);
-					claims.Add(new Claim(PermissionClaimTypes.PermissionClaimType, permissionName));
-				}
-			}
-
-			return claims;
+			return await this.GetPermissionClaims(roleNames);
 		}
 	}
 }

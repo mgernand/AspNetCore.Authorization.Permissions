@@ -1,20 +1,20 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Permissions
 {
-	using System;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.EntityFrameworkCore;
-	using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using System;
+    using JetBrains.Annotations;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-	/// <summary>
-	///     An entity type configuration.
-	/// </summary>
-	/// <typeparam name="TUser"></typeparam>
-	/// <typeparam name="TTenant"></typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     An entity type configuration.
+    /// </summary>
+    /// <typeparam name="TUser"></typeparam>
+    /// <typeparam name="TTenant"></typeparam>
+    [PublicAPI]
 	public class TenantUserConfiguration<TUser, TTenant> : TenantUserConfiguration<TUser, TTenant, string>
 		where TUser : IdentityTenantUser<string>
-		where TTenant : IdentityTenant
+		where TTenant : IdentityTenant<string>
 	{
 	}
 

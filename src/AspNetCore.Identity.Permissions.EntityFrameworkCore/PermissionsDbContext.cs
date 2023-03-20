@@ -1,15 +1,15 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
-	using System;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
+    using System;
+    using JetBrains.Annotations;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
-	/// <summary>
-	///     Base class for the Entity Framework database context used for identity.
-	/// </summary>
-	[PublicAPI]
+    /// <summary>
+    ///     Base class for the Entity Framework database context used for identity.
+    /// </summary>
+    [PublicAPI]
 	public class PermissionsDbContext : PermissionsDbContext<IdentityTenantUser, IdentityRole, IdentityPermission, IdentityTenant, string>
 	{
 		/// <summary>

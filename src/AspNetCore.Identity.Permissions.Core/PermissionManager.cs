@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions
 {
 	using System;
 	using System.Collections.Generic;
@@ -16,8 +16,7 @@
 	/// </summary>
 	/// <typeparam name="TPermission">The type encapsulating a permission.</typeparam>
 	[PublicAPI]
-	public class PermissionManager<TPermission> : IPermissionManager<TPermission>
-		where TPermission : class
+	public class PermissionManager<TPermission> where TPermission : class
 	{
 		private bool disposed;
 

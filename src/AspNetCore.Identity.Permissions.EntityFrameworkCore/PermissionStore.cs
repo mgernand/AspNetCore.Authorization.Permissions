@@ -1,20 +1,20 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
-	/// <summary>
-	///     Represents a new instance of a persistence store for permissions, using the default implementation
-	///     of <see cref="IdentityPermission{TKey}" /> and <see cref="IdentityRole{TKey}" /> with a string as a primary key.
-	/// </summary>
-	[PublicAPI]
+    /// <summary>
+    ///     Represents a new instance of a persistence store for permissions, using the default implementation
+    ///     of <see cref="IdentityPermission" /> and <see cref="IdentityRole{TKey}" /> with a string as a primary key.
+    /// </summary>
+    [PublicAPI]
 	public class PermissionStore : PermissionStore<IdentityPermission, IdentityRole, DbContext, string>
 	{
 		/// <summary>

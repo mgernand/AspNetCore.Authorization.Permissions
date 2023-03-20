@@ -3,7 +3,6 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -17,46 +16,30 @@
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider(this IdentityBuilder builder)
-		{
-			return builder.AddIdentityClaimsProvider<IdentityTenantUser, IdentityPermission, IdentityTenant>();
-		}
-
-		/// <summary>
-		///     Adds the claims provider for the identity library.
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TUser>(this IdentityBuilder builder)
-			where TUser : class
-		{
-			return builder.AddIdentityClaimsProvider<TUser, IdentityPermission, IdentityTenant>();
-		}
-
-		/// <summary>
-		///     Adds the claims provider for the identity library.
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <returns></returns>
 		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission>(this IdentityBuilder builder)
 			where TUser : class
 			where TPermission : class
 		{
-			return builder.AddIdentityClaimsProvider<TUser, TPermission, IdentityTenant>();
-		}
+			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,>)
+				.MakeGenericType(typeof(TUser), typeof(TPermission));
+
+			builder.Services.AddClaimsProvider(identityClaimsProviderType);
+
+			return builder;
+        }
 
 		/// <summary>
 		///     Adds the claims provider for the identity library.
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission, TTenant>(this IdentityBuilder builder)
-			where TUser : class
-			where TPermission : class
+		public static IdentityBuilder AddIdentityClaimsProvider<TTenant, TUser, TPermission>(this IdentityBuilder builder)
 			where TTenant : class
+            where TUser : class
+			where TPermission : class
 		{
 			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,,>)
-				.MakeGenericType(typeof(TUser), typeof(TPermission), typeof(TTenant));
+				.MakeGenericType(typeof(TTenant), typeof(TUser), typeof(TPermission));
 
 			builder.Services.AddClaimsProvider(identityClaimsProviderType);
 

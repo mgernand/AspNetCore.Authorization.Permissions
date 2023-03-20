@@ -5,6 +5,7 @@
 	using System.Linq;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -27,7 +28,7 @@
 		private PermissionsErrorDescriber Describer { get; }
 
 		/// <inheritdoc />
-		public async Task<IdentityResult> ValidateAsync(ITenantManager<TTenant> manager, TTenant tenant)
+		public async Task<IdentityResult> ValidateAsync(TenantManager<TTenant> manager, TTenant tenant)
 		{
 			if(manager == null)
 			{
@@ -47,7 +48,7 @@
 				: IdentityResult.Success;
 		}
 
-		private async Task ValidateTenantName(ITenantManager<TTenant> manager, TTenant tenant, ICollection<IdentityError> errors)
+		private async Task ValidateTenantName(TenantManager<TTenant> manager, TTenant tenant, ICollection<IdentityError> errors)
 		{
 			string tenantName = await manager.GetTenantNameAsync(tenant);
 			if(string.IsNullOrWhiteSpace(tenantName))

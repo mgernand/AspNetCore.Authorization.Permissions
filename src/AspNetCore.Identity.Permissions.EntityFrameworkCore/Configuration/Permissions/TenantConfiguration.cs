@@ -1,22 +1,22 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Permissions
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Reflection;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using Microsoft.EntityFrameworkCore.Metadata.Builders;
-	using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using JetBrains.Annotations;
+    using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-	/// <summary>
-	///     An entity type configuration.
-	/// </summary>
-	/// <typeparam name="TTenant"></typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     An entity type configuration.
+    /// </summary>
+    /// <typeparam name="TTenant"></typeparam>
+    [PublicAPI]
 	public class TenantConfiguration<TTenant> : TenantConfiguration<TTenant, string>
 		where TTenant : IdentityTenant<string>
 	{

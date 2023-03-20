@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,7 +15,7 @@
 	/// </summary>
 	/// <typeparam name="TUser">The type encapsulating a tenant user.</typeparam>
 	[PublicAPI]
-	public class TenantUserManager<TUser> : UserManager<TUser>, ITenantUserManager<TUser>
+	public class TenantUserManager<TUser> : UserManager<TUser>
 		where TUser : class
 	{
 		private readonly ITenantUserStore<TUser> tenantUserStore;

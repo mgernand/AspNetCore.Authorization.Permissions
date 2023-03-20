@@ -1,16 +1,16 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Permissions
 {
-	using System;
-	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
-	using Microsoft.EntityFrameworkCore;
-	using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using System;
+    using JetBrains.Annotations;
+    using MadEyeMatt.Extensions.Identity.Permissions;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-	/// <summary>
-	///     An entity type configuration.
-	/// </summary>
-	/// <typeparam name="TTenantRole"></typeparam>
-	[PublicAPI]
+    /// <summary>
+    ///     An entity type configuration.
+    /// </summary>
+    /// <typeparam name="TTenantRole"></typeparam>
+    [PublicAPI]
 	public class TenantRoleConfiguration<TTenantRole> : TenantRoleConfiguration<TTenantRole, string>
 		where TTenantRole : IdentityTenantRole<string>
 	{

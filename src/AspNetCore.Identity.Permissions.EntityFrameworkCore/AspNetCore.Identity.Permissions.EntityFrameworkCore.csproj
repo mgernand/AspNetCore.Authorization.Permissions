@@ -42,17 +42,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AspNetCore.Identity.Permissions\AspNetCore.Identity.Permissions.csproj" />
+	  <ProjectReference Include="..\AspNetCore.Identity.Permissions.Stores\Extensions.Identity.Permissions.Stores.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
