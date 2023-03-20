@@ -1,9 +1,9 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using JetBrains.Annotations;
+	using System;
+	using JetBrains.Annotations;
 
-    /// <summary>
+	/// <summary>
     ///     Represents the link between a tenant and a role that uses a string as type for the keys.
     /// </summary>
     [PublicAPI]

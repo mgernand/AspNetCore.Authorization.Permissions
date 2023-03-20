@@ -1,10 +1,10 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
+	using System;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
     ///     A default tenant user implementation that used a string as type for the ID.
     /// </summary>
     [PublicAPI]
@@ -18,8 +18,8 @@
         /// </remarks>
         public IdentityTenantUser()
         {
-            Id = Guid.NewGuid().ToString();
-            SecurityStamp = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid().ToString();
+            this.SecurityStamp = Guid.NewGuid().ToString();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// </remarks>
         public IdentityTenantUser(string userName) : this()
         {
-            UserName = userName;
+            this.UserName = userName;
         }
     }
 
@@ -56,7 +56,7 @@
         /// <param name="userName">The user name.</param>
         public IdentityTenantUser(string userName) : this()
         {
-            UserName = userName;
+            this.UserName = userName;
         }
 
         /// <summary>

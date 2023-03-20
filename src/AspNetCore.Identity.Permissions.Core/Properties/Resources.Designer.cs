@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MadEyeMatt.Extensions.Identity.Permissions.Properties {
+namespace MadEyeMatt.AspNetCore.Identity.Permissions.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MadEyeMatt.Extensions.Identity.Permissions.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.Extensions.Identity.Permissions.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Identity.Permissions.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

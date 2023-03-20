@@ -1,14 +1,14 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
+	using System;
+	using System.ComponentModel;
+	using System.Linq;
+	using System.Threading;
+	using System.Threading.Tasks;
 	using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
     ///     Represents a new instance of a persistence store for the specified user and role types.
     /// </summary>
     /// <typeparam name="TUser">The type representing a user.</typeparam>

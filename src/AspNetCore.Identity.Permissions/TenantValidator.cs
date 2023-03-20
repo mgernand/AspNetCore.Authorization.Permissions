@@ -5,7 +5,6 @@
 	using System.Linq;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
-	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>

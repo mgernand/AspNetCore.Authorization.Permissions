@@ -3,7 +3,8 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MadEyeMatt.AspNetCore.Authorization.Permissions;
-    using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
+	using MadEyeMatt.AspNetCore.Identity.Permissions;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
     using MadEyeMatt.Extensions.Identity.Permissions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;

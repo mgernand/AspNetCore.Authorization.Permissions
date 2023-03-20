@@ -1,14 +1,14 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
     ///     Initializes a new instance of a persistence store for tenants.
     /// </summary>
     /// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
@@ -30,7 +30,7 @@
         /// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
         protected TenantStoreBase(IdentityErrorDescriber describer)
         {
-            ErrorDescriber = describer ?? throw new ArgumentNullException(nameof(describer));
+            this.ErrorDescriber = describer ?? throw new ArgumentNullException(nameof(describer));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@
         /// </summary>
         public void Dispose()
         {
-            disposed = true;
+            this.disposed = true;
         }
 
         /// <inheritdoc />
@@ -59,20 +59,20 @@
         public virtual Task<string> GetTenantIdAsync(TTenant tenant, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
             }
 
-            return Task.FromResult(ConvertIdToString(tenant.Id));
+            return Task.FromResult(this.ConvertIdToString(tenant.Id));
         }
 
         /// <inheritdoc />
         public virtual Task<string> GetTenantNameAsync(TTenant tenant, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
@@ -85,7 +85,7 @@
         public virtual Task<string> GetNormalizedTenantNameAsync(TTenant tenant, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
@@ -98,7 +98,7 @@
         public virtual Task<string> GetTenantDisplayNameAsync(TTenant tenant, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
@@ -111,7 +111,7 @@
         public virtual Task SetTenantNameAsync(TTenant tenant, string tenantName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
@@ -125,7 +125,7 @@
         public virtual Task SetNormalizedTenantNameAsync(TTenant tenant, string normalizedTenantName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
@@ -139,7 +139,7 @@
         public virtual Task SetTenantDisplayNameAsync(TTenant tenant, string tenantDisplayName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (tenant == null)
             {
                 throw new ArgumentNullException(nameof(tenant));
@@ -249,9 +249,9 @@
         /// </summary>
         protected void ThrowIfDisposed()
         {
-            if (disposed)
+            if (this.disposed)
             {
-                throw new ObjectDisposedException(GetType().Name);
+                throw new ObjectDisposedException(this.GetType().Name);
             }
         }
     }

@@ -1,6 +1,6 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
+	using System;
 	using JetBrains.Annotations;
 
 	/// <summary>

@@ -1,10 +1,10 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
+	using System;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
     ///     A default tenant implementation that used a string as type for the ID.
     /// </summary>
     [PublicAPI]
@@ -70,7 +70,7 @@
         /// <returns>The name of the tenant.</returns>
         public override string ToString()
         {
-            return Name ?? string.Empty;
+            return this.Name ?? string.Empty;
         }
     }
 }

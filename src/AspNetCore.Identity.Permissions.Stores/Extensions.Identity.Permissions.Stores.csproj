@@ -11,7 +11,7 @@
 	<PropertyGroup>
 		<PackageId>MadEyeMatt.$(AssemblyName)</PackageId>
 		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
-		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_").Replace(".Stores", ""))</RootNamespace>
+		<RootNamespace>MadEyeMatt.AspNetCore.Identity.Permissions</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2022-2023 Matthias Gernand. All rights reserved.</Copyright>
 		<Version>8.0.0</Version>

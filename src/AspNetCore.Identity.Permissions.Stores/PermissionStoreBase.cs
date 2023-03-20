@@ -1,14 +1,14 @@
-﻿namespace MadEyeMatt.Extensions.Identity.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using JetBrains.Annotations;
-    using Microsoft.AspNetCore.Identity;
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
+	/// <summary>
     ///     Initializes a new instance of a persistence store for roles.
     /// </summary>
     /// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
@@ -30,7 +30,7 @@
         /// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
         protected PermissionStoreBase(IdentityErrorDescriber describer)
         {
-            ErrorDescriber = describer ?? throw new ArgumentNullException(nameof(describer));
+            this.ErrorDescriber = describer ?? throw new ArgumentNullException(nameof(describer));
         }
 
         /// <summary>
@@ -57,20 +57,20 @@
         public virtual Task<string> GetPermissionIdAsync(TPermission permission, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (permission == null)
             {
                 throw new ArgumentNullException(nameof(permission));
             }
 
-            return Task.FromResult(ConvertIdToString(permission.Id));
+            return Task.FromResult(this.ConvertIdToString(permission.Id));
         }
 
         /// <inheritdoc />
         public virtual Task<string> GetPermissionNameAsync(TPermission permission, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (permission == null)
             {
                 throw new ArgumentNullException(nameof(permission));
@@ -83,7 +83,7 @@
         public virtual Task SetPermissionNameAsync(TPermission permission, string permissionName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (permission == null)
             {
                 throw new ArgumentNullException(nameof(permission));
@@ -97,7 +97,7 @@
         public virtual Task SetNormalizedPermissionNameAsync(TPermission permission, string normalizedPermissionName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (permission == null)
             {
                 throw new ArgumentNullException(nameof(permission));
@@ -111,7 +111,7 @@
         public virtual Task<string> GetNormalizedPermissionNameAsync(TPermission permission, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ThrowIfDisposed();
+            this.ThrowIfDisposed();
             if (permission == null)
             {
                 throw new ArgumentNullException(nameof(permission));
@@ -125,7 +125,7 @@
         /// </summary>
         public void Dispose()
         {
-            disposed = true;
+            this.disposed = true;
         }
 
         /// <inheritdoc />
@@ -187,9 +187,9 @@
         /// </summary>
         protected void ThrowIfDisposed()
         {
-            if (disposed)
+            if (this.disposed)
             {
-                throw new ObjectDisposedException(GetType().Name);
+                throw new ObjectDisposedException(this.GetType().Name);
             }
         }
     }
