@@ -1,16 +1,15 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Permissions
 {
-    using System;
-    using JetBrains.Annotations;
-    using MadEyeMatt.Extensions.Identity.Permissions;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+	using System;
+	using JetBrains.Annotations;
+	using Microsoft.EntityFrameworkCore;
+	using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    /// <summary>
-    ///     An entity type configuration.
-    /// </summary>
-    /// <typeparam name="TRolePermission"></typeparam>
-    [PublicAPI]
+	/// <summary>
+	///     An entity type configuration.
+	/// </summary>
+	/// <typeparam name="TRolePermission"></typeparam>
+	[PublicAPI]
 	public class RolePermissionConfiguration<TRolePermission> : RolePermissionConfiguration<TRolePermission, string>
 		where TRolePermission : IdentityRolePermission<string>
 	{

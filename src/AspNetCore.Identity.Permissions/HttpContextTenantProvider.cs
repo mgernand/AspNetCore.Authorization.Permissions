@@ -1,21 +1,22 @@
-﻿namespace MadEyeMatt.AspNetCore.Authorization.Permissions
+﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
 {
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Http;
 
 	/// <summary>
 	///     A tenant accessor that gets the tenant ID from the current user.
 	/// </summary>
 	[PublicAPI]
-	public class HttpContextUserTenantProvider : ITenantProvider
+	public class HttpContextTenantProvider : ITenantProvider
 	{
 		private readonly IHttpContextAccessor httpContextAccessor;
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="HttpContextUserTenantProvider" /> type.
+		///     Initializes a new instance of the <see cref="HttpContextTenantProvider" /> type.
 		/// </summary>
 		/// <param name="httpContextAccessor"></param>
-		public HttpContextUserTenantProvider(IHttpContextAccessor httpContextAccessor)
+		public HttpContextTenantProvider(IHttpContextAccessor httpContextAccessor)
 		{
 			this.httpContextAccessor = httpContextAccessor;
 		}

@@ -1,9 +1,10 @@
 ﻿namespace SampleTenant.Pages
 {
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 
-	[MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.TaxExport")]
+	[HasPermission("Invoice.TaxExport")]
 	public class InvoiceTaxExportModel : PageModel
 	{
 		private readonly ILogger<InvoiceTaxExportModel> logger;

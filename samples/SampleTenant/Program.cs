@@ -38,11 +38,12 @@ builder.Services
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
 	.AddPermissionClaimsProvider()
+	.AddDefaultTenantProvider()
 	.AddTenantManager<AspNetTenantManager<IdentityTenant>>()
-	.AddUserManager<AspNetUserManager<IdentityTenantUser>>()
+	.AddUserManager<AspNetTenantUserManager<IdentityTenantUser>>()
 	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
 	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
-	.AddPermissionsEntityFrameworkStores<InvoicesContext, HttpContextUserTenantProvider>();
+	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 WebApplication app = builder.Build();
 

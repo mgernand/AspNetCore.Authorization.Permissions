@@ -6,7 +6,7 @@
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 
 	internal abstract class PermissionClaimsProviderBase<TPermission> : IClaimsProvider
-        where TPermission : class
+		where TPermission : class
 	{
 		private readonly PermissionManager<TPermission> permissionManager;
 
@@ -20,15 +20,18 @@
 			this.permissionManager = permissionManager;
 		}
 
+		/// <inheritdoc />
+		public abstract Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId);
+
 		protected async Task<IList<Claim>> GetPermissionClaims(IEnumerable<string> roleNames)
 		{
 			IList<Claim> claims = new List<Claim>();
-			foreach (string roleName in roleNames)
+			foreach(string roleName in roleNames)
 			{
 				IList<TPermission> permissions = await this.permissionManager.GetPermissionsInRoleAsync(roleName);
-				foreach (TPermission permission in permissions)
+				foreach(TPermission permission in permissions)
 				{
-					if (permission is null)
+					if(permission is null)
 					{
 						continue;
 					}
@@ -40,8 +43,5 @@
 
 			return claims;
 		}
-
-		/// <inheritdoc />
-		public abstract Task<IReadOnlyCollection<Claim>> GetPermissionClaimsForUserAsync(string userId);
 	}
 }

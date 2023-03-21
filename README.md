@@ -167,7 +167,8 @@ builder.Services
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
 	.AddIdentityClaimsProvider()
-	.AddPermissionsEntityFrameworkStores<InvoicesContext, HttpContextUserTenantProvider>();
+	.AddDefaultTenantProvider()
+	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 // Additional service configuration omitted.
 ```

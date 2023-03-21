@@ -5,13 +5,14 @@
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using Microsoft.AspNetCore.Identity;
 
 	[UsedImplicitly]
 	internal sealed class PermissionClaimsProvider<TUser, TPermission> : PermissionClaimsProviderBase<TPermission>
 		where TUser : class
 		where TPermission : class
 	{
-		private readonly TenantUserManager<TUser> userManager;
+		private readonly UserManager<TUser> userManager;
 
 		/// <summary>
 		///     Initializes a new instance of the <see cref="PermissionClaimsProvider{TUser,TPermission}" /> type:
@@ -19,7 +20,7 @@
 		/// <param name="userManager"></param>
 		/// <param name="permissionManager"></param>
 		public PermissionClaimsProvider(
-			TenantUserManager<TUser> userManager,
+			UserManager<TUser> userManager,
 			PermissionManager<TPermission> permissionManager) : base(permissionManager)
 		{
 			this.userManager = userManager;
@@ -47,7 +48,7 @@
 	[UsedImplicitly]
 	internal sealed class PermissionClaimsProvider<TTenant, TUser, TPermission> : PermissionClaimsProviderBase<TPermission>
 		where TTenant : class
-        where TUser : class
+		where TUser : class
 		where TPermission : class
 	{
 		private readonly TenantUserManager<TUser> userManager;
@@ -61,7 +62,7 @@
 		/// <param name="permissionManager"></param>
 		public PermissionClaimsProvider(
 			TenantManager<TTenant> tenantManager,
-            TenantUserManager<TUser> userManager,
+			TenantUserManager<TUser> userManager,
 			PermissionManager<TPermission> permissionManager) : base(permissionManager)
 		{
 			this.userManager = userManager;

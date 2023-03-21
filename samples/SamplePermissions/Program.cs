@@ -41,7 +41,7 @@ builder.Services
 	.AddUserManager<AspNetUserManager<IdentityUser>>()
 	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
 	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
-    .AddPermissionsEntityFrameworkStores<InvoicesContext>();
+	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 WebApplication app = builder.Build();
 

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SamplePermissions.Migrations
 {
     /// <inheritdoc />
-    public partial class Invoices : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,33 +55,28 @@ namespace SamplePermissions.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TenantRoles",
-                columns: table => new
-                {
-                    TenantId = table.Column<string>(type: "TEXT", nullable: false),
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TenantRoles", x => new { x.TenantId, x.RoleId });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tenants",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    DisplayName = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    IsHierarchical = table.Column<bool>(type: "INTEGER", nullable: false),
-                    HasSeparateDatabase = table.Column<bool>(type: "INTEGER", nullable: false),
-                    DatabaseName = table.Column<string>(type: "TEXT", nullable: true)
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tenants", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,8 +84,7 @@ namespace SamplePermissions.Migrations
                 columns: table => new
                 {
                     RoleId = table.Column<string>(type: "TEXT", nullable: false),
-                    PermissionId = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false)
+                    PermissionId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -122,37 +116,6 @@ namespace SamplePermissions.Migrations
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false),
-                    TenantId = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Tenants_TenantId",
-                        column: x => x.TenantId,
-                        principalTable: "Tenants",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -201,8 +164,7 @@ namespace SamplePermissions.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false)
+                    RoleId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -246,9 +208,9 @@ namespace SamplePermissions.Migrations
                 columns: new[] { "Id", "Note", "Total" },
                 values: new object[,]
                 {
-                    { new Guid("37b91bb7-6e5f-4b78-8198-b86bb5965969"), "This is a Company invoice.", 199.95m },
-                    { new Guid("750c6947-518a-41f9-9897-67cdefa79c6d"), "This is a Company invoice.", 199.95m },
-                    { new Guid("7b58ef52-f68d-41f7-83a0-85d0c20455d4"), "This is a Company invoice.", 199.95m }
+                    { new Guid("1c71dd38-7454-47d2-bbb4-88a5fe52e11a"), "This is a Company invoice.", 199.95m },
+                    { new Guid("84505bb2-4175-4aa1-8a10-ea151a4bd234"), "This is a Company invoice.", 199.95m },
+                    { new Guid("8faf03b7-0ed0-4db5-9276-6574ea519e04"), "This is a Company invoice.", 199.95m }
                 });
 
             migrationBuilder.InsertData(
@@ -256,11 +218,11 @@ namespace SamplePermissions.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "3ec22713-ede3-4e79-81de-92bdda9ac549", "Invoice.Read", "INVOICE.READ" },
-                    { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "a82634ad-9b3c-4ff0-91d3-2b45ef7d3c2a", "Invoice.Send", "INVOICE.SEND" },
-                    { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "4779f79b-e9c6-4933-afd4-741cee699183", "Invoice.Write", "INVOICE.WRITE" },
-                    { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "452d9855-4d4c-440e-9c8a-6d45ff843568", "Invoice.Delete", "INVOICE.DELETE" },
-                    { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "03b03432-3548-466f-ac06-9ddf129c2a63", "Invoice.Payment", "INVOICE.PAYMENT" }
+                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "99e234d4-20ee-4ce7-8350-819f7771d7f1", "Invoice.Read", "INVOICE.READ" },
+                    { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "3e3d63c9-f89a-479a-a8a3-6c8c2e43bdf6", "Invoice.Send", "INVOICE.SEND" },
+                    { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "2bac281e-3e0d-4539-8253-43bd395085cf", "Invoice.Write", "INVOICE.WRITE" },
+                    { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "211e68ff-daf7-40d5-b909-3f0a71527a9b", "Invoice.Delete", "INVOICE.DELETE" },
+                    { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "70e4e678-9a9e-45cc-9333-3b1359cd37b2", "Invoice.Payment", "INVOICE.PAYMENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -275,36 +237,36 @@ namespace SamplePermissions.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TenantId", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "04517a45-d6f5-4993-888b-04c924902b3a", 0, "1cd5b3c3-3656-44f6-b265-bd135f993a6e", null, false, false, null, null, "EMPLOYEE@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "a60e3c57-e8dd-4d0b-8cfe-886fb48032d1", null, false, "employee@company" },
-                    { "90a4dd66-78d1-4fff-a507-7f88735f7ab6", 0, "077ff0d1-0cc1-4535-b745-7fdfffd3912d", null, false, false, null, null, "MANAGER@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "9566e134-1923-4efa-8cd1-0f7945566b94", null, false, "manager@company" },
-                    { "a0f112af-5e39-4b3f-bc50-015591861ec0", 0, "20d8fbed-01f0-4d1a-b321-fb7679186383", null, false, false, null, null, "BOSS@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "e255f9df-4459-4490-9f4c-a2d4331d3804", null, false, "boss@company" }
+                    { "04517a45-d6f5-4993-888b-04c924902b3a", 0, "d7f146e5-cda3-490c-a610-9b7adc132065", null, false, false, null, null, "EMPLOYEE@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "2ccae432-65b6-40b6-a0e7-f925cf0f6c77", false, "employee@company" },
+                    { "90a4dd66-78d1-4fff-a507-7f88735f7ab6", 0, "ff72801a-0c91-484c-bad7-f28f91b4aa17", null, false, false, null, null, "MANAGER@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "f31f23e5-dc57-49a9-a3f7-a6802aa523ba", false, "manager@company" },
+                    { "a0f112af-5e39-4b3f-bc50-015591861ec0", 0, "cd004c21-761b-44ce-ac72-2416c8cf2d6e", null, false, false, null, null, "BOSS@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "f5db5a17-f1ff-4afb-a062-72d037807012", false, "boss@company" }
                 });
 
             migrationBuilder.InsertData(
                 table: "RolePermissions",
-                columns: new[] { "PermissionId", "RoleId", "Discriminator" },
+                columns: new[] { "PermissionId", "RoleId" },
                 values: new object[,]
                 {
-                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "2c77ea15-1559-4b9b-bc20-1d64892e4297", "PermissionsRolePermission" },
-                    { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "2c77ea15-1559-4b9b-bc20-1d64892e4297", "PermissionsRolePermission" },
-                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "b0df7eae-a4f9-4d58-8795-ead2aaf6a483", "PermissionsRolePermission" },
-                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "PermissionsRolePermission" },
-                    { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "PermissionsRolePermission" },
-                    { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "PermissionsRolePermission" },
-                    { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "PermissionsRolePermission" }
+                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "2c77ea15-1559-4b9b-bc20-1d64892e4297" },
+                    { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "2c77ea15-1559-4b9b-bc20-1d64892e4297" },
+                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "b0df7eae-a4f9-4d58-8795-ead2aaf6a483" },
+                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2" },
+                    { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2" },
+                    { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2" },
+                    { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
-                columns: new[] { "RoleId", "UserId", "Discriminator" },
+                columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "04517a45-d6f5-4993-888b-04c924902b3a", "IdentityUserRole" },
-                    { "2c77ea15-1559-4b9b-bc20-1d64892e4297", "90a4dd66-78d1-4fff-a507-7f88735f7ab6", "IdentityUserRole" },
-                    { "b0df7eae-a4f9-4d58-8795-ead2aaf6a483", "a0f112af-5e39-4b3f-bc50-015591861ec0", "IdentityUserRole" }
+                    { "c7ebaa11-c7ed-4357-b287-e0f2dd1eb3f2", "04517a45-d6f5-4993-888b-04c924902b3a" },
+                    { "2c77ea15-1559-4b9b-bc20-1d64892e4297", "90a4dd66-78d1-4fff-a507-7f88735f7ab6" },
+                    { "b0df7eae-a4f9-4d58-8795-ead2aaf6a483", "a0f112af-5e39-4b3f-bc50-015591861ec0" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -330,12 +292,6 @@ namespace SamplePermissions.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "TenantNameIndex",
-                table: "Tenants",
-                column: "NormalizedName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
                 table: "UserClaims",
                 column: "UserId");
@@ -354,11 +310,6 @@ namespace SamplePermissions.Migrations
                 name: "EmailIndex",
                 table: "Users",
                 column: "NormalizedEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_TenantId",
-                table: "Users",
-                column: "TenantId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -380,9 +331,6 @@ namespace SamplePermissions.Migrations
                 name: "RolePermissions");
 
             migrationBuilder.DropTable(
-                name: "TenantRoles");
-
-            migrationBuilder.DropTable(
                 name: "UserClaims");
 
             migrationBuilder.DropTable(
@@ -402,9 +350,6 @@ namespace SamplePermissions.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Tenants");
         }
     }
 }

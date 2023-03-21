@@ -1,9 +1,10 @@
 ﻿namespace SampleTenant.Pages
 {
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 
-	[MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.Send")]
+	[HasPermission("Invoice.Send")]
 	public class InvoiceSendModel : PageModel
 	{
 		private readonly ILogger<InvoiceSendModel> logger;
