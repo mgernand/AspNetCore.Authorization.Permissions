@@ -48,8 +48,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\AspNetCore.Authorization.Permissions\AspNetCore.Authorization.Permissions.csproj" />
-		<ProjectReference Include="..\AspNetCore.Identity.Permissions.Core\Extensions.Identity.Permissions.Core.csproj" />
+	  <ProjectReference Include="..\AspNetCore.Authorization.Permissions\AspNetCore.Authorization.Permissions.csproj" />
+	  <ProjectReference Include="..\Extensions.Identity.Permissions.Core\Extensions.Identity.Permissions.Core.csproj" />
 	</ItemGroup>
 
 </Project>

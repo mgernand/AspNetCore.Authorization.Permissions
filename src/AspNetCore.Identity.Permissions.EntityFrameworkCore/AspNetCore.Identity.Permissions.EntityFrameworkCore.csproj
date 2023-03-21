@@ -48,7 +48,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AspNetCore.Identity.Permissions.Stores\Extensions.Identity.Permissions.Stores.csproj" />
+	  <ProjectReference Include="..\Extensions.Identity.Permissions.Stores\Extensions.Identity.Permissions.Stores.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
