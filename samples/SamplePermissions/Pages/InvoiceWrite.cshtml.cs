@@ -1,10 +1,11 @@
 ﻿namespace SamplePermissions.Pages
 {
+	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 	using SamplePermissions.Model;
 
-	[MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.Write")]
+	[HasPermission("Invoice.Write")]
 	public class InvoiceWriteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

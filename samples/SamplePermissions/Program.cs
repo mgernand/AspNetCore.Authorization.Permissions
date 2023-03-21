@@ -26,7 +26,7 @@ builder.Services
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
-	.AddPermissionsIdentity(options =>
+	.AddPermissionsIdentityCore<IdentityUser, IdentityRole, IdentityPermission>(options =>
 	{
 		options.Password.RequireDigit = false;
 		options.Password.RequireLowercase = false;
@@ -37,7 +37,10 @@ builder.Services
 	})
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
-	.AddIdentityClaimsProvider()
+	.AddPermissionClaimsProvider()
+	.AddUserManager<AspNetUserManager<IdentityUser>>()
+	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
+	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
 	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 WebApplication app = builder.Build();

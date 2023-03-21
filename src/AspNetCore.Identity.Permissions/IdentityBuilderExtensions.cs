@@ -3,62 +3,67 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Model;
 	using Microsoft.AspNetCore.Identity;
+	using Microsoft.Extensions.DependencyInjection.Extensions;
 
 	/// <summary>
-	///     Extension methods for the <see cref="IdentityBuilderExtensions" /> type.
+	///     Extension methods for the <see cref="IdentityBuilder" /> type.
 	/// </summary>
 	[PublicAPI]
 	public static class IdentityBuilderExtensions
 	{
 		/// <summary>
-		///     Adds the claims provider for the identity library.
+		///     Adds the <see cref="PermissionClaimsProvider{TUser,TPermission}" /> or the
+		///     <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}" />.
 		/// </summary>
-		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider(this IdentityBuilder builder)
+		public static IdentityBuilder AddPermissionClaimsProvider(this IdentityBuilder builder)
 		{
-			return builder.AddIdentityClaimsProvider<IdentityTenantUser, IdentityPermission, IdentityTenant>();
+			if(builder is PermissionIdentityBuilder permissionBuilder)
+			{
+				return permissionBuilder.AddPermissionClaimsProvider();
+			}
+
+			throw new InvalidOperationException($"The builder was not of {nameof(PermissionIdentityBuilder)} type.");
 		}
 
 		/// <summary>
-		///     Adds the claims provider for the identity library.
+		///     Adds the <see cref="PermissionClaimsProvider{TUser,TPermission}" /> or the
+		///     <see cref="PermissionClaimsProvider{TTenant,TUser,TPermission}" />.
 		/// </summary>
-		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TUser>(this IdentityBuilder builder)
-			where TUser : class
+		public static PermissionIdentityBuilder AddPermissionClaimsProvider(this PermissionIdentityBuilder builder)
 		{
-			return builder.AddIdentityClaimsProvider<TUser, IdentityPermission, IdentityTenant>();
-		}
-
-		/// <summary>
-		///     Adds the claims provider for the identity library.
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission>(this IdentityBuilder builder)
-			where TUser : class
-			where TPermission : class
-		{
-			return builder.AddIdentityClaimsProvider<TUser, TPermission, IdentityTenant>();
-		}
-
-		/// <summary>
-		///     Adds the claims provider for the identity library.
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <returns></returns>
-		public static IdentityBuilder AddIdentityClaimsProvider<TUser, TPermission, TTenant>(this IdentityBuilder builder)
-			where TUser : class
-			where TPermission : class
-			where TTenant : class
-		{
-			Type identityClaimsProviderType = typeof(IdentityClaimsProvider<,,>)
-				.MakeGenericType(typeof(TUser), typeof(TPermission), typeof(TTenant));
+			Type identityClaimsProviderType = builder.TenantType is null
+				? typeof(PermissionClaimsProvider<,>).MakeGenericType(builder.UserType, builder.PermissionType)
+				: typeof(PermissionClaimsProvider<,,>).MakeGenericType(builder.TenantType, builder.UserType, builder.PermissionType);
 
 			builder.Services.AddClaimsProvider(identityClaimsProviderType);
+
+			return builder;
+		}
+
+		/// <summary>
+		///     Adds the <see cref="HttpContextTenantProvider" />.
+		/// </summary>
+		/// <returns></returns>
+		public static IdentityBuilder AddDefaultTenantProvider(this IdentityBuilder builder)
+		{
+			if(builder is PermissionIdentityBuilder permissionBuilder)
+			{
+				return permissionBuilder.AddDefaultTenantProvider();
+			}
+
+			throw new InvalidOperationException($"The builder was not of {nameof(PermissionIdentityBuilder)} type.");
+		}
+
+		/// <summary>
+		///     Adds the <see cref="HttpContextTenantProvider" />.
+		/// </summary>
+		/// <returns></returns>
+		public static PermissionIdentityBuilder AddDefaultTenantProvider(this PermissionIdentityBuilder builder)
+		{
+			builder.Services.TryAddScoped<ITenantProvider, HttpContextTenantProvider>();
 
 			return builder;
 		}

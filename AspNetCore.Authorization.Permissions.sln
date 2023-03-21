@@ -32,7 +32,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permiss
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore", "src\AspNetCore.Identity.Permissions.EntityFrameworkCore\AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj", "{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.Core", "src\AspNetCore.Identity.Permissions.Core\AspNetCore.Identity.Permissions.Core.csproj", "{525124A3-58D5-4301-A898-967D999CFB61}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{FA57E06B-CC0E-459C-A993-1D41ADF99ECF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.Identity.Permissions.Core", "src\Extensions.Identity.Permissions.Core\Extensions.Identity.Permissions.Core.csproj", "{26FA28C6-9247-4897-B8DB-CFF148B68A78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.Identity.Permissions.Stores", "src\Extensions.Identity.Permissions.Stores\Extensions.Identity.Permissions.Stores.csproj", "{3F7C18AD-4688-4C06-878A-C09A6E99AA95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,10 +72,14 @@ Global
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849}.Release|Any CPU.Build.0 = Release|Any CPU
-		{525124A3-58D5-4301-A898-967D999CFB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{525124A3-58D5-4301-A898-967D999CFB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{525124A3-58D5-4301-A898-967D999CFB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{525124A3-58D5-4301-A898-967D999CFB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26FA28C6-9247-4897-B8DB-CFF148B68A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26FA28C6-9247-4897-B8DB-CFF148B68A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26FA28C6-9247-4897-B8DB-CFF148B68A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26FA28C6-9247-4897-B8DB-CFF148B68A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,8 +92,10 @@ Global
 		{38E0E64A-6A46-47C7-A169-24A6069D80E4} = {EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}
 		{D1117618-BB2A-4FD0-9C88-9512B9AFC76D} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
 		{30A8E652-AD3F-42B8-AEDB-133660992475} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
-		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
-		{525124A3-58D5-4301-A898-967D999CFB61} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{99DA5DAF-7F69-4F23-BE79-A2595ACFC849} = {FA57E06B-CC0E-459C-A993-1D41ADF99ECF}
+		{FA57E06B-CC0E-459C-A993-1D41ADF99ECF} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{26FA28C6-9247-4897-B8DB-CFF148B68A78} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{3F7C18AD-4688-4C06-878A-C09A6E99AA95} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}

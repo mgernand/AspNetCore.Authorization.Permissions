@@ -7,7 +7,7 @@
 	using Microsoft.Extensions.Logging;
 	using SampleTenant.Model;
 
-	[MadEyeMatt.AspNetCore.Authorization.Permissions.HasPermissionAttribute("Invoice.Delete")]
+	[HasPermission("Invoice.Delete")]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

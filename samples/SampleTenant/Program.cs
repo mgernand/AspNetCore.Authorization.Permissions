@@ -26,7 +26,7 @@ builder.Services
 	{
 		options.UseSqlite("Filename=permissions.db");
 	})
-	.AddPermissionsIdentity(options =>
+	.AddPermissionsIdentityCore<IdentityTenant, IdentityTenantUser, IdentityRole, IdentityPermission>(options =>
 	{
 		options.Password.RequireDigit = false;
 		options.Password.RequireLowercase = false;
@@ -37,8 +37,13 @@ builder.Services
 	})
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
-	.AddIdentityClaimsProvider()
-	.AddPermissionsEntityFrameworkStores<InvoicesContext, HttpContextUserTenantProvider>();
+	.AddPermissionClaimsProvider()
+	.AddDefaultTenantProvider()
+	.AddTenantManager<AspNetTenantManager<IdentityTenant>>()
+	.AddUserManager<AspNetTenantUserManager<IdentityTenantUser>>()
+	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
+	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
+	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 WebApplication app = builder.Build();
 
