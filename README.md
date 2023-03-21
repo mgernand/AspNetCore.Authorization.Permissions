@@ -89,6 +89,9 @@ builder.Services
 	.AddDefaultUI()
 	.AddDefaultTokenProviders()
 	.AddPermissionClaimsProvider()
+	.AddUserManager<AspNetUserManager<IdentityUser>>()
+	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
+	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
 	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 // Additional service configuration omitted.
@@ -168,6 +171,10 @@ builder.Services
 	.AddDefaultTokenProviders()
 	.AddIdentityClaimsProvider()
 	.AddDefaultTenantProvider()
+	.AddTenantManager<AspNetTenantManager<IdentityTenant>>()
+	.AddUserManager<AspNetTenantUserManager<IdentityTenantUser>>()
+	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
+	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
 	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
 
 // Additional service configuration omitted.
