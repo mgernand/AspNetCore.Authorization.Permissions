@@ -42,8 +42,14 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 		/// </summary>
 		public string Table { get; init; } = "AspNetRoles";
 
-		/// <inheritdoc />
-		public virtual void Configure(EntityTypeBuilder<TRole> builder)
+		/// <summary>
+		///     Specifies the maximum length.
+		/// </summary>
+		/// <remarks>The default is 256.</remarks>
+		public int MaxKeyLength { get; init; } = 256;
+
+        /// <inheritdoc />
+        public virtual void Configure(EntityTypeBuilder<TRole> builder)
 		{
 			builder.ToTable(this.Table);
 
@@ -51,8 +57,8 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 			builder.HasIndex(r => r.NormalizedName).HasDatabaseName("RoleNameIndex").IsUnique();
 
 			builder.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
-			builder.Property(u => u.Name).HasMaxLength(256);
-			builder.Property(u => u.NormalizedName).HasMaxLength(256);
+			builder.Property(u => u.Name).HasMaxLength(this.MaxKeyLength);
+			builder.Property(u => u.NormalizedName).HasMaxLength(this.MaxKeyLength);
 
 			builder.HasMany<TUserRole>().WithOne().HasForeignKey(ur => ur.RoleId).IsRequired();
 			builder.HasMany<TRoleClaim>().WithOne().HasForeignKey(rc => rc.RoleId).IsRequired();

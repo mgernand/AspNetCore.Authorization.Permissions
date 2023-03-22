@@ -55,11 +55,17 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 		/// </summary>
 		public string Table { get; init; } = "AspNetUsers";
 
-		/// <summary>
-		///     If set, all properties on type <typeparamref name="TUser" /> marked with a
-		///     <see cref="ProtectedPersonalDataAttribute" /> will be converted using this <see cref="ValueConverter" />.
-		/// </summary>
-		public ValueConverter<string, string> PersonalDataConverter { get; set; }
+        /// <summary>
+        ///     Specifies the maximum length.
+        /// </summary>
+        /// <remarks>The default is 256.</remarks>
+        public int MaxKeyLength { get; init; } = 256;
+
+        /// <summary>
+        ///     If set, all properties on type <typeparamref name="TUser" /> marked with a
+        ///     <see cref="ProtectedPersonalDataAttribute" /> will be converted using this <see cref="ValueConverter" />.
+        /// </summary>
+        public ValueConverter<string, string> PersonalDataConverter { get; init; }
 
 		/// <inheritdoc />
 		public virtual void Configure(EntityTypeBuilder<TUser> builder)
@@ -71,29 +77,18 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 			builder.HasIndex(u => u.NormalizedEmail).HasDatabaseName("EmailIndex");
 
 			builder.Property(u => u.ConcurrencyStamp).IsConcurrencyToken();
-			builder.Property(u => u.UserName).HasMaxLength(256);
-			builder.Property(u => u.NormalizedUserName).HasMaxLength(256);
-			builder.Property(u => u.Email).HasMaxLength(256);
-			builder.Property(u => u.NormalizedEmail).HasMaxLength(256);
+			builder.Property(u => u.UserName).HasMaxLength(this.MaxKeyLength);
+			builder.Property(u => u.NormalizedUserName).HasMaxLength(this.MaxKeyLength);
+			builder.Property(u => u.Email).HasMaxLength(this.MaxKeyLength);
+			builder.Property(u => u.NormalizedEmail).HasMaxLength(this.MaxKeyLength);
+			builder.Property(u => u.PhoneNumber).HasMaxLength(this.MaxKeyLength);
 
-			if(this.PersonalDataConverter != null)
+			if (this.PersonalDataConverter is not null)
 			{
-				IEnumerable<PropertyInfo> personalDataProps = typeof(TUser)
-					.GetProperties()
-					.Where(prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)));
-
-				foreach(PropertyInfo p in personalDataProps)
-				{
-					if(p.PropertyType != typeof(string))
-					{
-						throw new InvalidOperationException(Resources.CanOnlyProtectStrings);
-					}
-
-					builder.Property(typeof(string), p.Name).HasConversion(this.PersonalDataConverter);
-				}
+				builder.ApplyProtectedPersonalDataConverter(this.PersonalDataConverter);
 			}
 
-			builder.HasMany<TUserClaim>().WithOne().HasForeignKey(uc => uc.UserId).IsRequired();
+            builder.HasMany<TUserClaim>().WithOne().HasForeignKey(uc => uc.UserId).IsRequired();
 			builder.HasMany<TUserLogin>().WithOne().HasForeignKey(ul => ul.UserId).IsRequired();
 			builder.HasMany<TUserToken>().WithOne().HasForeignKey(ut => ut.UserId).IsRequired();
 		}

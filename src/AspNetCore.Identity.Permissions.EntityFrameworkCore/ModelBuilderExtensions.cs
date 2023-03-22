@@ -1,15 +1,19 @@
 ﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
+	using System.Reflection;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Identity;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Permissions;
+	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Infrastructure;
-	using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-	using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+    using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Options;
 
 	/// <summary>
@@ -137,8 +141,9 @@
 			configureOptions?.Invoke(options);
 
 			StoreOptions storeOptions = context.GetStoreOptions();
-			int maxKeyLength = storeOptions?.MaxLengthForKeys ?? 0;
-			bool encryptPersonalData = storeOptions?.ProtectPersonalData ?? false;
+			int maxKeyLength = storeOptions.MaxLengthForKeys();
+
+			bool encryptPersonalData = storeOptions.EncryptPersonalData();
 			PersonalDataConverter converter = null;
 
 			if(encryptPersonalData)
@@ -149,17 +154,21 @@
 			builder.ApplyConfiguration(new UserConfiguration<TUser, TUserClaim, TUserLogin, TUserToken, TKey>
 			{
 				Table = options.UserTable,
+				MaxKeyLength = maxKeyLength,
 				PersonalDataConverter = converter
 			});
+
 			builder.ApplyConfiguration(new UserClaimConfiguration<TUserClaim, TKey>
 			{
 				Table = options.UserClaimsTable
 			});
+
 			builder.ApplyConfiguration(new UserLoginConfiguration<TUserLogin, TKey>
 			{
 				Table = options.UserLoginsTable,
 				MaxKeyLength = maxKeyLength
 			});
+
 			builder.ApplyConfiguration(new UserTokenConfiguration<TUserToken, TKey>
 			{
 				Table = options.UserTokensTable,
@@ -192,15 +201,22 @@
 			PermissionModelBuilderOptions options = new PermissionModelBuilderOptions();
 			configureOptions?.Invoke(options);
 
-			builder.ApplyConfiguration(new UserHasRolesConfiguration<TUser, TUserRole, TKey>());
+			StoreOptions storeOptions = context.GetStoreOptions();
+			int maxKeyLength = storeOptions.MaxLengthForKeys();
+
+            builder.ApplyConfiguration(new UserHasRolesConfiguration<TUser, TUserRole, TKey>());
+
 			builder.ApplyConfiguration(new RoleConfiguration<TRole, TUserRole, TRoleClaim, TKey>
 			{
-				Table = options.RolesTable
+				Table = options.RolesTable,
+				MaxKeyLength = maxKeyLength
 			});
+
 			builder.ApplyConfiguration(new RoleClaimConfiguration<TRoleClaim, TKey>
 			{
 				Table = options.RoleClaimsTable
 			});
+
 			builder.ApplyConfiguration(new UserRoleConfiguration<TUserRole, TKey>
 			{
 				Table = options.UserRolesTable
@@ -228,13 +244,14 @@
 			configureOptions?.Invoke(options);
 
 			StoreOptions storeOptions = context.GetStoreOptions();
-			int maxKeyLength = storeOptions?.MaxLengthForKeys ?? 0;
+			int maxKeyLength = storeOptions.MaxLengthForKeys();
 
 			builder.ApplyConfiguration(new PermissionConfiguration<TPermission, TRolePermission, TKey>
 			{
 				Table = options.PermissionsTable,
 				MaxKeyLength = maxKeyLength
 			});
+
 			builder.ApplyConfiguration(new RolePermissionConfiguration<TRolePermission, TKey>
 			{
 				Table = options.RolePermissionsTable
@@ -264,7 +281,9 @@
 			configureOptions?.Invoke(options);
 
 			StoreOptions storeOptions = context.GetStoreOptions();
-			bool encryptPersonalData = storeOptions?.ProtectPersonalData ?? false;
+			int maxKeyLength = storeOptions.MaxLengthForKeys();
+
+            bool encryptPersonalData = storeOptions?.ProtectPersonalData ?? false;
 			PersonalDataConverter converter = null;
 
 			if(encryptPersonalData)
@@ -273,11 +292,14 @@
 			}
 
 			builder.ApplyConfiguration(new TenantUserConfiguration<TUser, TTenant, TKey>());
+
 			builder.ApplyConfiguration(new TenantConfiguration<TTenant, TKey>
 			{
 				Table = options.TenantsTable,
+				MaxKeyLength = maxKeyLength,
 				PersonalDataConverter = converter
 			});
+
 			builder.ApplyConfiguration(new TenantRoleConfiguration<TTenantRole, TKey>
 			{
 				Table = options.TenantRolesTable
@@ -286,7 +308,24 @@
 			return builder;
 		}
 
-		private static StoreOptions GetStoreOptions(this DbContext context)
+		internal static void ApplyProtectedPersonalDataConverter<TEntity>(this EntityTypeBuilder<TEntity> builder, ValueConverter<string, string> converter) where TEntity : class
+		{
+			IEnumerable<PropertyInfo> personalDataProperties = typeof(TEntity)
+				.GetProperties()
+				.Where(prop => prop.IsDefined(typeof(ProtectedPersonalDataAttribute)));
+
+			foreach (PropertyInfo p in personalDataProperties)
+			{
+				if (p.PropertyType != typeof(string))
+				{
+					throw new InvalidOperationException(Resources.CanOnlyProtectStrings);
+				}
+
+				builder.Property(typeof(string), p.Name).HasConversion(converter);
+			}
+        }
+
+        private static StoreOptions GetStoreOptions(this DbContext context)
 		{
 			return context.GetService<IDbContextOptions>()
 				.Extensions.OfType<CoreOptionsExtension>()
@@ -295,7 +334,24 @@
 				?.Value.Stores;
 		}
 
-		private class PersonalDataConverter : ValueConverter<string, string>
+		private static int MaxLengthForKeys(this StoreOptions storeOptions, int fallbackMaxLength = 128)
+		{
+			int maxKeyLength = storeOptions?.MaxLengthForKeys ?? 0;
+			if (maxKeyLength == 0)
+			{
+				maxKeyLength = fallbackMaxLength;
+			}
+
+			return maxKeyLength;
+		}
+
+		private static bool EncryptPersonalData(this StoreOptions storeOptions)
+		{
+			bool encryptPersonalData = storeOptions?.ProtectPersonalData ?? false;
+			return encryptPersonalData;
+		}
+
+        private sealed class PersonalDataConverter : ValueConverter<string, string>
 		{
 			public PersonalDataConverter(IPersonalDataProtector protector)
 				: base(

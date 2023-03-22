@@ -52,14 +52,14 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 		/// <summary>
 		///     Specifies the maximum length.
 		/// </summary>
-		/// <remarks>The default is 256. Only applied if greater than 0.</remarks>
-		public int MaxKeyLength { get; init; }
+		/// <remarks>The default is 256.</remarks>
+		public int MaxKeyLength { get; init; } = 256;
 
-		/// <summary>
-		///     If set, all properties on type <typeparamref name="TUserToken" /> marked with a
-		///     <see cref="ProtectedPersonalDataAttribute" /> will be converted using this <see cref="ValueConverter" />.
-		/// </summary>
-		public ValueConverter<string, string> PersonalDataConverter { get; set; }
+        /// <summary>
+        ///     If set, all properties on type <typeparamref name="TUserToken" /> marked with a
+        ///     <see cref="ProtectedPersonalDataAttribute" /> will be converted using this <see cref="ValueConverter" />.
+        /// </summary>
+        public ValueConverter<string, string> PersonalDataConverter { get; init; }
 
 		/// <inheritdoc />
 		public virtual void Configure(EntityTypeBuilder<TUserToken> builder)
@@ -68,28 +68,13 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 
 			builder.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
 
-			if(this.MaxKeyLength > 0)
+			builder.Property(t => t.LoginProvider).HasMaxLength(this.MaxKeyLength);
+			builder.Property(t => t.Name).HasMaxLength(this.MaxKeyLength);
+
+			if (this.PersonalDataConverter is not null)
 			{
-				builder.Property(t => t.LoginProvider).HasMaxLength(this.MaxKeyLength);
-				builder.Property(t => t.Name).HasMaxLength(this.MaxKeyLength);
+				builder.ApplyProtectedPersonalDataConverter(this.PersonalDataConverter);
 			}
-
-			if(this.PersonalDataConverter != null)
-			{
-				IEnumerable<PropertyInfo> tokenProps = typeof(TUserToken)
-					.GetProperties()
-					.Where(prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)));
-
-				foreach(PropertyInfo p in tokenProps)
-				{
-					if(p.PropertyType != typeof(string))
-					{
-						throw new InvalidOperationException(Resources.CanOnlyProtectStrings);
-					}
-
-					builder.Property(typeof(string), p.Name).HasConversion(this.PersonalDataConverter);
-				}
-			}
-		}
+        }
 	}
 }
