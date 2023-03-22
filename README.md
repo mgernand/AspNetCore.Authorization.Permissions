@@ -101,7 +101,7 @@ builder.Services
 
 There are several ways to rescript access in your application.
 
-1. Use the ```[Authorize]``` attribute to restrict access to controller actions.
+1. Use the ```[HasPermission]``` attribute to restrict access to controller actions.
 2. Use the ```HasPermission()``` extension method with a ```ClaimsPrincipal``` instance.
 3. Use the ```HasPermission()``` method of a ```IUserPermissionsService``` instance.
 
