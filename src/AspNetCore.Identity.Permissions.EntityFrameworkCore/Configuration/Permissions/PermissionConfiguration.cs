@@ -37,11 +37,11 @@
 		/// <summary>
 		///     Specifies the maximum length.
 		/// </summary>
-		/// <remarks>The default is 256. Only applied if greater than 0.</remarks>
+		/// <remarks>The default is 256.</remarks>
 		public int MaxKeyLength { get; init; } = 256;
 
-		/// <inheritdoc />
-		public virtual void Configure(EntityTypeBuilder<TPermission> builder)
+        /// <inheritdoc />
+        public virtual void Configure(EntityTypeBuilder<TPermission> builder)
 		{
 			builder.ToTable(this.Table);
 
@@ -50,12 +50,9 @@
 
 			builder.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
 
-			if(this.MaxKeyLength > 0)
-			{
-				builder.Property(x => x.Name).HasMaxLength(this.MaxKeyLength);
-				builder.Property(x => x.NormalizedName).HasMaxLength(this.MaxKeyLength);
-			}
-
+			builder.Property(x => x.Name).HasMaxLength(this.MaxKeyLength);
+			builder.Property(x => x.NormalizedName).HasMaxLength(this.MaxKeyLength);
+			
 			builder.HasMany<TRolePermission>().WithOne().HasForeignKey(x => x.PermissionId).IsRequired();
 		}
 	}

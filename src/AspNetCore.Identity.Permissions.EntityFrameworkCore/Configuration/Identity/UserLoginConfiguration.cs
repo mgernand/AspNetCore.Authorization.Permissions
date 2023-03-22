@@ -47,21 +47,18 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 		/// <summary>
 		///     Specifies the maximum length.
 		/// </summary>
-		/// <remarks>The default is 256. Only applied if greater than 0.</remarks>
-		public int MaxKeyLength { get; set; }
+		/// <remarks>The default is 256.</remarks>
+		public int MaxKeyLength { get; init; } = 256;
 
-		/// <inheritdoc />
-		public virtual void Configure(EntityTypeBuilder<TUserLogin> builder)
+        /// <inheritdoc />
+        public virtual void Configure(EntityTypeBuilder<TUserLogin> builder)
 		{
 			builder.ToTable(this.Table);
 
 			builder.HasKey(l => new { l.LoginProvider, l.ProviderKey });
 
-			if(this.MaxKeyLength > 0)
-			{
-				builder.Property(l => l.LoginProvider).HasMaxLength(this.MaxKeyLength);
-				builder.Property(l => l.ProviderKey).HasMaxLength(this.MaxKeyLength);
-			}
+			builder.Property(l => l.LoginProvider).HasMaxLength(this.MaxKeyLength);
+			builder.Property(l => l.ProviderKey).HasMaxLength(this.MaxKeyLength);
 		}
 	}
 }

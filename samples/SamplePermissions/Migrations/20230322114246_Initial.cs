@@ -31,8 +31,8 @@ namespace SamplePermissions.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    NormalizedName = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -45,8 +45,8 @@ namespace SamplePermissions.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -59,15 +59,15 @@ namespace SamplePermissions.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
                     SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
@@ -143,8 +143,8 @@ namespace SamplePermissions.Migrations
                 name: "UserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
-                    ProviderKey = table.Column<string>(type: "TEXT", nullable: false),
+                    LoginProvider = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "TEXT", nullable: true),
                     UserId = table.Column<string>(type: "TEXT", nullable: false)
                 },
@@ -188,8 +188,8 @@ namespace SamplePermissions.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    LoginProvider = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -208,9 +208,9 @@ namespace SamplePermissions.Migrations
                 columns: new[] { "Id", "Note", "Total" },
                 values: new object[,]
                 {
-                    { new Guid("1c71dd38-7454-47d2-bbb4-88a5fe52e11a"), "This is a Company invoice.", 199.95m },
-                    { new Guid("84505bb2-4175-4aa1-8a10-ea151a4bd234"), "This is a Company invoice.", 199.95m },
-                    { new Guid("8faf03b7-0ed0-4db5-9276-6574ea519e04"), "This is a Company invoice.", 199.95m }
+                    { new Guid("13e4fdf9-ab49-4030-b84d-bb508fa50f32"), "This is a Company invoice.", 199.95m },
+                    { new Guid("31dcde5c-963e-41ad-8d49-f8b48607d1b5"), "This is a Company invoice.", 199.95m },
+                    { new Guid("73770e85-20da-4aec-b4d0-4192ca2e1928"), "This is a Company invoice.", 199.95m }
                 });
 
             migrationBuilder.InsertData(
@@ -218,11 +218,11 @@ namespace SamplePermissions.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "99e234d4-20ee-4ce7-8350-819f7771d7f1", "Invoice.Read", "INVOICE.READ" },
-                    { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "3e3d63c9-f89a-479a-a8a3-6c8c2e43bdf6", "Invoice.Send", "INVOICE.SEND" },
-                    { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "2bac281e-3e0d-4539-8253-43bd395085cf", "Invoice.Write", "INVOICE.WRITE" },
-                    { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "211e68ff-daf7-40d5-b909-3f0a71527a9b", "Invoice.Delete", "INVOICE.DELETE" },
-                    { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "70e4e678-9a9e-45cc-9333-3b1359cd37b2", "Invoice.Payment", "INVOICE.PAYMENT" }
+                    { "5b9c4926-3dc6-447c-a092-addab890a15f", "5d7c5e36-80ac-4f45-bfc4-04eb90c02a79", "Invoice.Read", "INVOICE.READ" },
+                    { "9dcb49c9-e732-4fb9-80a1-2c5efda61ab2", "a86003d1-e02e-4a74-8fd3-2975e95d1a15", "Invoice.Send", "INVOICE.SEND" },
+                    { "be5b92e5-c6c6-480b-b235-d4df402a73cc", "49e15785-1ab1-43ac-a6ef-c77be4d3b058", "Invoice.Write", "INVOICE.WRITE" },
+                    { "e123b8c0-0646-4075-b73e-07ca9d611c8e", "77e1eb8b-7875-4950-ac28-5046874726c5", "Invoice.Delete", "INVOICE.DELETE" },
+                    { "ef54d62d-a36b-4ab3-b868-f170c0054fac", "ce1db075-5024-43b7-af87-b75e2e5cd393", "Invoice.Payment", "INVOICE.PAYMENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -240,9 +240,9 @@ namespace SamplePermissions.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "04517a45-d6f5-4993-888b-04c924902b3a", 0, "d7f146e5-cda3-490c-a610-9b7adc132065", null, false, false, null, null, "EMPLOYEE@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "2ccae432-65b6-40b6-a0e7-f925cf0f6c77", false, "employee@company" },
-                    { "90a4dd66-78d1-4fff-a507-7f88735f7ab6", 0, "ff72801a-0c91-484c-bad7-f28f91b4aa17", null, false, false, null, null, "MANAGER@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "f31f23e5-dc57-49a9-a3f7-a6802aa523ba", false, "manager@company" },
-                    { "a0f112af-5e39-4b3f-bc50-015591861ec0", 0, "cd004c21-761b-44ce-ac72-2416c8cf2d6e", null, false, false, null, null, "BOSS@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "f5db5a17-f1ff-4afb-a062-72d037807012", false, "boss@company" }
+                    { "04517a45-d6f5-4993-888b-04c924902b3a", 0, "c40499ca-838e-4e3b-a343-7d65601ca526", null, false, false, null, null, "EMPLOYEE@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "a8c9ddf3-8ff8-44c5-9304-59496b326358", false, "employee@company" },
+                    { "90a4dd66-78d1-4fff-a507-7f88735f7ab6", 0, "d8cd5ca9-1efe-4f76-a536-3f42dec14c93", null, false, false, null, null, "MANAGER@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "bd5c944b-ef43-4938-a183-0941924ee261", false, "manager@company" },
+                    { "a0f112af-5e39-4b3f-bc50-015591861ec0", 0, "e0d40b6c-089b-469d-9de2-fa441d325b0d", null, false, false, null, null, "BOSS@COMPANY", "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==", null, false, "4107401d-2ea7-40e2-8ab2-2415f8815455", false, "boss@company" }
                 });
 
             migrationBuilder.InsertData(

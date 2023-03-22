@@ -11,7 +11,7 @@
 	/// <typeparam name="TUser"></typeparam>
 	/// <typeparam name="TTenant"></typeparam>
 	[PublicAPI]
-	public class TenantUserConfiguration<TUser, TTenant> : TenantUserConfiguration<TUser, TTenant, string>
+	public class UserBelongsToTenantConfiguration<TUser, TTenant> : TenantUserConfiguration<TUser, TTenant, string>
 		where TUser : IdentityTenantUser<string>
 		where TTenant : IdentityTenant<string>
 	{

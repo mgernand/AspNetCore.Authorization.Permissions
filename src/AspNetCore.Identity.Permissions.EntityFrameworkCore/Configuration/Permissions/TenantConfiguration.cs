@@ -37,10 +37,16 @@
 		public string Table { get; init; } = "AspNetTenants";
 
 		/// <summary>
-		///     If set, all properties on type <typeparamref name="TTenant" /> marked with a
-		///     <see cref="ProtectedPersonalDataAttribute" /> will be converted using this <see cref="ValueConverter" />.
+		///     Specifies the maximum length.
 		/// </summary>
-		public ValueConverter<string, string> PersonalDataConverter { get; set; }
+		/// <remarks>The default is 256.</remarks>
+		public int MaxKeyLength { get; init; } = 256;
+
+        /// <summary>
+        ///     If set, all properties on type <typeparamref name="TTenant" /> marked with a
+        ///     <see cref="ProtectedPersonalDataAttribute" /> will be converted using this <see cref="ValueConverter" />.
+        /// </summary>
+        public ValueConverter<string, string> PersonalDataConverter { get; init; }
 
 		/// <inheritdoc />
 		public virtual void Configure(EntityTypeBuilder<TTenant> builder)
@@ -51,24 +57,12 @@
 			builder.HasIndex(x => x.NormalizedName).HasDatabaseName("TenantNameIndex").IsUnique();
 
 			builder.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
-			builder.Property(x => x.Name).HasMaxLength(256);
-			builder.Property(x => x.NormalizedName).HasMaxLength(256);
+			builder.Property(x => x.Name).HasMaxLength(this.MaxKeyLength);
+			builder.Property(x => x.NormalizedName).HasMaxLength(this.MaxKeyLength);
 
-			if(this.PersonalDataConverter != null)
+			if(this.PersonalDataConverter is not null)
 			{
-				IEnumerable<PropertyInfo> personalDataProps = typeof(TTenant)
-					.GetProperties()
-					.Where(prop => Attribute.IsDefined(prop, typeof(ProtectedPersonalDataAttribute)));
-
-				foreach(PropertyInfo p in personalDataProps)
-				{
-					if(p.PropertyType != typeof(string))
-					{
-						throw new InvalidOperationException(Resources.CanOnlyProtectStrings);
-					}
-
-					builder.Property(typeof(string), p.Name).HasConversion(this.PersonalDataConverter);
-				}
+				builder.ApplyProtectedPersonalDataConverter(this.PersonalDataConverter);
 			}
 		}
 	}
