@@ -1,6 +1,6 @@
 ﻿{
 	"profiles": {
-		"SampleTenant": {
+		"MongoSampleTenant": {
 			"commandName": "Project",
 			"dotnetRunMessages": true,
 			"launchBrowser": true,

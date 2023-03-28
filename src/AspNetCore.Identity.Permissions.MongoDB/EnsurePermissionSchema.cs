@@ -44,7 +44,8 @@
 				Builders<TPermission>.IndexKeys.Ascending(field),
 				new CreateIndexOptions<TPermission>
 				{
-					Unique = true
+					Unique = true,
+					Name = name
 				});
 		}
 	}
