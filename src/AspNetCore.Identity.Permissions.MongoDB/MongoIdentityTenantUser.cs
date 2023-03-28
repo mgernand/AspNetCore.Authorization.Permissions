@@ -2,10 +2,11 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.AspNetCore.Identity.MongoDB;
 
 	/// <summary>
-	///     Represents a tenant user in the identity system.
-	/// </summary>
+    ///     Represents a tenant user in the identity system.
+    /// </summary>
 	[PublicAPI]
 	public class MongoIdentityTenantUser : MongoIdentityTenantUser<string>
 	{
@@ -33,8 +34,8 @@
 	///     Represents a tenant user in the identity system.
 	/// </summary>
 	[PublicAPI]
-	public class MongoIdentityTenantUser<TKey> : IdentityTenantUser<TKey> 
-		where TKey : IEquatable<TKey>
+	public class MongoIdentityTenantUser<TKey> : MongoIdentityUser<TKey>, ITenantUser<TKey>
+        where TKey : IEquatable<TKey>
 	{
         /// <summary>
         ///     Initializes a new instance of <see cref="MongoIdentityTenantUser{TKey}" />.
@@ -51,5 +52,10 @@
 			: base(userName)
 		{
 		}
+
+		/// <summary>
+		///     Gets or sets the primary key of the tenant user is linked to.
+		/// </summary>
+		public virtual TKey TenantID { get; set; }
     }
 }

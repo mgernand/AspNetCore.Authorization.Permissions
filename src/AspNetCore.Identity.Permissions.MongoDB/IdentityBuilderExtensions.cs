@@ -83,6 +83,9 @@
 
 				Type ensureTenantSchemaType = typeof(EnsureTenantSchema<, >).MakeGenericType(tenantType, keyType);
 				services.AddSingleton(typeof(IEnsureSchema), ensureTenantSchemaType);
+
+				Type ensureTenantUserSchemaType = typeof(EnsureTenantUserSchema<,>).MakeGenericType(userType, keyType);
+				services.AddSingleton(typeof(IEnsureSchema), ensureTenantUserSchemaType);
             }
         }
 

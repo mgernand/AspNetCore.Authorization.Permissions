@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permiss
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoSamplePermissions", "samples\MongoSamplePermissions\MongoSamplePermissions.csproj", "{3273907D-2D59-42AC-81C1-8B8F4617A7FA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoSampleTenant", "samples\MongoSampleTenant\MongoSampleTenant.csproj", "{B7172410-2A68-4DB9-9538-036C8FFC7DE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{3273907D-2D59-42AC-81C1-8B8F4617A7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3273907D-2D59-42AC-81C1-8B8F4617A7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3273907D-2D59-42AC-81C1-8B8F4617A7FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{3F7C18AD-4688-4C06-878A-C09A6E99AA95} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E} = {FA57E06B-CC0E-459C-A993-1D41ADF99ECF}
 		{3273907D-2D59-42AC-81C1-8B8F4617A7FA} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
+		{B7172410-2A68-4DB9-9538-036C8FFC7DE4} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}

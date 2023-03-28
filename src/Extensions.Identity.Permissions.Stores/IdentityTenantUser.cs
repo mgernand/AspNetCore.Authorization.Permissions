@@ -32,8 +32,8 @@
 	/// </summary>
 	/// <typeparam name="TKey">The type of the ID.</typeparam>
 	[PublicAPI]
-	public class IdentityTenantUser<TKey> : IdentityUser<TKey>
-		where TKey : IEquatable<TKey>
+	public class IdentityTenantUser<TKey> : IdentityUser<TKey>, ITenantUser<TKey>
+        where TKey : IEquatable<TKey>
 	{
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityTenantUser{TKey}" />.
@@ -54,6 +54,19 @@
 		/// <summary>
 		///     Gets or sets the primary key of the tenant user is linked to.
 		/// </summary>
-		public virtual TKey TenantId { get; set; }
-	}
+		public virtual TKey TenantID { get; set; }
+    }
+
+	/// <summary>
+	///		A contract for users that are assigned to a tenant.
+	/// </summary>
+	/// <typeparam name="TKey"></typeparam>
+	[PublicAPI]
+	public interface ITenantUser<TKey> where TKey : IEquatable<TKey>
+    {
+		/// <summary>
+		///     Gets or sets the primary key of the tenant user is linked to.
+		/// </summary>
+		TKey TenantID { get; set; }
+    }
 }

@@ -33,18 +33,19 @@
 
 				await collection.Indexes.CreateManyAsync(new List<CreateIndexModel<TTenant>>
 				{
-					CreateIndexModel(x => x.NormalizedName),
+					CreateIndexModel(x => x.NormalizedName, "Tenant_NormalizedName_Index"),
 				});
 			}
 		}
 
-		private static CreateIndexModel<TTenant> CreateIndexModel(Expression<Func<TTenant, object>> field)
+		private static CreateIndexModel<TTenant> CreateIndexModel(Expression<Func<TTenant, object>> field, string name)
 		{
 			return new CreateIndexModel<TTenant>(
 				Builders<TTenant>.IndexKeys.Ascending(field),
 				new CreateIndexOptions<TTenant>
 				{
-					Unique = true
+					Unique = true,
+					Name = name
 				});
 		}
 	}

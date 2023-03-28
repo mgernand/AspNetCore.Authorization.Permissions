@@ -50,6 +50,8 @@ builder.Services
 	.AddPermissionManager<AspNetPermissionManager<MongoIdentityPermission>>()
 	.AddPermissionsMongoDbStores<InvoicesContext>();
 
+builder.Services.AddSingleton<IEnsureSchema, EnsureInvoiceSchema>();
+
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -129,8 +131,8 @@ using(IServiceScope serviceScope = app.Services.CreateScope())
 		// Insert permissions
 		IPermissionStore<MongoIdentityPermission> permissionStore = serviceScope.ServiceProvider.GetRequiredService<IPermissionStore<MongoIdentityPermission>>();
 
-		//
-		await permissionStore.CreateAsync(new MongoIdentityPermission
+		// User permissions.
+        await permissionStore.CreateAsync(new MongoIdentityPermission
 		{
 			Id = ObjectId.GenerateNewId().ToString(),
 			Name = "Invoice.Read",
