@@ -99,7 +99,7 @@
 					UserName = "boss@startup",
 					NormalizedUserName = "BOSS@STARTUP",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
 				entity.HasData(new IdentityTenantUser
 				{
@@ -107,7 +107,7 @@
 					UserName = "manager@startup",
 					NormalizedUserName = "MANAGER@STARTUP",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
 				entity.HasData(new IdentityTenantUser
 				{
@@ -115,7 +115,7 @@
 					UserName = "employee@startup",
 					NormalizedUserName = "EMPLOYEE@STARTUP",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
+					TenantId = "7d706acd-f5fd-4979-9e3f-c77a0bd596b2"
 				});
 
 				// Tenant: Company
@@ -125,7 +125,7 @@
 					UserName = "boss@company",
 					NormalizedUserName = "BOSS@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
 				entity.HasData(new IdentityTenantUser
 				{
@@ -133,7 +133,7 @@
 					UserName = "manager@company",
 					NormalizedUserName = "MANAGER@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
 				entity.HasData(new IdentityTenantUser
 				{
@@ -141,7 +141,7 @@
 					UserName = "employee@company",
 					NormalizedUserName = "EMPLOYEE@COMPANY",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
+					TenantId = "ee5128d3-4cad-4bcc-aa64-f6abbb30da46"
 				});
 
 				// Tenant: Corporate
@@ -151,7 +151,7 @@
 					UserName = "boss@corporate",
 					NormalizedUserName = "BOSS@CORPORATE",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "49a049d2-23ad-41df-8806-240aebaa2f17"
+					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
 				entity.HasData(new IdentityTenantUser
 				{
@@ -159,7 +159,7 @@
 					UserName = "manager@corporate",
 					NormalizedUserName = "MANAGER@CORPORATE",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "49a049d2-23ad-41df-8806-240aebaa2f17"
+					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
 				entity.HasData(new IdentityTenantUser
 				{
@@ -167,7 +167,7 @@
 					UserName = "employee@corporate",
 					NormalizedUserName = "EMPLOYEE@CORPORATE",
 					PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-					TenantID = "49a049d2-23ad-41df-8806-240aebaa2f17"
+					TenantId = "49a049d2-23ad-41df-8806-240aebaa2f17"
 				});
 			});
 

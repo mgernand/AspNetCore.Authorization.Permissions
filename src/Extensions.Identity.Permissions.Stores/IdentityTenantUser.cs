@@ -54,19 +54,6 @@
 		/// <summary>
 		///     Gets or sets the primary key of the tenant user is linked to.
 		/// </summary>
-		public virtual TKey TenantID { get; set; }
-    }
-
-	/// <summary>
-	///		A contract for users that are assigned to a tenant.
-	/// </summary>
-	/// <typeparam name="TKey"></typeparam>
-	[PublicAPI]
-	public interface ITenantUser<TKey> where TKey : IEquatable<TKey>
-    {
-		/// <summary>
-		///     Gets or sets the primary key of the tenant user is linked to.
-		/// </summary>
-		TKey TenantID { get; set; }
+		public virtual TKey TenantId { get; set; }
     }
 }

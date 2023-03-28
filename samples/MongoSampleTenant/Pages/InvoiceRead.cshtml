@@ -1,4 +1,5 @@
 ﻿@page
+@using MadEyeMatt.AspNetCore.Authorization.Permissions
 @using MongoDB.Driver
 @using MongoSampleTenant.Model
 @model InvoiceReadModel
@@ -19,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-		@foreach(Invoice invoice in Model.Context.GetCollection<Invoice>().AsQueryable().ToList())
+		@foreach(Invoice invoice in Model.Context.GetCollection<Invoice>().AsQueryable().Where(x => x.TenantID == this.User.GetTenantId()).ToList())
         {
             <tr scope="row">
                 <td>@invoice.Id</td>

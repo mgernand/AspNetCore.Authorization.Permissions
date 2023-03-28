@@ -27,11 +27,11 @@
 			IMongoCollection<TUser> collection = this.context.GetCollection<TUser>();
 
 			List<BsonDocument> indexes = await (await collection.Indexes.ListAsync()).ToListAsync();
-			if(!indexes.Exists(x => x["name"] == "User_TenantID_Index"))
+			if(!indexes.Exists(x => x["name"] == "User_TenantId_Index"))
 			{
 				await collection.Indexes.CreateManyAsync(new List<CreateIndexModel<TUser>>
 				{
-					CreateIndexModel(x => x.TenantID, "User_TenantID_Index"),
+					CreateIndexModel(x => x.TenantId, "User_TenantId_Index"),
 				});
             }
 		}

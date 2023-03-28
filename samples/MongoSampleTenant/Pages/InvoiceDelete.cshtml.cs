@@ -25,9 +25,9 @@
 		{
 		}
 
-		public void OnPostDelete(Guid id)
+		public void OnPostDelete(string id)
 		{
-			Invoice invoice = this.Context.GetCollection<Invoice>().Find(x => x.Id.Equals(id)).FirstOrDefault();
+			Invoice invoice = this.Context.GetCollection<Invoice>().Find(x => x.Id.Equals(id) && x.TenantID == this.User.GetTenantId()).FirstOrDefault();
 			if (invoice != null)
 			{
 				this.Context.GetCollection<Invoice>().DeleteOne(x => x.Id == invoice.Id);

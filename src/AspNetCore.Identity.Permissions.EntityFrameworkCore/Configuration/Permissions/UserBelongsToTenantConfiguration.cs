@@ -32,7 +32,7 @@
 		/// <inheritdoc />
 		public virtual void Configure(EntityTypeBuilder<TUser> builder)
 		{
-			builder.HasOne<TTenant>().WithMany().HasForeignKey(x => x.TenantID);
+			builder.HasOne<TTenant>().WithMany().HasForeignKey(x => x.TenantId);
 		}
 	}
 }

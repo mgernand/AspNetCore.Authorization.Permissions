@@ -56,6 +56,6 @@
 		/// <summary>
 		///     Gets or sets the primary key of the tenant user is linked to.
 		/// </summary>
-		public virtual TKey TenantID { get; set; }
+		public virtual TKey TenantId { get; set; }
     }
 }

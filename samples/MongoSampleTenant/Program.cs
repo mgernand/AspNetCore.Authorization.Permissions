@@ -169,7 +169,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "boss@startup",
 			NormalizedUserName = "BOSS@STARTUP",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = startupTenantId,
+			TenantId = startupTenantId,
 			Roles = { bossRoleId }
 		}, CancellationToken.None);
 
@@ -179,7 +179,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "manager@startup",
 			NormalizedUserName = "MANAGER@STARTUP",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = startupTenantId,
+			TenantId = startupTenantId,
 			Roles = { managerRoleId }
 		}, CancellationToken.None);
 
@@ -189,7 +189,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "employee@startup",
 			NormalizedUserName = "EMPLOYEE@STARTUP",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = startupTenantId,
+			TenantId = startupTenantId,
 			Roles = { employeeRoleId }
 		}, CancellationToken.None);
 
@@ -200,7 +200,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "boss@company",
 			NormalizedUserName = "BOSS@COMPANY",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = companyTenantId,
+			TenantId = companyTenantId,
 			Roles = { bossRoleId }
         }, CancellationToken.None);
 
@@ -210,7 +210,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "manager@company",
 			NormalizedUserName = "MANAGER@COMPANY",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = companyTenantId,
+			TenantId = companyTenantId,
 			Roles = { managerRoleId }
         }, CancellationToken.None);
 
@@ -220,7 +220,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "employee@company",
 			NormalizedUserName = "EMPLOYEE@COMPANY",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = companyTenantId,
+			TenantId = companyTenantId,
 			Roles = { employeeRoleId }
         }, CancellationToken.None);
 
@@ -231,7 +231,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "boss@corporate",
 			NormalizedUserName = "BOSS@CORPORATE",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = corporateTenantId,
+			TenantId = corporateTenantId,
 			Roles = { bossRoleId }
         }, CancellationToken.None);
 
@@ -241,7 +241,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "manager@corporate",
 			NormalizedUserName = "MANAGER@CORPORATE",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = corporateTenantId,
+			TenantId = corporateTenantId,
 			Roles = { managerRoleId }
         }, CancellationToken.None);
 
@@ -251,7 +251,7 @@ using (IServiceScope serviceScope = app.Services.CreateScope())
 			UserName = "employee@corporate",
 			NormalizedUserName = "EMPLOYEE@CORPORATE",
 			PasswordHash = "AQAAAAEAACcQAAAAEJ5tM19BCnMGTsQz8r8yFNvc4q9iWwkmCYHCsQYQUjlJ3XbZr1fx3tEC1QNNFxiuKA==",
-			TenantID = corporateTenantId,
+			TenantId = corporateTenantId,
 			Roles = { employeeRoleId }
         }, CancellationToken.None);
 
