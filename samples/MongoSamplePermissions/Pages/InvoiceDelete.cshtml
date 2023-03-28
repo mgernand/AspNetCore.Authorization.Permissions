@@ -19,10 +19,10 @@
         </tr>
         </thead>
         <tbody>
-        @foreach(Invoice invoice in Model.Context.GetCollection<Invoice>().AsQueryable())
+        @foreach(Invoice invoice in Model.Context.GetCollection<Invoice>().AsQueryable().ToList())
         {
             <tr scope="row">
-                <td>@invoice.Id.ToString("N")</td>
+                <td>@invoice.Id</td>
                 <td>@invoice.Total.ToString("C2")</td>
                 <td>@invoice.Note</td>
                 <td>

@@ -27,7 +27,7 @@
 
 		public void OnPostDelete(Guid id)
 		{
-			Invoice invoice = this.Context.GetCollection<Invoice>().Find(x => x.Id == id).FirstOrDefault();
+			Invoice invoice = this.Context.GetCollection<Invoice>().Find(x => x.Id.Equals(id)).FirstOrDefault();
 			if(invoice != null)
 			{
 				this.Context.GetCollection<Invoice>().DeleteOne(x => x.Id == invoice.Id);

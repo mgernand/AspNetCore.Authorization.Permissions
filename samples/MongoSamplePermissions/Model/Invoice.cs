@@ -1,10 +1,8 @@
 ﻿namespace MongoSamplePermissions.Model
 {
-	using System;
-
 	public class Invoice
 	{
-		public Guid Id { get; set; }
+		public string Id { get; set; }
 
 		public decimal Total { get; set; }
 
