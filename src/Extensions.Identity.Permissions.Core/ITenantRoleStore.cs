@@ -17,25 +17,25 @@
 		///     Add the specified <paramref name="tenant" /> to the named role.
 		/// </summary>
 		/// <param name="tenant">The tenant to add to the named role.</param>
-		/// <param name="roleName">The name of the role to add the user to.</param>
+		/// <param name="normalizedRoleName">The name of the role to add the user to.</param>
 		/// <param name="cancellationToken">
 		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
 		///     should be canceled.
 		/// </param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
-		Task AddToRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);
+		Task AddToRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
 		///     Remove the specified <paramref name="tenant" /> from the named role.
 		/// </summary>
 		/// <param name="tenant">The tenant to remove the named role from.</param>
-		/// <param name="roleName">The name of the role to remove.</param>
+		/// <param name="normalizedRoleName">The name of the role to remove.</param>
 		/// <param name="cancellationToken">
 		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
 		///     should be canceled.
 		/// </param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
-		Task RemoveFromRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);
+		Task RemoveFromRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
 		///     Gets a list of role names the specified <paramref name="tenant" /> belongs to.
@@ -52,7 +52,7 @@
 		///     Returns a flag indicating whether the specified <paramref name="tenant" /> is a member of the given named role.
 		/// </summary>
 		/// <param name="tenant">The tenant whose role membership should be checked.</param>
-		/// <param name="roleName">The name of the role to be checked.</param>
+		/// <param name="normalizedRoleName">The name of the role to be checked.</param>
 		/// <param name="cancellationToken">
 		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
 		///     should be canceled.
@@ -62,12 +62,12 @@
 		///     specified <paramref name="tenant" /> is
 		///     a member of the named role.
 		/// </returns>
-		Task<bool> IsInRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);
+		Task<bool> IsInRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
 		///     Returns a list of Users who are members of the named role.
 		/// </summary>
-		/// <param name="roleName">The name of the role whose membership should be returned.</param>
+		/// <param name="normalizedRoleName">The name of the role whose membership should be returned.</param>
 		/// <param name="cancellationToken">
 		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
 		///     should be canceled.
@@ -76,6 +76,6 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing a list of users who are in the named
 		///     role.
 		/// </returns>
-		Task<IList<TTenant>> GetTenantsInRoleAsync(string roleName, CancellationToken cancellationToken);
+		Task<IList<TTenant>> GetTenantsInRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
 	}
 }

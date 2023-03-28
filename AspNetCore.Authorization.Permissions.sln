@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.Identity.Permiss
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.Identity.Permissions.Stores", "src\Extensions.Identity.Permissions.Stores\Extensions.Identity.Permissions.Stores.csproj", "{3F7C18AD-4688-4C06-878A-C09A6E99AA95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.MongoDB", "src\AspNetCore.Identity.Permissions.MongoDB\AspNetCore.Identity.Permissions.MongoDB.csproj", "{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F7C18AD-4688-4C06-878A-C09A6E99AA95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{FA57E06B-CC0E-459C-A993-1D41ADF99ECF} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 		{26FA28C6-9247-4897-B8DB-CFF148B68A78} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
 		{3F7C18AD-4688-4C06-878A-C09A6E99AA95} = {38E0E64A-6A46-47C7-A169-24A6069D80E4}
+		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E} = {FA57E06B-CC0E-459C-A993-1D41ADF99ECF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}

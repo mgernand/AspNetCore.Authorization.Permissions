@@ -36,7 +36,7 @@
 		{
 			if(tenantType is not null)
 			{
-				Type identityTenantType = FindGenericBaseType(tenantType, typeof(IdentityTenant));
+				Type identityTenantType = FindGenericBaseType(tenantType, typeof(IdentityTenant<>));
 				if(identityTenantType == null)
 				{
 					throw new InvalidOperationException("The given type is not an identity tenant type.");
@@ -82,11 +82,6 @@
 
 		private static Type FindGenericBaseType(Type currentType, Type genericBaseType)
 		{
-			if(currentType == genericBaseType)
-			{
-				return genericBaseType;
-			}
-
 			Type type = currentType;
 			while(type != null)
 			{

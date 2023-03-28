@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties {
+namespace MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB.Properties {
     using System;
     
     
@@ -39,8 +39,7 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Propert
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties.Resourc" +
-                            "es", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

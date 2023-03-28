@@ -13,25 +13,17 @@
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityTenantUser" />.
 		/// </summary>
-		/// <remarks>
-		///     The Id property is initialized to form a new GUID string value.
-		/// </remarks>
-		public IdentityTenantUser()
+		public IdentityTenantUser() : this(null)
 		{
-			this.Id = Guid.NewGuid().ToString();
-			this.SecurityStamp = Guid.NewGuid().ToString();
 		}
 
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityTenantUser" />.
 		/// </summary>
 		/// <param name="userName">The user name.</param>
-		/// <remarks>
-		///     The Id property is initialized to form a new GUID string value.
-		/// </remarks>
-		public IdentityTenantUser(string userName) : this()
+		public IdentityTenantUser(string userName) 
+			: base(userName)
 		{
-			this.UserName = userName;
 		}
 	}
 
@@ -46,7 +38,7 @@
 		/// <summary>
 		///     Initializes a new instance of <see cref="IdentityTenantUser{TKey}" />.
 		/// </summary>
-		public IdentityTenantUser()
+		public IdentityTenantUser() : this(null)
 		{
 		}
 
@@ -54,9 +46,9 @@
 		///     Initializes a new instance of <see cref="IdentityTenantUser{TKey}" />.
 		/// </summary>
 		/// <param name="userName">The user name.</param>
-		public IdentityTenantUser(string userName) : this()
+		public IdentityTenantUser(string userName) 
+			: base(userName)
 		{
-			this.UserName = userName;
 		}
 
 		/// <summary>
