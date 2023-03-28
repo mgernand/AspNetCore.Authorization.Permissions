@@ -72,11 +72,17 @@
             Type permissionStoreType = typeof(PermissionStore<,,,>).MakeGenericType(permissionType, roleType, contextType, keyType);
             services.TryAddScoped(typeof(IPermissionStore<>).MakeGenericType(permissionType), permissionStoreType);
 
+			Type ensurePermissionSchemaType = typeof(EnsurePermissionSchema<, >).MakeGenericType(permissionType, keyType);
+            services.AddSingleton(typeof(IEnsureSchema), ensurePermissionSchemaType);
+
             if (tenantType is not null)
             {
                 // Configure tenant store.
                 Type tenantsStoreType = typeof(TenantStore<,,,>).MakeGenericType(tenantType, roleType, contextType, keyType);
                 services.TryAddScoped(typeof(ITenantStore<>).MakeGenericType(tenantType), tenantsStoreType);
+
+				Type ensureTenantSchemaType = typeof(EnsureTenantSchema<, >).MakeGenericType(tenantType, keyType);
+				services.AddSingleton(typeof(IEnsureSchema), ensureTenantSchemaType);
             }
         }
 

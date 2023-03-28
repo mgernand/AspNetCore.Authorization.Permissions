@@ -1,0 +1,31 @@
+﻿@page
+@using MongoSamplePermissions.Model
+@using MongoDB.Driver
+@model MongoSamplePermissions.Pages.InvoiceReadModel
+@{
+    ViewData["Title"] = "Invoice.Read";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Invoice.Read</h1>
+    <p>Invoice.Read</p>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col" style="width: 30%">ID</th>
+            <th scope="col" style="width: 20%">Total</th>
+            <th scope="col" style="width: 50%">Note</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(Invoice invoice in Model.Context.GetCollection<Invoice>().AsQueryable())
+        {
+            <tr scope="row">
+                <td>@invoice.Id.ToString("N")</td>
+                <td>@invoice.Total.ToString("C2")</td>
+                <td>@invoice.Note</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
