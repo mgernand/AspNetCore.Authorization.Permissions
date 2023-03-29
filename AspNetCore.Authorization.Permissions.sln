@@ -44,6 +44,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoSamplePermissions", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoSampleTenant", "samples\MongoSampleTenant\MongoSampleTenant.csproj", "{B7172410-2A68-4DB9-9538-036C8FFC7DE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.MongoDB.IntegrationTests", "tests\AspNetCore.Identity.Permissions.MongoDB.IntegrationTests\AspNetCore.Identity.Permissions.MongoDB.IntegrationTests.csproj", "{61ADF77F-B1DB-4489-AD46-DD6956605D41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests", "tests\AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests\AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests.csproj", "{637FE076-7CDE-49B1-BB14-1A6CE85382A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +102,14 @@ Global
 		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7172410-2A68-4DB9-9538-036C8FFC7DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61ADF77F-B1DB-4489-AD46-DD6956605D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61ADF77F-B1DB-4489-AD46-DD6956605D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61ADF77F-B1DB-4489-AD46-DD6956605D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61ADF77F-B1DB-4489-AD46-DD6956605D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{637FE076-7CDE-49B1-BB14-1A6CE85382A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637FE076-7CDE-49B1-BB14-1A6CE85382A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637FE076-7CDE-49B1-BB14-1A6CE85382A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637FE076-7CDE-49B1-BB14-1A6CE85382A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +129,8 @@ Global
 		{074DB0DE-2F0B-4C8C-95B1-E8D1BE71077E} = {FA57E06B-CC0E-459C-A993-1D41ADF99ECF}
 		{3273907D-2D59-42AC-81C1-8B8F4617A7FA} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
 		{B7172410-2A68-4DB9-9538-036C8FFC7DE4} = {24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}
+		{61ADF77F-B1DB-4489-AD46-DD6956605D41} = {9BE8804F-BCC0-48CF-9AEC-ED97414B0C78}
+		{637FE076-7CDE-49B1-BB14-1A6CE85382A8} = {9BE8804F-BCC0-48CF-9AEC-ED97414B0C78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A52A2019-EEE6-4DAB-B111-C10693C9E03B}
