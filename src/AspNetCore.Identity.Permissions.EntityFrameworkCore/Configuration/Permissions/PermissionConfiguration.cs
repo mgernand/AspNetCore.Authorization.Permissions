@@ -46,7 +46,7 @@
 			builder.ToTable(this.Table);
 
 			builder.HasKey(x => x.Id);
-			builder.HasIndex(x => x.NormalizedName).HasDatabaseName("Permission_NormalizedName_Index").IsUnique();
+			builder.HasIndex(x => x.NormalizedName).HasDatabaseName("PermissionsNormalizedNameIndex").IsUnique();
 
 			builder.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
 

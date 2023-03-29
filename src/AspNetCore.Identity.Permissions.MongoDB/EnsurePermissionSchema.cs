@@ -33,19 +33,19 @@
 
 				await collection.Indexes.CreateManyAsync(new List<CreateIndexModel<TPermission>>
 				{
-					CreateIndexModel(x => x.NormalizedName, "Permission_NormalizedName_Index"),
+					CreateIndexModel(x => x.NormalizedName),
 				});
 			}
 		}
 
-		private static CreateIndexModel<TPermission> CreateIndexModel(Expression<Func<TPermission, object>> field, string name)
+		private static CreateIndexModel<TPermission> CreateIndexModel(Expression<Func<TPermission, object>> field)
 		{
 			return new CreateIndexModel<TPermission>(
 				Builders<TPermission>.IndexKeys.Ascending(field),
 				new CreateIndexOptions<TPermission>
 				{
 					Unique = true,
-					Name = name
+					Name = $"{field.GetFieldName()}_asc"
 				});
 		}
 	}

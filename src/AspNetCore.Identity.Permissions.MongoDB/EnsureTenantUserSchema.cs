@@ -26,25 +26,27 @@
 		{
 			IMongoCollection<TUser> collection = this.context.GetCollection<TUser>();
 
+			Expression<Func<TUser, object>> field = x => x.TenantId;
+
 			List<BsonDocument> indexes = await (await collection.Indexes.ListAsync()).ToListAsync();
-			if(!indexes.Exists(x => x["name"] == "User_TenantId_Index"))
+            if (!indexes.Exists(x => x["name"] == $"{field.GetFieldName()}_asc"))
 			{
 				await collection.Indexes.CreateManyAsync(new List<CreateIndexModel<TUser>>
 				{
-					CreateIndexModel(x => x.TenantId, "User_TenantId_Index"),
+					CreateIndexModel(field),
 				});
-            }
+			}
 		}
 
-		private static CreateIndexModel<TUser> CreateIndexModel(Expression<Func<TUser, object>> field, string name)
+		private static CreateIndexModel<TUser> CreateIndexModel(Expression<Func<TUser, object>> field)
 		{
 			return new CreateIndexModel<TUser>(
 				Builders<TUser>.IndexKeys.Ascending(field),
 				new CreateIndexOptions<TUser>
 				{
 					Unique = false,
-					Name = name
-				});
+					Name = $"{field.GetFieldName()}_asc"
+                });
 		}
 	}
 }
