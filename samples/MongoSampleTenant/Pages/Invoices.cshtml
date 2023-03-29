@@ -1,0 +1,47 @@
+﻿@page
+@using MadEyeMatt.AspNetCore.Authorization.Permissions
+@model InvoicesModel
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Invoices</h1>
+    <p>
+        @if(User.HasPermission("Invoice.Read"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceRead">Invoice.Read</a>
+        }
+
+        @if(User.HasPermission("Invoice.Write"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceWrite">Invoice.Write</a>
+        }
+
+        @if(User.HasPermission("Invoice.Delete"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceDelete">Invoice.Delete</a>
+        }
+
+        @if(User.HasPermission("Invoice.Send"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceSend">Invoice.Send</a>
+        }
+
+        @if(User.HasPermission("Invoice.Payment"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoicePayment">Invoice.Payment</a>
+        }
+
+        @if(User.HasPermission("Invoice.Statistics"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceStatistics">Invoice.Statistics</a>
+        }
+
+        @if(User.HasPermission("Invoice.TaxExport"))
+        {
+            <a class="nav-link text-dark" asp-area="" asp-page="/InvoiceTaxExport">Invoice.TaxExport</a>
+        }
+    </p>
+</div>

@@ -1,0 +1,30 @@
+﻿@page
+@using System.Security.Claims
+@using MadEyeMatt.AspNetCore.Authorization.Permissions
+@model PermissionsModel
+
+@{
+    ViewData["Title"] = "Permissions";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Permissions</h1>
+    <p>
+        <ul class="text-start">
+            @foreach(string permission in User.GetPermissions())
+            {
+                <li>@permission</li>
+            }
+        </ul>
+    </p>
+
+    <h1 class="display-4">Claims</h1>
+    <p>
+        <ul class="text-start">
+            @foreach(Claim claim in User.Claims)
+            {
+                <li>@claim.Type = @claim.Value</li>
+            }
+        </ul>
+    </p>
+</div>

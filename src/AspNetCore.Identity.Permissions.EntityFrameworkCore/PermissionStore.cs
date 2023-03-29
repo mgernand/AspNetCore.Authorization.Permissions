@@ -14,7 +14,7 @@
 	///     of <see cref="IdentityPermission" /> and <see cref="IdentityRole{TKey}" /> with a string as a primary key.
 	/// </summary>
 	[PublicAPI]
-	public class PermissionStore : PermissionStore<IdentityPermission, IdentityRole, DbContext, string>
+	public class PermissionStore : PermissionStore<IdentityPermission>
 	{
 		/// <summary>
 		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
@@ -32,7 +32,7 @@
 	/// </summary>
 	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
 	[PublicAPI]
-	public class PermissionStore<TPermission> : PermissionStore<TPermission, IdentityRole, DbContext, string>
+	public class PermissionStore<TPermission> : PermissionStore<TPermission, IdentityRole>
 		where TPermission : IdentityPermission
 	{
 		/// <summary>
@@ -52,7 +52,7 @@
 	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
 	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
 	[PublicAPI]
-	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext, string>
+	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, DbContext>
 		where TPermission : IdentityPermission
 		where TRole : IdentityRole
 	{
@@ -125,7 +125,7 @@
 	/// <typeparam name="TKey">The type of the primary key for a role.</typeparam>
 	/// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
 	[PublicAPI]
-	public class PermissionStore<TPermission, TRole, TContext, TKey, TRolePermission> : PermissionStoreBase<TPermission, TRole, TKey, TRolePermission>,
+	public class PermissionStore<TPermission, TRole, TContext, TKey, TRolePermission> : PermissionStoreBase<TPermission, TRole, TKey>,
 		IQueryablePermissionStore<TPermission>,
 		IRolePermissionStore<TPermission>
 		where TPermission : IdentityPermission<TKey>
@@ -142,8 +142,10 @@
 		public PermissionStore(TContext context, IdentityErrorDescriber describer = null)
 			: base(describer)
 		{
-			this.Context = context ?? throw new ArgumentNullException(nameof(context));
-		}
+			ArgumentNullException.ThrowIfNull(context);
+
+			this.Context = context;
+        }
 
 		/// <summary>
 		///     Gets the database context for this store.
@@ -164,32 +166,27 @@
 		private DbSet<TRole> Roles => this.Context.Set<TRole>();
 
 		/// <inheritdoc />
-		public override async Task<IdentityResult> CreateAsync(TPermission permission, CancellationToken cancellationToken)
+		public override async Task<IdentityResult> CreateAsync(TPermission permission, CancellationToken cancellationToken = default)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			if(permission == null)
-			{
-				throw new ArgumentNullException(nameof(permission));
-			}
+			ArgumentNullException.ThrowIfNull(permission);
 
-			this.Context.Add(permission);
+			permission.ConcurrencyStamp = Guid.NewGuid().ToString("N");
+            this.Context.Add(permission);
 			await this.SaveChanges(cancellationToken);
 			return IdentityResult.Success;
 		}
 
 		/// <inheritdoc />
-		public override async Task<IdentityResult> UpdateAsync(TPermission permission, CancellationToken cancellationToken)
+		public override async Task<IdentityResult> UpdateAsync(TPermission permission, CancellationToken cancellationToken = default)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			if(permission == null)
-			{
-				throw new ArgumentNullException(nameof(permission));
-			}
+			ArgumentNullException.ThrowIfNull(permission);
 
-			this.Context.Attach(permission);
-			permission.ConcurrencyStamp = Guid.NewGuid().ToString();
+            this.Context.Attach(permission);
+			permission.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 			this.Context.Update(permission);
 			try
 			{
@@ -208,12 +205,9 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			if(permission == null)
-			{
-				throw new ArgumentNullException(nameof(permission));
-			}
+			ArgumentNullException.ThrowIfNull(permission);
 
-			this.Context.Remove(permission);
+            this.Context.Remove(permission);
 			try
 			{
 				await this.SaveChanges(cancellationToken);
@@ -231,6 +225,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
+
 			TKey roleId = this.ConvertIdFromString(permissionId);
 			return this.Permissions.FirstOrDefaultAsync(u => u.Id.Equals(roleId), cancellationToken);
 		}
@@ -240,6 +235,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
+
 			return this.Permissions.FirstOrDefaultAsync(r => r.NormalizedName == normalizedPermissionName, cancellationToken);
 		}
 
@@ -248,13 +244,80 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			if(permission == null)
+			ArgumentNullException.ThrowIfNull(permission);
+
+            return Task.FromResult(permission.NormalizedName);
+		}
+
+		/// <inheritdoc />
+		public override async Task AddToRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken = default)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+
+			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
+			if (role == null)
 			{
-				throw new ArgumentNullException(nameof(permission));
+				throw new InvalidOperationException($"The role '{normalizedRoleName}' was not found.");
 			}
 
-			return Task.FromResult(permission.NormalizedName);
-		}
+			this.RolePermissions.Add(this.CreateRolePermission(role, permission));
+        }
+
+		/// <inheritdoc />
+		public override async Task RemoveFromRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+
+			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
+			if (role != null)
+			{
+				TRolePermission rolePermission = await this.FindRolePermissionAsync(role.Id, permission.Id, cancellationToken);
+				if (rolePermission != null)
+				{
+					this.RolePermissions.Remove(rolePermission);
+				}
+			}
+        }
+
+		/// <inheritdoc />
+		public override async Task<IList<string>> GetRolesAsync(TPermission permission, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+
+			TKey permissionId = permission.Id;
+			IQueryable<string> query = from rolePermission in this.RolePermissions
+									   join role in this.Roles on rolePermission.RoleId equals role.Id
+									   where rolePermission.PermissionId.Equals(permissionId)
+									   select role.Name;
+
+			return await query.ToListAsync(cancellationToken);
+        }
+
+		/// <inheritdoc />
+		public override async Task<bool> IsInRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+
+			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
+			if (role != null)
+			{
+				TRolePermission rolePermission = await this.FindRolePermissionAsync(role.Id, permission.Id, cancellationToken);
+				return rolePermission != null;
+			}
+
+			return false;
+        }
 
 		/// <inheritdoc />
 		public IQueryable<TPermission> Permissions => this.Context.Set<TPermission>();
@@ -264,12 +327,9 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			if(string.IsNullOrEmpty(normalizedRoleName))
-			{
-				throw new ArgumentNullException(nameof(normalizedRoleName));
-			}
+			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
 
-			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
+            TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 
 			if(role != null)
 			{
@@ -284,20 +344,49 @@
 			return new List<TPermission>();
 		}
 
-
-		/// <inheritdoc />
-		protected override Task<TRole> FindRoleAsync(string normalizedRoleName, CancellationToken cancellationToken)
+        /// <summary>
+        ///     Return a role permission for the roleId and tenantId if it exists.
+        /// </summary>
+		/// <param name="permissionId">The role's id.</param>
+		/// <param name="roleId">The tenant's id.</param>
+        /// <param name="cancellationToken">
+        ///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
+        ///     should be canceled.
+        /// </param>
+        /// <returns>The role permission if it exists.</returns>
+        protected virtual Task<TRolePermission> FindRolePermissionAsync(TKey roleId, TKey permissionId, CancellationToken cancellationToken)
 		{
-			return this.Roles.SingleOrDefaultAsync(r => r.NormalizedName == normalizedRoleName, cancellationToken);
+			return this.RolePermissions.FindAsync(new object[] { roleId, permissionId }, cancellationToken).AsTask();
 		}
 
-		/// <summary>Saves the current store.</summary>
-		/// <param name="cancellationToken">
-		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
-		///     should be canceled.
-		/// </param>
-		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
-		private async Task SaveChanges(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        protected override Task<TRole> FindRoleAsync(string normalizedRoleName, CancellationToken cancellationToken)
+		{
+			return this.Roles.SingleOrDefaultAsync(x => x.NormalizedName == normalizedRoleName, cancellationToken);
+		}
+
+		/// <summary>
+		///     Called to create a new instance of a <see cref="IdentityRolePermission{TKey}" />.
+		/// </summary>
+		/// <param name="permission">The associated permission.</param>
+		/// <param name="role">The associated role.</param>
+		/// <returns></returns>
+		protected virtual TRolePermission CreateRolePermission(TRole permission, TPermission role)
+		{
+			return new TRolePermission
+			{
+				PermissionId = permission.Id,
+				RoleId = role.Id
+			};
+		}
+
+        /// <summary>Saves the current store.</summary>
+        /// <param name="cancellationToken">
+        ///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
+        ///     should be canceled.
+        /// </param>
+        /// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
+        private async Task SaveChanges(CancellationToken cancellationToken)
 		{
 			if(this.AutoSaveChanges)
 			{

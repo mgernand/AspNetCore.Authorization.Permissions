@@ -54,7 +54,7 @@
 			builder.ToTable(this.Table);
 
 			builder.HasKey(x => x.Id);
-			builder.HasIndex(x => x.NormalizedName).HasDatabaseName("TenantNameIndex").IsUnique();
+			builder.HasIndex(x => x.NormalizedName).HasDatabaseName("TenantsNormalizedNameIndex").IsUnique();
 
 			builder.Property(x => x.ConcurrencyStamp).IsConcurrencyToken();
 			builder.Property(x => x.Name).HasMaxLength(this.MaxKeyLength);

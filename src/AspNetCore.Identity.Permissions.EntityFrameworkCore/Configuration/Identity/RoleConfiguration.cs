@@ -54,7 +54,7 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 			builder.ToTable(this.Table);
 
 			builder.HasKey(r => r.Id);
-			builder.HasIndex(r => r.NormalizedName).HasDatabaseName("RoleNameIndex").IsUnique();
+			builder.HasIndex(r => r.NormalizedName).HasDatabaseName("RolesNormalizedNameIndex").IsUnique();
 
 			builder.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
 			builder.Property(u => u.Name).HasMaxLength(this.MaxKeyLength);

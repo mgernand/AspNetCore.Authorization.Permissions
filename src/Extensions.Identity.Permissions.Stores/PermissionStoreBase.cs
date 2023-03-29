@@ -14,18 +14,16 @@
 	/// <typeparam name="TPermission">The type of the class representing a permission.</typeparam>
 	/// <typeparam name="TRole">The type representing a role.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a permission.</typeparam>
-	/// <typeparam name="TRolePermission">The type of the class representing a role permission.</typeparam>
 	[PublicAPI]
-	public abstract class PermissionStoreBase<TPermission, TRole, TKey, TRolePermission> : IPermissionStore<TPermission>, IRolePermissionStore<TPermission>
+	public abstract class PermissionStoreBase<TPermission, TRole, TKey> : IPermissionStore<TPermission>, IRolePermissionStore<TPermission>
 		where TPermission : IdentityPermission<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
-		where TRolePermission : IdentityRolePermission<TKey>, new()
 	{
 		private bool disposed;
 
 		/// <summary>
-		///     Constructs a new instance of <see cref="PermissionStoreBase{TPermission,TRole,TKey,TRolePermission}" />.
+		///     Constructs a new instance of <see cref="PermissionStoreBase{TPermission,TRole,TKey}" />.
 		/// </summary>
 		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
 		protected PermissionStoreBase(IdentityErrorDescriber describer)
@@ -129,6 +127,18 @@
 		}
 
 		/// <inheritdoc />
+		public abstract Task AddToRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken = default);
+
+		/// <inheritdoc />
+		public abstract Task RemoveFromRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken);
+
+		/// <inheritdoc />
+		public abstract Task<IList<string>> GetRolesAsync(TPermission permission, CancellationToken cancellationToken);
+
+		/// <inheritdoc />
+		public abstract Task<bool> IsInRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken);
+
+		/// <inheritdoc />
 		public abstract Task<IList<TPermission>> GetPermissionsInRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
@@ -141,21 +151,6 @@
 		/// </param>
 		/// <returns>The role if it exists.</returns>
 		protected abstract Task<TRole> FindRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
-
-		/// <summary>
-		///     Called to create a new instance of a <see cref="IdentityRolePermission{TKey}" />.
-		/// </summary>
-		/// <param name="permission">The associated permission.</param>
-		/// <param name="role">The associated role.</param>
-		/// <returns></returns>
-		protected virtual TRolePermission CreateRolePermission(TRole permission, TPermission role)
-		{
-			return new TRolePermission
-			{
-				PermissionId = permission.Id,
-				RoleId = role.Id
-			};
-		}
 
 		/// <summary>
 		///     Converts the provided <paramref name="id" /> to a strongly typed key object.

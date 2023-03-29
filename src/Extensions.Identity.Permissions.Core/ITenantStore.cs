@@ -26,7 +26,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the
 		///     <see cref="IdentityResult" /> of the creation operation.
 		/// </returns>
-		Task<IdentityResult> CreateAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<IdentityResult> CreateAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Updates the specified <paramref name="tenant" /> in the permission store.
@@ -40,7 +40,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the
 		///     <see cref="IdentityResult" /> of the update operation.
 		/// </returns>
-		Task<IdentityResult> UpdateAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<IdentityResult> UpdateAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Deletes the specified <paramref name="tenant" /> from the permission store.
@@ -54,7 +54,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the
 		///     <see cref="IdentityResult" /> of the delete operation.
 		/// </returns>
-		Task<IdentityResult> DeleteAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<IdentityResult> DeleteAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Gets the tenant identifier for the specified <paramref name="tenant" />.
@@ -68,7 +68,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the identifier for the
 		///     specified <paramref name="tenant" />.
 		/// </returns>
-		Task<string> GetTenantIdAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<string> GetTenantIdAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Gets the tenant name for the specified <paramref name="tenant" />.
@@ -82,7 +82,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the name for the specified
 		///     <paramref name="tenant" />.
 		/// </returns>
-		Task<string> GetTenantNameAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<string> GetTenantNameAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Gets the normalized tenant name for the specified <paramref name="tenant" />.
@@ -96,7 +96,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the normalized tenant name for
 		///     the specified <paramref name="tenant" />.
 		/// </returns>
-		Task<string> GetNormalizedTenantNameAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<string> GetNormalizedTenantNameAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Gets the tenant display name for the specified <paramref name="tenant" />.
@@ -110,7 +110,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the name for the specified
 		///     <paramref name="tenant" />.
 		/// </returns>
-		Task<string> GetTenantDisplayNameAsync(TTenant tenant, CancellationToken cancellationToken);
+		Task<string> GetTenantDisplayNameAsync(TTenant tenant, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Sets the given <paramref name="tenantName" /> for the specified <paramref name="tenant" />.
@@ -122,7 +122,7 @@
 		///     should be canceled.
 		/// </param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
-		Task SetTenantNameAsync(TTenant tenant, string tenantName, CancellationToken cancellationToken);
+		Task SetTenantNameAsync(TTenant tenant, string tenantName, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Sets the given normalized name for the specified <paramref name="tenant" />.
@@ -134,7 +134,7 @@
 		///     should be canceled.
 		/// </param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
-		Task SetNormalizedTenantNameAsync(TTenant tenant, string normalizedTenantName, CancellationToken cancellationToken);
+		Task SetNormalizedTenantNameAsync(TTenant tenant, string normalizedTenantName, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Sets the given <paramref name="tenantDisplayName" /> for the specified <paramref name="tenant" />.
@@ -146,7 +146,7 @@
 		///     should be canceled.
 		/// </param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation.</returns>
-		Task SetTenantDisplayNameAsync(TTenant tenant, string tenantDisplayName, CancellationToken cancellationToken);
+		Task SetTenantDisplayNameAsync(TTenant tenant, string tenantDisplayName, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Finds and returns a tenant, if any, who has the specified <paramref name="tenantId" />.
@@ -160,7 +160,7 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the user matching the specified
 		///     <paramref name="tenantId" /> if it exists.
 		/// </returns>
-		Task<TTenant> FindByIdAsync(string tenantId, CancellationToken cancellationToken);
+		Task<TTenant> FindByIdAsync(string tenantId, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///     Finds and returns a tenant, if any, who has the specified normalized tenant name.
@@ -174,6 +174,6 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the tenant matching the specified
 		///     <paramref name="normalizedTenantName" /> if it exists.
 		/// </returns>
-		Task<TTenant> FindByNameAsync(string normalizedTenantName, CancellationToken cancellationToken);
+		Task<TTenant> FindByNameAsync(string normalizedTenantName, CancellationToken cancellationToken = default);
 	}
 }

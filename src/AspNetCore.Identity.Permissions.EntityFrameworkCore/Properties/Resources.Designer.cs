@@ -69,5 +69,14 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Propert
                 return ResourceManager.GetString("CanOnlyProtectStrings", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role {0} does not exist..
+        /// </summary>
+        internal static string RoleNotFound {
+            get {
+                return ResourceManager.GetString("RoleNotFound", resourceCulture);
+            }
+        }
     }
 }

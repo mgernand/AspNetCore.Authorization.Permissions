@@ -10,7 +10,21 @@
 	[PublicAPI]
 	public class IdentityTenant : IdentityTenant<string>
 	{
-	}
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="IdentityTenant" /> type.
+        /// </summary>
+        public IdentityTenant() : this(null)
+		{
+		}
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="IdentityTenant" /> type.
+        /// </summary>
+		/// <param name="tenantName">The tenant name.</param>
+        public IdentityTenant(string tenantName) : base(tenantName)
+		{
+		}
+    }
 
 	/// <summary>
 	///     The default tenant implementation.
@@ -19,6 +33,22 @@
 	[PublicAPI]
 	public class IdentityTenant<TKey> where TKey : IEquatable<TKey>
 	{
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="IdentityTenant{TKey}" /> type.
+        /// </summary>
+        public IdentityTenant() : this(null)
+        {
+		}
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="IdentityTenant{TKey}" /> type.
+        /// </summary>
+        /// <param name="tenantName">The tenant name.</param>
+        public IdentityTenant(string tenantName)
+		{
+			this.Name = tenantName;
+		}
+
 		/// <summary>
 		///     Gets or sets the primary key for this user.
 		/// </summary>
@@ -45,24 +75,7 @@
 		/// <summary>
 		///     A random value that should change whenever a tenant is persisted to the store
 		/// </summary>
-		public virtual string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();
-
-		/// <summary>
-		///     Flag, indicating if the tenant is hierarchical.
-		/// </summary>
-		public bool IsHierarchical { get; set; }
-
-		/// <summary>
-		///     Flag, indicating if the tenant's data is store in a separate database.
-		/// </summary>
-		[PersonalData]
-		public bool HasSeparateDatabase { get; set; }
-
-		/// <summary>
-		///     Gets or sets the name of the database where the tenant's data is stored.
-		/// </summary>
-		[ProtectedPersonalData]
-		public string DatabaseName { get; set; }
+		public virtual string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString("N");
 
 		/// <summary>
 		///     Returns the name of the tenant.

@@ -73,8 +73,8 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configu
 			builder.ToTable(this.Table);
 
 			builder.HasKey(u => u.Id);
-			builder.HasIndex(u => u.NormalizedUserName).HasDatabaseName("UserNameIndex").IsUnique();
-			builder.HasIndex(u => u.NormalizedEmail).HasDatabaseName("EmailIndex");
+			builder.HasIndex(u => u.NormalizedUserName).HasDatabaseName("UsersNormalizedUserNameIndex").IsUnique();
+			builder.HasIndex(u => u.NormalizedEmail).HasDatabaseName("UsersNormalizedEmailIndex");
 
 			builder.Property(u => u.ConcurrencyStamp).IsConcurrencyToken();
 			builder.Property(u => u.UserName).HasMaxLength(this.MaxKeyLength);

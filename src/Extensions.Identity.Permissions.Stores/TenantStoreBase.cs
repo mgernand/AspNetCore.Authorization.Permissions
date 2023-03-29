@@ -14,18 +14,16 @@
 	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>
 	/// <typeparam name="TRole">The type representing a role.</typeparam>
 	/// <typeparam name="TKey">The type of the primary key for a tenant.</typeparam>
-	/// <typeparam name="TTenantRole">The type representing a tenant role.</typeparam>
 	[PublicAPI]
-	public abstract class TenantStoreBase<TTenant, TRole, TKey, TTenantRole> : ITenantStore<TTenant>, ITenantRoleStore<TTenant>
+	public abstract class TenantStoreBase<TTenant, TRole, TKey> : ITenantStore<TTenant>, ITenantRoleStore<TTenant>
 		where TTenant : IdentityTenant<TKey>
 		where TRole : IdentityRole<TKey>
 		where TKey : IEquatable<TKey>
-		where TTenantRole : IdentityTenantRole<TKey>, new()
 	{
 		private bool disposed;
 
 		/// <summary>
-		///     Constructs a new instance of <see cref="TenantStoreBase{TTenant,TRole,TKey,TTenantRole}" />.
+		///     Constructs a new instance of <see cref="TenantStoreBase{TTenant,TRole,TKey}" />.
 		/// </summary>
 		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
 		protected TenantStoreBase(IdentityErrorDescriber describer)
@@ -39,19 +37,19 @@
 		public IdentityErrorDescriber ErrorDescriber { get; set; }
 
 		/// <inheritdoc />
-		public abstract Task AddToRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);
+		public abstract Task AddToRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <inheritdoc />
-		public abstract Task RemoveFromRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);
+		public abstract Task RemoveFromRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <inheritdoc />
 		public abstract Task<IList<string>> GetRolesAsync(TTenant tenant, CancellationToken cancellationToken);
 
 		/// <inheritdoc />
-		public abstract Task<bool> IsInRoleAsync(TTenant tenant, string roleName, CancellationToken cancellationToken);
+		public abstract Task<bool> IsInRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <inheritdoc />
-		public abstract Task<IList<TTenant>> GetTenantsInRoleAsync(string roleName, CancellationToken cancellationToken);
+		public abstract Task<IList<TTenant>> GetTenantsInRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
 		///     Dispose the stores
@@ -182,18 +180,6 @@
 		protected abstract Task<TRole> FindRoleAsync(string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <summary>
-		///     Return a user role for the tenantId and roleId if it exists.
-		/// </summary>
-		/// <param name="tenantId">The tenant's id.</param>
-		/// <param name="roleId">The role's id.</param>
-		/// <param name="cancellationToken">
-		///     The <see cref="CancellationToken" /> used to propagate notifications that the operation
-		///     should be canceled.
-		/// </param>
-		/// <returns>The user role if it exists.</returns>
-		protected abstract Task<TTenantRole> FindTenantRoleAsync(TKey tenantId, TKey roleId, CancellationToken cancellationToken);
-
-		/// <summary>
 		///     Return a user with the matching tenantId if it exists.
 		/// </summary>
 		/// <param name="tenantId">The tenant's id.</param>
@@ -203,21 +189,6 @@
 		/// </param>
 		/// <returns>The user if it exists.</returns>
 		protected abstract Task<TTenant> FindTenantAsync(TKey tenantId, CancellationToken cancellationToken);
-
-		/// <summary>
-		///     Called to create a new instance of a <see cref="IdentityTenantRole{TKey}" />.
-		/// </summary>
-		/// <param name="tenant">The associated tenant.</param>
-		/// <param name="role">The associated role.</param>
-		/// <returns></returns>
-		protected virtual TTenantRole CreateTenantRole(TTenant tenant, TRole role)
-		{
-			return new TTenantRole
-			{
-				TenantId = tenant.Id,
-				RoleId = role.Id
-			};
-		}
 
 		/// <summary>
 		///     Converts the provided <paramref name="id" /> to a strongly typed key object.
