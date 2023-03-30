@@ -156,10 +156,7 @@
 		public virtual async Task<IdentityResult> CreateAsync(TTenant tenant)
 		{
 			this.ThrowIfDisposed();
-			if(tenant == null)
-			{
-				throw new ArgumentNullException(nameof(tenant));
-			}
+			ArgumentNullException.ThrowIfNull(tenant);
 
 			IdentityResult result = await this.ValidateTenantAsync(tenant);
 			if(!result.Succeeded)
@@ -183,12 +180,9 @@
 		public virtual Task<IdentityResult> UpdateAsync(TTenant tenant)
 		{
 			this.ThrowIfDisposed();
-			if(tenant == null)
-			{
-				throw new ArgumentNullException(nameof(tenant));
-			}
+			ArgumentNullException.ThrowIfNull(tenant);
 
-			return this.UpdateTenantAsync(tenant);
+            return this.UpdateTenantAsync(tenant);
 		}
 
 		/// <summary>
@@ -202,12 +196,9 @@
 		public virtual Task<IdentityResult> DeleteAsync(TTenant tenant)
 		{
 			this.ThrowIfDisposed();
-			if(tenant == null)
-			{
-				throw new ArgumentNullException(nameof(tenant));
-			}
+			ArgumentNullException.ThrowIfNull(tenant);
 
-			return this.Store.DeleteAsync(tenant, this.CancellationToken);
+            return this.Store.DeleteAsync(tenant, this.CancellationToken);
 		}
 
 		/// <summary>
@@ -221,12 +212,9 @@
 		public virtual async Task<bool> TenantExistsAsync(string tenantName)
 		{
 			this.ThrowIfDisposed();
-			if(tenantName == null)
-			{
-				throw new ArgumentNullException(nameof(tenantName));
-			}
+			ArgumentNullException.ThrowIfNull(tenantName);
 
-			return await this.FindByNameAsync(tenantName) != null;
+            return await this.FindByNameAsync(tenantName) != null;
 		}
 
 		/// <summary>
@@ -240,10 +228,7 @@
 		public Task<TTenant> FindByIdAsync(string tenantId)
 		{
 			this.ThrowIfDisposed();
-			if(tenantId == null)
-			{
-				throw new ArgumentNullException(nameof(tenantId));
-			}
+			ArgumentNullException.ThrowIfNull(tenantId);
 
 			return this.Store.FindByIdAsync(tenantId, this.CancellationToken);
 		}
@@ -259,12 +244,9 @@
 		public Task<TTenant> FindByNameAsync(string tenantName)
 		{
 			this.ThrowIfDisposed();
-			if(tenantName == null)
-			{
-				throw new ArgumentNullException(nameof(tenantName));
-			}
+			ArgumentNullException.ThrowIfNull(tenantName);
 
-			return this.Store.FindByNameAsync(this.NormalizeName(tenantName), this.CancellationToken);
+            return this.Store.FindByNameAsync(this.NormalizeName(tenantName), this.CancellationToken);
 		}
 
 		/// <summary>

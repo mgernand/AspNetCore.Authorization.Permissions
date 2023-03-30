@@ -158,10 +158,7 @@
 		public virtual async Task<IdentityResult> CreateAsync(TPermission permission)
 		{
 			this.ThrowIfDisposed();
-			if(permission == null)
-			{
-				throw new ArgumentNullException(nameof(permission));
-			}
+			ArgumentNullException.ThrowIfNull(permission);
 
 			IdentityResult result = await this.ValidatePermissionAsync(permission);
 			if(!result.Succeeded)
@@ -185,12 +182,9 @@
 		public virtual Task<IdentityResult> UpdateAsync(TPermission permission)
 		{
 			this.ThrowIfDisposed();
-			if(permission == null)
-			{
-				throw new ArgumentNullException(nameof(permission));
-			}
+			ArgumentNullException.ThrowIfNull(permission);
 
-			return this.UpdatePermissionAsync(permission);
+            return this.UpdatePermissionAsync(permission);
 		}
 
 		/// <summary>
@@ -204,10 +198,7 @@
 		public virtual Task<IdentityResult> DeleteAsync(TPermission permission)
 		{
 			this.ThrowIfDisposed();
-			if(permission == null)
-			{
-				throw new ArgumentNullException(nameof(permission));
-			}
+			ArgumentNullException.ThrowIfNull(permission);
 
 			return this.Store.DeleteAsync(permission, this.CancellationToken);
 		}
@@ -223,12 +214,9 @@
 		public virtual async Task<bool> PermissionExistsAsync(string permissionName)
 		{
 			this.ThrowIfDisposed();
-			if(permissionName == null)
-			{
-				throw new ArgumentNullException(nameof(permissionName));
-			}
+			ArgumentNullException.ThrowIfNull(permissionName);
 
-			return await this.FindByNameAsync(permissionName) != null;
+            return await this.FindByNameAsync(permissionName) != null;
 		}
 
 		/// <summary>
@@ -290,23 +278,36 @@
 			return this.Store.GetPermissionIdAsync(permission, this.CancellationToken);
 		}
 
-		/// <summary>
-		///     Finds the role associated with the specified <paramref name="permissionName" /> if any.
-		/// </summary>
-		/// <param name="permissionName">The permission ID whose permission should be returned.</param>
-		/// <returns>
-		///     The <see cref="Task" /> that represents the asynchronous operation, containing the permission
-		///     associated with the specified <paramref name="permissionName" />
-		/// </returns>
-		public Task<TPermission> FindByNameAsync(string permissionName)
+        /// <summary>
+        ///     Finds the role associated with the specified <paramref name="permissionId" /> if any.
+        /// </summary>
+        /// <param name="permissionId">The permission ID whose permission should be returned.</param>
+        /// <returns>
+        ///     The <see cref="Task" /> that represents the asynchronous operation, containing the permission
+        ///     associated with the specified <paramref name="permissionId" />
+        /// </returns>
+        public Task<TPermission> FindByIdAsync(string permissionId)
 		{
 			this.ThrowIfDisposed();
-			if(permissionName == null)
-			{
-				throw new ArgumentNullException(nameof(permissionName));
-			}
+			ArgumentNullException.ThrowIfNull(permissionId);
 
-			return this.Store.FindByNameAsync(this.NormalizeName(permissionName), this.CancellationToken);
+			return this.Store.FindByIdAsync(permissionId, this.CancellationToken);
+		}
+
+        /// <summary>
+        ///     Finds the role associated with the specified <paramref name="permissionName" /> if any.
+        /// </summary>
+        /// <param name="permissionName">The permission name whose permission should be returned.</param>
+        /// <returns>
+        ///     The <see cref="Task" /> that represents the asynchronous operation, containing the permission
+        ///     associated with the specified <paramref name="permissionName" />
+        /// </returns>
+        public Task<TPermission> FindByNameAsync(string permissionName)
+		{
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permissionName);
+
+            return this.Store.FindByNameAsync(this.NormalizeName(permissionName), this.CancellationToken);
 		}
 
 		/// <summary>
@@ -323,12 +324,9 @@
 		{
 			this.ThrowIfDisposed();
 			IRolePermissionStore<TPermission> store = this.GetRolePermissionStore();
-			if(roleName == null)
-			{
-				throw new ArgumentNullException(nameof(roleName));
-			}
+			ArgumentNullException.ThrowIfNull(roleName);
 
-			return store.GetPermissionsInRoleAsync(this.NormalizeName(roleName), this.CancellationToken);
+            return store.GetPermissionsInRoleAsync(this.NormalizeName(roleName), this.CancellationToken);
 		}
 
 		/// <summary>
@@ -343,12 +341,9 @@
 		public IList<string> GetPermissions(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-			if(principal == null)
-			{
-				throw new ArgumentNullException(nameof(principal));
-			}
+			ArgumentNullException.ThrowIfNull(principal);
 
-			return principal.GetPermissions().ToList();
+            return principal.GetPermissions().ToList();
 		}
 
 		/// <summary>
