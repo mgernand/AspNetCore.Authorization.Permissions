@@ -330,13 +330,10 @@
 		public virtual async Task<IList<string>> GetRolesAsync(TTenant tenant)
 		{
 			this.ThrowIfDisposed();
-			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
-			if(tenant == null)
-			{
-				throw new ArgumentNullException(nameof(tenant));
-			}
+			ArgumentNullException.ThrowIfNull(tenant);
 
-			return await store.GetRolesAsync(tenant, this.CancellationToken);
+			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
+            return await store.GetRolesAsync(tenant, this.CancellationToken);
 		}
 
 		/// <summary>
