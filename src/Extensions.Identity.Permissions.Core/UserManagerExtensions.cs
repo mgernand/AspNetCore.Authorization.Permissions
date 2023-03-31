@@ -2,10 +2,10 @@
 {
 	using System;
 	using System.Reflection;
-	using System.Security.Claims;
-	using System.Threading;
+    using System.Security.Claims;
+    using System.Threading;
 	using System.Threading.Tasks;
-	using JetBrains.Annotations;
+    using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Identity;
 
@@ -15,13 +15,6 @@
     [PublicAPI]
 	public static class UserManagerExtensions
 	{
-		private static void ThrowIfDisposed<TUser>(this UserManager<TUser> manager) 
-			where TUser : class
-		{
-			MethodInfo methodInfo = manager.GetType().GetMethod("ThrowIfDisposed", BindingFlags.NonPublic | BindingFlags.Instance);
-			methodInfo?.Invoke(manager, Array.Empty<object>());
-        }
-
         /// <summary>
         ///     Gets the tenant ID for the specified <paramref name="user" />.
         /// </summary>
@@ -102,6 +95,13 @@
 			ArgumentNullException.ThrowIfNull(principal);
 
 			return principal.GetTenantDisplayName();
+		}
+
+		private static void ThrowIfDisposed<TUser>(this UserManager<TUser> manager)
+			where TUser : class
+		{
+			MethodInfo methodInfo = manager.GetType().GetMethod("ThrowIfDisposed", BindingFlags.NonPublic | BindingFlags.Instance);
+			methodInfo?.Invoke(manager, Array.Empty<object>());
 		}
     }
 }

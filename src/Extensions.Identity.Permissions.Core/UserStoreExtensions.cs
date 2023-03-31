@@ -16,7 +16,7 @@
 		/// <summary>
 		///     Gets the tenant ID for the specified <paramref name="user" />.
 		/// </summary>
-		/// <param name="userStore">The user store.</param>
+		/// <param name="store">The user store.</param>
 		/// <param name="user">The user whose identifier should be retrieved.</param>
 		/// <param name="cancellationToken">
 		///     The <see cref="T:System.Threading.CancellationToken" /> used to propagate notifications
@@ -26,14 +26,11 @@
 		///     The <see cref="Task" /> that represents the asynchronous operation, containing the identifier for the
 		///     specified <paramref name="user" />.
 		/// </returns>
-		public static Task<string> GetTenantIdAsync<TUser>(this IUserStore<TUser> userStore, TUser user, CancellationToken cancellationToken = default)
+		public static Task<string> GetTenantIdAsync<TUser>(this IUserStore<TUser> store, TUser user, CancellationToken cancellationToken = default)
 			where TUser : class
 		{
 			cancellationToken.ThrowIfCancellationRequested();
-
-			MethodInfo methodInfo = userStore.GetType().GetMethod("ThrowIfDisposed", BindingFlags.NonPublic | BindingFlags.Instance);
-			methodInfo?.Invoke(userStore, Array.Empty<object>());
-
+			store.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(user);
 
 			PropertyInfo propertyInfo = user.GetType().GetProperty("TenantId", BindingFlags.Public | BindingFlags.Instance);
@@ -41,5 +38,12 @@
 
 			return Task.FromResult(id);
 		}
-	}
+
+		private static void ThrowIfDisposed<TUser>(this IUserStore<TUser> userStore)
+			where TUser : class
+		{
+			MethodInfo methodInfo = userStore.GetType().GetMethod("ThrowIfDisposed", BindingFlags.NonPublic | BindingFlags.Instance);
+			methodInfo?.Invoke(userStore, Array.Empty<object>());
+        }
+    }
 }
