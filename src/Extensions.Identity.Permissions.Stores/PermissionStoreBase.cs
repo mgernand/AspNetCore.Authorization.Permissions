@@ -136,6 +136,9 @@
 		public abstract Task<IList<string>> GetRolesAsync(TPermission permission, CancellationToken cancellationToken);
 
 		/// <inheritdoc />
+		public abstract Task<IList<string>> GetRoleIdsAsync(TPermission permission, CancellationToken cancellationToken);
+
+		/// <inheritdoc />
 		public abstract Task<bool> IsInRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <inheritdoc />

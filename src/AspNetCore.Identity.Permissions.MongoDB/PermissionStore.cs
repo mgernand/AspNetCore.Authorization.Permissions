@@ -260,7 +260,27 @@
 			return new List<string>(0);
         }
 
-        /// <inheritdoc />
+		/// <inheritdoc />
+		public override async Task<IList<string>> GetRoleIdsAsync(TPermission permission, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+
+			if (permission.Roles.Any())
+			{
+				IList<TKey> keys = await this.RolesCollection
+					.Find(x => permission.Roles.Contains(x.Id))
+					.Project(x => x.Id)
+					.ToListAsync(cancellationToken);
+
+				return keys.Select(this.ConvertIdToString).ToList();
+			}
+
+			return new List<string>(0);
+        }
+
+		/// <inheritdoc />
         public override async Task<bool> IsInRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
