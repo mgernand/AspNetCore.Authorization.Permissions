@@ -292,6 +292,20 @@
 			return await store.GetRolesAsync(permission, this.CancellationToken);
 		}
 
+		/// <summary>
+		///     Gets a list of role ids the specified <paramref name="permission" /> belongs to.
+		/// </summary>
+		/// <param name="permission">The permission whose role ids to retrieve.</param>
+		/// <returns>The <see cref="Task" /> that represents the asynchronous operation, containing a list of role ids.</returns>
+		public virtual async Task<IList<string>> GetRolesIdsAsync(TPermission permission)
+		{
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+
+			IRolePermissionStore<TPermission> store = this.GetRolePermissionStore();
+			return await store.GetRoleIdsAsync(permission, this.CancellationToken);
+		}
+
         /// <summary>
         ///     Finds the role associated with the specified <paramref name="permissionId" /> if any.
         /// </summary>
