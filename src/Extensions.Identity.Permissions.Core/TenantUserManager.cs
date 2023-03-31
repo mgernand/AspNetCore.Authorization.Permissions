@@ -47,12 +47,9 @@
 		public virtual async Task<string> GetTenantIdAsync(TUser user)
 		{
 			this.ThrowIfDisposed();
-			if(user == null)
-			{
-				throw new ArgumentNullException(nameof(user));
-			}
+			ArgumentNullException.ThrowIfNull(user);
 
-			return await this.userStore.GetTenantIdAsync(user, this.CancellationToken);
+            return await this.userStore.GetTenantIdAsync(user, this.CancellationToken);
 		}
 
 		/// <summary>
@@ -67,12 +64,9 @@
 		public string GetTenantId(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-			if(principal == null)
-			{
-				throw new ArgumentNullException(nameof(principal));
-			}
+			ArgumentNullException.ThrowIfNull(principal);
 
-			return principal.GetTenantId();
+            return principal.GetTenantId();
 		}
 
 		/// <summary>
@@ -87,10 +81,7 @@
 		public string GetTenantName(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-			if(principal == null)
-			{
-				throw new ArgumentNullException(nameof(principal));
-			}
+			ArgumentNullException.ThrowIfNull(principal);
 
 			return principal.GetTenantName();
 		}
@@ -107,12 +98,9 @@
 		public string GetTenantDisplayName(ClaimsPrincipal principal)
 		{
 			this.ThrowIfDisposed();
-			if(principal == null)
-			{
-				throw new ArgumentNullException(nameof(principal));
-			}
+			ArgumentNullException.ThrowIfNull(principal);
 
-			return principal.GetTenantDisplayName();
+            return principal.GetTenantDisplayName();
 		}
 	}
 }

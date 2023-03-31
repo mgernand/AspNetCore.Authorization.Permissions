@@ -34,10 +34,7 @@
 			MethodInfo methodInfo = userStore.GetType().GetMethod("ThrowIfDisposed", BindingFlags.NonPublic | BindingFlags.Instance);
 			methodInfo?.Invoke(userStore, Array.Empty<object>());
 
-			if(user is null)
-			{
-				throw new ArgumentNullException(nameof(user));
-			}
+			ArgumentNullException.ThrowIfNull(user);
 
 			PropertyInfo propertyInfo = user.GetType().GetProperty("TenantId", BindingFlags.Public | BindingFlags.Instance);
 			string id = propertyInfo?.GetValue(user) as string;
