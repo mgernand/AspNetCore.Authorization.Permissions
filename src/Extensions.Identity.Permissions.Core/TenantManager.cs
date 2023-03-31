@@ -337,11 +337,25 @@
 		}
 
 		/// <summary>
-		///     Gets a normalized representation of the specified <paramref name="tenantName" />.
+		///     Gets a list of role ids the specified <paramref name="tenant" /> belongs to.
 		/// </summary>
-		/// <param name="tenantName">The value to normalize.</param>
-		/// <returns>A normalized representation of the specified <paramref name="tenantName" />.</returns>
-		public virtual string NormalizeName(string tenantName)
+		/// <param name="tenant">The permission whose role ids to retrieve.</param>
+		/// <returns>The <see cref="Task" /> that represents the asynchronous operation, containing a list of role ids.</returns>
+		public virtual async Task<IList<string>> GetRolesIdsAsync(TTenant tenant)
+		{
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(tenant);
+
+			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
+			return await store.GetRoleIdsAsync(tenant, this.CancellationToken);
+		}
+
+        /// <summary>
+        ///     Gets a normalized representation of the specified <paramref name="tenantName" />.
+        /// </summary>
+        /// <param name="tenantName">The value to normalize.</param>
+        /// <returns>A normalized representation of the specified <paramref name="tenantName" />.</returns>
+        public virtual string NormalizeName(string tenantName)
 		{
 			return this.KeyNormalizer == null ? tenantName : this.KeyNormalizer.NormalizeName(tenantName);
 		}
