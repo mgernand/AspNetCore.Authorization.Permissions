@@ -46,6 +46,9 @@
 		public abstract Task<IList<string>> GetRolesAsync(TTenant tenant, CancellationToken cancellationToken);
 
 		/// <inheritdoc />
+		public abstract Task<IList<string>> GetRoleIdsAsync(TTenant tenant, CancellationToken cancellationToken);
+
+		/// <inheritdoc />
 		public abstract Task<bool> IsInRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken);
 
 		/// <inheritdoc />

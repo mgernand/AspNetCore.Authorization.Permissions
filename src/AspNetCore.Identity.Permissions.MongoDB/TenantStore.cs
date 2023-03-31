@@ -235,6 +235,26 @@
         }
 
 		/// <inheritdoc />
+		public override async Task<IList<string>> GetRoleIdsAsync(TTenant tenant, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(tenant);
+
+			if (tenant.Roles.Any())
+			{
+				IList<TKey> keys = await this.RolesCollection
+					.Find(x => tenant.Roles.Contains(x.Id))
+					.Project(x => x.Id)
+					.ToListAsync(cancellationToken);
+
+				return keys.Select(this.ConvertIdToString).ToList();
+            }
+
+			return new List<string>(0);
+        }
+
+		/// <inheritdoc />
 		public override async Task<bool> IsInRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();

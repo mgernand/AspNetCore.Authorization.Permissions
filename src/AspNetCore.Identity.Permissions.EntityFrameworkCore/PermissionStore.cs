@@ -302,6 +302,23 @@
         }
 
 		/// <inheritdoc />
+		public override async Task<IList<string>> GetRoleIdsAsync(TPermission permission, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(permission);
+
+			TKey permissionId = permission.Id;
+			IQueryable<TKey> query = from rolePermission in this.RolePermissions
+									   join role in this.Roles on rolePermission.RoleId equals role.Id
+									   where rolePermission.PermissionId.Equals(permissionId)
+									   select role.Id;
+
+			IList<TKey> keys = await query.ToListAsync(cancellationToken);
+			return keys.Select(this.ConvertIdToString).ToList();
+        }
+
+		/// <inheritdoc />
 		public override async Task<bool> IsInRoleAsync(TPermission permission, string normalizedRoleName, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();

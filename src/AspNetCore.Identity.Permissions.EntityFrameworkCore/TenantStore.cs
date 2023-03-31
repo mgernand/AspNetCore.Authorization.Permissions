@@ -252,6 +252,23 @@
 		}
 
 		/// <inheritdoc />
+		public override async Task<IList<string>> GetRoleIdsAsync(TTenant tenant, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(tenant);
+
+			TKey userId = tenant.Id;
+			IQueryable<TKey> query = from tenantRole in this.TenantRoles
+									   join role in this.Roles on tenantRole.RoleId equals role.Id
+									   where tenantRole.TenantId.Equals(userId)
+									   select role.Id;
+
+			IList<TKey> keys = await query.ToListAsync(cancellationToken);
+			return keys.Select(this.ConvertIdToString).ToList();
+        }
+
+		/// <inheritdoc />
 		public override async Task<bool> IsInRoleAsync(TTenant tenant, string normalizedRoleName, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
