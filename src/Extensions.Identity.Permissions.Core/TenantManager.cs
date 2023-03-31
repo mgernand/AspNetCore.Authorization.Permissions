@@ -341,7 +341,7 @@
 		/// </summary>
 		/// <param name="tenant">The permission whose role ids to retrieve.</param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation, containing a list of role ids.</returns>
-		public virtual async Task<IList<string>> GetRolesIdsAsync(TTenant tenant)
+		public virtual async Task<IList<string>> GetRoleIdsAsync(TTenant tenant)
 		{
 			this.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(tenant);

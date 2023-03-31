@@ -98,7 +98,7 @@
 			IdentityBuilder builder = services
 				.AddIdentityCore<TUser>(setupAction)
 				.AddRoles<TRole>()
-				.AddUserManager<TenantUserManager<TUser>>()
+				.AddUserManager<UserManager<TUser>>()
 				.AddErrorDescriber<PermissionIdentityErrorDescriber>()
 				.AddClaimsPrincipalFactory<PermissionUserClaimsPrincipalFactory<TUser>>();
 

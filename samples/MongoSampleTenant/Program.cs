@@ -47,7 +47,7 @@ builder.Services
 	.AddPermissionClaimsProvider()
 	.AddDefaultTenantProvider()
 	.AddTenantManager<AspNetTenantManager<MongoIdentityTenant>>()
-	.AddUserManager<AspNetTenantUserManager<MongoIdentityTenantUser>>()
+	.AddUserManager<AspNetUserManager<MongoIdentityTenantUser>>()
 	.AddRoleManager<AspNetRoleManager<MongoIdentityRole>>()
 	.AddPermissionManager<AspNetPermissionManager<MongoIdentityPermission>>()
 	.AddPermissionsMongoDbStores<InvoicesContext>();

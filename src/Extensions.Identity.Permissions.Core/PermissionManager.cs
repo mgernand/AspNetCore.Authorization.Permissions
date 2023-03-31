@@ -297,7 +297,7 @@
 		/// </summary>
 		/// <param name="permission">The permission whose role ids to retrieve.</param>
 		/// <returns>The <see cref="Task" /> that represents the asynchronous operation, containing a list of role ids.</returns>
-		public virtual async Task<IList<string>> GetRolesIdsAsync(TPermission permission)
+		public virtual async Task<IList<string>> GetRoleIdsAsync(TPermission permission)
 		{
 			this.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(permission);
