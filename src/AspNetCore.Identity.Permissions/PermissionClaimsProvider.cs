@@ -51,7 +51,7 @@
 		where TUser : class
 		where TPermission : class
 	{
-		private readonly TenantUserManager<TUser> userManager;
+		private readonly UserManager<TUser> userManager;
 		private readonly TenantManager<TTenant> tenantManager;
 
 		/// <summary>
@@ -62,7 +62,7 @@
 		/// <param name="permissionManager"></param>
 		public PermissionClaimsProvider(
 			TenantManager<TTenant> tenantManager,
-			TenantUserManager<TUser> userManager,
+			UserManager<TUser> userManager,
 			PermissionManager<TPermission> permissionManager) : base(permissionManager)
 		{
 			this.userManager = userManager;

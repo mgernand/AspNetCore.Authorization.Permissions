@@ -40,7 +40,7 @@ builder.Services
 	.AddPermissionClaimsProvider()
 	.AddDefaultTenantProvider()
 	.AddTenantManager<AspNetTenantManager<IdentityTenant>>()
-	.AddUserManager<AspNetTenantUserManager<IdentityTenantUser>>()
+	.AddUserManager<AspNetUserManager<IdentityTenantUser>>()
 	.AddRoleManager<AspNetRoleManager<IdentityRole>>()
 	.AddPermissionManager<AspNetPermissionManager<IdentityPermission>>()
 	.AddPermissionsEntityFrameworkStores<InvoicesContext>();
