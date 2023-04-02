@@ -21,7 +21,7 @@
 			ITenantStore<TTenant> store,
 			IEnumerable<ITenantValidator<TTenant>> tenantValidators,
 			ILookupNormalizer keyNormalizer,
-			IdentityErrorDescriber errors,
+			PermissionIdentityErrorDescriber errors,
 			ILogger<TenantManager<TTenant>> logger,
 			IHttpContextAccessor httpContextAccessor)
 			: base(store, tenantValidators, keyNormalizer, errors, logger)

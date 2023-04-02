@@ -95,5 +95,23 @@ namespace MadEyeMatt.AspNetCore.Identity.Permissions.Properties {
                 return ResourceManager.GetString("InvalidTenantName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant already in role &apos;{0}&apos;..
+        /// </summary>
+        internal static string TenantAlreadyInRole {
+            get {
+                return ResourceManager.GetString("TenantAlreadyInRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant is not in role &apos;{0}&apos;..
+        /// </summary>
+        internal static string TenantNotInRole {
+            get {
+                return ResourceManager.GetString("TenantNotInRole", resourceCulture);
+            }
+        }
     }
 }

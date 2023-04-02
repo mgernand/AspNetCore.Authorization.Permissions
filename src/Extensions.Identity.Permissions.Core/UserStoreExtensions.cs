@@ -45,6 +45,10 @@
         ///  <param name="store">The user store.</param>
         ///  <param name="user">The user whose tenant id should be set.</param>
         ///  <param name="tenantId">The tenant id to set.</param>
+		/// <param name="cancellationToken">
+		///     The <see cref="T:System.Threading.CancellationToken" /> used to propagate notifications
+		///     that the operation should be canceled.
+		/// </param>       
         ///  <returns>
         /// 		The <see cref="Task" /> that represents the asynchronous operation.
         ///  </returns>

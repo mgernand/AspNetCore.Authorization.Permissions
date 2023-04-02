@@ -133,4 +133,12 @@
     <value>Invalid tenant name '{0}'.</value>
     <comment>0 - The name of the tenant.</comment>
   </data>
+  <data name="TenantAlreadyInRole" xml:space="preserve">
+    <value>Tenant already in role '{0}'.</value>
+    <comment>0 - The name of the role</comment>
+  </data>
+  <data name="TenantNotInRole" xml:space="preserve">
+    <value>Tenant is not in role '{0}'.</value>
+    <comment>0 - The name of the role</comment>
+  </data>
 </root>
