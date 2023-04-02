@@ -31,7 +31,7 @@
 			ITenantStore<TTenant> store,
 			IEnumerable<ITenantValidator<TTenant>> tenantValidators,
 			ILookupNormalizer keyNormalizer,
-			IdentityErrorDescriber errors,
+			PermissionIdentityErrorDescriber errors,
 			ILogger<TenantManager<TTenant>> logger)
 		{
 			this.Store = store ?? throw new ArgumentNullException(nameof(store));
@@ -79,7 +79,7 @@
 		/// <value>
 		///     The <see cref="IdentityErrorDescriber" /> used to provider error messages.
 		/// </value>
-		protected IdentityErrorDescriber ErrorDescriber { get; private set; }
+		protected PermissionIdentityErrorDescriber ErrorDescriber { get; private set; }
 
 		/// <summary>
 		///     Gets the normalizer to use when normalizing tenant names to keys.
@@ -182,7 +182,7 @@
 			this.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(tenant);
 
-            return this.UpdateTenantAsync(tenant);
+			return this.UpdateTenantAsync(tenant);
 		}
 
 		/// <summary>
@@ -198,7 +198,7 @@
 			this.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(tenant);
 
-            return this.Store.DeleteAsync(tenant, this.CancellationToken);
+			return this.Store.DeleteAsync(tenant, this.CancellationToken);
 		}
 
 		/// <summary>
@@ -214,7 +214,7 @@
 			this.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(tenantName);
 
-            return await this.FindByNameAsync(tenantName) != null;
+			return await this.FindByNameAsync(tenantName) != null;
 		}
 
 		/// <summary>
@@ -246,7 +246,7 @@
 			this.ThrowIfDisposed();
 			ArgumentNullException.ThrowIfNull(tenantName);
 
-            return this.Store.FindByNameAsync(this.NormalizeName(tenantName), this.CancellationToken);
+			return this.Store.FindByNameAsync(this.NormalizeName(tenantName), this.CancellationToken);
 		}
 
 		/// <summary>
@@ -333,7 +333,7 @@
 			ArgumentNullException.ThrowIfNull(tenant);
 
 			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
-            return await store.GetRolesAsync(tenant, this.CancellationToken);
+			return await store.GetRolesAsync(tenant, this.CancellationToken);
 		}
 
 		/// <summary>
@@ -350,12 +350,92 @@
 			return await store.GetRoleIdsAsync(tenant, this.CancellationToken);
 		}
 
-        /// <summary>
-        ///     Gets a normalized representation of the specified <paramref name="tenantName" />.
-        /// </summary>
-        /// <param name="tenantName">The value to normalize.</param>
-        /// <returns>A normalized representation of the specified <paramref name="tenantName" />.</returns>
-        public virtual string NormalizeName(string tenantName)
+		/// <summary>
+		///     Add the specified <paramref name="tenant" /> to the named role.
+		/// </summary>
+		/// <param name="tenant">The tenant to add to the named role.</param>
+		/// <param name="roleName">The name of the role to add the tenant to.</param>
+		/// <returns>
+		///     The <see cref="Task" /> that represents the asynchronous operation, containing the <see cref="IdentityResult" />
+		///     of the operation.
+		/// </returns>
+		public virtual async Task<IdentityResult> AddToRoleAsync(TTenant tenant, string roleName)
+		{
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(tenant);
+
+			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
+			string normalizedRoleName = this.NormalizeName(roleName);
+			if(await store.IsInRoleAsync(tenant, normalizedRoleName, this.CancellationToken).ConfigureAwait(false))
+			{
+				return this.TenantAlreadyInRoleError(roleName);
+			}
+
+			await store.AddToRoleAsync(tenant, normalizedRoleName, this.CancellationToken).ConfigureAwait(false);
+			return await this.UpdateTenantAsync(tenant).ConfigureAwait(false);
+		}
+
+		/// <summary>
+		///     Add the specified <paramref name="tenant" /> to the named roles.
+		/// </summary>
+		/// <param name="tenant">The tenant to add to the named roles.</param>
+		/// <param name="roleNames">The name of the roles to add the tenant to.</param>
+		/// <returns>
+		///     The <see cref="Task" /> that represents the asynchronous operation, containing the <see cref="IdentityResult" />
+		///     of the operation.
+		/// </returns>
+		public virtual async Task<IdentityResult> AddToRolesAsync(TTenant tenant, IEnumerable<string> roleNames)
+		{
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(tenant);
+			ArgumentNullException.ThrowIfNull(roleNames);
+
+			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
+			foreach(string roleName in roleNames)
+			{
+				string normalizedRoleName = this.NormalizeName(roleName);
+				if(await store.IsInRoleAsync(tenant, normalizedRoleName, this.CancellationToken).ConfigureAwait(false))
+				{
+					return this.TenantAlreadyInRoleError(roleName);
+				}
+
+				await store.AddToRoleAsync(tenant, normalizedRoleName, this.CancellationToken).ConfigureAwait(false);
+			}
+
+			return await this.UpdateTenantAsync(tenant).ConfigureAwait(false);
+		}
+
+		/// <summary>
+		///     Removes the specified <paramref name="tenant" /> from the named role.
+		/// </summary>
+		/// <param name="tenant">The tenant to remove from the named role.</param>
+		/// <param name="roleName">The name of the role to remove the tenant from.</param>
+		/// <returns>
+		///     The <see cref="Task" /> that represents the asynchronous operation, containing the <see cref="IdentityResult" />
+		///     of the operation.
+		/// </returns>
+		public virtual async Task<IdentityResult> RemoveFromRoleAsync(TTenant tenant, string roleName)
+		{
+			this.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(tenant);
+
+			ITenantRoleStore<TTenant> store = this.GetTenantRoleStore();
+			string normalizedRoleName = this.NormalizeName(roleName);
+			if(!await store.IsInRoleAsync(tenant, normalizedRoleName, this.CancellationToken).ConfigureAwait(false))
+			{
+				return this.TenantNotInRoleError(roleName);
+			}
+
+			await store.RemoveFromRoleAsync(tenant, normalizedRoleName, this.CancellationToken).ConfigureAwait(false);
+			return await this.UpdateTenantAsync(tenant).ConfigureAwait(false);
+		}
+
+		/// <summary>
+		///     Gets a normalized representation of the specified <paramref name="tenantName" />.
+		/// </summary>
+		/// <param name="tenantName">The value to normalize.</param>
+		/// <returns>A normalized representation of the specified <paramref name="tenantName" />.</returns>
+		public virtual string NormalizeName(string tenantName)
 		{
 			return this.KeyNormalizer == null ? tenantName : this.KeyNormalizer.NormalizeName(tenantName);
 		}
@@ -442,6 +522,18 @@
 			}
 
 			return cast;
+		}
+
+		private IdentityResult TenantAlreadyInRoleError(string roleName)
+		{
+			this.Logger.LogDebug(LoggerEventIds.TenantAlreadyInRole, "Tenant is already in role {role}.", roleName);
+			return IdentityResult.Failed(this.ErrorDescriber.TenantAlreadyInRole(roleName));
+		}
+
+		private IdentityResult TenantNotInRoleError(string roleName)
+		{
+			this.Logger.LogDebug(LoggerEventIds.TenantNotInRole, "Tenant is not in role {role}.", roleName);
+			return IdentityResult.Failed(this.ErrorDescriber.TenantNotInRole(roleName));
 		}
 	}
 }

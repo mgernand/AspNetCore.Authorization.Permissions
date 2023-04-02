@@ -83,5 +83,35 @@
 				Description = string.Format(Resources.InvalidTenantName, tenantName)
 			};
 		}
-	}
+
+        /// <summary>
+        ///     Returns an <see cref="IdentityError" /> indicating a tenant is not in the specified <paramref name="roleName" />.
+        /// </summary>
+        /// <param name="roleName">The duplicate role.</param>
+        /// <returns>An <see cref="IdentityError" /> indicating a tenant is not in the specified <paramref name="roleName" />.</returns>
+        public virtual IdentityError TenantAlreadyInRole(string roleName)
+		{
+			return new IdentityError
+			{
+				Code = nameof(TenantAlreadyInRole),
+				Description = string.Format(Resources.TenantAlreadyInRole, roleName)
+
+			};
+		}
+
+        /// <summary>
+        ///		Returns an <see cref="IdentityError" /> indicating a user is not in the specified <paramref name="roleName" />.
+        /// </summary>
+        /// <param name="roleName">The duplicate role.</param>
+        /// <returns>An <see cref="IdentityError" /> indicating a user is not in the specified <paramref name="roleName" />.</returns>
+        public virtual IdentityError TenantNotInRole(string roleName)
+		{
+			return new IdentityError
+			{
+				Code = nameof(TenantNotInRole),
+				Description = string.Format(Resources.TenantNotInRole, roleName)
+
+			};
+		}
+    }
 }
