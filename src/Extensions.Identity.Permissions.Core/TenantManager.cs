@@ -258,7 +258,7 @@
 		/// </returns>
 		public virtual async Task UpdateNormalizedTenantNameAsync(TTenant tenant)
 		{
-			string name = await this.GetTenantIdAsync(tenant);
+			string name = await this.GetTenantNameAsync(tenant);
 			await this.Store.SetNormalizedTenantNameAsync(tenant, this.NormalizeName(name), this.CancellationToken);
 		}
 
@@ -319,7 +319,7 @@
 
 			await this.Store.SetTenantNameAsync(tenant, tenantName, this.CancellationToken);
 			await this.UpdateNormalizedTenantNameAsync(tenant);
-			return IdentityResult.Success;
+			return await this.UpdateTenantAsync(tenant);
 		}
 
 		/// <summary>
