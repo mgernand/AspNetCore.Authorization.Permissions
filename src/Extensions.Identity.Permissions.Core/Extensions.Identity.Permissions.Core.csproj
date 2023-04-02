@@ -14,9 +14,9 @@
 		<RootNamespace>MadEyeMatt.AspNetCore.Identity.Permissions</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2022-2023 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>8.3.2</Version>
-		<AssemblyVersion>8.3.2</AssemblyVersion>
-		<FileVersion>8.3.2</FileVersion>
+		<Version>8.3.3</Version>
+		<AssemblyVersion>8.3.3</AssemblyVersion>
+		<FileVersion>8.3.3</FileVersion>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A libary that adds permission-based authorization.</Description>
 		<NeutralLanguage>en</NeutralLanguage>
