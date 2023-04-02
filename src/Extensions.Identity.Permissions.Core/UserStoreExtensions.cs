@@ -39,6 +39,28 @@
 			return Task.FromResult(id);
 		}
 
+        ///  <summary>
+        ///      Sets the given <paramref name="tenantId" /> for the specified <paramref name="user" />.
+        ///  </summary>
+        ///  <param name="store">The user store.</param>
+        ///  <param name="user">The user whose tenant id should be set.</param>
+        ///  <param name="tenantId">The tenant id to set.</param>
+        ///  <returns>
+        /// 		The <see cref="Task" /> that represents the asynchronous operation.
+        ///  </returns>
+        public static Task SetTenantIdAsync<TUser>(this IUserStore<TUser> store, TUser user, string tenantId, CancellationToken cancellationToken = default) 
+			where TUser : class
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			store.ThrowIfDisposed();
+			ArgumentNullException.ThrowIfNull(user);
+
+			PropertyInfo propertyInfo = user.GetType().GetProperty("TenantId", BindingFlags.Public | BindingFlags.Instance);
+			propertyInfo?.SetValue(user, tenantId);
+
+			return Task.CompletedTask;
+		}
+
 		private static void ThrowIfDisposed<TUser>(this IUserStore<TUser> userStore)
 			where TUser : class
 		{
