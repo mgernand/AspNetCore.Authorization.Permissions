@@ -13,64 +13,6 @@
 	using MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB.Properties;
 	using Microsoft.AspNetCore.Identity;
 
-    /// <summary>
-    ///     Represents a new instance of a persistence store for permissions, using the default implementation
-    ///     of <see cref="IdentityPermission" /> and <see cref="IdentityRole{TKey}" /> with a string as a primary key.
-    /// </summary>
-	[PublicAPI]
-	public class PermissionStore : PermissionStore<MongoIdentityPermission<string>>
-	{
-        /// <summary>
-        ///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
-        /// </summary>
-        /// <param name="context">The <see cref="MongoDbContext" />.</param>
-        /// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-        public PermissionStore(MongoDbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
-	/// <summary>
-	///     Represents a new instance of a persistence store for the specified permission type.
-	/// </summary>
-	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
-	[PublicAPI]
-	public class PermissionStore<TPermission> : PermissionStore<TPermission, MongoIdentityRole<string>>
-		where TPermission : MongoIdentityPermission<string>
-    {
-        /// <summary>
-        ///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
-        /// </summary>
-        /// <param name="context">The <see cref="MongoDbContext" />.</param>
-        /// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-        public PermissionStore(MongoDbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
-	/// <summary>
-	///     Represents a new instance of a persistence store for the specified permission and role types.
-	/// </summary>
-	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
-	/// <typeparam name="TRole">The type of the class representing a role</typeparam>
-	[PublicAPI]
-	public class PermissionStore<TPermission, TRole> : PermissionStore<TPermission, TRole, MongoDbContext>
-		where TPermission : MongoIdentityPermission<string>
-        where TRole : MongoIdentityRole<string>
-    {
-        /// <summary>
-        ///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
-        /// </summary>
-        /// <param name="context">The <see cref="MongoDbContext" />.</param>
-        /// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-        public PermissionStore(MongoDbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
 	/// <summary>
 	///     Represents a new instance of a persistence store for the specified permission, role and db context types.
 	/// </summary>

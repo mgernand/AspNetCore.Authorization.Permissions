@@ -12,35 +12,6 @@
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
-	///     Represents a new instance of a persistence store for tenants, using the default implementation
-	///     of <see cref="IdentityTenantUser" /> with a string as a primary key.
-	/// </summary>
-	[PublicAPI]
-	public class TenantStore : TenantStore<MongoIdentityTenant<string>>
-	{
-		/// <inheritdoc />
-		public TenantStore(MongoDbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
-	/// <summary>
-	///     Represents a new instance of a persistence store for the specified tenant type.
-	/// </summary>
-	/// <typeparam name="TTenant">The type of the class representing a tenant</typeparam>
-	[PublicAPI]
-	public class TenantStore<TTenant> : TenantStore<TTenant, MongoIdentityRole<string>, MongoDbContext>
-		where TTenant : MongoIdentityTenant<string>
-    {
-		/// <inheritdoc />
-		public TenantStore(MongoDbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
-	/// <summary>
 	///     Represents a new instance of a persistence store for the specified tenant, role and db context types.
 	/// </summary>
 	/// <typeparam name="TTenant">The type of the class representing a tenant.</typeparam>

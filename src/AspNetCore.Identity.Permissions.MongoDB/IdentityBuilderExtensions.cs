@@ -20,7 +20,7 @@
 		/// <param name="builder"></param>
 		/// <returns></returns>
 		public static IdentityBuilder AddPermissionsMongoDbStores<TContext>(this IdentityBuilder builder)
-			where TContext : PermissionsIdentityMongoDbContext
+			where TContext : MongoDbContext
         {
 			if (builder is PermissionIdentityBuilder permissionBuilder)
 			{
