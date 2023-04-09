@@ -10,43 +10,6 @@
 	using Microsoft.EntityFrameworkCore;
 
 	/// <summary>
-	///     Represents a new instance of a persistence store for permissions, using the default implementation
-	///     of <see cref="IdentityPermission" /> and <see cref="IdentityRole{TKey}" /> with a string as a primary key.
-	/// </summary>
-	[PublicAPI]
-	public class PermissionStore : PermissionStore<IdentityPermission>
-	{
-		/// <summary>
-		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
-		/// </summary>
-		/// <param name="context">The <see cref="DbContext" />.</param>
-		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-		public PermissionStore(DbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
-	/// <summary>
-	///     Represents a new instance of a persistence store for the specified permission type.
-	/// </summary>
-	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>
-	[PublicAPI]
-	public class PermissionStore<TPermission> : PermissionStore<TPermission, IdentityRole>
-		where TPermission : IdentityPermission
-	{
-		/// <summary>
-		///     Constructs a new instance of <see cref="PermissionStore{TPermission, TRole}" />.
-		/// </summary>
-		/// <param name="context">The <see cref="DbContext" />.</param>
-		/// <param name="describer">The <see cref="IdentityErrorDescriber" />.</param>
-		public PermissionStore(DbContext context, IdentityErrorDescriber describer = null)
-			: base(context, describer)
-		{
-		}
-	}
-
-	/// <summary>
 	///     Represents a new instance of a persistence store for the specified permission and role types.
 	/// </summary>
 	/// <typeparam name="TPermission">The type of the class representing a permission</typeparam>

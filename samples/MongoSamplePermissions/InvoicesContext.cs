@@ -1,25 +1,27 @@
 ﻿namespace MongoSamplePermissions
 {
 	using System;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB;
+	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.AspNetCore.Identity.Permissions;
+	using Microsoft.AspNetCore.Identity;
 	using MongoDB.Driver;
 	using MongoSamplePermissions.Model;
 
-	public class InvoicesContext : PermissionsIdentityMongoDbContext
-    {
+	public class InvoicesContext : MongoDbContext
+	{
 		/// <inheritdoc />
 		public InvoicesContext(IMongoDatabase database) 
 			: base(database)
 		{
 		}
 
-		protected override string UsersCollectionName => "Users";
+		private static string UsersCollectionName => "Users";
 
-		protected override string RolesCollectionName => "Roles";
+		private static string RolesCollectionName => "Roles";
 
-        protected override string TenantsCollectionName => "Tenants";
+		private static string TenantsCollectionName => "Tenants";
 
-		protected override string PermissionsCollectionName => "Permissions";
+		private static string PermissionsCollectionName => "Permissions";
 
 		/// <inheritdoc />
 		public override string GetCollectionName<TDocument>()
@@ -27,7 +29,24 @@
 			string collectionName = base.GetCollectionName<TDocument>();
 
 			Type type = typeof(TDocument);
-			if(type == typeof(Invoice))
+
+			if (IsGenericBaseType(type, typeof(IdentityUser<>)))
+			{
+				collectionName = UsersCollectionName;
+			}
+			else if (IsGenericBaseType(type, typeof(IdentityRole<>)))
+			{
+				collectionName = RolesCollectionName;
+			}
+			else if (IsGenericBaseType(type, typeof(IdentityTenant<>)))
+			{
+				collectionName = TenantsCollectionName;
+			}
+			else if (IsGenericBaseType(type, typeof(IdentityPermission<>)))
+			{
+				collectionName = PermissionsCollectionName;
+			}
+			else if (type == typeof(Invoice))
 			{
 				collectionName = "Invoices";
 			}
