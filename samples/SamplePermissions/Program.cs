@@ -47,6 +47,9 @@ WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+IServiceScope serviceScope = app.Services.CreateScope();
+InvoicesContext requiredService = serviceScope.ServiceProvider.GetRequiredService<InvoicesContext>();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();

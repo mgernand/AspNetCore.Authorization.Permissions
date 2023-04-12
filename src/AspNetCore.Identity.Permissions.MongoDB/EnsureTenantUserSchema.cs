@@ -7,22 +7,25 @@
 	using global::MongoDB.Bson;
 	using global::MongoDB.Driver;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.AspNetCore.Identity.MongoDB.Initialization;
+	using MadEyeMatt.MongoDB.DbContext;
+	using MadEyeMatt.MongoDB.DbContext.Initialization;
 
 	[UsedImplicitly]
-	internal sealed class EnsureTenantUserSchema<TUser, TKey> : IEnsureSchema
+	internal sealed class EnsureTenantUserSchema<TUser, TKey, TContext> : EnsureSchemaBase<TContext>
 		where TUser : MongoIdentityTenantUser<TKey>
 		where TKey : IEquatable<TKey>
+		where TContext : MongoDbContext
 	{
-		private readonly MongoDbContext context;
+		private readonly TContext context;
 
-		public EnsureTenantUserSchema(MongoDbContext context)
+		public EnsureTenantUserSchema(TContext context) : base(context) 
 		{
 			this.context = context;
 		}
 
 		/// <inheritdoc />
-		public async Task ExecuteAsync()
+		public override async Task ExecuteAsync()
 		{
 			IMongoCollection<TUser> collection = this.context.GetCollection<TUser>();
 

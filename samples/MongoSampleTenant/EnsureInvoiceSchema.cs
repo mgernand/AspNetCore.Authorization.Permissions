@@ -4,23 +4,25 @@ namespace MongoSampleTenant
 	using System.Collections.Generic;
 	using System.Linq.Expressions;
 	using System.Threading.Tasks;
-	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.MongoDB.DbContext;
+	using MadEyeMatt.MongoDB.DbContext.Initialization;
 	using MongoDB.Driver;
 	using MongoSampleTenant.Model;
 
-	public class EnsureInvoiceSchema : IEnsureSchema
+	public class EnsureInvoiceSchema<TContext> : EnsureSchemaBase<TContext>
+		where TContext : MongoDbContext
 	{
-		private readonly MongoDbContext context;
+		private readonly TContext context;
 
-		public EnsureInvoiceSchema(MongoDbContext context)
+		public EnsureInvoiceSchema(TContext context) : base(context)
 		{
 			this.context = context;
 		}
 
-        /// <inheritdoc />
-        public async Task ExecuteAsync()
+		/// <inheritdoc />
+		public override async Task ExecuteAsync()
 		{
-			bool exists = await this.context.CollectionExistsAsync<Invoice>();
+			bool exists = await this.CollectionExistsAsync<Invoice>();
 			if (!exists)
 			{
 				string collectionName = this.context.GetCollectionName<Invoice>();

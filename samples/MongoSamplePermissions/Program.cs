@@ -5,6 +5,8 @@ using MadEyeMatt.AspNetCore.Authorization.Permissions;
 using MadEyeMatt.AspNetCore.Identity.MongoDB;
 using MadEyeMatt.AspNetCore.Identity.Permissions;
 using MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB;
+using MadEyeMatt.MongoDB.DbContext;
+using MadEyeMatt.MongoDB.DbContext.Initialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,8 +32,7 @@ builder.Services
 builder.Services
 	.AddMongoDbContext<InvoicesContext>(options =>
 	{
-		options.ConnectionString = "mongodb://localhost:27017";
-		options.DatabaseName = "permissions";
+		options.UseDatabase("mongodb://localhost:27017", "permissions");
 	})
 	.AddPermissionsIdentityCore<MongoIdentityUser, MongoIdentityRole, MongoIdentityPermission>(options =>
 	{
@@ -50,7 +51,7 @@ builder.Services
 	.AddPermissionManager<AspNetPermissionManager<MongoIdentityPermission>>()
 	.AddPermissionsMongoDbStores<InvoicesContext>();
 
-builder.Services.AddSingleton<IEnsureSchema, EnsureInvoiceSchema>();
+builder.Services.AddEnsureSchema<EnsureInvoiceSchema<InvoicesContext>>();
 
 WebApplication app = builder.Build();
 
@@ -63,11 +64,11 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapRazorPages();
 
-await app.InitializeMongoDbStores();
-
 // Insert sample data
 using(IServiceScope serviceScope = app.Services.CreateScope())
 {
+	await serviceScope.ServiceProvider.InitializeMongoDbIdentityStores();
+
 	try
 	{
 		// Insert roles

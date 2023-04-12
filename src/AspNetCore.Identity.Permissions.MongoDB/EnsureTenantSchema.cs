@@ -6,24 +6,27 @@
 	using System.Threading.Tasks;
 	using global::MongoDB.Driver;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.AspNetCore.Identity.MongoDB.Initialization;
+	using MadEyeMatt.MongoDB.DbContext;
+	using MadEyeMatt.MongoDB.DbContext.Initialization;
 
 	[UsedImplicitly]
-	internal sealed class EnsureTenantSchema<TTenant, TKey> : IEnsureSchema
+	internal sealed class EnsureTenantSchema<TTenant, TKey, TContext> : EnsureSchemaBase<TContext>
 		where TTenant : MongoIdentityTenant<TKey>
 		where TKey : IEquatable<TKey>
+		where TContext : MongoDbContext
 	{
-		private readonly MongoDbContext context;
+		private readonly TContext context;
 
-		public EnsureTenantSchema(MongoDbContext context)
+		public EnsureTenantSchema(TContext context) : base(context)
 		{
 			this.context = context;
 		}
 
 		/// <inheritdoc />
-		public async Task ExecuteAsync()
+		public override async Task ExecuteAsync()
 		{
-			bool exists = await this.context.CollectionExistsAsync<TTenant>();
+			bool exists = await this.CollectionExistsAsync<TTenant>();
 			if (!exists)
 			{
 				string collectionName = this.context.GetCollectionName<TTenant>();
