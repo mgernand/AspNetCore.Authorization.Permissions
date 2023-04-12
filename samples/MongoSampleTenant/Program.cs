@@ -9,6 +9,8 @@ using MongoDB.Bson;
 using System.Threading;
 using System;
 using System.Collections.Generic;
+using MadEyeMatt.MongoDB.DbContext;
+using MadEyeMatt.MongoDB.DbContext.Initialization;
 using MongoDB.Driver;
 using MongoSampleTenant;
 using MongoSampleTenant.Model;
@@ -30,9 +32,8 @@ builder.Services
 builder.Services
 	.AddMongoDbContext<InvoicesContext>(options =>
 	{
-		options.ConnectionString = "mongodb://localhost:27017";
-		options.DatabaseName = "permissions";
-    })
+		options.UseDatabase("mongodb://localhost:27017", "permissions");
+	})
 	.AddPermissionsIdentityCore<MongoIdentityTenant, MongoIdentityTenantUser, MongoIdentityRole, MongoIdentityPermission>(options =>
 	{
 		options.Password.RequireDigit = false;
@@ -52,7 +53,7 @@ builder.Services
 	.AddPermissionManager<AspNetPermissionManager<MongoIdentityPermission>>()
 	.AddPermissionsMongoDbStores<InvoicesContext>();
 
-builder.Services.AddSingleton<IEnsureSchema, EnsureInvoiceSchema>();
+builder.Services.AddEnsureSchema<EnsureInvoiceSchema<InvoicesContext>>();
 
 WebApplication app = builder.Build();
 
@@ -65,12 +66,12 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapRazorPages();
 
-await app.InitializeMongoDbStores();
-
 // Insert sample data
 using (IServiceScope serviceScope = app.Services.CreateScope())
 {
-    try
+	await serviceScope.ServiceProvider.InitializeMongoDbIdentityStores();
+
+	try
     {
         // Insert roles
         IRoleStore<MongoIdentityRole> roleStore = serviceScope.ServiceProvider.GetRequiredService<IRoleStore<MongoIdentityRole>>();

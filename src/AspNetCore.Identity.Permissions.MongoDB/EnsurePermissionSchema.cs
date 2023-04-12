@@ -6,24 +6,27 @@
 	using System.Threading.Tasks;
 	using global::MongoDB.Driver;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.AspNetCore.Identity.MongoDB.Initialization;
+	using MadEyeMatt.MongoDB.DbContext;
+	using MadEyeMatt.MongoDB.DbContext.Initialization;
 
 	[UsedImplicitly]
-	internal sealed class EnsurePermissionSchema<TPermission, TKey> : IEnsureSchema
+	internal sealed class EnsurePermissionSchema<TPermission, TKey, TContext> : EnsureSchemaBase<TContext>
 		where TPermission : MongoIdentityPermission<TKey>
 		where TKey : IEquatable<TKey>
+		where TContext : MongoDbContext
 	{
-		private readonly MongoDbContext context;
+		private readonly TContext context;
 
-		public EnsurePermissionSchema(MongoDbContext context)
+		public EnsurePermissionSchema(TContext context) : base(context)
 		{
 			this.context = context;
 		}
 
 		/// <inheritdoc />
-		public async Task ExecuteAsync()
+		public override  async Task ExecuteAsync()
 		{
-            bool exists = await this.context.CollectionExistsAsync<TPermission>();
+            bool exists = await this.CollectionExistsAsync<TPermission>();
 			if (!exists)
 			{
 				string collectionName = this.context.GetCollectionName<TPermission>();

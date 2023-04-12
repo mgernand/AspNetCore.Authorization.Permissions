@@ -1,17 +1,16 @@
 ﻿namespace MongoSampleTenant
 {
 	using System;
-	using global::MongoDB.Driver;
-	using MadEyeMatt.AspNetCore.Identity.MongoDB;
 	using MongoSampleTenant.Model;
 	using MadEyeMatt.AspNetCore.Identity.Permissions;
+	using MadEyeMatt.MongoDB.DbContext;
 	using Microsoft.AspNetCore.Identity;
 
 	public class InvoicesContext : MongoDbContext
     {
 		/// <inheritdoc />
-		public InvoicesContext(IMongoDatabase database) 
-			: base(database)
+		public InvoicesContext(MongoDbContextOptions options)
+			: base(options)
 		{
 		}
 
@@ -52,6 +51,31 @@
 			}
 
 			return collectionName;
+		}
+
+		/// <summary>
+		///		Checks if the current type has the given base type.
+		/// </summary>
+		private static bool IsGenericBaseType(Type currentType, Type genericBaseType)
+		{
+			if (currentType == genericBaseType)
+			{
+				return true;
+			}
+
+			Type type = currentType;
+			while (type != null)
+			{
+				Type genericType = type.IsGenericType ? type.GetGenericTypeDefinition() : null;
+				if (genericType != null && genericType == genericBaseType)
+				{
+					return true;
+				}
+
+				type = type.BaseType;
+			}
+
+			return false;
 		}
 	}
 }

@@ -3,6 +3,8 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.MongoDB.DbContext;
+	using MadEyeMatt.MongoDB.DbContext.Initialization;
 	using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -72,8 +74,8 @@
             Type permissionStoreType = typeof(PermissionStore<,,,>).MakeGenericType(permissionType, roleType, contextType, keyType);
             services.TryAddScoped(typeof(IPermissionStore<>).MakeGenericType(permissionType), permissionStoreType);
 
-			Type ensurePermissionSchemaType = typeof(EnsurePermissionSchema<, >).MakeGenericType(permissionType, keyType);
-            services.AddSingleton(typeof(IEnsureSchema), ensurePermissionSchemaType);
+			Type ensurePermissionSchemaType = typeof(EnsurePermissionSchema<,,>).MakeGenericType(permissionType, keyType, contextType);
+            services.AddEnsureSchema(ensurePermissionSchemaType);
 
             if (tenantType is not null)
             {
@@ -81,11 +83,11 @@
                 Type tenantsStoreType = typeof(TenantStore<,,,>).MakeGenericType(tenantType, roleType, contextType, keyType);
                 services.TryAddScoped(typeof(ITenantStore<>).MakeGenericType(tenantType), tenantsStoreType);
 
-				Type ensureTenantSchemaType = typeof(EnsureTenantSchema<, >).MakeGenericType(tenantType, keyType);
-				services.AddSingleton(typeof(IEnsureSchema), ensureTenantSchemaType);
+				Type ensureTenantSchemaType = typeof(EnsureTenantSchema<,,>).MakeGenericType(tenantType, keyType, contextType);
+				services.AddEnsureSchema(ensureTenantSchemaType);
 
-				Type ensureTenantUserSchemaType = typeof(EnsureTenantUserSchema<,>).MakeGenericType(userType, keyType);
-				services.AddSingleton(typeof(IEnsureSchema), ensureTenantUserSchemaType);
+				Type ensureTenantUserSchemaType = typeof(EnsureTenantUserSchema<,,>).MakeGenericType(userType, keyType, contextType);
+				services.AddEnsureSchema(ensureTenantUserSchemaType);
             }
         }
 
