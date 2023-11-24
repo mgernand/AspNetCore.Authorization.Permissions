@@ -52,7 +52,7 @@
 		public TenantStore(TContext context, IdentityErrorDescriber describer = null)
 			: base(describer)
 		{
-			ArgumentNullException.ThrowIfNull(context);
+			Guard.ThrowIfNull(context);
 
 			this.context = context;
         }
@@ -75,7 +75,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
 			tenant.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 			await this.TenantsCollection.InsertOneAsync(tenant, new InsertOneOptions(), cancellationToken);
@@ -88,7 +88,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
 			string oldConcurrencyStamp = tenant.ConcurrencyStamp;
 			tenant.ConcurrencyStamp = Guid.NewGuid().ToString("N");
@@ -106,7 +106,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
 			string oldConcurrencyStamp = tenant.ConcurrencyStamp;
 			tenant.ConcurrencyStamp = Guid.NewGuid().ToString("N");
@@ -161,8 +161,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(tenant);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (role is null)
@@ -178,8 +178,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(tenant);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (role is not null)
@@ -193,7 +193,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
 			if (tenant.Roles.Any())
 			{
@@ -211,7 +211,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
 			if (tenant.Roles.Any())
 			{
@@ -231,8 +231,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(tenant);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.RolesCollection.Find(x => x.NormalizedName == normalizedRoleName).FirstOrDefaultAsync(cancellationToken);
 			return role is not null && tenant.Roles.Any(x => x.Equals(role.Id));
@@ -243,7 +243,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (role is not null)

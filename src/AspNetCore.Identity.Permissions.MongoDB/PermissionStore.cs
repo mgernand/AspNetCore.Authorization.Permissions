@@ -64,7 +64,7 @@
         public PermissionStore(TContext context, IdentityErrorDescriber describer = null)
 			: base(describer)
 		{
-			ArgumentNullException.ThrowIfNull(context);
+			Guard.ThrowIfNull(context);
 
 			this.context = context;
         }
@@ -87,7 +87,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
+			Guard.ThrowIfNull(permission);
 
 			permission.ConcurrencyStamp = Guid.NewGuid().ToString("N");
 			await this.PermissionsCollection.InsertOneAsync(permission, new InsertOneOptions(), cancellationToken);
@@ -100,7 +100,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
+			Guard.ThrowIfNull(permission);
 
 			string oldConcurrencyStamp = permission.ConcurrencyStamp;
 			permission.ConcurrencyStamp = Guid.NewGuid().ToString("N");
@@ -118,7 +118,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
+			Guard.ThrowIfNull(permission);
 
 			string oldConcurrencyStamp = permission.ConcurrencyStamp;
 			permission.ConcurrencyStamp = Guid.NewGuid().ToString("N");
@@ -156,8 +156,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(permission);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (role is null)
@@ -173,8 +173,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(permission);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (role is null)
@@ -190,7 +190,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
+			Guard.ThrowIfNull(permission);
 
 			if (permission.Roles.Any())
 			{
@@ -208,7 +208,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
+			Guard.ThrowIfNull(permission);
 
 			if (permission.Roles.Any())
 			{
@@ -228,8 +228,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(permission);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(permission);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.RolesCollection.Find(x => x.NormalizedName == normalizedRoleName).FirstOrDefaultAsync(cancellationToken);
 			return role is not null && permission.Roles.Any(x => x.Equals(role.Id));
@@ -240,7 +240,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if (role is not null)
