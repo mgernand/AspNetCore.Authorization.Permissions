@@ -70,7 +70,7 @@
 		public TenantStore(TContext context, IdentityErrorDescriber describer = null)
 			: base(describer)
 		{
-			ArgumentNullException.ThrowIfNull(context);
+			Guard.ThrowIfNull(context);
 
 			this.Context = context;
         }
@@ -98,7 +98,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
             tenant.ConcurrencyStamp = Guid.NewGuid().ToString("N");
             this.Context.Add(tenant);
@@ -111,7 +111,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
             this.Context.Attach(tenant);
 			tenant.ConcurrencyStamp = Guid.NewGuid().ToString("N");
@@ -133,7 +133,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
             this.Context.Remove(tenant);
 			try
@@ -175,8 +175,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(tenant);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
             TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if(role == null)
@@ -192,8 +192,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(tenant);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
             TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if(role != null)
@@ -211,7 +211,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
             TKey userId = tenant.Id;
 			IQueryable<string> query = from tenantRole in this.TenantRoles
@@ -227,7 +227,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
+			Guard.ThrowIfNull(tenant);
 
 			TKey userId = tenant.Id;
 			IQueryable<TKey> query = from tenantRole in this.TenantRoles
@@ -244,8 +244,8 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentNullException.ThrowIfNull(tenant);
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNull(tenant);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 			if(role != null)
@@ -262,7 +262,7 @@
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 			this.ThrowIfDisposed();
-			ArgumentException.ThrowIfNullOrEmpty(normalizedRoleName);
+			Guard.ThrowIfNullOrWhiteSpace(normalizedRoleName);
 
 			TRole role = await this.FindRoleAsync(normalizedRoleName, cancellationToken);
 
