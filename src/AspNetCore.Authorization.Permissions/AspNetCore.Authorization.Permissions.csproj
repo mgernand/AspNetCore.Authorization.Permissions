@@ -13,10 +13,10 @@
 		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
-		<Copyright>Copyright © 2022-2023 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>8.5.1</Version>
-		<AssemblyVersion>8.5.1</AssemblyVersion>
-		<FileVersion>8.5.1</FileVersion>
+		<Copyright>Copyright © 2022-2024 Matthias Gernand. All rights reserved.</Copyright>
+		<Version>8.5.2</Version>
+		<AssemblyVersion>8.5.2</AssemblyVersion>
+		<FileVersion>8.5.2</FileVersion>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A libary that adds permission-based authorization.</Description>
 		<NeutralLanguage>en</NeutralLanguage>
