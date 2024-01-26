@@ -4,7 +4,7 @@
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 
-	[HasPermission("Invoice.Payment")]
+	[RequirePermission("Invoice.Payment")]
 	public class InvoicePaymentModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

@@ -6,11 +6,7 @@
 namespace MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Identity
 {
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Reflection;
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;

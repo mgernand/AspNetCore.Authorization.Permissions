@@ -5,7 +5,7 @@
 	using Microsoft.Extensions.Logging;
 	using SamplePermissions.Model;
 
-	[HasPermission("Invoice.Write")]
+	[RequirePermission("Invoice.Write")]
 	public class InvoiceWriteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

@@ -8,7 +8,7 @@
 	using MongoSamplePermissions;
 	using MongoSamplePermissions.Model;
 
-	[HasPermission("Invoice.Delete")]
+	[RequirePermission("Invoice.Delete")]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

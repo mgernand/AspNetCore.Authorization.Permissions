@@ -14,9 +14,9 @@
 		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_").Replace(".Abstractions", ""))</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2022-2024 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>8.5.2</Version>
-		<AssemblyVersion>8.5.2</AssemblyVersion>
-		<FileVersion>8.5.2</FileVersion>
+		<Version>8.6.0</Version>
+		<AssemblyVersion>8.6.0</AssemblyVersion>
+		<FileVersion>8.6.0</FileVersion>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A libary that adds permission-based authorization.</Description>
 		<NeutralLanguage>en</NeutralLanguage>

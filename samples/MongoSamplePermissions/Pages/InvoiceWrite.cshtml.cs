@@ -6,7 +6,7 @@
 	using MongoSamplePermissions;
 	using MongoSamplePermissions.Model;
 
-	[HasPermission("Invoice.Write")]
+	[RequirePermission("Invoice.Write")]
 	public class InvoiceWriteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

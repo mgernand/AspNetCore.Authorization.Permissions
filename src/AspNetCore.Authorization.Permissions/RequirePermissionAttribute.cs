@@ -5,21 +5,20 @@
 	using Microsoft.AspNetCore.Authorization;
 
 	/// <summary>
-	///     This attribute can be applied just like the [Authorize].
+	///     This attribute can be applied just like the [Authorize] attribute.
 	///     This will only allow users which have a role containing the given permission.
 	/// </summary>
-	[Obsolete("Use [RequirePermission]. This weill be remove in v9.0")]
 	[PublicAPI]
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
-	public sealed class HasPermissionAttribute : Attribute, IAuthorizeData
+	public sealed class RequirePermissionAttribute : Attribute, IAuthorizeData
 	{
 		private string policy;
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="HasPermissionAttribute" /> type.
+		///     Initializes a new instance of the <see cref="RequirePermissionAttribute" /> type.
 		/// </summary>
 		/// <param name="permission"></param>
-		public HasPermissionAttribute(string permission)
+		public RequirePermissionAttribute(string permission)
 		{
 			if (string.IsNullOrWhiteSpace(permission))
 			{

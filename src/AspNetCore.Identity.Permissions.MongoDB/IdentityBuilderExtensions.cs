@@ -4,7 +4,6 @@
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.MongoDB;
 	using MadEyeMatt.MongoDB.DbContext;
-	using MadEyeMatt.MongoDB.DbContext.Initialization;
 	using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -16,7 +15,7 @@
 	public static class IdentityBuilderExtensions
 	{
 		/// <summary>
-		///     Adds the MongoDB store implementations for Identity and the permissions library.
+		///     Adds the MongoDB store implementations for Identity and the permission library.
 		/// </summary>
 		/// <typeparam name="TContext"></typeparam>
 		/// <param name="builder"></param>

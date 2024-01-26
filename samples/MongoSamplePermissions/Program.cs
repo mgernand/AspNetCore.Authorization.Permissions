@@ -6,7 +6,6 @@ using MadEyeMatt.AspNetCore.Identity.MongoDB;
 using MadEyeMatt.AspNetCore.Identity.Permissions;
 using MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB;
 using MadEyeMatt.MongoDB.DbContext;
-using MadEyeMatt.MongoDB.DbContext.Initialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
