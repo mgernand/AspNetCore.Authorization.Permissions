@@ -1,6 +1,5 @@
 ﻿namespace MongoSampleTenant.Pages
 {
-	using System;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
@@ -8,7 +7,7 @@
 	using MongoSampleTenant;
 	using MongoSampleTenant.Model;
 
-	[HasPermission("Invoice.Delete")]
+	[RequirePermission("Invoice.Delete")]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

@@ -4,7 +4,7 @@
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 
-	[HasPermission("Invoice.TaxExport")]
+	[RequirePermission("Invoice.TaxExport")]
 	public class InvoiceTaxExportModel : PageModel
 	{
 		private readonly ILogger<InvoiceTaxExportModel> logger;

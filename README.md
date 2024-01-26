@@ -101,9 +101,10 @@ builder.Services
 
 There are several ways to rescript access in your application.
 
-1. Use the ```[HasPermission]``` attribute to restrict access to controller actions.
+1. Use the ```[RequirePermission]``` attribute to restrict access to controller actions.
 2. Use the ```HasPermission()``` extension method with a ```ClaimsPrincipal``` instance.
 3. Use the ```HasPermission()``` method of a ```IUserPermissionsService``` instance.
+4. Use the ```RequirePermission``` extension methods for Minimal API endpoints.
 
 To retrict the access to an action methods just add the ```[Authorize]``` attribute with the permission
 name as contraint.
@@ -144,6 +145,13 @@ public class InvoicesReadModel : PageModel
 		return this.Page();
 	}
 }
+
+// Minimal API with extension method.
+app.MapGet("invoices/statistics", (HttpContext context) =>
+{
+	return Results.Ok();
+})
+.RequirePermission("Invoice.Statistics");
 ```
 
 ## Tenant Usage

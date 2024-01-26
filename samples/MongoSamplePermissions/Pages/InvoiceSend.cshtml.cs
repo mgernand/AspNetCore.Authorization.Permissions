@@ -5,7 +5,7 @@
 	using Microsoft.Extensions.Logging;
 	using MongoSamplePermissions;
 
-	[HasPermission("Invoice.Send")]
+	[RequirePermission("Invoice.Send")]
 	public class InvoiceSendModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;
