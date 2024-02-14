@@ -2,32 +2,6 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
-		<LangVersion>latest</LangVersion>
-		<Nullable>disable</Nullable>
-		<ImplicitUsings>disable</ImplicitUsings>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<PackageId>MadEyeMatt.$(AssemblyName)</PackageId>
-		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
-		<RootNamespace>MadEyeMatt.AspNetCore.Identity.Permissions</RootNamespace>
-		<IncludeSymbols>false</IncludeSymbols>
-		<Copyright>Copyright © 2022-2024 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>8.6.0</Version>
-		<AssemblyVersion>8.6.0</AssemblyVersion>
-		<FileVersion>8.6.0</FileVersion>
-		<Authors>Matthias Gernand</Authors>
-		<Description>A libary that adds permission-based authorization.</Description>
-		<NeutralLanguage>en</NeutralLanguage>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageProjectUrl>https://github.com/mgernand/AspNetCore.Authorization.Permissions</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/mgernand/AspNetCore.Authorization.Permissions</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>aspnetcore;authorization;permissions;tenant;multi-tenacy;identity</PackageTags>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
