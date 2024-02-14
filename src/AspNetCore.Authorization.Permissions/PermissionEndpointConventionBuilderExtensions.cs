@@ -2,14 +2,15 @@
 namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 {
 	using System;
+	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Builder;
 
 	/// <summary>
 	///		Authorization extension methods for <see cref="IEndpointConventionBuilder"/>.
 	/// </summary>
+	[PublicAPI]
 	public static class PermissionEndpointConventionBuilderExtensions
 	{
-
 		/// <summary>
 		///		Adds a permission policy with the specified name to the endpoint(s).
 		/// </summary>
@@ -19,12 +20,15 @@ namespace MadEyeMatt.AspNetCore.Authorization.Permissions
 		public static TBuilder RequirePermission<TBuilder>(this TBuilder builder, string permissionName)
 			where TBuilder : IEndpointConventionBuilder
 		{
-			if (builder == null)
+			if (builder is null)
 			{
 				throw new ArgumentNullException(nameof(builder));
 			}
 
-			ArgumentNullException.ThrowIfNull(permissionName);
+			if (string.IsNullOrWhiteSpace(permissionName))
+			{
+				throw new ArgumentNullException(nameof(permissionName));
+			}
 
 			return builder.RequireAuthorization(permissionName);
 		}

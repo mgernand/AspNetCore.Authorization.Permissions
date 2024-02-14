@@ -7,7 +7,7 @@
 	using Microsoft.Extensions.Logging;
 	using SampleTenant.Model;
 
-	[RequirePermission("Invoice.Delete")]
+	[RequireInvoiceDeletePermission]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

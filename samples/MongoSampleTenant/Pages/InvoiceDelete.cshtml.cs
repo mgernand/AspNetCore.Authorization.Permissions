@@ -7,7 +7,7 @@
 	using MongoSampleTenant;
 	using MongoSampleTenant.Model;
 
-	[RequirePermission("Invoice.Delete")]
+	[RequireInvoiceDeletePermission]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;
