@@ -1,7 +1,7 @@
 ﻿namespace MongoSamplePermissions
 {
 	using System;
-	using MadEyeMatt.AspNetCore.Identity.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 	using MadEyeMatt.MongoDB.DbContext;
 	using Microsoft.AspNetCore.Identity;
 	using MongoSamplePermissions.Model;

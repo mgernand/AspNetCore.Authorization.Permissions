@@ -5,6 +5,7 @@
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 
 	[UsedImplicitly]

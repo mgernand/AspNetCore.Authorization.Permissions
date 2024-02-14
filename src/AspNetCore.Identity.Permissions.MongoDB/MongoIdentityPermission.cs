@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 
 	/// <summary>
 	///     A default permission implementation that used a string as type for the ID.

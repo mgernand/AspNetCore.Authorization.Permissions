@@ -2,6 +2,7 @@
 {
 	using System;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;

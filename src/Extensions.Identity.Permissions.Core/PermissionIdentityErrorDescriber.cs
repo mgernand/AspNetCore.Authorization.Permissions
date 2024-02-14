@@ -1,7 +1,7 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions
 {
 	using JetBrains.Annotations;
-	using MadEyeMatt.AspNetCore.Identity.Permissions.Properties;
+	using MadEyeMatt.Extensions.Identity.Permissions.Properties;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>
@@ -93,7 +93,7 @@
 		{
 			return new IdentityError
 			{
-				Code = nameof(TenantAlreadyInRole),
+				Code = nameof(this.TenantAlreadyInRole),
 				Description = string.Format(Resources.TenantAlreadyInRole, roleName)
 
 			};
@@ -108,7 +108,7 @@
 		{
 			return new IdentityError
 			{
-				Code = nameof(TenantNotInRole),
+				Code = nameof(this.TenantNotInRole),
 				Description = string.Format(Resources.TenantNotInRole, roleName)
 
 			};

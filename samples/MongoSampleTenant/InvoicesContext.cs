@@ -2,7 +2,7 @@
 {
 	using System;
 	using MongoSampleTenant.Model;
-	using MadEyeMatt.AspNetCore.Identity.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 	using MadEyeMatt.MongoDB.DbContext;
 	using Microsoft.AspNetCore.Identity;
 

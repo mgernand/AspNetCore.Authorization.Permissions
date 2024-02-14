@@ -3,6 +3,7 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using MadEyeMatt.MongoDB.DbContext;
 	using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;

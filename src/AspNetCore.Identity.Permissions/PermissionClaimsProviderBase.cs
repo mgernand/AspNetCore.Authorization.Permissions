@@ -4,6 +4,7 @@
 	using System.Security.Claims;
 	using System.Threading.Tasks;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 
 	internal abstract class PermissionClaimsProviderBase<TPermission> : IClaimsProvider
 		where TPermission : class

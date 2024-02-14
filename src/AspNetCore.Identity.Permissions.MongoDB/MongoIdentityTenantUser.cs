@@ -3,6 +3,7 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 
 	/// <summary>
     ///     Represents a tenant user in the identity system.

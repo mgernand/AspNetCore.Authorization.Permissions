@@ -5,6 +5,7 @@ using MadEyeMatt.AspNetCore.Authorization.Permissions;
 using MadEyeMatt.AspNetCore.Identity.MongoDB;
 using MadEyeMatt.AspNetCore.Identity.Permissions;
 using MadEyeMatt.AspNetCore.Identity.Permissions.MongoDB;
+using MadEyeMatt.Extensions.Identity.Permissions;
 using MadEyeMatt.MongoDB.DbContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
