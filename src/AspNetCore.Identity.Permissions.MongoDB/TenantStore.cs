@@ -9,6 +9,8 @@
 	using global::MongoDB.Driver;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Identity.MongoDB;
+	using MadEyeMatt.Extensions.Identity.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 	using MadEyeMatt.MongoDB.DbContext;
 	using Microsoft.AspNetCore.Identity;
 

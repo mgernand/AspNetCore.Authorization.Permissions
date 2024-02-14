@@ -10,7 +10,7 @@
 	/// </summary>
 	[PublicAPI]
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
-	public sealed class RequirePermissionAttribute : Attribute, IAuthorizeData
+	public class RequirePermissionAttribute : Attribute, IAuthorizeData
 	{
 		private string policy;
 

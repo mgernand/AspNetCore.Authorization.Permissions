@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions.Stores
 {
 	using System;
 	using System.Collections.Generic;
@@ -6,6 +6,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 
 	/// <summary>

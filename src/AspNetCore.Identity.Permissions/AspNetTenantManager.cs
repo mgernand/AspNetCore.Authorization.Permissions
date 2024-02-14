@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Threading;
 	using JetBrains.Annotations;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.Logging;

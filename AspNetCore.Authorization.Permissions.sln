@@ -11,6 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{241433
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}"
 EndProject
@@ -44,9 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoSamplePermissions", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoSampleTenant", "samples\MongoSampleTenant\MongoSampleTenant.csproj", "{B7172410-2A68-4DB9-9538-036C8FFC7DE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.MongoDB.IntegrationTests", "tests\AspNetCore.Identity.Permissions.MongoDB.IntegrationTests\AspNetCore.Identity.Permissions.MongoDB.IntegrationTests.csproj", "{61ADF77F-B1DB-4489-AD46-DD6956605D41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.MongoDB.IntegrationTests", "tests\AspNetCore.Identity.Permissions.MongoDB.IntegrationTests\AspNetCore.Identity.Permissions.MongoDB.IntegrationTests.csproj", "{61ADF77F-B1DB-4489-AD46-DD6956605D41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests", "tests\AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests\AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests.csproj", "{637FE076-7CDE-49B1-BB14-1A6CE85382A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests", "tests\AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests\AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests.csproj", "{637FE076-7CDE-49B1-BB14-1A6CE85382A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

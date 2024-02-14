@@ -3,6 +3,7 @@
 	using System;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Authorization.Permissions;
+	using MadEyeMatt.Extensions.Identity.Permissions;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.DependencyInjection.Extensions;
 

@@ -2,12 +2,11 @@
 {
 	using System;
 	using System.Linq;
-	using MadEyeMatt.AspNetCore.Authorization.Permissions;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
 	using SamplePermissions.Model;
 
-	[RequirePermission("Invoice.Delete")]
+	[RequireInvoiceDeletePermission]
 	public class InvoiceDeleteModel : PageModel
 	{
 		private readonly ILogger<InvoiceReadModel> logger;

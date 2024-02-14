@@ -8,6 +8,7 @@
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Identity;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Configuration.Permissions;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore.Properties;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Infrastructure;

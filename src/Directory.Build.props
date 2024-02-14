@@ -1,0 +1,45 @@
+<Project>
+
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
+		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+		<PackageId>MadEyeMatt.$(AssemblyName)</PackageId>
+		<PackageOutputPath>..\..\package-output</PackageOutputPath>
+		<IncludeSymbols>false</IncludeSymbols>
+		<Authors>Matthias Gernand</Authors>
+		<Description>A libary that adds permission-based authorization.</Description>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageProjectUrl>https://github.com/mgernand/AspNetCore.Authorization.Permissions</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/mgernand/AspNetCore.Authorization.Permissions</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>aspnetcore;authorization;permissions;multi-tenancy;mongodb;ef-core</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<VersionPrefix>8.7.0</VersionPrefix>
+		<VersionSuffix></VersionSuffix>
+		<FileVersion>$(VersionPrefix)</FileVersion>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<InformationalVersion>$(Version)</InformationalVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Product>Identity Permission Extension</Product>
+		<AssemblyTitle>ASP.NET Core Identity Permission Extension</AssemblyTitle>
+		<Copyright>Copyright © 2022-2024 Matthias Gernand. All rights reserved.</Copyright>
+	</PropertyGroup>
+
+</Project>

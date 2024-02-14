@@ -1,7 +1,7 @@
 ﻿namespace SamplePermissions
 {
-	using MadEyeMatt.AspNetCore.Identity.Permissions;
 	using MadEyeMatt.AspNetCore.Identity.Permissions.EntityFrameworkCore;
+	using MadEyeMatt.Extensions.Identity.Permissions.Stores;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 

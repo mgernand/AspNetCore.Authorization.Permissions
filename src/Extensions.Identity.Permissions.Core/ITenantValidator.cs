@@ -1,4 +1,4 @@
-﻿namespace MadEyeMatt.AspNetCore.Identity.Permissions
+﻿namespace MadEyeMatt.Extensions.Identity.Permissions
 {
 	using System.Threading.Tasks;
 	using JetBrains.Annotations;
