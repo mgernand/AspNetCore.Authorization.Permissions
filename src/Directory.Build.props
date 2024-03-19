@@ -13,7 +13,7 @@
 	<PropertyGroup>
 		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-		<PackageId>MadEyeMatt.$(AssemblyName)</PackageId>
+		<PackageId>$(AssemblyName)</PackageId>
 		<PackageOutputPath>..\..\package-output</PackageOutputPath>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Authors>Matthias Gernand</Authors>
@@ -29,7 +29,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<VersionPrefix>8.7.0</VersionPrefix>
+		<VersionPrefix>8.7.1</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>

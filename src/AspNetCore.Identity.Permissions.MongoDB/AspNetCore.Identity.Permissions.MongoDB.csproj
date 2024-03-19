@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-		<PackageReference Include="MadEyeMatt.AspNetCore.Identity.MongoDB" Version="8.0.2" />
+		<PackageReference Include="MadEyeMatt.AspNetCore.Identity.MongoDB" Version="8.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
