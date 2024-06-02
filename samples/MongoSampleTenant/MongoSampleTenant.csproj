@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
