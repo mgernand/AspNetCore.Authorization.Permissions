@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="All" />
+		<PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="All" />
 		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.6" />
 	</ItemGroup>
 
