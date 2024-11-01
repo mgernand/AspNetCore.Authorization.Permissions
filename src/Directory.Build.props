@@ -14,7 +14,7 @@
 		<AssemblyName>MadEyeMatt.$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<PackageId>$(AssemblyName)</PackageId>
-		<PackageOutputPath>..\..\package-output</PackageOutputPath>
+		<PackageOutputPath>..\..\package-output\$(Configuration)</PackageOutputPath>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A libary that adds permission-based authorization.</Description>
@@ -29,7 +29,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<VersionPrefix>8.7.5</VersionPrefix>
+		<VersionPrefix>8.7.6</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
