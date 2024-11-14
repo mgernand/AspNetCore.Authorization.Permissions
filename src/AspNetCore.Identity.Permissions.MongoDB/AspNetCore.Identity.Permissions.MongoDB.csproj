@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="All" />
-		<PackageReference Include="MadEyeMatt.AspNetCore.Identity.MongoDB" Version="8.0.8" />
+		<PackageReference Include="MadEyeMatt.AspNetCore.Identity.MongoDB" Version="9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
