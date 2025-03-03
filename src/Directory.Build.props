@@ -29,7 +29,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<VersionPrefix>9.0.2</VersionPrefix>
+		<VersionPrefix>9.0.3</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
@@ -39,7 +39,7 @@
 	<PropertyGroup>
 		<Product>Identity Permission Extension</Product>
 		<AssemblyTitle>ASP.NET Core Identity Permission Extension</AssemblyTitle>
-		<Copyright>Copyright © 2022-2024 Matthias Gernand. All rights reserved.</Copyright>
+		<Copyright>Copyright © 2022-2025 Matthias Gernand. All rights reserved.</Copyright>
 	</PropertyGroup>
 
 </Project>
