@@ -1,8 +1,13 @@
+__I am leaving GitHub__
+
+Please follow me on [Codeberg](https://codeberg.org/mgernand)!  
+You can also find the sources of this repository there!
+
+Onwards! ✊
+
 # AspNetCore.Authorization.Permissions
 
 A libary that provides permission-based authorization.
-
-## This repository was moved to https://codeberg.org/mgernand/AspNetCore.Authorization.Permissions
 
 The ASP.NET Core role-based authorization in combination with custom authorization policies
 is a good starting point for restricting users' access in an application, but it is very 
