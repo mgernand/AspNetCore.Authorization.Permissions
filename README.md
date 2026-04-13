@@ -1,10 +1,3 @@
-__I am leaving GitHub__
-
-Please follow me on [Codeberg](https://codeberg.org/mgernand)!  
-You can also find the sources of this repository there!
-
-Onwards! ✊
-
 # AspNetCore.Authorization.Permissions
 
 A libary that provides permission-based authorization.
