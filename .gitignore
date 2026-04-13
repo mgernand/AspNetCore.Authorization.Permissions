@@ -353,3 +353,8 @@ MigrationBackup/
 *.db-shm
 *.db-wal
 *.db
+
+# JetBrains Rider
+.idea/
+
+nuget-apikey.txt

@@ -1,0 +1,26 @@
+<Solution>
+  <Folder Name="/.items/">
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/SamplePermissions/SamplePermissions.csproj" />
+    <Project Path="samples/SampleTenant/SampleTenant.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src/Directory.Build.props" />
+    <Project Path="src/AspNetCore.Authorization.Permissions.Abstractions/AspNetCore.Authorization.Permissions.Abstractions.csproj" />
+    <Project Path="src/AspNetCore.Authorization.Permissions/AspNetCore.Authorization.Permissions.csproj" />
+  </Folder>
+  <Folder Name="/src/Identity/">
+    <Project Path="src/AspNetCore.Identity.Permissions.EntityFrameworkCore/AspNetCore.Identity.Permissions.EntityFrameworkCore.csproj" />
+    <Project Path="src/AspNetCore.Identity.Permissions/AspNetCore.Identity.Permissions.csproj" />
+    <Project Path="src/Extensions.Identity.Permissions.Core/Extensions.Identity.Permissions.Core.csproj" />
+    <Project Path="src/Extensions.Identity.Permissions.Stores/Extensions.Identity.Permissions.Stores.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AspNetCore.Authorization.Permissions.UnitTests/AspNetCore.Authorization.Permissions.UnitTests.csproj" />
+    <Project Path="tests/AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests/AspNetCore.Identity.Permissions.EntityFrameworkCore.IntegrationTests.csproj" />
+  </Folder>
+</Solution>
