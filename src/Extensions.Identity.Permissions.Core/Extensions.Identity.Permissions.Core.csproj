@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2025.2.4" PrivateAssets="All" />
-		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="10.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="10.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
